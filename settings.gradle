@@ -1,0 +1,21 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-docker-plugin:9.0.1'
+        classpath "org.kordamp.gradle:settings-gradle-plugin:$kordamp"
+        classpath "org.kordamp.gradle:settings-gradle-plugin:$kordamp"
+
+        classpath "org.kordamp.gradle:guide-gradle-plugin:$kordamp"
+        classpath "org.kordamp.gradle:codenarc-gradle-plugin:$kordamp"
+        classpath "org.ajoberstar:gradle-git-publish:$ajoberstar"
+    }
+}
+apply plugin: 'org.kordamp.gradle.settings'
+
+projects {
+    directories = ['docs', 'modules']
+}
+
+rootProject.name = 'underdog'
