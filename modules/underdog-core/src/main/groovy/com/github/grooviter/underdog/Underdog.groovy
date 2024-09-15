@@ -1,14 +1,10 @@
 package com.github.grooviter.underdog
 
-import com.github.grooviter.underdog.impl.TablesawDataFrame
+import com.github.grooviter.underdog.impl.TSDataFrame
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import tech.tablesaw.api.Table
 import tech.tablesaw.io.csv.CsvReadOptions
-
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatterBuilder
-
 
 class Underdog {
     @NamedVariant
@@ -59,6 +55,6 @@ class Underdog {
             table = table.dropRange(table.rowCount() - skipFooter, table.rowCount())
         }
 
-        return new TablesawDataFrame(table)
+        return new TSDataFrame(table)
     }
 }

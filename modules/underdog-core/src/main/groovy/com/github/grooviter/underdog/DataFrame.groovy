@@ -33,7 +33,14 @@ interface DataFrame extends Columnar {
     /**
      * Return an int representing the number of elements in this object.
      * */
-    Long getSize()
+    Long size()
+
+
+    Series getAt(String column)
+
+    DataFrame getAt(String[] columns)
+
+    DataFrame getAt(List<String> columns)
 
     /**
      * Return a Series/DataFrame with absolute numeric value of each element.

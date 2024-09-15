@@ -1,16 +1,38 @@
 package com.github.grooviter.underdog
 
-import com.github.grooviter.underdog.series.DecimalSeries
-import com.github.grooviter.underdog.series.StringSeries
-import groovy.transform.NamedVariant
-
 interface Series extends Columnar {
+    /**
+     * @since 0.1.0
+     */
+    Series plus(Number o)
 
-    Series plus(Integer number)
+    /**
+     * @since 0.1.0
+     */
+    Series plus(String st)
+
+    /**
+     * @since 0.1.0
+     */
     Series plus(Series series)
 
-    StringSeries getStr()
+    /**
+     * @since 0.1.0
+     */
+    Object getImplementation()
 
-    @NamedVariant
-    DecimalSeries toNumeric(String errors)
+    /**
+     * @since 0.1.0
+     */
+    Object getAt(Integer index)
+
+    /**
+     * @since 0.1.0
+     */
+    Series getIloc()
+
+    /**
+     * @since 0.1.0
+     */
+    Long size()
 }

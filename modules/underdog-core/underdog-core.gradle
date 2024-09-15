@@ -13,7 +13,7 @@ dependencies {
     implementation "tech.tablesaw:tablesaw-core:$tablesaw"
     implementation "org.apache.groovy:groovy-macro:$groovy"
 
-    testImplementation "org.spockframework:spock-core:2.4-M1-groovy-3.0"
+    testImplementation "org.spockframework:spock-core:$spock"
 }
 
 test {

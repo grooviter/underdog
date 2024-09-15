@@ -25,9 +25,14 @@ class SelectionTransformer extends ConditionalExpressionTransformer {
             BinaryExpression getAtX = binaryExpression.leftExpression as BinaryExpression
             VariableExpression varX = getAtX.leftExpression as VariableExpression
             ConstantExpression colX = getAtX.rightExpression as ConstantExpression
-            // df.iloc[]
-            // callX(callX(df, "getIloc", args()), "getAt", colX)
-            MethodCallExpression columnX = callX(varX, "column", args(colX))
+            // df.loc["column"]
+            //     ^ ^
+            //     | |
+            //     | |
+            //     | df.getAt("column") == df["column"]
+            //     |
+            //   df.loc == df.getLoc()
+            MethodCallExpression columnX = callX(callX(varX, "getLoc"), "getAt", args(colX))
 
             return callX(columnX, resolveToken(binaryExpression.operation.type), args(binaryExpression.rightExpression))
         }

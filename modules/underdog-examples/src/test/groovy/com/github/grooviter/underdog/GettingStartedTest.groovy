@@ -18,24 +18,54 @@ class GettingStartedTest extends Specification {
         def df = ud.read_csv(path: CSV_FOOD, nanValues: ["NaN"], sep: ";")
 
         then:
-        df.size == 3197
+        df.size() == 3197
 
         and:
         df.columns.size() == 20
     }
 
-    def "Indexing (loc)"() {
+    def "Indexing: df['column']"() {
         setup:
         def df = ud.read_csv(path: CSV_FOOD, nanValues: ["NaN"], sep: ";")
 
         when:
-        df = df.loc[df["CARBS"] > 12, ["ID", "NAME", "CARBS"]]
+        def carbs = df["CARBS"]
 
         then:
-        df.columns.size() == 3
+        carbs.size() == 3197
+    }
 
-        and:
-        df.size == 30
+    def "Indexing: df['column'][0]"() {
+        setup:
+        def df = ud.read_csv(path: CSV_FOOD, nanValues: ["NaN"], sep: ";")
+
+        when:
+        def carbs = df["CARBS"][0]
+
+        then:
+        carbs == 2.3
+    }
+
+    def "Indexing: df['column'].iloc[0]"() {
+        setup:
+        def df = ud.read_csv(path: CSV_FOOD, nanValues: ["NaN"], sep: ";")
+
+        when:
+        def carbs = df["CARBS"].iloc[9]
+
+        then:
+        carbs == 2.3
+    }
+
+    def "Indexing: df.loc['column']"() {
+        setup:
+        def df = ud.read_csv(path: CSV_FOOD, nanValues: ["NaN"], sep: ";")
+
+        when:
+        def carbs = df.loc["CARBS"]
+
+        then:
+        carbs.size() == 3197
     }
 
     def "read a CSV file and filter"() {

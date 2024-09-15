@@ -9,12 +9,17 @@ import groovy.transform.TupleConstructor
 import tech.tablesaw.api.Table
 
 @TupleConstructor
-class TablesawDataFrameLoc implements DataFrameLoc {
+class TSDataFrameLoc implements DataFrameLoc {
     Table table
     @Override
     DataFrame getAt(String[] columns) {
-        this.table = this.table.select(columns)
-        return new TablesawDataFrame(this.table)
+        this.table = this.table.selectColumns(columns)
+        return new TSDataFrame(this.table)
+    }
+
+    @Override
+    DataFrame getAt(List<String> columns) {
+        return this[columns as String[]]
     }
 
     @ASTDriven
@@ -24,7 +29,7 @@ class TablesawDataFrameLoc implements DataFrameLoc {
     }
 
     @Override
-    Series getAt(String column) {
-        return null
+    Series getAt(String columnName) {
+        return new TSSeries(this.table.column(columnName))
     }
 }

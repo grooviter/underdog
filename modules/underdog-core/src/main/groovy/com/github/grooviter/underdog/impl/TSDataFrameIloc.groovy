@@ -6,29 +6,29 @@ import groovy.transform.TupleConstructor
 import tech.tablesaw.api.Table
 
 @TupleConstructor
-class TablesawDataFrameIloc implements DataFrameIloc {
+class TSDataFrameIloc implements DataFrameIloc {
     Table table
     @Override
     DataFrame getAt(IntRange index) {
         this.table = this.table.rows(index as int[])
-        return new TablesawDataFrame(this.table)
+        return new TSDataFrame(this.table)
     }
 
     @Override
     DataFrame getAt(Integer[] indexes) {
         this.table = this.table.rows(indexes as int[])
-        return new TablesawDataFrame(this.table)
+        return new TSDataFrame(this.table)
     }
 
     @Override
     DataFrame getAt(IntRange index, IntRange colIndex) {
         this.table = this.table.rows(index as int[]).selectColumns(colIndex as int[])
-        return new TablesawDataFrame(this.table)
+        return new TSDataFrame(this.table)
     }
 
     @Override
     DataFrame getAt(Integer index, IntRange colIndex) {
         this.table = this.table.rows(0).selectColumns(colIndex as int[])
-        return new TablesawDataFrame(this.table)
+        return new TSDataFrame(this.table)
     }
 }

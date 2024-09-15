@@ -22,7 +22,7 @@ import java.util.function.Function
  * @since 0.1.0
  */
 @TupleConstructor
-class TablesawDataFrame implements DataFrame {
+class TSDataFrame implements DataFrame {
     Table table
 
     @Override
@@ -38,11 +38,11 @@ class TablesawDataFrame implements DataFrame {
 
     @Override
     DataFrameIloc getIloc() {
-        return new TablesawDataFrameIloc(this.table)
+        return new TSDataFrameIloc(this.table)
     }
 
     DataFrameLoc getLoc() {
-        return new TablesawDataFrameLoc(this.table)
+        return new TSDataFrameLoc(this.table)
     }
 
     @Override
@@ -56,8 +56,23 @@ class TablesawDataFrame implements DataFrame {
     }
 
     @Override
-    Long getSize() {
+    Long size() {
         return this.table.rowCount()
+    }
+
+    @Override
+    Series getAt(String column) {
+        return this.loc[column]
+    }
+
+    @Override
+    DataFrame getAt(String[] columns) {
+        return new TSDataFrame(this.table.selectColumns(columns))
+    }
+
+    @Override
+    DataFrame getAt(List<String> columns) {
+        return this[columns as String[]]
     }
 
     @Override
@@ -188,7 +203,7 @@ class TablesawDataFrame implements DataFrame {
         @NamedParam boolean copy) {
 
         DataFrameJoiner joiner = this.table.joinOn(left_on as String[])
-        Table rightTable = ((TablesawDataFrame) right).implementation
+        Table rightTable = ((TSDataFrame) right).implementation
 
         this.table = switch(how){
             case TypeJoin.outer -> joiner.fullOuter(rightTable)

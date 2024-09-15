@@ -15,6 +15,8 @@ interface DataFrameLoc {
      * */
     DataFrame getAt(String[] columns)
 
+    DataFrame getAt(List<String> columns)
+
     @ASTDriven
     @NamedVariant
     default DataFrame getAt(Boolean selection, List columns) {
