@@ -1,5 +1,8 @@
 package com.github.grooviter.underdog
 
+/**
+ * @since 0.1.0
+ */
 interface Series extends Columnar {
     /**
      * @since 0.1.0

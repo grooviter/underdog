@@ -1,9 +1,9 @@
 package com.github.grooviter.underdog
 
 class DataFrameSpec extends BaseSpec {
-    def "[DataFrame/Indexing]: extract several columns -> df.loc['col1',...,'coln']"() {
+    def "[DataFrame/Indexing]: extract several columns -> df['col1',...,'coln']"() {
         when:
-        def carbs = df.loc["ID", "CARBS"]
+        def carbs = df["ID", "CARBS"]
 
         then:
         carbs.columns == ["ID", "CARBS"]
@@ -12,9 +12,9 @@ class DataFrameSpec extends BaseSpec {
         carbs.size() == CSV_TOTAL_SIZE
     }
 
-    def "[DataFrame/Indexing]: extract several columns -> df['col1',...,'coln']"() {
+    def "[DataFrame/Indexing/loc]: extract several columns -> df.loc['col1',...,'coln']"() {
         when:
-        def carbs = df["ID", "CARBS"]
+        def carbs = df.loc["ID", "CARBS"]
 
         then:
         carbs.columns == ["ID", "CARBS"]
