@@ -1,6 +1,7 @@
 package com.github.grooviter.underdog.impl
 
 import com.github.grooviter.underdog.Columnar
+import com.github.grooviter.underdog.Criteria
 import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.DataFrameIloc
 import com.github.grooviter.underdog.DataFrameLoc
@@ -66,19 +67,18 @@ class TSDataFrame implements DataFrame {
 
     private static ColumnType resolveFrom(String clazzName) {
         return switch(clazzName.toUpperCase()) {
-            case 'SHORT'         -> ColumnType.SHORT
-            case 'INTEGER'       -> ColumnType.INTEGER
-            case ['LONG', 'BIGINTEGER']          -> ColumnType.LONG
-            case 'FLOAT'         -> ColumnType.FLOAT
-            case 'BOOLEAN'       -> ColumnType.BOOLEAN
-            case 'STRING'        -> ColumnType.STRING
-            case ['DOUBLE', 'BIGDECIMAL']      -> ColumnType.DOUBLE
-            case 'LOCALDATE'     -> ColumnType.LOCAL_DATE
-            case 'LOCALTIME'     -> ColumnType.LOCAL_TIME
-            case 'LOCALDATETIME' -> ColumnType.LOCAL_DATE_TIME
-            case 'INSTANT'       -> ColumnType.INSTANT
-            default              -> ColumnType.STRING
-
+            case 'SHORT'                  -> ColumnType.SHORT
+            case 'INTEGER'                -> ColumnType.INTEGER
+            case ['LONG', 'BIGINTEGER']   -> ColumnType.LONG
+            case 'FLOAT'                  -> ColumnType.FLOAT
+            case 'BOOLEAN'                -> ColumnType.BOOLEAN
+            case 'STRING'                 -> ColumnType.STRING
+            case ['DOUBLE', 'BIGDECIMAL'] -> ColumnType.DOUBLE
+            case 'LOCALDATE'              -> ColumnType.LOCAL_DATE
+            case 'LOCALTIME'              -> ColumnType.LOCAL_TIME
+            case 'LOCALDATETIME'          -> ColumnType.LOCAL_DATE_TIME
+            case 'INSTANT'                -> ColumnType.INSTANT
+            default                       -> ColumnType.STRING
         }
     }
 
@@ -129,7 +129,7 @@ class TSDataFrame implements DataFrame {
 
     @Override
     DataFrame getAt(List<String> columns) {
-        return this[columns as String[]]
+        return new TSDataFrame(this.table.selectColumns(columns as String[]))
     }
 
     @Override

@@ -1,8 +1,17 @@
 package com.github.grooviter.underdog.impl
 
+import com.github.grooviter.underdog.Criteria
 import com.github.grooviter.underdog.Series
-
+import tech.tablesaw.api.DateTimeColumn
+import tech.tablesaw.api.DoubleColumn
+import tech.tablesaw.api.NumericColumn
 import tech.tablesaw.columns.Column
+import tech.tablesaw.selection.Selection
+
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 
 class TSSeries implements Series {
     private final Column column
@@ -38,11 +47,36 @@ class TSSeries implements Series {
 
     @Override
     Series plus(Series series) {
-        return new TSSeries(this.implementation.append(series.implementation))
+        Column actual = this.implementation as Column
+        Column toAdd = series.implementation as Column
+        return new TSSeries(actual.append(toAdd))
     }
 
     @Override
     Long size() {
         return this.column.size()
+    }
+
+    @Override
+    Criteria isGreaterThan(double value) {
+        NumericColumn column = this.implementation as NumericColumn
+        return new TSCriteria(column.isGreaterThan(value))
+    }
+
+    @Override
+    Criteria isLessThan(double value) {
+        NumericColumn column = this.implementation as NumericColumn
+        return new TSCriteria(column.isLessThan(value))
+    }
+
+    @Override
+    Series multiply(Number number) {
+        NumericColumn column = this.implementation as NumericColumn
+        return new TSSeries(column * number)
+    }
+
+    @Override
+    String toString() {
+        return this.implementation.toString()
     }
 }

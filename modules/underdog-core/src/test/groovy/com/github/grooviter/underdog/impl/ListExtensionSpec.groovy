@@ -10,6 +10,7 @@ class ListExtensionSpec extends Specification {
             CARBS: [2.2, 3.0, 4.0],
             FAT:   [3.1, 4.2, 5.2]
         ].toDF("food")
+
         then:
         newDf.size() == 3
 

@@ -1,6 +1,6 @@
 package com.github.grooviter.underdog
 
-
+import com.github.grooviter.underdog.impl.ast.ASTDriven
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 
@@ -65,6 +65,18 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     abstract DataFrame getAt(List<String> columns)
+
+    default DataFrame getAt(Criteria criteria) {
+        return criteria.apply(this)
+    }
+
+    /**
+     * @since 0.1.0
+     */
+    @ASTDriven
+    default DataFrame getAt(Boolean selection) {
+        throw new RuntimeException("")
+    }
 
     /**
      * Return a Series/DataFrame with absolute numeric value of each element.

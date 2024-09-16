@@ -22,13 +22,21 @@ class TSDataFrameIloc implements DataFrameIloc {
 
     @Override
     DataFrame getAt(IntRange index, IntRange colIndex) {
-        this.table = this.table.rows(index as int[]).selectColumns(colIndex as int[])
+        this.table = this.table.selectColumns(colIndex as int[]).rows(index as int[])
         return new TSDataFrame(this.table)
     }
 
     @Override
     DataFrame getAt(Integer index, IntRange colIndex) {
-        this.table = this.table.rows(0).selectColumns(colIndex as int[])
+        if (!(index.abs() in (0..this.table.rowCount()))) {
+            throw new RuntimeException("index $index is out of bounds")
+        }
+
+        int indexToUse = index
+        if (index < 0) {
+            indexToUse = this.table.rowCount() + index
+        }
+        this.table = this.table.selectColumns(colIndex as int[]).rows(indexToUse)
         return new TSDataFrame(this.table)
     }
 }

@@ -1,7 +1,6 @@
 package com.github.grooviter.underdog
 
 import com.github.grooviter.underdog.impl.ast.ASTDriven
-import groovy.transform.NamedVariant
 
 /**
  * @since 0.1.0
@@ -31,7 +30,21 @@ interface DataFrameLoc {
      * @since 0.1.0
      */
     @ASTDriven
-    @NamedVariant
+    default DataFrame getAt(Boolean selection) {
+        throw new RuntimeException("")
+    }
+
+    /**
+     * @since 0.1.0
+     */
+    default DataFrame getAt(Criteria criteria) {
+        return criteria.apply(this)
+    }
+
+    /**
+     * @since 0.1.0
+     */
+    @ASTDriven
     default DataFrame getAt(Boolean selection, List columns) {
         throw new RuntimeException("")
     }

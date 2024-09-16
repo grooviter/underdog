@@ -38,4 +38,9 @@ interface Series extends Columnar {
      * @since 0.1.0
      */
     Long size()
+
+    Criteria isGreaterThan(double value)
+    Criteria isLessThan(double value)
+
+    Series multiply(Number number)
 }

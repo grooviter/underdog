@@ -16,4 +16,18 @@ class SeriesSpec extends BaseSpec {
         then:
         carbs == 4.2
     }
+
+    def "[Series/operators]: multiply by number -> df['column'] * 2"(){
+        setup:
+        def df = [
+            numbers: 1..10,
+            letters: 'a'..'j'
+        ].toDF("example")
+
+        when:
+        def byTwo = df['numbers'] * 2
+
+        then:
+        byTwo.iloc[0] == 2
+    }
 }

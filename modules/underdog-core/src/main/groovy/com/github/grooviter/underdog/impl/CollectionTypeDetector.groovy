@@ -3,13 +3,13 @@ package com.github.grooviter.underdog.impl
 class CollectionTypeDetector {
     Class[] detectFromMapOfLists(Map<String, List<?>> map) {
         return map.collect { k, v ->
-            typeFromList(v, 0.05)
+            typeFromList(v, 0.25)
         }
     }
 
     Class[] detectFromMapOfValues(Map<String,?> map) {
         return map.collect { k, v ->
-            typeFromList([v], 0.05)
+            typeFromList([v], 0.25)
         }
     }
 
@@ -22,8 +22,12 @@ class CollectionTypeDetector {
                 .collect { it.class }
                 .unique()
 
+        if (classes.size() > 1 && classes.every{ Number.isAssignableFrom(it)}){
+            return BigDecimal
+        }
+
         if (classes.size() != 1) {
-            return String.class
+            return String
         }
 
         return classes.find()
