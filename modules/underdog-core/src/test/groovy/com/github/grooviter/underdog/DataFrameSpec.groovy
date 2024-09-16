@@ -114,4 +114,60 @@ class DataFrameSpec extends BaseSpec {
         then:
         carbs.size() == CSV_TOTAL_SIZE
     }
+
+    def "[DataFrame/Series]: modify series values -> df['column'] = df['other_column'] * 2"() {
+        setup:
+        def df = [numbers: 1..10].toDF("example")
+
+        when:
+        df['numbers'] = df['numbers'] * 2
+
+        and:
+        def doubled = df['numbers'].toIntegerList()
+
+        then:
+        doubled == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    }
+
+    def "[DataFrame/Series]: create new series -> df['new_name'] = df['column'] * 2"() {
+        setup:
+        def df = [numbers: 1..10].toDF("example")
+
+        when:
+        df['doubled'] = df['numbers'] * 2
+
+        and:
+        def doubled = df['doubled'].toIntegerList()
+
+        and:
+        df.columns == ['numbers', 'doubled']
+
+        then:
+        doubled == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    }
+
+    def "[DataFrame/Grouping/agg"() {
+        when:
+        def grouped = df
+            .agg(
+                CARBS: 'max',
+                FAT: 'max',
+                ENERGY: 'max',
+                PROTEINS: 'max')
+            .by('GROUP NAME')
+
+        then:
+        grouped.size() == 12
+
+        and:
+        grouped.columns.size() == 5
+    }
+
+    def "[DataFrame/Sorting] single column"() {
+        when:
+        def sortedByCarbs = df//.sortBy("-CARBS")
+
+        then:
+        sortedByCarbs['CARBS'].iloc[0] == 98
+    }
 }

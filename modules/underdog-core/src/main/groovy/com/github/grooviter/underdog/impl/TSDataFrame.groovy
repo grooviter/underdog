@@ -3,6 +3,7 @@ package com.github.grooviter.underdog.impl
 import com.github.grooviter.underdog.Columnar
 import com.github.grooviter.underdog.Criteria
 import com.github.grooviter.underdog.DataFrame
+import com.github.grooviter.underdog.DataFrameAggregation
 import com.github.grooviter.underdog.DataFrameIloc
 import com.github.grooviter.underdog.DataFrameLoc
 import com.github.grooviter.underdog.Series
@@ -168,7 +169,7 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
-    @NamedVariant
+    // @NamedVariant
     DataFrame agg(Function fn, String fnName, List<String> namedFns, Map colFunc, TypeAxis axis) {
         return null
     }
@@ -297,6 +298,32 @@ class TSDataFrame implements DataFrame {
         this.renameByFn(fn)
 
         return this
+    }
+
+    @Override
+    void putAt(String colName, Series value) {
+        Column newCol = fromSeries(value)
+        Column column = newCol.type().create(colName)
+
+        if (colName in this.table.columnNames()){
+            this.table.removeColumns(colName)
+        }
+
+        this.table.addColumns(column.append(newCol))
+    }
+
+    @Override
+    DataFrameAggregation agg(Map<String, ?> aggFn) {
+        List<DataFrameAggregation.SeriesInfo> seriesInfoList = aggFn.collect { String colName, Object func ->
+            new DataFrameAggregation.SeriesInfo(colName, [func.toString()])
+        }
+
+        return  new TSDataFrameAggregation(new DataFrameAggregation.AggregationInfo(seriesInfoList), this.table)
+    }
+
+    private static Column fromSeries(Series value) {
+        TSSeries series = value as TSSeries
+        return series.implementation as Column
     }
 
     private DataFrame renameByList(List<String> columns) {

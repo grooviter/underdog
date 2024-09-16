@@ -42,14 +42,13 @@ class TSSeries implements Series {
 
     @Override
     Series plus(String st) {
-        return new TSSeries(this.implementation.map(n -> n + st))
+        return new TSSeries(this.column.map(n -> n + st))
     }
 
     @Override
     Series plus(Series series) {
-        Column actual = this.implementation as Column
         Column toAdd = series.implementation as Column
-        return new TSSeries(actual.append(toAdd))
+        return new TSSeries(this.column.append(toAdd))
     }
 
     @Override
@@ -59,20 +58,26 @@ class TSSeries implements Series {
 
     @Override
     Criteria isGreaterThan(double value) {
-        NumericColumn column = this.implementation as NumericColumn
+        NumericColumn column = this.column as NumericColumn
         return new TSCriteria(column.isGreaterThan(value))
     }
 
     @Override
     Criteria isLessThan(double value) {
-        NumericColumn column = this.implementation as NumericColumn
+        NumericColumn column = this.column as NumericColumn
         return new TSCriteria(column.isLessThan(value))
     }
 
     @Override
     Series multiply(Number number) {
-        NumericColumn column = this.implementation as NumericColumn
+        NumericColumn column = this.column as NumericColumn
         return new TSSeries(column * number)
+    }
+
+    @Override
+    List<Integer> toIntegerList() {
+        NumericColumn column = this.column as NumericColumn
+        return column.asIntColumn().toList()
     }
 
     @Override

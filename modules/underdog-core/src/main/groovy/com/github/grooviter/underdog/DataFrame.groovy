@@ -278,4 +278,9 @@ interface DataFrame extends Columnar {
     default String toString() {
         return this.implementation.toString()
     }
+
+
+    void putAt(String colName, Series value)
+
+    DataFrameAggregation agg(Map<String, ?> aggFn)
 }

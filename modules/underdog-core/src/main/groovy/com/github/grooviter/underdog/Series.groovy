@@ -43,4 +43,7 @@ interface Series extends Columnar {
     Criteria isLessThan(double value)
 
     Series multiply(Number number)
+
+
+    List<Integer> toIntegerList()
 }
