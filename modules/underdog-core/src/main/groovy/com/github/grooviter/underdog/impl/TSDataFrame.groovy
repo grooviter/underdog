@@ -11,7 +11,7 @@ import com.github.grooviter.underdog.TypeAxis
 import com.github.grooviter.underdog.TypeJoin
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
-import groovy.transform.TupleConstructor
+import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.Table
 import tech.tablesaw.columns.Column
 import tech.tablesaw.joining.DataFrameJoiner
@@ -21,9 +21,66 @@ import java.util.function.Function
 /**
  * @since 0.1.0
  */
-@TupleConstructor
 class TSDataFrame implements DataFrame {
-    Table table
+    private Table table
+
+    TSDataFrame(Table table){
+        this.table = table
+    }
+
+    static DataFrame from(String dataFrameName, Collection<Map<String, ?>> collection) {
+        Map<String,?> sample = collection.find()
+        List<String> colNames = sample.keySet().toList()
+        ColumnType[] colTypes = new CollectionTypeDetector()
+                .detectFromMapOfValues(sample)
+                .<Class, ColumnType>collect((Class clazz) -> resolveFrom(clazz.simpleName))
+
+        List<Column> columns = [colNames, colTypes].transpose()
+                .collect { String name, ColumnType type -> type.create(name) }
+
+        Map<String, Column> columnByName = columns.collectEntries { [(it.name()): it] }
+
+        collection.each { Map<String,?> row ->
+            columnByName.each { String k, Column v ->
+                v.append(row[k])
+            }
+        }
+
+        return new TSDataFrame(Table.create(dataFrameName, columns))
+    }
+
+    static DataFrame from(String dataFrameName, Map<String,List> fromMap) {
+        List<String> columnNames = fromMap.keySet().toList()
+        ColumnType[] columnTypes = new CollectionTypeDetector()
+            .detectFromMapOfLists(fromMap)
+            .<Class, ColumnType>collect((Class clazz) -> resolveFrom(clazz.simpleName))
+
+        List<Column> columns = [columnNames, columnTypes].transpose()
+                .collect { String name, ColumnType type -> type
+                    .create(name)
+                    .tap { Column column -> fromMap[name].each { column.append(it) } }
+                }
+
+        return new TSDataFrame(Table.create(dataFrameName, columns))
+    }
+
+    private static ColumnType resolveFrom(String clazzName) {
+        return switch(clazzName.toUpperCase()) {
+            case 'SHORT'         -> ColumnType.SHORT
+            case 'INTEGER'       -> ColumnType.INTEGER
+            case ['LONG', 'BIGINTEGER']          -> ColumnType.LONG
+            case 'FLOAT'         -> ColumnType.FLOAT
+            case 'BOOLEAN'       -> ColumnType.BOOLEAN
+            case 'STRING'        -> ColumnType.STRING
+            case ['DOUBLE', 'BIGDECIMAL']      -> ColumnType.DOUBLE
+            case 'LOCALDATE'     -> ColumnType.LOCAL_DATE
+            case 'LOCALTIME'     -> ColumnType.LOCAL_TIME
+            case 'LOCALDATETIME' -> ColumnType.LOCAL_DATE_TIME
+            case 'INSTANT'       -> ColumnType.INSTANT
+            default              -> ColumnType.STRING
+
+        }
+    }
 
     @Override
     DataFrame getT() {

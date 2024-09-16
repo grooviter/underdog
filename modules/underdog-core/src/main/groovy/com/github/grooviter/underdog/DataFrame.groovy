@@ -13,65 +13,65 @@ interface DataFrame extends Columnar {
      *
      * @since 0.1.0
      */
-    DataFrame getT()
+    abstract DataFrame getT()
 
     /**
      * @since 0.1.0
      */
-    Object getImplementation()
+    abstract Object getImplementation()
 
     /**
      * @since 0.1.0
      */
-    DataFrameLoc getLoc()
+    abstract DataFrameLoc getLoc()
 
     /**
      * @since 0.1.0
      */
-    DataFrameIloc getIloc()
+    abstract DataFrameIloc getIloc()
 
     /**
      * The column labels of the DataFrame.
      *
      * @since 0.1.0
      */
-    List<String> getColumns()
+    abstract List<String> getColumns()
 
     /**
      * Indicator whether Series/DataFrame is empty.
      *
      * @since 0.1.0
      */
-    Boolean isEmpty()
+    abstract Boolean isEmpty()
 
     /**
      * Return an int representing the number of elements in this object.
      *
      * @since 0.1.0
      */
-    Long size()
+    abstract Long size()
 
     /**
      * @since 0.1.0
      */
-    Series getAt(String column)
+    abstract Series getAt(String column)
 
     /**
      * @since 0.1.0
      */
-    DataFrame getAt(String[] columns)
+    abstract DataFrame getAt(String[] columns)
 
     /**
      * @since 0.1.0
      */
-    DataFrame getAt(List<String> columns)
+    abstract DataFrame getAt(List<String> columns)
 
     /**
      * Return a Series/DataFrame with absolute numeric value of each element.
      *
      * @since 0.1.0
      */
-    DataFrame abs()
+    abstract DataFrame abs()
 
     /**
      * Get Addition of dataframe and other, element-wise (binary operator add).
@@ -79,14 +79,14 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame add(DataFrame other, TypeAxis axis, Integer level, BigDecimal fill)
+    abstract DataFrame add(DataFrame other, TypeAxis axis, Integer level, BigDecimal fill)
 
     /**
      * Get Addition of dataframe and other, element-wise (binary operator add).
      *
      * @since 0.1.0
      */
-    DataFrame plus(Number number)
+    abstract DataFrame plus(Number number)
 
     /**
      * Prefix labels with string prefix.
@@ -94,7 +94,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame addPrefix(String prefix, TypeAxis axis)
+    abstract DataFrame addPrefix(String prefix, TypeAxis axis)
 
     /**
      * Suffix labels with string prefix.
@@ -102,7 +102,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame addSuffix(@NamedParam(required = true) String suffix, @NamedParam(required = false) TypeAxis axis)
+    abstract DataFrame addSuffix(@NamedParam(required = true) String suffix, @NamedParam(required = false) TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
@@ -110,26 +110,26 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame agg(Function fn, String fnName, List<String> namedFns, Map colFunc, TypeAxis axis)
+    abstract DataFrame agg(Function fn, String fnName, List<String> namedFns, Map colFunc, TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
      *
      * @since 0.1.0
      */
-    DataFrame agg(String fnName, TypeAxis axis)
+    abstract DataFrame agg(String fnName, TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
      *
      * @since 0.1.0
      */
-    DataFrame agg(List<String> namedFns, TypeAxis axis)
+    abstract DataFrame agg(List<String> namedFns, TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
      * */
-    DataFrame agg(Map colFunc, TypeAxis axis)
+    abstract DataFrame agg(Map colFunc, TypeAxis axis)
 
     /**
      * Align two objects on their axes with the specified join method.
@@ -137,7 +137,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    <T extends Columnar> Tuple2<DataFrame, T> align(
+    abstract <T extends Columnar> Tuple2<DataFrame, T> align(
         @NamedParam(required = true) T other,
         @NamedParam(required = false) TypeJoin joinType,
         @NamedParam(required = false) TypeAxis axis,
@@ -153,7 +153,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    boolean all(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
+    abstract boolean all(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
 
     /**
      * Return whether any element is True, potentially over an axis.
@@ -164,7 +164,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    boolean any(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
+    abstract boolean any(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
 
     /**
      * Apply a function along an axis of the DataFrame.
@@ -176,7 +176,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame apply(Function fn, TypeAxis axisType, boolean raw, TypeApplyResult resultType, TypeApplyByRow byRow)
+    abstract DataFrame apply(Function fn, TypeAxis axisType, boolean raw, TypeApplyResult resultType, TypeApplyByRow byRow)
 
     /**
      * Apply a function along an axis of the DataFrame.
@@ -187,7 +187,7 @@ interface DataFrame extends Columnar {
      *
      * @since 0.1.0
      */
-    DataFrame apply(Closure fn)
+    abstract DataFrame apply(Closure fn)
 
     /**
      * Convert time series to specified frequency.
@@ -197,7 +197,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame asfreq(String freqExpression, boolean normalize)
+    abstract DataFrame asfreq(String freqExpression, boolean normalize)
 
     /**
      * Drop specified labels from rows or columns.
@@ -208,7 +208,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame drop(List<String> labels, String levelName, String levelIndex, TypeAxis axisType)
+    abstract DataFrame drop(List<String> labels, String levelName, String levelIndex, TypeAxis axisType)
 
     /**
      * Drop specified labels from rows or columns.
@@ -218,13 +218,13 @@ interface DataFrame extends Columnar {
      *
      * @since 0.1.0
      */
-    DataFrame drop(String... labels)
+    abstract DataFrame drop(String... labels)
 
     /**
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame merge(
+    abstract DataFrame merge(
         DataFrame right,
         @NamedParam TypeJoin how,
         @NamedParam List<String> on,
@@ -241,13 +241,13 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    Series min(TypeAxis axisType)
+    abstract Series min(TypeAxis axisType)
 
     /**
      * @since 0.1.0
      */
     @NamedVariant
-    Series max(TypeAxis axisType)
+    abstract Series max(TypeAxis axisType)
 
     /**
      * Rename columns or index labels.
@@ -257,7 +257,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
+    abstract DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
 
     /**
      * @since 0.1.0
