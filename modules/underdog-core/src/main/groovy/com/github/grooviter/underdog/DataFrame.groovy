@@ -271,6 +271,9 @@ interface DataFrame extends Columnar {
     @NamedVariant
     abstract DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
 
+    @NamedVariant
+    DataFrame sort_values(@NamedParam(required = false) boolean skipNa, @NamedParam(required = true) Object by)
+
     /**
      * @since 0.1.0
      */

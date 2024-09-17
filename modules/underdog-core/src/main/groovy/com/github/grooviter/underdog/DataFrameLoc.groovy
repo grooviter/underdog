@@ -19,11 +19,6 @@ interface DataFrameLoc {
      *
      * @since 0.1.0
      */
-    DataFrame getAt(String[] columns)
-
-    /**
-     * @since 0.1.0
-     */
     DataFrame getAt(List<String> columns)
 
     /**
@@ -37,15 +32,23 @@ interface DataFrameLoc {
     /**
      * @since 0.1.0
      */
-    default DataFrame getAt(Criteria criteria) {
-        return criteria.apply(this)
+    @ASTDriven
+    default DataFrame getAt(Boolean selection, List<String> columns) {
+        throw new RuntimeException("")
     }
 
     /**
      * @since 0.1.0
      */
     @ASTDriven
-    default DataFrame getAt(Boolean selection, List columns) {
+    default DataFrame getAt(Boolean selection, String... columns) {
         throw new RuntimeException("")
+    }
+
+    /**
+     * @since 0.1.0
+     */
+    default DataFrame getAt(Criteria criteria) {
+        return criteria.apply(this)
     }
 }

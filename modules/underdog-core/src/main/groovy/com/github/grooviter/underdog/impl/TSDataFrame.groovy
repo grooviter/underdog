@@ -352,4 +352,22 @@ class TSDataFrame implements DataFrame {
         }
         return this
     }
+
+    @Override
+    @NamedVariant
+    DataFrame sort_values(@NamedParam(required = false) boolean skipNa, @NamedParam(required = true) Object by){
+        if (skipNa) {
+            this.table = this.table.dropRowsWithMissingValues()
+        }
+
+        if (by instanceof List) {
+            this.table = this.table.sortOn(by as String[])
+        }
+
+        if (by instanceof String){
+            this.table = this.table.sortOn(by)
+        }
+
+        return this
+    }
 }

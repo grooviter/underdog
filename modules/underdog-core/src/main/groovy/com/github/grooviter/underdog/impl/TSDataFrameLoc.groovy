@@ -12,14 +12,9 @@ import tech.tablesaw.api.Table
 class TSDataFrameLoc implements DataFrameLoc {
     Table table
     @Override
-    DataFrame getAt(String[] columns) {
-        this.table = this.table.selectColumns(columns)
-        return new TSDataFrame(this.table)
-    }
-
-    @Override
     DataFrame getAt(List<String> columns) {
-        return this[columns as String[]]
+        this.table = this.table.selectColumns(columns as String[])
+        return new TSDataFrame(this.table)
     }
 
     @ASTDriven

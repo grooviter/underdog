@@ -146,7 +146,7 @@ class DataFrameSpec extends BaseSpec {
         doubled == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
     }
 
-    def "[DataFrame/Grouping/agg"() {
+    def "[DataFrame/Grouping/agg]: aggregate by grouping columns -> df.agg(column: fn...).by(column1...columnN)"() {
         when:
         def grouped = df
             .agg(
@@ -165,9 +165,17 @@ class DataFrameSpec extends BaseSpec {
 
     def "[DataFrame/Sorting] single column"() {
         when:
-        def sortedByCarbs = df//.sortBy("-CARBS")
+        def sortedByCarbs = df.sort_values(by: "-CARBS", skipNa: true)
 
         then:
-        sortedByCarbs['CARBS'].iloc[0] == 98
+        sortedByCarbs['CARBS'].iloc[0] == 88
+    }
+
+    def "[DataFrame/Sorting] multiple columns"() {
+        when:
+        def sortedByCarbs = df.sort_values(by: ["GROUP NAME", "SUBGROUP NAME"])
+
+        then:
+        sortedByCarbs['GROUP NAME'].iloc[0] == "Aceites y grasasx"
     }
 }
