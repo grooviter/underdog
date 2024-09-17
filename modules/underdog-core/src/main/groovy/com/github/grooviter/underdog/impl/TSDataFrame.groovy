@@ -109,6 +109,21 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    DataFrame head() {
+        return this.head(10)
+    }
+
+    @Override
+    DataFrame head(int firstNRows) {
+        return new TSDataFrame(this.table.rows(0..<firstNRows as int[]))
+    }
+
+    @Override
+    DataFrame describe() {
+        return new TSDataFrame(this.table.summary())
+    }
+
+    @Override
     Boolean isEmpty() {
         return this.table.empty
     }
@@ -355,7 +370,10 @@ class TSDataFrame implements DataFrame {
 
     @Override
     @NamedVariant
-    DataFrame sort_values(@NamedParam(required = false) boolean skipNa, @NamedParam(required = true) Object by){
+    DataFrame sort_values(
+        @NamedParam(required = false) boolean skipNa,
+        @NamedParam(required = true) Object by
+    ){
         if (skipNa) {
             this.table = this.table.dropRowsWithMissingValues()
         }

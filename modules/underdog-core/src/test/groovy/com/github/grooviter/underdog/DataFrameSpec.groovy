@@ -176,6 +176,39 @@ class DataFrameSpec extends BaseSpec {
         def sortedByCarbs = df.sort_values(by: ["GROUP NAME", "SUBGROUP NAME"])
 
         then:
-        sortedByCarbs['GROUP NAME'].iloc[0] == "Aceites y grasasx"
+        sortedByCarbs['GROUP NAME'].iloc[0] == "Aceites y grasas"
+    }
+
+    def "[Dataframe/utils/describe]: showing dataframe stats -> df.describe()"() {
+        when:
+        def df = df.describe()
+
+        then:
+        df.columns.size() == 21
+
+        and:
+        df.size() == 11
+    }
+
+    def "[Dataframe/utils/head]: show first 10 rows -> df.head()"() {
+        when:
+        def df = df.head()
+
+        then:
+        df.columns.size() == 20
+
+        and:
+        df.size() == 10
+    }
+
+    def "[Dataframe/utils/head]: show first n-rows -> df.head(n)"() {
+        when:
+        def df = df.head(5)
+
+        then:
+        df.columns.size() == 20
+
+        and:
+        df.size() == 5
     }
 }

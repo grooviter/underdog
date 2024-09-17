@@ -6,66 +6,89 @@ import groovy.transform.NamedVariant
 
 import java.util.function.Function
 
+/**
+ * @since 0.1.0
+ */
 interface DataFrame extends Columnar {
-
     /**
      * The transpose of the DataFrame.
      *
      * @since 0.1.0
      */
-    abstract DataFrame getT()
+    DataFrame getT()
 
     /**
      * @since 0.1.0
      */
-    abstract Object getImplementation()
+    Object getImplementation()
 
     /**
      * @since 0.1.0
      */
-    abstract DataFrameLoc getLoc()
+    DataFrameLoc getLoc()
 
     /**
      * @since 0.1.0
      */
-    abstract DataFrameIloc getIloc()
+    DataFrameIloc getIloc()
 
     /**
      * The column labels of the DataFrame.
      *
      * @since 0.1.0
      */
-    abstract List<String> getColumns()
+    List<String> getColumns()
+
+    /**
+     *
+     * @since 0.1.0
+     */
+    DataFrame head()
+
+    /**
+     *
+     * @since 0.1.0
+     */
+    DataFrame head(int firstNRows)
+
+    /**
+     *
+     * @since 0.1.0
+     */
+    DataFrame describe()
 
     /**
      * Indicator whether Series/DataFrame is empty.
      *
      * @since 0.1.0
      */
-    abstract Boolean isEmpty()
+    Boolean isEmpty()
 
     /**
      * Return an int representing the number of elements in this object.
      *
      * @since 0.1.0
      */
-    abstract Long size()
+    Long size()
 
     /**
      * @since 0.1.0
      */
-    abstract Series getAt(String column)
+    Series getAt(String column)
 
     /**
      * @since 0.1.0
      */
-    abstract DataFrame getAt(String[] columns)
+    DataFrame getAt(String[] columns)
 
     /**
      * @since 0.1.0
      */
-    abstract DataFrame getAt(List<String> columns)
+    DataFrame getAt(List<String> columns)
 
+    /**
+     * @since 0.1.0
+     */
     default DataFrame getAt(Criteria criteria) {
         return criteria.apply(this)
     }
@@ -83,7 +106,7 @@ interface DataFrame extends Columnar {
      *
      * @since 0.1.0
      */
-    abstract DataFrame abs()
+    DataFrame abs()
 
     /**
      * Get Addition of dataframe and other, element-wise (binary operator add).
@@ -91,14 +114,14 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame add(DataFrame other, TypeAxis axis, Integer level, BigDecimal fill)
+    DataFrame add(DataFrame other, TypeAxis axis, Integer level, BigDecimal fill)
 
     /**
      * Get Addition of dataframe and other, element-wise (binary operator add).
      *
      * @since 0.1.0
      */
-    abstract DataFrame plus(Number number)
+    DataFrame plus(Number number)
 
     /**
      * Prefix labels with string prefix.
@@ -106,7 +129,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame addPrefix(String prefix, TypeAxis axis)
+    DataFrame addPrefix(String prefix, TypeAxis axis)
 
     /**
      * Suffix labels with string prefix.
@@ -114,7 +137,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame addSuffix(@NamedParam(required = true) String suffix, @NamedParam(required = false) TypeAxis axis)
+    DataFrame addSuffix(@NamedParam(required = true) String suffix, @NamedParam(required = false) TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
@@ -122,26 +145,26 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame agg(Function fn, String fnName, List<String> namedFns, Map colFunc, TypeAxis axis)
+    DataFrame agg(Function fn, String fnName, List<String> namedFns, Map colFunc, TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
      *
      * @since 0.1.0
      */
-    abstract DataFrame agg(String fnName, TypeAxis axis)
+    DataFrame agg(String fnName, TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
      *
      * @since 0.1.0
      */
-    abstract DataFrame agg(List<String> namedFns, TypeAxis axis)
+    DataFrame agg(List<String> namedFns, TypeAxis axis)
 
     /**
      * Aggregate using one or more operations over the specified axis.
      * */
-    abstract DataFrame agg(Map colFunc, TypeAxis axis)
+    DataFrame agg(Map colFunc, TypeAxis axis)
 
     /**
      * Align two objects on their axes with the specified join method.
@@ -149,7 +172,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract <T extends Columnar> Tuple2<DataFrame, T> align(
+    <T extends Columnar> Tuple2<DataFrame, T> align(
         @NamedParam(required = true) T other,
         @NamedParam(required = false) TypeJoin joinType,
         @NamedParam(required = false) TypeAxis axis,
@@ -165,7 +188,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract boolean all(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
+    boolean all(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
 
     /**
      * Return whether any element is True, potentially over an axis.
@@ -176,7 +199,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract boolean any(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
+    boolean any(TypeAxis axisType, Boolean boolOnly, Boolean skipNa)
 
     /**
      * Apply a function along an axis of the DataFrame.
@@ -188,7 +211,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame apply(Function fn, TypeAxis axisType, boolean raw, TypeApplyResult resultType, TypeApplyByRow byRow)
+    DataFrame apply(Function fn, TypeAxis axisType, boolean raw, TypeApplyResult resultType, TypeApplyByRow byRow)
 
     /**
      * Apply a function along an axis of the DataFrame.
@@ -199,7 +222,7 @@ interface DataFrame extends Columnar {
      *
      * @since 0.1.0
      */
-    abstract DataFrame apply(Closure fn)
+    DataFrame apply(Closure fn)
 
     /**
      * Convert time series to specified frequency.
@@ -209,7 +232,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame asfreq(String freqExpression, boolean normalize)
+    DataFrame asfreq(String freqExpression, boolean normalize)
 
     /**
      * Drop specified labels from rows or columns.
@@ -220,7 +243,7 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame drop(List<String> labels, String levelName, String levelIndex, TypeAxis axisType)
+    DataFrame drop(List<String> labels, String levelName, String levelIndex, TypeAxis axisType)
 
     /**
      * Drop specified labels from rows or columns.
@@ -230,13 +253,13 @@ interface DataFrame extends Columnar {
      *
      * @since 0.1.0
      */
-    abstract DataFrame drop(String... labels)
+    DataFrame drop(String... labels)
 
     /**
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame merge(
+    DataFrame merge(
         DataFrame right,
         @NamedParam TypeJoin how,
         @NamedParam List<String> on,
@@ -253,13 +276,13 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract Series min(TypeAxis axisType)
+    Series min(TypeAxis axisType)
 
     /**
      * @since 0.1.0
      */
     @NamedVariant
-    abstract Series max(TypeAxis axisType)
+    Series max(TypeAxis axisType)
 
     /**
      * Rename columns or index labels.
@@ -269,8 +292,11 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    abstract DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
+    DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
 
+    /**
+     * @since 0.1.0
+     */
     @NamedVariant
     DataFrame sort_values(@NamedParam(required = false) boolean skipNa, @NamedParam(required = true) Object by)
 
@@ -282,8 +308,13 @@ interface DataFrame extends Columnar {
         return this.implementation.toString()
     }
 
-
+    /**
+     * @since 0.1.0
+     */
     void putAt(String colName, Series value)
 
+    /**
+     * @since 0.1.0
+     */
     DataFrameAggregation agg(Map<String, ?> aggFn)
 }
