@@ -255,6 +255,8 @@ interface DataFrame extends Columnar {
      */
     DataFrame drop(String... labels)
 
+    DataFrame dropna()
+
     /**
      * @since 0.1.0
      */

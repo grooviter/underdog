@@ -1,5 +1,6 @@
 package com.github.grooviter.underdog
 
+import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FirstParam
@@ -96,6 +97,12 @@ interface Series extends Columnar {
      * @since 0.1.0
      */
     List<Integer> toIntegerList()
+
+    /**
+     * @since 0.1.0
+     */
+    @NamedVariant
+    Series toNumeric(String errors)
 
     /**
      * @since 0.1.0

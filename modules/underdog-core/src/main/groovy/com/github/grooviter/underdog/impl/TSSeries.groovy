@@ -138,6 +138,29 @@ class TSSeries implements Series {
     }
 
     @Override
+    @NamedVariant
+    Series toNumeric(String errors) {
+        if (column instanceof NumericColumn) {
+            return this
+        }
+
+        if (column instanceof StringColumn) {
+            DoubleColumn newCol = DoubleColumn.create(column.name())
+            for (String val : column) {
+                if (val.isNumber()){
+                    newCol.append(val.toDouble())
+                } else {
+                    newCol.appendMissing()
+                }
+            }
+
+            return new TSSeries(newCol)
+        }
+
+        return TSSeries(column)
+    }
+
+    @Override
     DataFrame describe() {
         return new TSDataFrame(this.column.summary())
     }

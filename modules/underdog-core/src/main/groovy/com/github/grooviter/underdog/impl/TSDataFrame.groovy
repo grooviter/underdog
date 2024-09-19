@@ -262,6 +262,11 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    DataFrame dropna() {
+        return new TSDataFrame(this.table.dropRowsWithMissingValues())
+    }
+
+    @Override
     @NamedVariant
     DataFrame merge(
         DataFrame right,
@@ -303,28 +308,70 @@ class TSDataFrame implements DataFrame {
     @Override
     @NamedVariant
     DataFrame rename(
-            Map<String, String> mapper,
-            Function<String, String> fn,
-            List<String> columns,
-            boolean copy) {
+            @NamedParam(required = false) Map<String, String> mapper,
+            @NamedParam(required = false) Function<String, String> fn,
+            @NamedParam(required = false) List<String> columns,
+            @NamedParam(required = false) boolean copy) {
 
-        this.renameByList(columns)
-        this.renameByMapper(mapper)
-        this.renameByFn(fn)
+        if (columns) {
+            this.renameByList(columns)
+        }
 
+        if (mapper){
+            this.renameByMapper(mapper)
+        }
+
+        if (fn) {
+            this.renameByFn(fn)
+        }
+
+
+        return this
+    }
+
+    private DataFrame renameByList(List<String> columns) {
+        if (columns && columns.size() == this.table.columnCount()) {
+            [columns, this.table.columns()].transpose().each { String newName, Column column ->
+                column.name = newName
+            }
+        }
+        return this
+    }
+
+    private DataFrame renameByMapper(Map<String, String> mapper) {
+        if (mapper){
+            mapper.each { k, v ->
+                this.table.column(k).name = v
+            }
+        }
+        return this
+    }
+
+    private DataFrame renameByFn(Function<String, String> fn) {
+        if (fn) {
+            this.table.columns().each { Column col ->
+                col.name = fn.apply(col.name())
+            }
+        }
         return this
     }
 
     @Override
     void putAt(String colName, Series value) {
-        Column newCol = fromSeries(value)
-        Column column = newCol.type().create(colName)
+        Column assigned = fromSeries(value).copy()
 
-        if (colName in this.table.columnNames()){
-            this.table.removeColumns(colName)
+        if (colName in this.table.columnNames() && this.table.column(colName).type() == assigned.type()){
+            this.table.column(colName).clear()
+            this.table.column(colName).append(assigned)
+        } else {
+            Column newColumn = assigned.type().create(colName)
+
+            if (colName in this.table.columnNames()){
+                this.table.removeColumns(colName)
+            }
+
+            this.table.addColumns(newColumn.append(assigned))
         }
-
-        this.table.addColumns(column.append(newCol))
     }
 
     @Override
@@ -339,33 +386,6 @@ class TSDataFrame implements DataFrame {
     private static Column fromSeries(Series value) {
         TSSeries series = value as TSSeries
         return series.implementation as Column
-    }
-
-    private DataFrame renameByList(List<String> columns) {
-        if (columns && columns.size() == this.table.columnCount()) {
-            [columns, this.table.columns()].transpose().each { String newName, Column column ->
-                column.name = newName
-            }
-        }
-        return this
-    }
-
-    private DataFrame renameByMapper(Map<String, String> mapper) {
-        if (mapper){
-            mapper.collectEntries { k, v ->
-                this.table.column(k).name = v
-            }
-        }
-        return this
-    }
-
-    private DataFrame renameByFn(Function<String, String> fn) {
-        if (fn) {
-            this.table.columns().each { Column col ->
-                col.name = fn.apply(col.name())
-            }
-        }
-        return this
     }
 
     @Override

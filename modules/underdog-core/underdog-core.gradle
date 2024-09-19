@@ -11,6 +11,7 @@ dependencies {
 
     api "org.apache.groovy:groovy-dateutil:$groovy"
     implementation "tech.tablesaw:tablesaw-core:$tablesaw"
+    implementation "tech.tablesaw:tablesaw-excel:$tablesaw"
     implementation "org.apache.groovy:groovy-macro:$groovy"
 
     testImplementation "org.spockframework:spock-core:$spock"

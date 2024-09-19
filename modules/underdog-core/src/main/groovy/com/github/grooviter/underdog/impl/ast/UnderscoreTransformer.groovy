@@ -1,15 +1,21 @@
 package com.github.grooviter.underdog.impl.ast
 
+import com.github.grooviter.underdog.Wildcard
 import groovy.transform.InheritConstructors
 import org.codehaus.groovy.GroovyBugError
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.GenericsType
 import org.codehaus.groovy.ast.expr.*
+import org.codehaus.groovy.control.CompilationFailedException
 import org.codehaus.groovy.syntax.Types
 
+import static org.codehaus.groovy.ast.tools.GeneralUtils.args
 import static org.codehaus.groovy.ast.tools.GeneralUtils.callX
 import static org.codehaus.groovy.ast.tools.GeneralUtils.classX
+import static org.codehaus.groovy.ast.tools.GeneralUtils.constX
+import static org.codehaus.groovy.ast.tools.GeneralUtils.nullX
+import static org.codehaus.groovy.ast.tools.GeneralUtils.propX
 import static org.codehaus.groovy.macro.matcher.ASTMatcher.matches
 import static org.codehaus.groovy.macro.matcher.ASTMatcher.withConstraints
 
@@ -24,10 +30,18 @@ class UnderscoreTransformer extends ConditionalExpressionTransformer {
 
         if (isExpression(expr)) {
             BinaryExpression tableAndColsX = expr as BinaryExpression
-            VariableExpression tableX = tableAndColsX.leftExpression as VariableExpression
+            Expression leftExpression = tableAndColsX.leftExpression
             Expression colsX = extractColsX(tableAndColsX.rightExpression as ListExpression)
 
-            return callX(tableX, 'selectColumns', colsX)
+            if (leftExpression instanceof VariableExpression) {
+                return callX(leftExpression, 'selectColumns', colsX)
+            }
+
+            if (leftExpression instanceof PropertyExpression){
+                Expression iloc = tableAndColsX.leftExpression
+                Expression ALL = propX(classX(Wildcard.class), constX("ALL"))
+                return callX(iloc, 'getAt', args(ALL, colsX))
+            }
         }
 
         return expr.transformExpression(this)
@@ -56,13 +70,14 @@ class UnderscoreTransformer extends ConditionalExpressionTransformer {
     // [_, cols]
     private static Expression extractColsX(ListExpression underscoreAndCols) {
         Expression cols = underscoreAndCols.expressions.last()
-        switch(cols.class) {
-            case ListExpression:     return extractColsFromColumnListX(cols as ListExpression)
-            case RangeExpression:    return extractColsFromIntRangeX(cols as RangeExpression)
-            case VariableExpression: return extractColsFromVarX(cols as VariableExpression)
-            default:
-                return forceToList(cols)
-        }
+        return cols
+//        switch(cols.class) {
+//            case ListExpression:     return extractColsFromColumnListX(cols as ListExpression)
+//            case RangeExpression:    return extractColsFromIntRangeX(cols as RangeExpression)
+//            case VariableExpression: return extractColsFromVarX(cols as VariableExpression)
+//            default:
+//                return forceToList(cols)
+//        }
     }
 
     private static Expression forceToList(Expression expression) {

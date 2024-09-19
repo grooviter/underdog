@@ -1,5 +1,4 @@
 package com.github.grooviter.underdog
-
 /**
  * @since 0.1.0
  */
@@ -20,6 +19,21 @@ interface DataFrameIloc {
      * @since 0.1.0
      */
     DataFrame getAt(IntRange index, IntRange colIndex)
+
+    /**
+     * @since 0.1.0
+     */
+    DataFrame getAt(Wildcard wildcard, IntRange colIndex)
+
+    /**
+     * @since 0.1.0
+     */
+    DataFrame getAt(Wildcard wildcard, List<Integer> colIndex)
+
+    /**
+     * @since 0.1.0
+     */
+    DataFrame getAt(Integer[] rowIndex, Integer[] colIndex)
 
     /**
      * @since 0.1.0
