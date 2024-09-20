@@ -20,6 +20,7 @@ class Underdog {
         @NamedParam(required = false) int skipFooter,
         @NamedParam(required = false) Object sheet_name,
         @NamedParam(required = false) List<String> nanValues,
+        @NamedParam(required = false) boolean headerInFirstRow,
         @NamedParam(required = false) String dateFormat,
         @NamedParam(required = false) String dateTimeFormat){
         def options = TSExcelReaderOptions.builder(path)
@@ -46,6 +47,10 @@ class Underdog {
 
         if (nanValues) {
             options.missingValueIndicator(nanValues as String[])
+        }
+
+        if (headerInFirstRow) {
+            options.header(headerInFirstRow)
         }
 
         return new TSDataFrame(new TSExcelReader().read(options.build()))

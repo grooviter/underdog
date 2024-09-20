@@ -288,7 +288,7 @@ class TSCsvReaderOptions extends ReadOptions {
         // Override super-class setters to return an instance of this class
 
         @Override
-        public Builder header(boolean header) {
+        public Builder header(boolean header = false) {
             super.header(header);
             return this;
         }

@@ -3,6 +3,8 @@ package com.github.grooviter.underdog.impl
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.WorkbookFactory
 
+import java.util.function.Function
+
 import static org.apache.poi.ss.usermodel.CellType.BLANK
 import static org.apache.poi.ss.usermodel.CellType.BOOLEAN
 import static org.apache.poi.ss.usermodel.CellType.FORMULA;
@@ -154,13 +156,12 @@ public class TSExcelReader implements DataReader<TSExcelReaderOptions> {
         }
 
         public int getColumnCount() {
-            return endColumn - startColumn + 1;
+            return (endColumn - startColumn) + 1;
         }
     }
 
     private TableRange findTableArea(Sheet sheet, TSExcelReaderOptions options) {
         int firstCol = Integer.MAX_VALUE, lastCol = 0
-
         for (Row row : sheet) {
             if (row.firstCellNum < firstCol) {
                 firstCol = row.firstCellNum
@@ -188,7 +189,7 @@ public class TSExcelReader implements DataReader<TSExcelReaderOptions> {
     }
 
     private Table createTable(Sheet sheet, TableRange tableArea, TSExcelReaderOptions options) {
-        Optional<List<String>> optHeaderNames = getHeaderNames(sheet, tableArea);
+        Optional<List<String>> optHeaderNames = getHeaderNames(sheet, tableArea, options);
         optHeaderNames.ifPresent(h -> tableArea.startRow++);
         List<String> headerNames = optHeaderNames.orElse(calculateDefaultColumnNames(tableArea));
 
@@ -241,18 +242,23 @@ public class TSExcelReader implements DataReader<TSExcelReaderOptions> {
         return table;
     }
 
-    private Optional<List<String>> getHeaderNames(Sheet sheet, TableRange tableArea) {
+    private Optional<List<String>> getHeaderNames(Sheet sheet, TableRange tableArea, TSExcelReaderOptions options) {
+        // if header is first row we take a look there
+        int startRow = options.header() ? 0 : tableArea.startRow
+
         // assume header row if all cells are of type String
-        Row row = sheet.getRow(tableArea.startRow);
+        Row row = sheet.getRow(startRow);
+
         List<String> headerNames =
-                IntStream.range(tableArea.startColumn, tableArea.endColumn)
+                IntStream.rangeClosed(tableArea.startColumn, tableArea.endColumn)
                         .mapToObj(row::getCell)
                         .filter(cell -> cell?.getCellType() == STRING)
                         .map(cell -> cell.getRichStringCellValue().getString())
                         .collect(Collectors.toList());
-        return headerNames.size() == tableArea.getColumnCount()
-                ? Optional.of(headerNames)
-                : Optional.empty();
+
+        return Optional
+            .of(headerNames)
+            .filter(names -> names.size() == tableArea.getColumnCount())
     }
 
     private List<String> calculateDefaultColumnNames(TableRange tableArea) {
@@ -305,7 +311,8 @@ public class TSExcelReader implements DataReader<TSExcelReaderOptions> {
                             return altColumn;
                         } else {
                             Column<Double> altColumn = DoubleColumn.create(column.name(), column.size());
-                            altColumn = intColumn.mapInto(s -> (double) s, altColumn);
+                            Function<Integer, Double> function = (Integer s) -> s.toDouble()
+                            altColumn = intColumn.mapInto(function, altColumn);
                             altColumn.append(num);
                             return altColumn;
                         }

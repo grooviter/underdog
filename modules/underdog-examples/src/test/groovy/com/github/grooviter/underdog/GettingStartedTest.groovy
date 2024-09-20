@@ -5,13 +5,13 @@ package com.github.grooviter.underdog
 
 import spock.lang.Specification
 import com.github.grooviter.underdog.Underdog as ud
+import tech.tablesaw.columns.Column
 
 class GettingStartedTest extends Specification {
-    static EXCEL_ENERGY = "src/test/resources/com/github/grooviter/underdog/tablesaw/energy.xls"
+    static EXCEL_ENERGY = "src/test/resources/com/github/grooviter/underdog/tablesaw/Energy Indicators.xls"
     static CSV_WORLD_BANK = "src/test/resources/com/github/grooviter/underdog/tablesaw/world_bank.csv"
-    static CSV_SCIMAGO = "src/test/resources/com/github/grooviter/underdog/tablesaw/scimago.xlsx"
+    static CSV_SCIMAGO = "src/test/resources/com/github/grooviter/underdog/tablesaw/scimagojr-3.xlsx"
     static CSV_FOOD = "src/test/resources/com/github/grooviter/underdog/tablesaw/food.csv"
-    static CSV_CENSUS = "src/test/resources/com/github/grooviter/underdog/tablesaw/census.csv"
 
     def "read a CSV file"() {
         when:
@@ -78,7 +78,7 @@ class GettingStartedTest extends Specification {
         and: "ENERGY: cleaning"
         energy["Energy Supply"]  = energy["Energy Supply"].toNumeric(errors: "coerce") * 1_000_000
 
-        and: "Fixing 'Energy Country' column"
+        and: "ENERGY: Fixing 'Energy Country' column"
         energy["Country"] = energy["Country"](String) {
             return it.replace(/ \(.*\)/, "")
                 .replace(/[0-9]*/, "")
@@ -90,12 +90,12 @@ class GettingStartedTest extends Specification {
                     "China, Hong Kong Special Administrative Region": "Hong Kong")
         }
 
-        energy = energy.dropna()
+        energy = energy.dropna(by: 'Country') // TODO: dropna by index
 
         and: "WORLD BANK: load csv"
         def worldBank = ud.read_csv(path: CSV_WORLD_BANK, skipRows: 4)
 
-        and: "cleaning country name columns as well"
+        and: "WORLD BANK: cleaning country name columns as well"
         worldBank["Country Name"] = worldBank["Country Name"](String) {
             it.replace(
                 "Korea, Rep.": "South Korea",
@@ -103,18 +103,16 @@ class GettingStartedTest extends Specification {
                 "Hong Kong SAR, China": "Hong Kong")
         }
 
-        worldBank = worldBank.iloc[__, [0] + (-10..-1)]
-            .rename(mapper:  ["Country Name": "Country"])
+        and: "WORLD BANK: getting country and last 10 years columns"
+        worldBank = worldBank.iloc[__, [0] + (-10..-1)].rename(mapper:  ["Country Name": "Country"])
 
-//        and: "SCIANGO: load"
-//        def sciango = ud.read_excel(path: CSV_SCIMAGO, skipRows: 4).iloc[0..15]
-//
-//        and: "ALL: merge"
-//        def result = sciango
-//            .merge(energy, on: ["Country"])
-//            .merge(worldBank, left_on: ["Country"], right_on: ["Country"])
-//
+        and: "SCIANGO: load"
+        def sciango = ud.read_excel(path: CSV_SCIMAGO, skipRows: 4).iloc[0..<15]
+
+        and: "ALL: merge"
+        def result = sciango.merge(energy, on: ["Country"]).merge(worldBank, on: ["Country"])
+
         expect: "the size of the selection is just 2 records"
-        worldBank.size() == 10
+        result.size() == 6
     }
 }

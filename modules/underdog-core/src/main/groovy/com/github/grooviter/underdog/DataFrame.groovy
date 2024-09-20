@@ -255,6 +255,12 @@ interface DataFrame extends Columnar {
      */
     DataFrame drop(String... labels)
 
+    @NamedVariant
+    DataFrame dropna(
+            @NamedParam(required = false) String by,
+            @NamedParam(required = false) List<String> byColumns)
+
+
     DataFrame dropna()
 
     /**

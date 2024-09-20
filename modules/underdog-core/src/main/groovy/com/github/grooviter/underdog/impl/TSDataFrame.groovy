@@ -17,6 +17,7 @@ import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.Table
 import tech.tablesaw.columns.Column
 import tech.tablesaw.joining.DataFrameJoiner
+import tech.tablesaw.selection.Selection
 
 import java.util.function.Function
 
@@ -268,6 +269,15 @@ class TSDataFrame implements DataFrame {
 
     @Override
     @NamedVariant
+    DataFrame dropna(@NamedParam(required = false) String by, @NamedParam(required = false) List<String> byColumns) {
+        List<String> columns = [[by], byColumns].collectMany { it?:[] }.grep()
+        List<Selection> selectionList = columns.collect { this.table.column(it).isMissing() }
+        Table filtered = selectionList.inject(table) { agg, val -> agg.dropWhere(val) }
+        return new TSDataFrame(filtered)
+    }
+
+    @Override
+    @NamedVariant
     DataFrame merge(
         DataFrame right,
         @NamedParam TypeJoin how = TypeJoin.inner,
@@ -280,17 +290,21 @@ class TSDataFrame implements DataFrame {
         @NamedParam List<String> suffixes,
         @NamedParam boolean copy) {
 
-        DataFrameJoiner joiner = this.table.joinOn(left_on as String[])
-        Table rightTable = ((TSDataFrame) right).implementation
+        Table rightTable = ((TSDataFrame) right).implementation as Table
 
-        this.table = switch(how){
-            case TypeJoin.outer -> joiner.fullOuter(rightTable)
-            case TypeJoin.inner -> joiner.inner(rightTable, right_on as String[])
-            case TypeJoin.left  -> joiner.leftOuter(rightTable, right_on as String[])
-            case TypeJoin.right -> joiner.rightOuter(rightTable, right_on as String[])
+        return switch(how){
+            case TypeJoin.outer -> this // joiner.fullOuter(rightTable)
+            case TypeJoin.inner -> innerJoin(on, left_on, right_on, this.table, rightTable)
+            case TypeJoin.left  -> this // joiner.leftOuter(rightTable, right_on as String[])
+            case TypeJoin.right -> this // joiner.rightOuter(rightTable, right_on as String[])
+            default             -> innerJoin(on, left_on, right_on, this.table, rightTable)
         }
+    }
 
-        return this
+    private static DataFrame innerJoin(List<String> on, List<String> left_on, List<String> right_on, Table left, Table right) {
+        String[] leftKeys = [left_on, on].grep().find() as String[]
+        String[] rightKeys = [right_on, on].grep().find() as String[]
+        return new TSDataFrame(left.joinOn(leftKeys).inner(right, rightKeys))
     }
 
     @Override
