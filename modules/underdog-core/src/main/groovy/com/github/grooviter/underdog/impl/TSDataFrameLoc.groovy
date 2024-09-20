@@ -13,8 +13,7 @@ class TSDataFrameLoc implements DataFrameLoc {
     Table table
     @Override
     DataFrame getAt(List<String> columns) {
-        this.table = this.table.selectColumns(columns as String[])
-        return new TSDataFrame(this.table)
+        return new TSDataFrame(this.table.selectColumns(columns as String[]))
     }
 
     @ASTDriven
