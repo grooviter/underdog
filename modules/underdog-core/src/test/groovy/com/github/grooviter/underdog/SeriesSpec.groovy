@@ -39,7 +39,7 @@ class SeriesSpec extends BaseSpec {
         def byTwo = df['numbers'](Double){ it * 2 }
 
         then:
-        byTwo.iloc[0] == 2
+        byTwo.iloc[0..1] as List<Integer> == [2, 4]
     }
 
     def "[Series/utils/casting]: casting to arrays of numbers"(){

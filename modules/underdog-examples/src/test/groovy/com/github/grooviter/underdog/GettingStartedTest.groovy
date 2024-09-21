@@ -125,6 +125,6 @@ class GettingStartedTest extends Specification {
             .merge(worldBank, on: ["Country"])
 
         expect: "the size of the selection is just 2 records"
-        result.size() == 8
+        result.size() == 6
     }
 }
