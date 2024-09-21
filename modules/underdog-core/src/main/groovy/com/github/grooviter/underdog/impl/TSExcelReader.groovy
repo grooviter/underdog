@@ -161,20 +161,17 @@ public class TSExcelReader implements DataReader<TSExcelReaderOptions> {
     }
 
     private TableRange findTableArea(Sheet sheet, TSExcelReaderOptions options) {
-        int firstCol = Integer.MAX_VALUE, lastCol = 0
+        int fstCol = Integer.MAX_VALUE
+        int lstCol = 0
+        int fstRow = sheet.firstRowNum + options.skipRows
+        int lstRow = sheet.lastRowNum - options.skipFooter
+
         for (Row row : sheet) {
-            if (row.firstCellNum < firstCol) {
-                firstCol = row.firstCellNum
-            }
-            if (row.lastCellNum > lastCol) {
-                lastCol = row.lastCellNum - 1
-            }
+            fstCol = Math.min(row.firstCellNum, fstCol)
+            lstCol = Math.max(row.lastCellNum, lstCol) - 1
         }
 
-        int firstRow = sheet.firstRowNum + options.skipRows
-        int lastRow = sheet.lastRowNum - options.skipFooter
-
-        return new TableRange(firstRow, lastRow, firstCol, lastCol)
+        return new TableRange(fstRow, lstRow, fstCol, lstCol)
     }
 
     private InputStream getInputStream(TSExcelReaderOptions options, byte[] bytes)
