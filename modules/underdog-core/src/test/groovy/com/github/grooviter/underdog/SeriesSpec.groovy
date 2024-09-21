@@ -28,7 +28,7 @@ class SeriesSpec extends BaseSpec {
         def byTwo = df['numbers'] * 2
 
         then:
-        byTwo.iloc[0] == 2
+        [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] == byTwo as List<Integer>
     }
 
     def "[Series/operators]: apply a function -> df['column'](Class<T>) { T x -> x * 2 }"(){
@@ -40,6 +40,25 @@ class SeriesSpec extends BaseSpec {
 
         then:
         byTwo.iloc[0] == 2
+    }
+
+    def "[Series/utils/casting]: casting to arrays of numbers"(){
+        setup:
+        def df = [numbers: [4, 8]].toDF("example")
+
+        when:
+        def byTwo = df['numbers'] * 0.5
+
+        then:
+        [2.0, 4.0] as double[] == byTwo as double[]
+        [2.0, 4.0] as Double[] == byTwo as Double[]
+
+        and:
+        [2.0, 4.0] as BigDecimal[] == byTwo as BigDecimal[]
+
+        and:
+        [2, 4] as int[] == byTwo as int[]
+        [2, 4] as Integer[] == byTwo as Integer[]
     }
 
     def "[Series/utils/describe]: describing series"() {

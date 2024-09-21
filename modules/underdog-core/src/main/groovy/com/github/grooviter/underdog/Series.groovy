@@ -71,17 +71,17 @@ interface Series extends Columnar {
     /**
      * @since 0.1.0
      */
-    Criteria isGreaterThan(double value)
+    Criteria isGreaterThan(Number value)
 
     /**
      * @since 0.1.0
      */
-    Criteria isLessThan(double value)
+    Criteria isLessThan(Number value)
 
     /**
      * @since 0.1.0
      */
-    Criteria isEqualTo(double value)
+    Criteria isEqualTo(Number value)
 
     /**
      * @since 0.1.0

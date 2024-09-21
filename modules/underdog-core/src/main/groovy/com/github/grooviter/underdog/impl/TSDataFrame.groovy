@@ -1,7 +1,6 @@
 package com.github.grooviter.underdog.impl
 
 import com.github.grooviter.underdog.Columnar
-import com.github.grooviter.underdog.Criteria
 import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.DataFrameAggregation
 import com.github.grooviter.underdog.DataFrameIloc
@@ -16,7 +15,6 @@ import groovy.transform.NamedVariant
 import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.Table
 import tech.tablesaw.columns.Column
-import tech.tablesaw.joining.DataFrameJoiner
 import tech.tablesaw.selection.Selection
 
 import java.util.function.Function

@@ -71,12 +71,12 @@ class GettingStartedTest extends Specification {
     def "read a CSV file and filter"() {
         setup: "ENERGY: load excel"
         def energy = ud
-            .read_excel(path: EXCEL_ENERGY, skipRows: 1, skipFooter: 1)
+            .read_excel(path: EXCEL_ENERGY, skipRows: 16, skipFooter: 100)
             .drop("Unnamed: 0", "Unnamed: 1")
             .rename(columns: ["Country", "Energy Supply", "Energy Supply per Capita", "% Renewable"])
 
         and: "ENERGY: cleaning"
-        energy["Energy Supply"]  = energy["Energy Supply"].toNumeric(errors: "coerce") * 1_000_000
+        energy["Energy Supply"] = energy["Energy Supply"].toNumeric(errors: "coerce") * 1_000_000
 
         and: "ENERGY: Fixing 'Energy Country' column"
         energy["Country"] = energy["Country"](String) {
@@ -90,7 +90,13 @@ class GettingStartedTest extends Specification {
                     "China, Hong Kong Special Administrative Region": "Hong Kong")
         }
 
-        energy = energy.dropna(by: 'Country') // TODO: dropna by index
+        // the problem is that the resulting dataframe coming from read_excel
+        // has too many lines of garbage. We need to improve the dataset
+        // detection
+        //
+        energy = energy
+            .dropna(byColumns: ['Country'])
+            .sort_values(by: 'Country') // TODO: dropna by index
 
         and: "WORLD BANK: load csv"
         def worldBank = ud.read_csv(path: CSV_WORLD_BANK, skipRows: 4)
@@ -104,15 +110,21 @@ class GettingStartedTest extends Specification {
         }
 
         and: "WORLD BANK: getting country and last 10 years columns"
-        worldBank = worldBank.iloc[__, [0] + (-10..-1)].rename(mapper:  ["Country Name": "Country"])
+        worldBank = worldBank
+            .iloc[__, [0] + (-10..-1)]
+            .rename(mapper:  ["Country Name": "Country"])
 
         and: "SCIANGO: load"
-        def sciango = ud.read_excel(path: CSV_SCIMAGO, skipRows: 4).iloc[0..<15]
+        def sciango = ud
+            .read_excel(path: CSV_SCIMAGO, skipRows: 4)
+            .iloc[0..<15]
 
         and: "ALL: merge"
-        def result = sciango.merge(energy, on: ["Country"]).merge(worldBank, on: ["Country"])
+        def result = sciango
+            .merge(energy, on: ["Country"])
+            .merge(worldBank, on: ["Country"])
 
         expect: "the size of the selection is just 2 records"
-        result.size() == 6
+        result.size() == 8
     }
 }
