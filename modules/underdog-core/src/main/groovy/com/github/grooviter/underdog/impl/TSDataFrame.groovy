@@ -10,13 +10,24 @@ import com.github.grooviter.underdog.TypeApplyByRow
 import com.github.grooviter.underdog.TypeApplyResult
 import com.github.grooviter.underdog.TypeAxis
 import com.github.grooviter.underdog.TypeJoin
+import groovy.transform.Immutable
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import groovy.transform.builder.Builder
+import org.codehaus.groovy.runtime.DefaultGroovyMethods
+import tech.tablesaw.aggregate.AggregateFunctions
+import tech.tablesaw.aggregate.Summarizer
 import tech.tablesaw.api.ColumnType
+import tech.tablesaw.api.DoubleColumn
+import tech.tablesaw.api.NumericColumn
+import tech.tablesaw.api.Row
 import tech.tablesaw.api.Table
 import tech.tablesaw.columns.Column
+import tech.tablesaw.joining.DataFrameJoiner
 import tech.tablesaw.selection.Selection
 
+import java.math.MathContext
+import java.math.RoundingMode
 import java.util.function.Function
 
 /**
@@ -226,6 +237,33 @@ class TSDataFrame implements DataFrame {
         return false
     }
 
+    Object asType(Class clazz) {
+        if (clazz instanceof DataFrame) {
+            return this
+        }
+
+        if (clazz.isArray() && clazz.arrayType() instanceof Number) {
+            switch(clazz.arrayType()) {
+                case int[]    -> table.as().intMatrix()
+                case double[] -> table.as().doubleMatrix()
+                case float[]  -> table.as().floatMatrix()
+                default       -> table.as().doubleMatrix()
+            }
+        }
+
+        List list = table.collect { Row row ->
+            row.columnNames().collect{ String colName ->
+                table.column(colName).get(row.rowNumber)
+            }
+        }
+
+        if (this.size() == 1) {
+            return DefaultGroovyMethods.asType(list.find(), clazz)
+        }
+
+        return DefaultGroovyMethods.asType(list.transpose(), clazz)
+    }
+
     @Override
     @NamedVariant
     DataFrame apply(
@@ -267,12 +305,55 @@ class TSDataFrame implements DataFrame {
 
     @Override
     @NamedVariant
+    DataFrame mean(
+            @NamedParam(required = true) TypeAxis axis,
+            @NamedParam(required = true) String index,
+            @NamedParam(required = false) List<String> cols) {
+
+        if (axis == TypeAxis.rows) {
+            return this.meanForRows(index, cols)
+        }
+
+        return this.meanForColumns(index, cols)
+    }
+
+    private DataFrame meanForRows(String index, List<String> cols) {
+        DoubleColumn meanCol = DoubleColumn.create("$index [Mean]")
+        List<String> colsToSummarize = cols ?: (this.table.columnNames() - index)
+
+        for (Row row : this.table){
+            meanCol.append(colsToSummarize.collect(row::getNumber).average() as double)
+        }
+
+        Table meanTable = Table.create(this.table.name())
+                .addColumns(this.table.column(index))
+                .addColumns(meanCol)
+
+        String[] sortedColumns = [index] + (meanTable.columnNames().sort() - index)
+        return new TSDataFrame(meanTable.selectColumns(sortedColumns))
+    }
+
+    private DataFrame meanForColumns(String index, List<String> cols) {
+        List<String> colsToSummarize = cols ?: (this.table.columnNames() - index)
+
+        Table meanTable = this.table
+            .summarize(colsToSummarize, AggregateFunctions.mean)
+            .by(index)
+
+        String[] sortedColumns = [index] + (meanTable.columnNames().sort() - index)
+        return new TSDataFrame(meanTable.selectColumns(sortedColumns))
+    }
+
+    @Override
+    @NamedVariant
     DataFrame dropna(@NamedParam(required = false) String by, @NamedParam(required = false) List<String> byColumns) {
         List<String> columns = [[by], byColumns].collectMany { it?:[] }.grep()
         List<Selection> selectionList = columns.collect { this.table.column(it).isMissing() }
         Table filtered = selectionList.inject(table) { agg, val -> agg.dropWhere(val) }
         return new TSDataFrame(filtered)
     }
+
+
 
     @Override
     @NamedVariant
@@ -288,21 +369,28 @@ class TSDataFrame implements DataFrame {
         @NamedParam List<String> suffixes,
         @NamedParam boolean copy) {
 
-        Table rightTable = ((TSDataFrame) right).implementation as Table
+        TSDataFrameJoinInfo joinInfo = TSDataFrameJoinInfo.builder()
+            .left(this)
+            .right(right)
+            .leftOn(left_on)
+            .rightOn(right_on)
+            .on(on)
+            .how(how)
+            .build()
 
-        return switch(how){
-            case TypeJoin.outer -> this // joiner.fullOuter(rightTable)
-            case TypeJoin.inner -> innerJoin(on, left_on, right_on, this.table, rightTable)
-            case TypeJoin.left  -> this // joiner.leftOuter(rightTable, right_on as String[])
-            case TypeJoin.right -> this // joiner.rightOuter(rightTable, right_on as String[])
-            default             -> innerJoin(on, left_on, right_on, this.table, rightTable)
-        }
+        return join(joinInfo)
     }
 
-    private static DataFrame innerJoin(List<String> on, List<String> left_on, List<String> right_on, Table left, Table right) {
-        String[] leftKeys = [left_on, on].grep().find() as String[]
-        String[] rightKeys = [right_on, on].grep().find() as String[]
-        return new TSDataFrame(left.joinOn(leftKeys).inner(right, rightKeys))
+    private static DataFrame join(TSDataFrameJoinInfo info) {
+        DataFrameJoiner joiner = info.leftTable().joinOn(info.leftKeys())
+        Table merged = switch(info.how){
+            case TypeJoin.outer -> joiner.fullOuter(info.rightTable(), false, false, info.rightKeys())
+            case TypeJoin.inner -> joiner.inner(info.rightTable(), info.rightKeys())
+            case TypeJoin.left -> joiner.leftOuter(info.rightTable(), info.rightKeys())
+            case TypeJoin.right -> joiner.rightOuter(info.rightTable(), info.rightKeys())
+            default -> joiner.inner(info.rightTable(), info.rightKeys())
+        }
+        return new TSDataFrame(merged)
     }
 
     @Override

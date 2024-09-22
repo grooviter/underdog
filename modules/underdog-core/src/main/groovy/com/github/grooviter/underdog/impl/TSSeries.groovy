@@ -9,6 +9,7 @@ import groovy.transform.NullCheck
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FirstParam
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
+import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.DoubleColumn
 import tech.tablesaw.api.NumericColumn
 import tech.tablesaw.api.StringColumn
@@ -89,6 +90,16 @@ class TSSeries implements Series {
     @Override
     Double mean() {
         return this.mean(skipNa:  false)
+    }
+
+    @Override
+    Series div(Series series) {
+        Column seriesColumn = series.implementation as Column
+
+        assert column instanceof NumericColumn, "Can't divide a non numeric column"
+        assert seriesColumn instanceof NumericColumn, "Can't divide a numeric column by a non numeric column"
+
+        return new TSSeries(column.divide(seriesColumn))
     }
 
     @Override

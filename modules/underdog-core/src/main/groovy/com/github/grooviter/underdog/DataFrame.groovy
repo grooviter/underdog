@@ -263,6 +263,12 @@ interface DataFrame extends Columnar {
 
     DataFrame dropna()
 
+    @NamedVariant
+    DataFrame mean(
+        @NamedParam(required = true) TypeAxis axis,
+        @NamedParam(required = true) String index,
+        @NamedParam(required = false) List<String> cols)
+
     /**
      * @since 0.1.0
      */

@@ -163,6 +163,29 @@ class DataFrameSpec extends BaseSpec {
         grouped.columns.size() == 5
     }
 
+    def "[DataFrame/Grouping/mean]: calc mean of rows by a col index -> df.mean(axis: rows, index: 'indexCol')"() {
+        setup:
+        def df = [
+            country: ['Spain', 'France', 'Italy'],
+            profits_2010: [1000, 2000, 1000],
+            profits_2011: [10000, 4000, 3000]
+        ].toDF("dataframe")
+
+        when:
+        df = df
+            .mean(axis: TypeAxis.rows, index: 'country')
+            .sort_values(by: 'Country')
+
+        then:
+        df.size() == 3
+
+        and:
+        df.loc['Country'] as List<String> == ['France', 'Italy', 'Spain']
+
+        and:
+        df.loc['country [Mean]'] as List<Integer> == [3000, 2000, 5500]
+    }
+
     def "[DataFrame/Sorting] single column"() {
         when:
         def sortedByCarbs = df.sort_values(by: "-CARBS", skipNa: true)
@@ -177,6 +200,40 @@ class DataFrameSpec extends BaseSpec {
 
         then:
         sortedByCarbs['GROUP NAME'].iloc[0] == "Aceites y grasas"
+    }
+
+    def "[Dataframe/utils/casting]: casting primitive arrays -> df as number[]"() {
+        setup:
+        def df = [
+            x: (1..10),
+            y: (10..1),
+            z: (21..30)
+        ].toDF("xyz")
+
+        when:
+        def theArray = df as int[][]
+
+        then:
+        theArray.length == 3
+
+        and:
+        theArray[0] == (1..10) as int[]  // x
+        theArray[1] == (10..1) as int[]  // y
+        theArray[2] == (21..30) as int[] // z
+    }
+
+    def "[Dataframe/utils/casting]: casting dataframe with single row -> df as Tuple<x, y>"() {
+        setup:
+        def df = [x: [1, 2], y: ['a', 'b']].toDF("xyz")
+
+        when:
+        def (x, y) = df.iloc[1] as Tuple2<Integer, String>
+
+        then:
+        x == 2
+
+        and:
+        y == 'b'
     }
 
     def "[Dataframe/utils/describe]: showing dataframe stats -> df.describe()"() {

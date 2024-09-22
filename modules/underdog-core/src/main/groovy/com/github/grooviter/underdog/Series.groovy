@@ -71,6 +71,11 @@ interface Series extends Columnar {
     /**
      * @since 0.1.0
      */
+    Series div(Series series)
+
+    /**
+     * @since 0.1.0
+     */
     Criteria isGreaterThan(Number value)
 
     /**
