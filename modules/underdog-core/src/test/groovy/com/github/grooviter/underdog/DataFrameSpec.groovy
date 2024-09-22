@@ -202,6 +202,92 @@ class DataFrameSpec extends BaseSpec {
         sortedByCarbs['GROUP NAME'].iloc[0] == "Aceites y grasas"
     }
 
+    def "[DataFrame/Join]: inner join -> left.merge(right, on: 'key')"() {
+        when:
+        def merged = joinLeftDataframe.merge(joinRightDataFrame, on: ["name"])
+
+        then:
+        merged.columns.size() == 4
+
+        and:
+        merged.size() == 3
+
+        and:
+        merged.loc['name'] as List == ['Anne', 'Peter', 'Pirro']
+    }
+
+    def "[DataFrame/Join]: full outer join -> left.merge(right, on: 'key', how='outer')"() {
+        when:
+        def merged = joinLeftDataframe.merge(joinRightDataFrame, on: ["name"], how: TypeJoin.OUTER)
+
+        then:
+        merged.columns.size() == 4
+
+        and:
+        merged.size() == 5
+
+        and:
+        merged.iloc[3] as List == ["William", 25, "Journalist", null]
+        merged.iloc[4] as List == ["Alice", null, "", 40000]
+    }
+
+    def "[DataFrame/Join]: left outer join -> left.merge(right, on: 'key', how='LEFT_OUTER')"() {
+        when:
+        def merged = joinLeftDataframe.merge(joinRightDataFrame, on: ["name"], how: TypeJoin.LEFT_OUTER)
+
+        and:
+        merged.columns.size() == 4
+
+        then:
+        merged.size() == 4
+
+        and:
+        merged.iloc[3] as List == ["William", 25, "Journalist", null]
+    }
+
+    def "[DataFrame/Join]: right outer join -> left.merge(right, on: 'key', how='RIGHT_OUTER')"() {
+        when:
+        def merged = joinLeftDataframe.merge(joinRightDataFrame, on: ["name"], how: TypeJoin.RIGHT_OUTER)
+
+        then:
+        merged.size() == 4
+
+        and:
+        merged.columns.size() == 4
+
+        and:
+        merged.loc['name'] as List == ['Anne', 'Peter', 'Pirro', 'Alice']
+    }
+
+    def "[DataFrame/Join]: right inner join -> left.merge(right, on: 'key', how='right_inner')"() {
+        when:
+        def merged = joinLeftDataframe.merge(joinRightDataFrame, on: ["name"], how: TypeJoin.RIGHT_INNER)
+
+        then:
+        merged.columns.size() == 4
+
+        and:
+        merged.size() == 3
+
+        and:
+        merged.loc['name'] as List == ['Anne', 'Peter', 'Pirro']
+    }
+
+    private static DataFrame getJoinLeftDataframe() {
+        return [
+            name: ['Anne', 'Peter', 'Pirro', 'William'],
+            ages: [22, 54, 35, 25],
+            job: ['Doctor', 'Teacher', 'Firefighter', 'Journalist']
+        ].toDF("people")
+    }
+
+    private static DataFrame getJoinRightDataFrame() {
+        return [
+            name: ['Anne', 'Peter', 'Pirro', 'Alice'],
+            salary: [100000, 30000, 45000, 40000]
+        ].toDF("salaries")
+    }
+
     def "[Dataframe/utils/casting]: casting primitive arrays -> df as number[]"() {
         setup:
         def df = [

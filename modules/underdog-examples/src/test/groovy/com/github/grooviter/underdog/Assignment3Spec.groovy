@@ -4,6 +4,7 @@ import spock.lang.Specification
 import com.github.grooviter.underdog.Underdog as ud
 
 import java.math.MathContext
+import java.math.RoundingMode
 
 class Assignment3Spec extends Specification{
     static EXCEL_ENERGY = "src/test/resources/com/github/grooviter/underdog/tablesaw/Energy Indicators.xls"
@@ -79,8 +80,8 @@ class Assignment3Spec extends Specification{
 
         def innerMerged = answerOne()
         def outerMerged = sciango
-                .merge(energy, how: TypeJoin.outer, on: ['Country'])
-                .merge(worldBank, how: TypeJoin.outer, on: ['Country'])
+                .merge(energy, how: TypeJoin.OUTER, on: ['Country'])
+                .merge(worldBank, how: TypeJoin.OUTER, on: ['Country'])
 
         expect:
         outerMerged.size() - innerMerged.size() == 297
@@ -143,7 +144,11 @@ class Assignment3Spec extends Specification{
 
         and:
         df['ratio'] = df['Self-citations'] / df['Citations']
-        df['ratio'] = df['ratio'](Double){new BigDecimal(it, new MathContext(2)).toDouble() }
+        df['ratio'] = df['ratio'](Double){it
+                .toBigDecimal()
+                .setScale(2, RoundingMode.HALF_EVEN)
+                .toDouble()
+        }
 
         when:
         def (country, ratio) = df

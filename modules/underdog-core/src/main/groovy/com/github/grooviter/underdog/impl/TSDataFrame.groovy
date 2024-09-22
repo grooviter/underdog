@@ -10,24 +10,18 @@ import com.github.grooviter.underdog.TypeApplyByRow
 import com.github.grooviter.underdog.TypeApplyResult
 import com.github.grooviter.underdog.TypeAxis
 import com.github.grooviter.underdog.TypeJoin
-import groovy.transform.Immutable
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
-import groovy.transform.builder.Builder
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import tech.tablesaw.aggregate.AggregateFunctions
-import tech.tablesaw.aggregate.Summarizer
 import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.DoubleColumn
-import tech.tablesaw.api.NumericColumn
 import tech.tablesaw.api.Row
 import tech.tablesaw.api.Table
 import tech.tablesaw.columns.Column
 import tech.tablesaw.joining.DataFrameJoiner
 import tech.tablesaw.selection.Selection
 
-import java.math.MathContext
-import java.math.RoundingMode
 import java.util.function.Function
 
 /**
@@ -358,16 +352,16 @@ class TSDataFrame implements DataFrame {
     @Override
     @NamedVariant
     DataFrame merge(
-        DataFrame right,
-        @NamedParam TypeJoin how = TypeJoin.inner,
-        @NamedParam List<String> on,
-        @NamedParam List<String> left_on,
-        @NamedParam List<String> right_on,
-        @NamedParam boolean left_index,
-        @NamedParam boolean right_index,
-        @NamedParam boolean sort,
-        @NamedParam List<String> suffixes,
-        @NamedParam boolean copy) {
+            DataFrame right,
+            @NamedParam TypeJoin how = TypeJoin.INNER,
+            @NamedParam List<String> on,
+            @NamedParam List<String> left_on,
+            @NamedParam List<String> right_on,
+            @NamedParam boolean left_index,
+            @NamedParam boolean right_index,
+            @NamedParam boolean sort,
+            @NamedParam List<String> suffixes,
+            @NamedParam boolean copy) {
 
         TSDataFrameJoinInfo joinInfo = TSDataFrameJoinInfo.builder()
             .left(this)
@@ -383,13 +377,28 @@ class TSDataFrame implements DataFrame {
 
     private static DataFrame join(TSDataFrameJoinInfo info) {
         DataFrameJoiner joiner = info.leftTable().joinOn(info.leftKeys())
+
         Table merged = switch(info.how){
-            case TypeJoin.outer -> joiner.fullOuter(info.rightTable(), false, false, info.rightKeys())
-            case TypeJoin.inner -> joiner.inner(info.rightTable(), info.rightKeys())
-            case TypeJoin.left -> joiner.leftOuter(info.rightTable(), info.rightKeys())
-            case TypeJoin.right -> joiner.rightOuter(info.rightTable(), info.rightKeys())
+            case TypeJoin.OUTER -> joiner
+                    .fullOuter(info.rightTable(), false, false, info.rightKeys())
+
+            case [TypeJoin.INNER, TypeJoin.LEFT_INNER] -> joiner
+                    .inner(info.rightTable(), info.rightKeys())
+
+            case TypeJoin.RIGHT_INNER -> info
+                    .rightTable()
+                    .joinOn(info.rightKeys())
+                    .inner(info.leftTable(), info.leftKeys())
+
+            case TypeJoin.LEFT_OUTER -> joiner
+                    .leftOuter(info.rightTable(), info.rightKeys())
+
+            case TypeJoin.RIGHT_OUTER -> joiner
+                    .rightOuter(info.rightTable(), info.rightKeys())
+
             default -> joiner.inner(info.rightTable(), info.rightKeys())
         }
+
         return new TSDataFrame(merged)
     }
 

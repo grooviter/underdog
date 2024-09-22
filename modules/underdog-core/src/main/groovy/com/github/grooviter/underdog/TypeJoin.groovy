@@ -1,5 +1,10 @@
 package com.github.grooviter.underdog
 
 enum TypeJoin {
-    inner, outer, left, right
+    INNER,
+    LEFT_INNER,
+    OUTER,
+    LEFT_OUTER,
+    RIGHT_OUTER,
+    RIGHT_INNER
 }
