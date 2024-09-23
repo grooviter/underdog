@@ -8,17 +8,22 @@ import groovy.transform.NamedVariant
 import groovy.transform.NullCheck
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FirstParam
+import org.apache.commons.math3.stat.correlation.KendallsCorrelation
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation
+import org.apache.commons.math3.stat.correlation.SpearmansCorrelation
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
-import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.DoubleColumn
 import tech.tablesaw.api.NumericColumn
 import tech.tablesaw.api.StringColumn
 import tech.tablesaw.columns.Column
 import tech.tablesaw.columns.numbers.DoubleColumnType
-import tech.tablesaw.columns.strings.StringColumnType
 
 import java.math.MathContext
 import java.math.RoundingMode
+
+import static com.github.grooviter.underdog.Series.TypeCorrelation.KENDALL
+import static com.github.grooviter.underdog.Series.TypeCorrelation.PEARSON
+import static com.github.grooviter.underdog.Series.TypeCorrelation.SPEARMAN
 
 class TSSeries implements Series {
     private final Column column
@@ -51,6 +56,39 @@ class TSSeries implements Series {
     @Override
     <P> Series call(Class<P> clazz, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func) {
         return new TSSeries(column.map(p -> func(p)))
+    }
+
+
+    @Override
+    float corr(Series other) {
+        return this.corr(other, null, null)
+    }
+
+    @Override
+    @NamedVariant
+    float corr(
+        @NamedParam(required = true) Series other,
+        @NamedParam(required = false) TypeCorrelation method = PEARSON,
+        @NamedParam(required = false) Integer observations) {
+
+        def (alignedX, alignedY) = [this as Double[], other as Double[]]
+            .transpose()
+            .<List<Double>>findAll(Object::every)
+            .inject([[], []]) { agg,  next ->
+                agg[0] << next[0]
+                agg[1] << next[1]
+                agg
+            } as List<Double[]>
+
+        double[] x = (observations ? alignedX[0..<observations] : alignedX) as double[]
+        double[] y = (observations ? alignedY[0..<observations] : alignedY) as double[]
+
+        return switch(method) {
+            case PEARSON -> new PearsonsCorrelation().correlation(x, y)
+            case KENDALL -> new KendallsCorrelation().correlation(x, y)
+            case SPEARMAN -> new SpearmansCorrelation().correlation(x, y)
+            default -> new PearsonsCorrelation().correlation(x, y)
+        }
     }
 
     @Override
@@ -140,23 +178,6 @@ class TSSeries implements Series {
     }
 
     @Override
-    List<Integer> toIntegerList() {
-        if (column instanceof NumericColumn){
-            return column.asIntColumn().toList()
-        }
-
-        if (column instanceof StringColumn) {
-            return column
-                .map(st -> st.isNumber() ? st : StringColumnType.missingValueIndicator())
-                .asDoubleColumn()
-                .asIntColumn()
-                .toList()
-        }
-
-        throw new RuntimeException("Can't convert series of type ${column.type()} to list of integers")
-    }
-
-    @Override
     @NamedVariant
     Series toNumeric(String errors) {
         if (column instanceof NumericColumn) {
@@ -191,10 +212,22 @@ class TSSeries implements Series {
             return this
         }
 
-        if (clazz.isArray()) {
-            return DefaultGroovyMethods.asType(column.toList(), clazz as Class<Object>)
+        if (clazz.isArray() || List.isAssignableFrom(clazz)) {
+            return DefaultGroovyMethods.asType(convertToListWithNulls(column), clazz as Class<Object>)
         }
 
         return DefaultGroovyMethods.asType(column, clazz as Class<Object>)
+    }
+
+    private static List convertToListWithNulls(Column column) {
+        return column
+            .toList()
+            .indexed()
+            .collect { Integer index, Object v -> column.isMissing(index) ? null : v }
+    }
+
+    @Override
+    Series dropna() {
+        return new TSSeries(column.removeMissing())
     }
 }

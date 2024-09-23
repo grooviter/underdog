@@ -10,7 +10,42 @@ import groovy.transform.stc.FirstParam
  */
 interface Series extends Columnar {
 
+    static enum TypeCorrelation {
+        PEARSON, KENDALL, SPEARMAN
+    }
+
     <P> Series call(Class<P> clazz, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func)
+
+    /**
+     * Compute correlation with other Series, excluding missing values.
+     * The two Series objects are not required to be the same length and will be aligned internally before
+     * the correlation function is applied.
+     *
+     * @param other
+     * @param method
+     * @param observations
+     * @since 0.1.0
+     */
+    @NamedVariant
+    float corr(
+        @NamedParam(required = true) Series other,
+        @NamedParam(required = false) TypeCorrelation method,
+        @NamedParam(required = false) Integer observations)
+
+    /**
+     * Compute correlation with other Series, excluding missing values.
+     * The two Series objects are not required to be the same length and will be aligned internally before
+     * the correlation function is applied.
+     *
+     * @param other
+     * @since 0.1.0
+     */
+    float corr(Series other)
+
+    /**
+     * @since 0.1.0
+     */
+    Series dropna()
 
     /**
      * @since 0.1.0
@@ -97,11 +132,6 @@ interface Series extends Columnar {
      * @since 0.1.0
      */
     Series multiply(Number number)
-
-    /**
-     * @since 0.1.0
-     */
-    List<Integer> toIntegerList()
 
     /**
      * @since 0.1.0

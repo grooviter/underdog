@@ -123,7 +123,7 @@ class DataFrameSpec extends BaseSpec {
         df['numbers'] = df['numbers'] * 2
 
         and:
-        def doubled = df['numbers'].toIntegerList()
+        def doubled = df['numbers'] as List<Integer>
 
         then:
         doubled == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
@@ -137,7 +137,7 @@ class DataFrameSpec extends BaseSpec {
         df['doubled'] = df['numbers'] * 2
 
         and:
-        def doubled = df['doubled'].toIntegerList()
+        def doubled = df['doubled'] as List<Integer>
 
         and:
         df.columns == ['numbers', 'doubled']
@@ -353,5 +353,18 @@ class DataFrameSpec extends BaseSpec {
 
         and:
         df.size() == 5
+    }
+
+    def "[DataFrame/pivot]: "() {
+        setup:
+        def brandXGroup = df.pivot(x: 'GROUP NAME', y: 'BRAND', value: 'CARBS', fnName: 'mean')
+
+        when:
+        def (result) = brandXGroup
+            .loc[brandXGroup['BRAND'] == 'Schweppes']
+            .loc['Bebidas no alcohólicas'] as Double[]
+
+        then:
+        result == 7.4625
     }
 }

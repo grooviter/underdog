@@ -5,6 +5,7 @@ import com.github.grooviter.underdog.Underdog as ud
 
 import java.math.MathContext
 import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class Assignment3Spec extends Specification{
     static EXCEL_ENERGY = "src/test/resources/com/github/grooviter/underdog/tablesaw/Energy Indicators.xls"
@@ -111,6 +112,26 @@ class Assignment3Spec extends Specification{
 
         and:
         answer.columns == ['Country'] + (2006..2015).collect { "Mean [$it]" }
+    }
+
+    def 'Question 4: By how much had the GDP changed over the 10 year span for the country with the 5th largest average GDP?'() {
+        setup:
+        def top_6 = answerOne()
+
+        when:
+        top_6['avgGDP'] = answerOne()
+                .iloc[__, [1] + (-10..-1)]
+                .mean(axis: TypeAxis.rows, index: "Country")
+                .loc['Country [Mean]']
+
+        and:
+        def (gdp_2006, gdp_2015) = top_6
+            .nlargest(6, ['avgGDP'])
+            .iloc[-2, 11..20] // South Korea
+            .iloc[-1, [0, -1]] as Tuple2<Double, Double>
+
+        then:
+        (gdp_2015 - gdp_2006) == 325560528159.9851
     }
 
     def "Question 5: What is the mean Energy Supply per Capita?"() {

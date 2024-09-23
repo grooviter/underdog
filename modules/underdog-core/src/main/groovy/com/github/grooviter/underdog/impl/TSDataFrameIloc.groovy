@@ -20,6 +20,17 @@ class TSDataFrameIloc implements DataFrameIloc {
     }
 
     @Override
+    DataFrame getAt(Integer index, List<Integer> indexes) {
+        assert isInRowBounds(index), rowIndexIsOutOfBoundMessage(index?.toString())
+        assert isInColumnBounds(indexes), colIndexIsOutOfBoundsMessage(indexes?.toString())
+
+        int[] rowIndexes = resolveRowIndexes(index)
+        int[] colIndexes = resolveColumnIndexes(indexes)
+
+        return new TSDataFrame(this.table.selectColumns(colIndexes).rows(rowIndexes))
+    }
+
+    @Override
     DataFrame getAt(IntRange index, IntRange colIndex) {
         return new TSDataFrame(this.table.selectColumns(colIndex as int[]).rows(index as int[]))
     }
@@ -62,15 +73,36 @@ class TSDataFrameIloc implements DataFrameIloc {
 
     @Override
     DataFrame getAt(Integer index, IntRange colIndex) {
-        if (!(index.abs() in (0..this.table.rowCount()))) {
-            throw new RuntimeException("index $index is out of bounds")
-        }
+        assert isInRowBounds(index), rowIndexIsOutOfBoundMessage(index?.toString())
+        assert isInColumnBounds(colIndex), colIndexIsOutOfBoundsMessage(colIndex?.toString())
 
-        int indexToUse = index
-        if (index < 0) {
-            indexToUse = this.table.rowCount() + index
-        }
+        int[] colIndexes = resolveColumnIndexes(colIndex)
+        int[] rowIndexes = resolveRowIndexes(index)
 
-        return new TSDataFrame(this.table.selectColumns(colIndex as int[]).rows(indexToUse))
+        return new TSDataFrame(this.table.selectColumns(colIndexes).rows(rowIndexes))
+    }
+
+    private static String rowIndexIsOutOfBoundMessage(String index) {
+        return "row index $index is out of bounds"
+    }
+
+    private static String colIndexIsOutOfBoundsMessage(String index) {
+        return "column index $index is out of bounds"
+    }
+
+    private int[] resolveRowIndexes(Integer rowIndex) {
+        return [rowIndex >= 0 ? rowIndex : this.table.rowCount() + rowIndex] as int[]
+    }
+
+    private int[] resolveColumnIndexes(List colIndex) {
+        return this.table.columnNames()[colIndex].collect { table.columnIndex(it) } as int[]
+    }
+
+    private boolean isInColumnBounds(List indexes) {
+        return this.table.columns().size() >= indexes.size()
+    }
+
+    private boolean isInRowBounds(Integer index) {
+        return index.abs() in (0..this.table.rowCount())
     }
 }

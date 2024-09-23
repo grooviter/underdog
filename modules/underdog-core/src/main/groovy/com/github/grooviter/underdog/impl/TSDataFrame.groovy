@@ -167,6 +167,11 @@ class TSDataFrame implements DataFrame {
         return null
     }
 
+    @NamedVariant
+    DataFrame pivot(String x, String y, String value, String fnName){
+        return new TSDataFrame(table.pivot(y, x, value, TSDataFrameUtils.resolveFnByName(fnName)))
+    }
+
     @Override
     DataFrame plus(Number number) {
         return null
@@ -412,6 +417,12 @@ class TSDataFrame implements DataFrame {
     @NamedVariant
     Series max(TypeAxis axisType) {
         return null
+    }
+
+    @Override
+    @NamedVariant
+    DataFrame nlargest(@NamedParam(required = true) Integer n, @NamedParam(required = true) List<String> columns) {
+        return new TSDataFrame(this.table.sortDescendingOn(columns as String[]).first(n))
     }
 
     @Override

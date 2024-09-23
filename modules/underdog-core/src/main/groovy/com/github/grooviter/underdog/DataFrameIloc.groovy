@@ -15,6 +15,8 @@ interface DataFrameIloc {
      */
     DataFrame getAt(Integer[] indexes)
 
+    DataFrame getAt(Integer index, List<Integer> indexes)
+
     /**
      * @since 0.1.0
      */

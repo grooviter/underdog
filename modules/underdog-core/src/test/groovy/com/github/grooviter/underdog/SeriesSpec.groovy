@@ -1,5 +1,7 @@
 package com.github.grooviter.underdog
 
+import static com.github.grooviter.underdog.Series.TypeCorrelation.PEARSON
+
 class SeriesSpec extends BaseSpec {
     def "[Series/Indexing]: extract single value -> df['column'][9]"() {
         when:
@@ -99,5 +101,61 @@ class SeriesSpec extends BaseSpec {
         skipNa | precision | expectedValue
         true   | 2         | 12
         false  | 1         | 10
+    }
+
+    def "[Series/utils/corr]: default corr -> df['col'].corr(df['other'])"() {
+        setup:
+        def df = [
+                x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 9]
+        ].toDF("numbers")
+
+        expect:
+        df['x'].corr(df['y']) * 100 == 99.55914616584778
+    }
+
+    def "[Series/utils/corr]: Pearson's corr -> df['col'].corr(other: df['other'], type: PEARSON)"() {
+        setup:
+        def df = [
+                x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 9]
+        ].toDF("numbers")
+
+        expect:
+        df['x'].corr(other: df['y'], method: PEARSON) * 100 == 99.55914616584778
+    }
+
+    def "[Series/utils/corr]: corr w/ missing values -> df['col'].corr(df['other'])"() {
+        setup:
+        def df = [
+            x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            y: [1, 2, 3, 4, 5, null, 7, 8, 9, 9]
+        ].toDF("numbers")
+
+        def df_ref = [
+            x: [1, 2, 3, 4, 5, 7, 8, 9, 10],
+            y: [1, 2, 3, 4, 5, 7, 8, 9, 9]
+        ].toDF("numbers_reference")
+
+        expect:
+        df['x'].corr(df['y']) == df_ref['x'].corr(df_ref['y'])
+    }
+
+    def "[Series/utils/corr]: corr w/ diff lengths -> df['col'].corr(df['other'])"() {
+        setup:
+        def df1 = [x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]].toDF("xs")
+        def df2 = [y: [1, 2, 3, 4, 5]].toDF("ys")
+
+        expect:
+        df1['x'].corr(df2['y']) * 100 == 100
+    }
+
+    def "[Series/utils/corr]: corr w/ observation number -> df['col'].corr(other: df['other'], observations: 3)"() {
+        setup:
+        def df1 = [x: [1, 2, 3, 40, 102]].toDF("xs")
+        def df2 = [y: [1, 2, 3, 42, 500]].toDF("ys")
+
+        expect:
+        df1['x'].corr(other: df2['y'], observations: 3) * 100 == 100
     }
 }

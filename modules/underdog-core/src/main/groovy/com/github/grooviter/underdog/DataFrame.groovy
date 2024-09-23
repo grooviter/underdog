@@ -116,6 +116,13 @@ interface DataFrame extends Columnar {
     @NamedVariant
     DataFrame add(DataFrame other, TypeAxis axis, Integer level, BigDecimal fill)
 
+    /*
+     *
+     * @since 0.1.0
+     */
+    @NamedVariant
+    DataFrame pivot(String x, String y, String value, String fnName)
+
     /**
      * Get Addition of dataframe and other, element-wise (binary operator add).
      *
@@ -297,6 +304,14 @@ interface DataFrame extends Columnar {
      */
     @NamedVariant
     Series max(TypeAxis axisType)
+
+    /**
+     * Compute correlation with other Series, excluding missing values.
+     *
+     * @since 0.1.0
+     */
+    @NamedVariant
+    DataFrame nlargest(Integer n, List<String> columns)
 
     /**
      * Rename columns or index labels.
