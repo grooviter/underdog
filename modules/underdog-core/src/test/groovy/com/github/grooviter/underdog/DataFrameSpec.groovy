@@ -14,13 +14,40 @@ class DataFrameSpec extends BaseSpec {
 
     def "[DataFrame/Indexing/loc]: all rows | many columns -> df.loc['col1','coln']"() {
         when:
-        def carbs = df.loc["ID", "CARBS"]
+        def carbs = df.loc[__, ["ID", "CARBS"]]
 
         then:
         carbs.columns == ["ID", "CARBS"]
 
         and:
         carbs.size() == CSV_TOTAL_SIZE
+    }
+
+    def "[DataFrame/Selecting/loc]: single selection | all columns -> df.loc[df[colName] > val]"() {
+        when:
+        def carbs = df.loc[df["CARBS"] > 90]
+
+        then:
+        carbs.size() == 5
+    }
+
+    def "[DataFrame/Selecting/loc]: multiple selection | all columns -> df.loc[df[colName] > val & df[colName] < val]"() {
+        when:
+        def carbs = df.loc[df["CARBS"] > 90 & df["FAT"] < 1]
+
+        then:
+        carbs.size() == 4
+    }
+
+    def "[DataFrame/Selecting/loc]: multiple selection | some columns -> df.loc[df[colName] > val, ['A', 'B']]"() {
+        when:
+        def carbs = df.loc[df["CARBS"] > 90 & df["FAT"] < 1, ['BRAND', 'CARBS']]
+
+        then:
+        carbs.size() == 4
+
+        and:
+        carbs.columns == ['BRAND', 'CARBS']
     }
 
     def "[DataFrame/Indexing/iloc]: many rows | all columns -> df.iloc[0..<10]"() {
@@ -78,22 +105,6 @@ class DataFrameSpec extends BaseSpec {
     def "[DataFrame/Selecting]: multiple selection | all columns -> df[df[colName] > val & df[colName] < val]"() {
         when:
         def carbs = df[df["CARBS"] > 90 & df["FAT"] < 1]
-
-        then:
-        carbs.size() == 4
-    }
-
-    def "[DataFrame/Selecting/loc]: single selection | all columns -> df.loc[df[colName] > val]"() {
-        when:
-        def carbs = df.loc[df["CARBS"] > 90]
-
-        then:
-        carbs.size() == 5
-    }
-
-    def "[DataFrame/Selecting/loc]: multiple selection | all columns -> df.loc[df[colName] > val & df[colName] < val]"() {
-        when:
-        def carbs = df.loc[df["CARBS"] > 90 & df["FAT"] < 1]
 
         then:
         carbs.size() == 4
@@ -288,7 +299,7 @@ class DataFrameSpec extends BaseSpec {
         ].toDF("salaries")
     }
 
-    def "[Dataframe/utils/casting]: casting primitive arrays -> df as number[]"() {
+    def "[Dataframe/casting]: casting primitive arrays -> df as number[]"() {
         setup:
         def df = [
             x: (1..10),
@@ -308,7 +319,7 @@ class DataFrameSpec extends BaseSpec {
         theArray[2] == (21..30) as int[] // z
     }
 
-    def "[Dataframe/utils/casting]: casting dataframe with single row -> df as Tuple<x, y>"() {
+    def "[Dataframe/casting]: casting dataframe with single row -> df as Tuple<x, y>"() {
         setup:
         def df = [x: [1, 2], y: ['a', 'b']].toDF("xyz")
 
@@ -322,7 +333,7 @@ class DataFrameSpec extends BaseSpec {
         y == 'b'
     }
 
-    def "[Dataframe/utils/describe]: showing dataframe stats -> df.describe()"() {
+    def "[Dataframe/describe]: showing dataframe stats -> df.describe()"() {
         when:
         def df = df.describe()
 
@@ -333,7 +344,7 @@ class DataFrameSpec extends BaseSpec {
         df.size() == 11
     }
 
-    def "[Dataframe/utils/head]: show first 10 rows -> df.head()"() {
+    def "[Dataframe/head]: show first 10 rows -> df.head()"() {
         when:
         def df = df.head()
 
@@ -344,7 +355,7 @@ class DataFrameSpec extends BaseSpec {
         df.size() == 10
     }
 
-    def "[Dataframe/utils/head]: show first n-rows -> df.head(n)"() {
+    def "[Dataframe/head]: show first n-rows -> df.head(n)"() {
         when:
         def df = df.head(5)
 

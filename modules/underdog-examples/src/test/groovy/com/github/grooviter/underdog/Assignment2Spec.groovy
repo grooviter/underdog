@@ -36,7 +36,7 @@ class Assignment2Spec extends Specification {
                 .columns
                 .findAll { it ==~ /Gold.*|Silver.*|Bronze.*/ }
 
-        return renamedDf[renamedDf['Country'] != 'Totals'].loc[colsToKeep]
+        return renamedDf[renamedDf['Country'] != 'Totals'].loc[__, colsToKeep]
     }
 
     def 'Question 0: The following code loads the olympics dataset (olympics.csv)'() {
@@ -72,7 +72,7 @@ class Assignment2Spec extends Specification {
 
     def "Question 2: Which country had the biggest difference between their summer and winter gold medal counts?"() {
         when:
-        def current = df.loc['Country', 'Gold.1', 'Gold.2']
+        def current = df.loc[__, ['Country', 'Gold.1', 'Gold.2']]
 
         and:
         current['Gold.Diff'] = current['Gold.1'] - current['Gold.2']

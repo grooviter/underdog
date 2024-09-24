@@ -10,6 +10,7 @@ dependencies {
     api "org.apache.groovy:groovy-datetime:$groovy"
     api "org.apache.groovy:groovy-json:$groovy"
     api "org.apache.groovy:groovy-templates:$groovy"
+    api "org.apache.groovy:groovy-test:$groovy"
     api "org.apache.groovy:groovy-dateutil:$groovy"
 
     implementation "tech.tablesaw:tablesaw-core:$tablesaw"

@@ -2,19 +2,14 @@ package com.github.grooviter.underdog.impl.ast
 
 import com.github.grooviter.underdog.Wildcard
 import groovy.transform.InheritConstructors
-import org.codehaus.groovy.GroovyBugError
 import org.codehaus.groovy.ast.ASTNode
-import org.codehaus.groovy.ast.ClassNode
-import org.codehaus.groovy.ast.GenericsType
 import org.codehaus.groovy.ast.expr.*
-import org.codehaus.groovy.control.CompilationFailedException
 import org.codehaus.groovy.syntax.Types
 
 import static org.codehaus.groovy.ast.tools.GeneralUtils.args
 import static org.codehaus.groovy.ast.tools.GeneralUtils.callX
 import static org.codehaus.groovy.ast.tools.GeneralUtils.classX
 import static org.codehaus.groovy.ast.tools.GeneralUtils.constX
-import static org.codehaus.groovy.ast.tools.GeneralUtils.nullX
 import static org.codehaus.groovy.ast.tools.GeneralUtils.propX
 import static org.codehaus.groovy.macro.matcher.ASTMatcher.matches
 import static org.codehaus.groovy.macro.matcher.ASTMatcher.withConstraints
@@ -69,55 +64,6 @@ class UnderscoreTransformer extends ConditionalExpressionTransformer {
 
     // [_, cols]
     private static Expression extractColsX(ListExpression underscoreAndCols) {
-        Expression cols = underscoreAndCols.expressions.last()
-        return cols
-//        switch(cols.class) {
-//            case ListExpression:     return extractColsFromColumnListX(cols as ListExpression)
-//            case RangeExpression:    return extractColsFromIntRangeX(cols as RangeExpression)
-//            case VariableExpression: return extractColsFromVarX(cols as VariableExpression)
-//            default:
-//                return forceToList(cols)
-//        }
-    }
-
-    private static Expression forceToList(Expression expression) {
-        return callX(expression, 'toList')
-    }
-
-    private static Expression extractColsFromVarX(VariableExpression varX) {
-        ClassNode variableClassNode = varX.type
-
-        if (variableClassNode == new ClassNode(List)) {
-            GenericsType[] generics = variableClassNode.getGenericsTypes()
-            if (generics.size() == 1 && generics[0].type == new ClassNode(Integer)) {
-                    return callX(varX, 'asType', classX(int[]))
-            }
-            return callX(varX, 'asType', classX(String[]))
-        }
-
-        return varX
-    }
-
-    private static MethodCallExpression extractColsFromIntRangeX(RangeExpression cols) {
-        if ([cols.from.type, cols.to.type].every {it == new ClassNode(int)}) {
-            return callX(cols, 'asType', classX(int[]))
-        }
-
-        return callX(cols, 'asType', classX(String[]))
-    }
-
-    private static MethodCallExpression extractColsFromColumnListX(ListExpression cols) {
-        boolean isColNames = cols.expressions.type.every { new ClassNode(String) == it }
-        boolean isColIndexes = cols.expressions.type.every { new ClassNode(int) == it }
-
-        if (isColNames) {
-            return callX(cols, 'asType', classX(String[].class))
-        }
-
-        if (isColIndexes) {
-            return callX(cols, 'asType', classX(int[].class))
-        }
-
-        throw new GroovyBugError('list can be only of col names or col indexes')
+        return underscoreAndCols.expressions.last()
     }
 }

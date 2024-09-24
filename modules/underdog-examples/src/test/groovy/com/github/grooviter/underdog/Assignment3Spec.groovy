@@ -146,7 +146,7 @@ class Assignment3Spec extends Specification{
         when:
         def result = answerOne()
                 .sort_values(by: '-% Renewable')
-                .loc['Country', '% Renewable']
+                .loc[__, ['Country', '% Renewable']]
 
         result['% Renewable'] = result['% Renewable'].toNumeric(errors: 'coerce')
 
@@ -174,7 +174,7 @@ class Assignment3Spec extends Specification{
         when:
         def (country, ratio) = df
             .sort_values(by: '-ratio')
-            .loc['Country', 'ratio']
+            .loc[__, ['Country', 'ratio']]
             .iloc[0] as Tuple2<String, Double>
 
         then:

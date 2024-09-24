@@ -15,11 +15,10 @@ interface DataFrameLoc {
     Series getAt(String column)
 
     /**
-     * Access a single value for a row/column label pair.
      *
      * @since 0.1.0
      */
-    DataFrame getAt(List<String> columns)
+    DataFrame getAt(Wildcard wildcard, List<String> columns)
 
     /**
      * @since 0.1.0
@@ -51,4 +50,6 @@ interface DataFrameLoc {
     default DataFrame getAt(Criteria criteria) {
         return criteria.apply(this)
     }
+
+    DataFrame getAt(Criteria criteria, List<String> columns)
 }
