@@ -243,12 +243,12 @@ class TSDataFrame implements DataFrame {
             return this
         }
 
-        if (clazz.isArray() && clazz.arrayType() instanceof Number) {
-            switch(clazz.arrayType()) {
-                case int[]    -> table.as().intMatrix()
-                case double[] -> table.as().doubleMatrix()
-                case float[]  -> table.as().floatMatrix()
-                default       -> table.as().doubleMatrix()
+        if (clazz.isArray()) {
+            return switch(clazz) {
+                case int[][]    -> table.as().intMatrix()
+                case double[][] -> table.as().doubleMatrix()
+                case float[][]  -> table.as().floatMatrix()
+                default         -> table.as().doubleMatrix()
             }
         }
 
@@ -262,7 +262,7 @@ class TSDataFrame implements DataFrame {
             return DefaultGroovyMethods.asType(list.find(), clazz)
         }
 
-        return DefaultGroovyMethods.asType(list.transpose(), clazz)
+        return DefaultGroovyMethods.asType(list, clazz)
     }
 
     @Override

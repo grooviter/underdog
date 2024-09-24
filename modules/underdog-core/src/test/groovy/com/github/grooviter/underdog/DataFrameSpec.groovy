@@ -311,12 +311,11 @@ class DataFrameSpec extends BaseSpec {
         def theArray = df as int[][]
 
         then:
-        theArray.length == 3
+        theArray.length == 10
 
         and:
-        theArray[0] == (1..10) as int[]  // x
-        theArray[1] == (10..1) as int[]  // y
-        theArray[2] == (21..30) as int[] // z
+        theArray[0] == [1, 10, 21] as int[]
+        theArray[1] == [2, 9, 22] as int[]
     }
 
     def "[Dataframe/casting]: casting dataframe with single row -> df as Tuple<x, y>"() {
