@@ -16,6 +16,7 @@ dependencies {
     implementation "tech.tablesaw:tablesaw-core:$tablesaw"
     implementation "tech.tablesaw:tablesaw-jsplot:$tablesaw"
     implementation "org.apache.groovy:groovy-macro:$groovy"
+    implementation "com.github.haifengl:smile-core:3.1.1"
 
     testImplementation "org.spockframework:spock-core:$spock"
 }
