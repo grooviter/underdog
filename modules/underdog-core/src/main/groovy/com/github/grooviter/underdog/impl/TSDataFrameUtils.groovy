@@ -13,6 +13,7 @@ class TSDataFrameUtils {
             case "first"  -> AggregateFunctions.first
             case "change" -> AggregateFunctions.change
             case "count"  -> AggregateFunctions.count
+            case "sum"    -> AggregateFunctions.sum
             default       -> throw new RuntimeException("function '$name' not found")
         }
     }

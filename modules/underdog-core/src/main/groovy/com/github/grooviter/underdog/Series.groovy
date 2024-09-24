@@ -131,7 +131,27 @@ interface Series extends Columnar {
     /**
      * @since 0.1.0
      */
+    Criteria isNotEqualTo(String value)
+
+    /**
+     * @since 0.1.0
+     */
+    Criteria isNotEqualTo(Number value)
+
+    /**
+     * @since 0.1.0
+     */
     Series multiply(Number number)
+
+    /**
+     * @since 0.1.0
+     */
+    Series minus(Object value)
+
+    /**
+     * @since 0.1.0
+     */
+    Series minus(Series series)
 
     /**
      * @since 0.1.0

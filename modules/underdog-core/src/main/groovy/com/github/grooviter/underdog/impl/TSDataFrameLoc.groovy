@@ -1,5 +1,6 @@
 package com.github.grooviter.underdog.impl
 
+import com.github.grooviter.underdog.Criteria
 import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.DataFrameLoc
 import com.github.grooviter.underdog.Series

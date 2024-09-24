@@ -12,6 +12,8 @@ import com.github.grooviter.underdog.TypeAxis
 import com.github.grooviter.underdog.TypeJoin
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.FromString
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import tech.tablesaw.aggregate.AggregateFunctions
 import tech.tablesaw.api.ColumnType
@@ -446,6 +448,14 @@ class TSDataFrame implements DataFrame {
         }
 
 
+        return this
+    }
+
+    @Override
+    DataFrame rename(@ClosureParams(value = FromString, options = ['java.lang.Integer,java.lang.String']) Closure<String> function) {
+        this.table.columns().eachWithIndex { col, ix ->
+            col.setName(function(ix, col.name()))
+        }
         return this
     }
 

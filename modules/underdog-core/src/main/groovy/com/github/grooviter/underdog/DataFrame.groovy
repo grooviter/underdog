@@ -3,6 +3,8 @@ package com.github.grooviter.underdog
 import com.github.grooviter.underdog.impl.ast.ASTDriven
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.FromString
 
 import java.util.function.Function
 
@@ -322,6 +324,8 @@ interface DataFrame extends Columnar {
      */
     @NamedVariant
     DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
+
+    DataFrame rename(@ClosureParams(value = FromString, options = ['java.lang.Integer,java.lang.String']) Closure<String> function)
 
     /**
      * @since 0.1.0

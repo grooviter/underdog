@@ -14,6 +14,7 @@ import org.apache.commons.math3.stat.correlation.SpearmansCorrelation
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import tech.tablesaw.api.DoubleColumn
 import tech.tablesaw.api.NumericColumn
+import tech.tablesaw.api.Row
 import tech.tablesaw.api.StringColumn
 import tech.tablesaw.columns.Column
 import tech.tablesaw.columns.numbers.DoubleColumnType
@@ -165,6 +166,18 @@ class TSSeries implements Series {
     }
 
     @Override
+    Criteria isNotEqualTo(String value) {
+        assert column instanceof StringColumn, ""
+        return new TSCriteria(column.isNotEqualTo(value))
+    }
+
+    @Override
+    Criteria isNotEqualTo(Number value) {
+        assert column instanceof NumericColumn, ""
+        return new TSCriteria(column.isNotEqualTo(value.toDouble()))
+    }
+
+    @Override
     Series multiply(Number number) {
         if (column instanceof NumericColumn){
             return new TSSeries(column * number)
@@ -175,6 +188,32 @@ class TSSeries implements Series {
         }
 
         throw new RuntimeException("can't multiply ${number} by a series of type ${column.type()}")
+    }
+
+    @Override
+    Series minus(Series series) {
+        Column left = this.implementation as Column
+        Column right = series.implementation as Column
+
+        if (left instanceof NumericColumn && right instanceof NumericColumn) {
+            return new TSSeries(left.subtract(right))
+        }
+
+        if (left instanceof StringColumn && right instanceof StringColumn) {
+            int col1Size = left.size();
+            int col2Size = right.size();
+
+            for (int r = 0; r < col1Size; ++r) {
+                left.set(r, left.getString(r) - right.getString(r))
+            }
+        }
+
+        return new TSSeries(left)
+    }
+
+    @Override
+    Series minus(Object value) {
+        return new TSSeries(column.map(val -> val - value))
     }
 
     @Override
