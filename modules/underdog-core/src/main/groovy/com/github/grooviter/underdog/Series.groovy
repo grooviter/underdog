@@ -16,6 +16,9 @@ interface Series extends Columnar {
 
     <P> Series call(Class<P> clazz, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func)
 
+    <P,O> Series call(Class<P> clazz, Class<O> output, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func)
+
+    Series categorize()
     /**
      * Compute correlation with other Series, excluding missing values.
      * The two Series objects are not required to be the same length and will be aligned internally before

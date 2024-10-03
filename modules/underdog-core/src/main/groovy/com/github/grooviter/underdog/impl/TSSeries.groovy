@@ -12,7 +12,10 @@ import org.apache.commons.math3.stat.correlation.KendallsCorrelation
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation
 import org.apache.commons.math3.stat.correlation.SpearmansCorrelation
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
+import tech.tablesaw.api.BooleanColumn
+import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.DoubleColumn
+import tech.tablesaw.api.IntColumn
 import tech.tablesaw.api.NumericColumn
 import tech.tablesaw.api.Row
 import tech.tablesaw.api.StringColumn
@@ -21,6 +24,7 @@ import tech.tablesaw.columns.numbers.DoubleColumnType
 
 import java.math.MathContext
 import java.math.RoundingMode
+import java.util.function.Function
 
 import static com.github.grooviter.underdog.Series.TypeCorrelation.KENDALL
 import static com.github.grooviter.underdog.Series.TypeCorrelation.PEARSON
@@ -59,6 +63,36 @@ class TSSeries implements Series {
         return new TSSeries(column.map(p -> func(p)))
     }
 
+    @Override
+    def <P, O> Series call(Class<P> clazz, Class<O> output, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func) {
+        Column newCol = switch(output) {
+            case Integer -> ColumnType.INTEGER.create("random")
+        }
+        (0..<this.size()).each { newCol.appendMissing() }
+        Function<P, O> fn = i -> func(i)
+        return new TSSeries(this.column.mapInto(fn, newCol))
+    }
+
+    @Override
+    Series categorize() {
+        IntColumn categoryCol = IntColumn.create(this.column.name())
+
+        column.each { categoryCol.appendMissing() }
+
+        if (column instanceof StringColumn) {
+            Map<String, Integer> index = column
+                .unique()
+                .indexed()
+                .collectEntries { k, v -> [(v): k] }
+            column.mapInto((String next) -> index[next], categoryCol)
+        }
+
+        if (column instanceof BooleanColumn) {
+            column.mapInto((Boolean next) -> next ? 1 : 0, categoryCol)
+        }
+
+        return new TSSeries(categoryCol)
+    }
 
     @Override
     float corr(Series other) {

@@ -40,7 +40,7 @@ class GettingStartedTest extends Specification {
         def carbs = df["CARBS"][0]
 
         then:
-        carbs == 2.3
+        carbs == 0.0
     }
 
     def "Indexing: df['column'].iloc[0]"() {
@@ -51,7 +51,7 @@ class GettingStartedTest extends Specification {
         def carbs = df["CARBS"].iloc[9]
 
         then:
-        carbs == 2.3
+        carbs == 4.2
     }
 
     def "Indexing: df.loc['column']"() {

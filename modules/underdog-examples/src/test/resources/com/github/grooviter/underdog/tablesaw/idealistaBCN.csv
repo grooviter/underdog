@@ -1,0 +1,1291 @@
+,info,habs,m2,floor,price,elevator,exterior,neigh,type
+0,"Piso en plaza Guinardó, 10, El Guinardó, Barcelona",3,115.0,1.0,495000,True,True,El Guinardó,Piso
+1,"Dúplex en plaza Guinardó, 10, El Guinardó, Barcelona",105,,,395000,False,False,El Guinardó,Dúplex
+2,"Dúplex en plaza Guinardó, 10, El Guinardó, Barcelona",2,104.0,,440000,True,False,El Guinardó,Dúplex
+3,"Piso en Verdun, Barcelona",2,55.0,3.0,141000,True,True,Verdun,Piso
+4,"Piso en La Dreta de l'Eixample, Barcelona",3,351.0,1.0,2300000,True,True,La Dreta de l'Eixample,Piso
+5,"Piso en El Parc i la Llacuna del Poblenou, Barcelona",4,97.0,,335000,True,False,El Parc i la Llacuna del Poblenou,Piso
+6,"Chalet adosado en La Font d'En Fargues, Barcelona",6,174.0,,299000,False,False,La Font d'En Fargues,Chalet
+7,"Piso en via Augusta, Sant Gervasi - Galvany, Barcelona",5,298.0,3.0,1750000,True,True,Sant Gervasi - Galvany,Piso
+8,"Piso en calle de Viladomat, La Nova Esquerra de l'Eixample, Barcelona",4,92.0,3.0,460000,True,True,La Nova Esquerra de l'Eixample,Piso
+9,"Ático en calle d'Entença, Sant Antoni, Barcelona",2,90.0,7.0,590000,True,True,Sant Antoni,Ático
+10,"Piso en avenida Diagonal, La Dreta de l'Eixample, Barcelona",2,130.0,1.0,450000,True,True,La Dreta de l'Eixample,Piso
+11,"Dúplex en La Sagrada Família, Barcelona",2,110.0,1.0,395000,False,True,La Sagrada Família,Dúplex
+12,"Piso en Sant Gervasi - Galvany, Barcelona",5,250.0,,999000,True,False,Sant Gervasi - Galvany,Piso
+13,"Piso en La Teixonera, Barcelona",3,81.0,2.0,225000,False,True,La Teixonera,Piso
+14,"Piso en El Putxet i el Farró, Barcelona",4,165.0,2.0,800000,True,False,El Putxet i el Farró,Piso
+15,"Piso en El Raval, Barcelona",2,70.0,,249000,False,False,El Raval,Piso
+16,"Piso en Sant Gervasi - Galvany, Barcelona",4,150.0,3.0,850000,True,False,Sant Gervasi - Galvany,Piso
+17,"Chalet adosado en Can Baró, Barcelona",3,110.0,,430000,False,False,Can Baró,Chalet
+18,"Piso en Sant Gervasi - Galvany, Barcelona",4,129.0,2.0,685000,True,False,Sant Gervasi - Galvany,Piso
+19,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,105.0,2.0,475000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+20,"Ático en El Fort Pienc, Barcelona",5,161.0,7.0,690000,True,False,El Fort Pienc,Ático
+21,"Piso en Sant Gervasi - La Bonanova, Barcelona",4,256.0,,1295000,True,False,Sant Gervasi - La Bonanova,Piso
+22,"Piso en Sant Antoni, Barcelona",3,118.0,6.0,510000,True,False,Sant Antoni,Piso
+23,"Piso en Sant Andreu, Barcelona",3,178.0,1.0,535000,False,False,Sant Andreu,Piso
+24,"Piso en La Dreta de l'Eixample, Barcelona",4,143.0,4.0,995000,True,False,La Dreta de l'Eixample,Piso
+25,"Piso en Sant Gervasi - La Bonanova, Barcelona",3,234.0,1.0,1100000,False,False,Sant Gervasi - La Bonanova,Piso
+26,"Ático en Sant Gervasi - La Bonanova, Barcelona",5,184.0,,830000,True,False,Sant Gervasi - La Bonanova,Ático
+27,"Piso en Sant Gervasi - La Bonanova, Barcelona",3,130.0,1.0,1290000,True,False,Sant Gervasi - La Bonanova,Piso
+28,"Piso en Vila de Gràcia, Barcelona",1,202.0,,750000,False,False,Vila de Gràcia,Piso
+29,"Piso en calle de Bac de Roda, Diagonal Mar i el Front Marítim del Poblenou, Barcelona",1,69.0,,395000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Piso
+30,"Piso en La Dreta de l'Eixample, Barcelona",4,239.0,,1100000,True,False,La Dreta de l'Eixample,Piso
+31,"Piso en La Nova Esquerra de l'Eixample, Barcelona",3,106.0,1.0,595000,True,True,La Nova Esquerra de l'Eixample,Piso
+32,"Piso en Sant Gervasi - Galvany, Barcelona",4,200.0,,1400000,True,False,Sant Gervasi - Galvany,Piso
+33,"Piso en Sants - Badal, Barcelona",5,78.0,1.0,199000,False,True,Sants - Badal,Piso
+34,"Piso en Vila de Gràcia, Barcelona",3,189.0,,1080000,True,False,Vila de Gràcia,Piso
+35,"Piso en La Dreta de l'Eixample, Barcelona",3,249.0,,1395000,True,False,La Dreta de l'Eixample,Piso
+36,"Piso en calle del Capità Arenas, Pedralbes, Barcelona",2,62.0,5.0,450000,True,True,Pedralbes,Piso
+37,"Piso en El Guinardó, Barcelona",3,83.0,2.0,270000,True,True,El Guinardó,Piso
+38,"Piso en avenida de Francesc Cambó, Sant Pere - Santa Caterina i la Ribera, Barcelona",5,152.0,5.0,665000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+39,"Piso en Sant Gervasi - Galvany, Barcelona",4,135.0,,749000,True,False,Sant Gervasi - Galvany,Piso
+40,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",3,84.0,7.0,327000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Piso
+41,"Piso en Sant Gervasi - La Bonanova, Barcelona",5,220.0,2.0,1175000,True,False,Sant Gervasi - La Bonanova,Piso
+42,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",4,86.0,,495000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+43,"Piso en avenida de Josep Tarradellas, L'Antiga Esquerra de l'Eixample, Barcelona",2,80.0,1.0,690000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+44,"Piso en avenida de Josep Tarradellas, L'Antiga Esquerra de l'Eixample, Barcelona",2,80.0,3.0,630000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+45,"Piso en Cep, El Congrés i els Indians, Barcelona",2,64.0,1.0,185000,True,True,El Congrés i els Indians,Piso
+46,"Piso en Sant Gervasi - Galvany, Barcelona",3,132.0,1.0,790000,True,True,Sant Gervasi - Galvany,Piso
+47,"Piso en calle del Consell de Cent, L'Antiga Esquerra de l'Eixample, Barcelona",3,400.0,,1020000,False,False,L'Antiga Esquerra de l'Eixample,Piso
+48,"Piso en calle del Marquès de Sentmenat, Les Corts, Barcelona",2,80.0,1.0,375000,True,True,Les Corts,Piso
+49,"Piso en calle de Mandri, Sant Gervasi - La Bonanova, Barcelona",5,170.0,3.0,950000,True,True,Sant Gervasi - La Bonanova,Piso
+50,"Piso en Bilbao, 110, El Poblenou, Barcelona",3,168.0,25.0,1090000,True,True,El Poblenou,Piso
+51,"Piso en paseo de Manuel Girona, Pedralbes, Barcelona",3,110.0,8.0,800000,True,True,Pedralbes,Piso
+52,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",2,149.0,,1200000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+53,"Piso en Gran Via de les Corts Catalanes, Sant Martí de Provençals, Barcelona",4,83.0,3.0,239000,True,True,Sant Martí de Provençals,Piso
+54,"Ático en Sant Gervasi - Galvany, Barcelona",2,101.0,,810000,True,False,Sant Gervasi - Galvany,Ático
+55,"Piso en calle de Jaume Vicens i Vives, La Vila Olímpica del Poblenou, Barcelona",3,111.0,4.0,586000,True,True,La Vila Olímpica del Poblenou,Piso
+56,"Piso en calle de los Castillejos, La Sagrada Família, Barcelona",4,90.0,5.0,345000,True,True,La Sagrada Família,Piso
+57,"Piso en calle de València, L'Antiga Esquerra de l'Eixample, Barcelona",5,152.0,6.0,560000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+58,"Piso en calle de Viladomat, Sant Antoni, Barcelona",5,181.0,2.0,995000,True,True,Sant Antoni,Piso
+59,"Piso en calle de Balmes, La Dreta de l'Eixample, Barcelona",6,191.0,,950000,True,False,La Dreta de l'Eixample,Piso
+60,"Piso en Princesa, Sant Pere - Santa Caterina i la Ribera, Barcelona",3,109.0,3.0,775000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+61,"Piso en La Vall d'Hebron - La Clota, Barcelona",2,80.0,8.0,299000,True,False,La Vall d'Hebron - La Clota,Piso
+62,"Piso en calle del Dos de Maig, La Sagrada Família, Barcelona",4,94.0,1.0,420000,True,True,La Sagrada Família,Piso
+63,"Piso en Bilbao, El Poblenou, Barcelona",3,195.0,3.0,640000,True,True,El Poblenou,Piso
+64,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",1,63.0,1.0,335000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+65,"Piso en calle de Roger de Llúria, La Dreta de l'Eixample, Barcelona",5,183.0,3.0,725000,True,True,La Dreta de l'Eixample,Piso
+66,"Piso en Sant Gervasi - Galvany, Barcelona",4,169.0,1.0,775000,True,True,Sant Gervasi - Galvany,Piso
+67,"Piso en El Clot, Barcelona",4,93.0,6.0,340000,True,True,El Clot,Piso
+68,"Ático en calle del Comandant Benítez, La Maternitat i Sant Ramon, Barcelona",3,130.0,9.0,530000,True,True,La Maternitat i Sant Ramon,Ático
+69,"Chalet en Sarrià, Barcelona",5,380.0,,1750000,False,False,Sarrià,Chalet
+70,"Piso en calle de Roger de Llúria, La Dreta de l'Eixample, Barcelona",6,183.0,3.0,725000,True,True,La Dreta de l'Eixample,Piso
+71,"Piso en El Gòtic, Barcelona",3,174.0,1.0,950000,True,True,El Gòtic,Piso
+72,"Piso en calle de l'Avenir, Sant Gervasi - Galvany, Barcelona",5,160.0,4.0,850000,True,True,Sant Gervasi - Galvany,Piso
+73,"Piso en El Poblenou, Barcelona",2,71.0,2.0,370000,True,False,El Poblenou,Piso
+74,"Piso en El Raval, Barcelona",1,49.0,4.0,214000,True,False,El Raval,Piso
+75,"Ático en La Dreta de l'Eixample, Barcelona",3,153.0,9.0,1495000,True,False,La Dreta de l'Eixample,Ático
+76,"Piso en La Dreta de l'Eixample, Barcelona",4,148.0,3.0,895000,True,False,La Dreta de l'Eixample,Piso
+77,"Piso en calle de Ricardo Calvo, Sant Gervasi - La Bonanova, Barcelona",5,200.0,5.0,890000,True,True,Sant Gervasi - La Bonanova,Piso
+78,"Piso en calle de Vallmajor, Sant Gervasi - Galvany, Barcelona",3,115.0,2.0,660000,True,True,Sant Gervasi - Galvany,Piso
+79,"Piso en DIPUTACIO, La Dreta de l'Eixample, Barcelona",3,131.0,6.0,560000,True,True,La Dreta de l'Eixample,Piso
+80,"Dúplex en paseo de Gràcia, La Dreta de l'Eixample, Barcelona",2,100.0,5.0,800000,True,True,La Dreta de l'Eixample,Dúplex
+81,"Piso en calle del Consell de Cent, La Dreta de l'Eixample, Barcelona",1,70.0,,360000,True,False,La Dreta de l'Eixample,Piso
+82,"Piso en calle de Casp, La Dreta de l'Eixample, Barcelona",3,115.0,3.0,990000,True,True,La Dreta de l'Eixample,Piso
+83,"Piso en calle de Balmes, Sant Gervasi - Galvany, Barcelona",5,277.0,5.0,1900000,True,True,Sant Gervasi - Galvany,Piso
+84,"Piso en calle de Plantada, Sarrià, Barcelona",5,181.0,2.0,990000,False,True,Sarrià,Piso
+85,"Piso en calle MARTI, El Camp d'En Grassot i Gràcia Nova, Barcelona",3,104.0,1.0,470000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+86,"Dúplex en GANDUXER, Sant Gervasi - Galvany, Barcelona",3,200.0,4.0,1100000,True,True,Sant Gervasi - Galvany,Dúplex
+87,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",4,228.0,,650000,True,False,El Poble Sec - Parc de Montjuïc,Piso
+88,"Piso en La Dreta de l'Eixample, Barcelona",3,148.0,,995000,True,False,La Dreta de l'Eixample,Piso
+89,"Piso en Les Corts, Barcelona",3,93.0,5.0,555000,True,False,Les Corts,Piso
+90,"Piso en Sant Gervasi - Galvany, Barcelona",3,160.0,7.0,880000,True,True,Sant Gervasi - Galvany,Piso
+91,"Piso en El Gòtic, Barcelona",3,194.0,2.0,910000,True,True,El Gòtic,Piso
+92,"Casa o chalet independiente en Sant Gervasi - La Bonanova, Barcelona",6,585.0,,2350000,False,False,Sant Gervasi - La Bonanova,Casa
+93,"Piso en La Nova Esquerra de l'Eixample, Barcelona",3,87.0,5.0,399000,True,True,La Nova Esquerra de l'Eixample,Piso
+94,"Piso en La Dreta de l'Eixample, Barcelona",7,271.0,1.0,1800000,True,True,La Dreta de l'Eixample,Piso
+95,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,82.0,3.0,380000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+96,"Piso en La Dreta de l'Eixample, Barcelona",5,192.0,,990000,True,False,La Dreta de l'Eixample,Piso
+97,"Piso en La Dreta de l'Eixample, Barcelona",3,161.0,,1090000,True,False,La Dreta de l'Eixample,Piso
+98,"Piso en La Dreta de l'Eixample, Barcelona",3,175.0,4.0,1600000,True,True,La Dreta de l'Eixample,Piso
+99,"Piso en La Dreta de l'Eixample, Barcelona",4,196.0,1.0,595000,True,True,La Dreta de l'Eixample,Piso
+100,"Piso en calle de Massens, Vila de Gràcia, Barcelona",3,79.0,,345000,False,False,Vila de Gràcia,Piso
+101,"Piso en rambla de Guipúscoa, Sant Martí de Provençals, Barcelona",3,72.0,2.0,165000,True,True,Sant Martí de Provençals,Piso
+102,"Piso en El Gòtic, Barcelona",2,84.0,3.0,475000,True,True,El Gòtic,Piso
+103,"Ático en La Dreta de l'Eixample, Barcelona",4,190.0,7.0,1175000,True,True,La Dreta de l'Eixample,Ático
+104,"Piso en calle de Ganduxer, Sant Gervasi - Galvany, Barcelona",6,255.0,5.0,1199000,True,True,Sant Gervasi - Galvany,Piso
+105,"Piso en travesía de Gràcia, Sant Gervasi - Galvany, Barcelona",5,210.0,1.0,749000,True,True,Sant Gervasi - Galvany,Piso
+106,"Ático en calle de Pau Claris, La Dreta de l'Eixample, Barcelona",4,189.0,7.0,1175000,True,True,La Dreta de l'Eixample,Ático
+107,"Piso en calle dels Madrazo, Sant Gervasi - Galvany, Barcelona",5,206.0,1.0,720000,True,True,Sant Gervasi - Galvany,Piso
+108,"Piso en Sant Gervasi - Galvany, Barcelona",5,250.0,2.0,1100000,True,True,Sant Gervasi - Galvany,Piso
+109,"Piso en calle de Josep Bertrand, Sant Gervasi - Galvany, Barcelona",7,500.0,,2200000,True,False,Sant Gervasi - Galvany,Piso
+110,"Piso en calle de Sant Elies, Sant Gervasi - Galvany, Barcelona",3,150.0,,780000,True,False,Sant Gervasi - Galvany,Piso
+111,"Piso en calle de Caballero, Les Corts, Barcelona",1,47.0,1.0,280000,True,True,Les Corts,Piso
+112,"Ático en calle del Parc, El Gòtic, Barcelona",2,88.0,4.0,710000,True,True,El Gòtic,Ático
+113,"Piso en calle de Calàbria, La Nova Esquerra de l'Eixample, Barcelona",1,77.0,1.0,260000,True,True,La Nova Esquerra de l'Eixample,Piso
+114,"Piso en La Dreta de l'Eixample, Barcelona",5,192.0,1.0,990000,True,True,La Dreta de l'Eixample,Piso
+115,"Piso en La Nova Esquerra de l'Eixample, Barcelona",3,92.0,5.0,395000,True,True,La Nova Esquerra de l'Eixample,Piso
+116,"Piso en calle d'Enric Granados, 52, L'Antiga Esquerra de l'Eixample, Barcelona",2,129.0,2.0,1015000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+117,"Chalet pareado en El Putxet i el Farró, Barcelona",5,311.0,,960000,False,False,El Putxet i el Farró,Chalet
+118,"Dúplex en calle Balmes, 15, La Dreta de l'Eixample, Barcelona",3,223.0,8.0,1995000,True,True,La Dreta de l'Eixample,Dúplex
+119,"Dúplex en calle Balmes, 15, La Dreta de l'Eixample, Barcelona",3,153.0,8.0,1495000,True,True,La Dreta de l'Eixample,Dúplex
+120,"Piso en calle de Lepant, La Sagrada Família, Barcelona",3,81.0,5.0,315000,True,False,La Sagrada Família,Piso
+121,"Piso en Hostafrancs, Barcelona",4,96.0,1.0,296000,True,True,Hostafrancs,Piso
+122,"Piso en calle de Pujades, El Parc i la Llacuna del Poblenou, Barcelona",3,73.0,,283000,True,False,El Parc i la Llacuna del Poblenou,Piso
+123,"Piso en Gran Via de les Corts Catalanes, La Nova Esquerra de l'Eixample, Barcelona",2,120.0,3.0,575000,True,True,La Nova Esquerra de l'Eixample,Piso
+124,"Piso en IGNACIO BARRAQUER, Les Corts, Barcelona",4,113.0,3.0,475000,True,True,Les Corts,Piso
+125,"Piso en calle de Manuel Ballbè, Pedralbes, Barcelona",4,206.0,11.0,1250000,True,True,Pedralbes,Piso
+126,"Piso en calle del Lluçanès, Sant Gervasi - La Bonanova, Barcelona",4,232.0,2.0,1175000,True,True,Sant Gervasi - La Bonanova,Piso
+127,"Ático en calle d'en Grassot, El Camp d'En Grassot i Gràcia Nova, Barcelona",1,67.0,,375000,True,False,El Camp d'En Grassot i Gràcia Nova,Ático
+128,"Piso en calle de Muntaner, L'Antiga Esquerra de l'Eixample, Barcelona",3,110.0,,695000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+129,"Piso en calle de Còrsega, La Dreta de l'Eixample, Barcelona",5,182.0,,990000,True,True,La Dreta de l'Eixample,Piso
+130,"Piso en calle de Tuset, Sant Gervasi - Galvany, Barcelona",4,203.0,1.0,1095000,True,True,Sant Gervasi - Galvany,Piso
+131,"Ático en calle de Sicília, El Fort Pienc, Barcelona",5,185.0,,699000,True,False,El Fort Pienc,Ático
+132,"Piso en paseo de Sant Gervasi, Barcelona, El Putxet i el Farró, Barcelona",3,118.0,3.0,549000,True,True,El Putxet i el Farró,Piso
+133,"Piso en La Dreta de l'Eixample, Barcelona",1,59.0,4.0,480000,True,True,La Dreta de l'Eixample,Piso
+134,"Ático en Sant Antoni, Barcelona",4,167.0,6.0,695000,True,True,Sant Antoni,Ático
+135,"Piso en Pedralbes, Barcelona",5,232.0,2.0,1660000,True,True,Pedralbes,Piso
+136,"Dúplex en La Dreta de l'Eixample, Barcelona",4,800.0,,1700000,True,False,La Dreta de l'Eixample,Dúplex
+137,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",2,86.0,,298000,False,False,Sant Pere - Santa Caterina i la Ribera,Piso
+138,"Ático en El Gòtic, Barcelona",2,108.0,6.0,699000,True,True,El Gòtic,Ático
+139,"Piso en El Putxet i el Farró, Barcelona",4,105.0,2.0,425000,True,True,El Putxet i el Farró,Piso
+140,"Piso en El Raval, Barcelona",3,145.0,1.0,680000,True,True,El Raval,Piso
+141,"Ático en La Dreta de l'Eixample, Barcelona",1,55.0,5.0,450000,True,True,La Dreta de l'Eixample,Ático
+142,"Piso en Sant Gervasi - Galvany, Barcelona",5,155.0,4.0,875000,True,True,Sant Gervasi - Galvany,Piso
+143,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",1,86.0,4.0,390000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+144,"Piso en avenida de Josep Tarradellas, L'Antiga Esquerra de l'Eixample, Barcelona",2,90.0,1.0,690000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+145,"Piso en La Dreta de l'Eixample, Barcelona",3,148.0,3.0,995000,True,True,La Dreta de l'Eixample,Piso
+146,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,101.0,3.0,625000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+147,"Piso en avenida Meridiana, La Sagrera, Barcelona",3,75.0,3.0,249900,True,True,La Sagrera,Piso
+148,"Piso en El Besòs, Barcelona",3,94.0,7.0,359000,True,True,El Besòs,Piso
+149,"Piso en princep de viana, El Raval, Barcelona",2,58.0,2.0,276000,True,True,El Raval,Piso
+150,"Piso en calle de Felipe de Paz, La Maternitat i Sant Ramon, Barcelona",3,100.0,2.0,385000,True,True,La Maternitat i Sant Ramon,Piso
+151,"Piso en calle de Villarroel, L'Antiga Esquerra de l'Eixample, Barcelona",3,85.0,,265000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+152,"Piso en calle de Padilla, El Baix Guinardó, Barcelona",3,62.0,,239000,True,False,El Baix Guinardó,Piso
+153,"Piso en Espronceda, El Clot, Barcelona",1,60.0,1.0,179000,True,True,El Clot,Piso
+154,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",4,243.0,,650000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+155,"Piso en El Gòtic, Barcelona",5,175.0,1.0,680000,True,True,El Gòtic,Piso
+156,"Piso en El Fort Pienc, Barcelona",3,118.0,2.0,445000,True,True,El Fort Pienc,Piso
+157,"Piso en Vila de Gràcia, Barcelona",2,65.0,,280000,False,False,Vila de Gràcia,Piso
+158,"Piso en Sant Gervasi - Galvany, Barcelona",4,225.0,6.0,1100000,True,True,Sant Gervasi - Galvany,Piso
+159,"Piso en Sarrià, Barcelona",5,143.0,1.0,638000,True,True,Sarrià,Piso
+160,"Piso en calle d'Aribau, L'Antiga Esquerra de l'Eixample, Barcelona",3,72.0,5.0,450000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+161,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,68.0,3.0,233150,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+162,"Piso en calle Viladomat, La Nova Esquerra de l'Eixample, Barcelona",3,87.0,5.0,365000,True,True,La Nova Esquerra de l'Eixample,Piso
+163,"Piso en calle Casanova, L'Antiga Esquerra de l'Eixample, Barcelona",4,102.0,3.0,470000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+164,"Casa o chalet independiente en calle de Can Basseda, Vallvidrera - El Tibidabo i les Planes, Barcelona",5,380.0,,830000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+165,"Piso en rambla de Catalunya, Barcelona, La Dreta de l'Eixample, Barcelona",3,162.0,4.0,1600000,True,True,La Dreta de l'Eixample,Piso
+166,"Piso en La Dreta de l'Eixample, Barcelona",2,106.0,,925000,True,False,La Dreta de l'Eixample,Piso
+167,"Piso en Sant Gervasi - Galvany, Barcelona",4,139.0,4.0,695000,True,True,Sant Gervasi - Galvany,Piso
+168,"Piso en El Gòtic, Barcelona",1,81.0,,430000,False,True,El Gòtic,Piso
+169,"Casa terrera en La Font d'En Fargues, Barcelona",5,161.0,,490000,False,False,Casa La Font d'En Fargues,Casa
+170,"Ático en calle de Girona, La Dreta de l'Eixample, Barcelona",3,120.0,6.0,860000,True,True,La Dreta de l'Eixample,Ático
+171,"Ático en calle de Marià Cubí, Sant Gervasi - Galvany, Barcelona",3,140.0,5.0,1050000,True,True,Sant Gervasi - Galvany,Ático
+172,"Piso en calle Balmes, Sant Gervasi - Galvany, Barcelona",4,134.0,4.0,595000,True,True,Sant Gervasi - Galvany,Piso
+173,"Piso en calle de Vilamur, 18, Les Corts, Barcelona",2,105.0,,573000,True,False,Les Corts,Piso
+174,"Piso en calle de Caballero, Les Corts, Barcelona",2,67.0,2.0,365000,True,True,Les Corts,Piso
+175,"Ático en Sant Antoni, Barcelona",3,101.0,5.0,480000,True,False,Sant Antoni,Ático
+176,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,130.0,3.0,1020000,False,False,L'Antiga Esquerra de l'Eixample,Piso
+177,"Estudio en El Gòtic, Barcelona",81,,,430000,False,False,El Gòtic,Estudio
+178,"Dúplex en El Putxet i el Farró, Barcelona",3,197.0,2.0,800000,True,True,El Putxet i el Farró,Dúplex
+179,"Ático en La Dreta de l'Eixample, Barcelona",2,213.0,7.0,1500000,True,True,La Dreta de l'Eixample,Ático
+180,"Ático en Sant Gervasi - Galvany, Barcelona",4,145.0,5.0,760000,True,True,Sant Gervasi - Galvany,Ático
+181,"Piso en calle de Còrsega, Vila de Gràcia, Barcelona",3,189.0,4.0,1080000,True,False,Vila de Gràcia,Piso
+182,"Dúplex en carretera de Collblanc, La Maternitat i Sant Ramon, Barcelona",3,170.0,,490000,True,False,La Maternitat i Sant Ramon,Dúplex
+183,"Piso en La Sagrada Família, Barcelona",4,101.0,3.0,309000,True,False,La Sagrada Família,Piso
+184,"Piso en Sant Gervasi - Galvany, Barcelona",4,105.0,2.0,630000,True,True,Sant Gervasi - Galvany,Piso
+185,"Piso en La Dreta de l'Eixample, Barcelona",3,318.0,4.0,2500000,True,True,La Dreta de l'Eixample,Piso
+186,"Piso en avenida de Josep Tarradellas, L'Antiga Esquerra de l'Eixample, Barcelona",3,100.0,7.0,499000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+187,"Piso en calle de Mallorca, La Nova Esquerra de l'Eixample, Barcelona",4,109.0,7.0,475000,True,True,La Nova Esquerra de l'Eixample,Piso
+188,"Piso en El Fort Pienc, Barcelona",4,97.0,2.0,495000,True,True,El Fort Pienc,Piso
+189,"Piso en Calabria, La Nova Esquerra de l'Eixample, Barcelona",2,71.0,3.0,348000,True,True,La Nova Esquerra de l'Eixample,Piso
+190,"Chalet pareado en Vallcarca i els Penitents, Barcelona",4,364.0,,1149000,False,False,Vallcarca i els Penitents,Chalet
+191,"Chalet pareado en Sarrià, Barcelona",5,465.0,,3370000,False,False,Sarrià,Chalet
+192,"Ático en paseo de Gràcia, La Dreta de l'Eixample, Barcelona",2,110.0,5.0,495000,True,True,La Dreta de l'Eixample,Ático
+193,"Piso en La Salut, Barcelona",3,91.0,1.0,499000,True,True,La Salut,Piso
+194,"Estudio en calle Tapioles, 20, El Poble Sec - Parc de Montjuïc, Barcelona",59,1.0,,245000,False,False,El Poble Sec - Parc de Montjuïc,Estudio
+195,"Piso en calle de Nicaragua, 75, Les Corts, Barcelona",2,134.0,1.0,670000,True,True,Les Corts,Piso
+196,"Piso en ronda de Sant Pere, La Dreta de l'Eixample, Barcelona",4,154.0,3.0,590000,True,True,La Dreta de l'Eixample,Piso
+197,"Piso en Encarnacion, El Camp d'En Grassot i Gràcia Nova, Barcelona",2,65.0,4.0,290000,True,False,El Camp d'En Grassot i Gràcia Nova,Piso
+198,"Piso en Les Tres Torres, Barcelona",3,118.0,2.0,795000,True,True,Les Tres Torres,Piso
+199,"Piso en calle d'Aribau, L'Antiga Esquerra de l'Eixample, Barcelona",3,141.0,3.0,825000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+200,"Piso en calle de París, La Nova Esquerra de l'Eixample, Barcelona",3,113.0,,378000,True,True,La Nova Esquerra de l'Eixample,Piso
+201,"Piso en calle Rocafort, La Nova Esquerra de l'Eixample, Barcelona",3,108.0,,375000,True,True,La Nova Esquerra de l'Eixample,Piso
+202,"Piso en El Guinardó, Barcelona",3,96.0,,380000,True,False,El Guinardó,Piso
+203,"Piso en calle de Copèrnic, Sant Gervasi - Galvany, Barcelona",4,240.0,,960000,True,False,Sant Gervasi - Galvany,Piso
+204,"Piso en paseo de Manuel Girona, Sarrià, Barcelona",4,217.0,4.0,1150000,True,True,Sarrià,Piso
+205,"Piso en calle de Can Segalar, Les Corts, Barcelona",3,121.0,6.0,1454000,True,True,Les Corts,Piso
+206,"Piso en calle de Can Segalar, Les Corts, Barcelona",3,95.0,5.0,1082000,True,True,Les Corts,Piso
+207,"Piso en calle d'Homer, El Putxet i el Farró, Barcelona",3,90.0,,490000,False,False,El Putxet i el Farró,Piso
+208,"Piso en calle d'Enric Granados, L'Antiga Esquerra de l'Eixample, Barcelona",3,90.0,3.0,760000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+209,"Piso en calle de Bailèn, La Dreta de l'Eixample, Barcelona",3,138.0,2.0,850000,True,True,La Dreta de l'Eixample,Piso
+210,"Piso en calle de Balmes, Sant Gervasi - Galvany, Barcelona",3,126.0,1.0,735000,True,True,Sant Gervasi - Galvany,Piso
+211,"Piso en calle de París, L'Antiga Esquerra de l'Eixample, Barcelona",2,132.0,,599000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+212,"Ático en calle de Bac de Roda, Diagonal Mar i el Front Marítim del Poblenou, Barcelona",4,147.0,5.0,790000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Ático
+213,"Ático en calle d'Avinyó, El Gòtic, Barcelona",2,81.0,5.0,339000,False,False,El Gòtic,Ático
+214,"Ático en Sant Gervasi - Galvany, Barcelona",5,236.0,4.0,1200000,True,True,Sant Gervasi - Galvany,Ático
+215,"Piso en arco de triomf, s/n, Sant Pere - Santa Caterina i la Ribera, Barcelona",4,100.0,3.0,350000,True,False,Sant Pere - Santa Caterina i la Ribera,Piso
+216,"Piso en Lepanto, La Sagrada Família, Barcelona",3,121.0,1.0,465000,True,True,La Sagrada Família,Piso
+217,"Piso en calle de Joan Güell, Sants, Barcelona",3,88.0,4.0,365000,True,True,Sants,Piso
+218,"Piso en La Verneda i la Pau, Barcelona",3,79.0,1.0,150000,False,True,La Verneda i la Pau,Piso
+219,"Piso en Les Corts, Barcelona",5,90.0,6.0,425000,True,True,Les Corts,Piso
+220,"Piso en calle de Sardenya, La Sagrada Família, Barcelona",2,76.0,4.0,189000,False,True,La Sagrada Família,Piso
+221,"Piso en calle d'Aribau, L'Antiga Esquerra de l'Eixample, Barcelona",3,135.0,4.0,895000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+222,"Piso en calle de Balmes, Sant Gervasi - Galvany, Barcelona",3,115.0,4.0,615000,True,True,Sant Gervasi - Galvany,Piso
+223,"Piso en calle San Elías, Sant Gervasi - Galvany, Barcelona",4,144.0,4.0,630000,True,True,Sant Gervasi - Galvany,Piso
+224,"Piso en calle de Santaló, Sant Gervasi - Galvany, Barcelona",3,128.0,4.0,749000,True,True,Sant Gervasi - Galvany,Piso
+225,"Piso en Gran Via de Carles III, Pedralbes, Barcelona",4,225.0,1.0,1350000,True,True,Pedralbes,Piso
+226,"Piso en Gran Via de les Corts Catalanes, El Fort Pienc, Barcelona",3,158.0,4.0,599000,True,True,El Fort Pienc,Piso
+227,"Piso en Sarrià, Barcelona",4,160.0,3.0,1140000,True,False,Sarrià,Piso
+228,"Piso en calle de Muntaner, Sant Gervasi - Galvany, Barcelona",2,102.0,4.0,595000,True,True,Sant Gervasi - Galvany,Piso
+229,"Piso en calle d'Aragó, L'Antiga Esquerra de l'Eixample, Barcelona",4,170.0,3.0,730000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+230,"Piso en calle de Pau Claris, La Dreta de l'Eixample, Barcelona",3,173.0,4.0,1600000,True,True,La Dreta de l'Eixample,Piso
+231,"Piso en calle del Rosselló, La Dreta de l'Eixample, Barcelona",4,136.0,,745000,True,True,La Dreta de l'Eixample,Piso
+232,"Piso en El Putxet i el Farró, Barcelona",3,100.0,1.0,390000,True,False,El Putxet i el Farró,Piso
+233,"Piso en El Parc i la Llacuna del Poblenou, Barcelona",4,112.0,1.0,529000,True,False,El Parc i la Llacuna del Poblenou,Piso
+234,"Piso en Sant Gervasi - Galvany, Barcelona",4,120.0,1.0,595000,True,False,Sant Gervasi - Galvany,Piso
+235,"Piso en Vilapicina i la Torre Llobeta, Barcelona",4,80.0,3.0,280000,True,False,Vilapicina i la Torre Llobeta,Piso
+236,"Piso en calle del Capità Arenas, Pedralbes, Barcelona",3,62.0,6.0,385000,True,True,Pedralbes,Piso
+237,"Piso en calle del Capità Arenas, Pedralbes, Barcelona",3,73.0,8.0,430000,True,True,Pedralbes,Piso
+238,"Piso en rambla de Catalunya, La Dreta de l'Eixample, Barcelona",5,200.0,4.0,1200000,True,True,La Dreta de l'Eixample,Piso
+239,"Piso en calle d'Amílcar, 153, El Guinardó, Barcelona",4,98.0,2.0,245000,True,False,El Guinardó,Piso
+240,"Piso en Sant Gervasi - La Bonanova, Barcelona",3,116.0,,845000,True,True,Sant Gervasi - La Bonanova,Piso
+241,"Piso en La Dreta de l'Eixample, Barcelona",4,136.0,2.0,745000,True,True,La Dreta de l'Eixample,Piso
+242,"Ático en La Dreta de l'Eixample, Barcelona",3,99.0,6.0,650000,True,True,La Dreta de l'Eixample,Ático
+243,"Dúplex en La Sagrada Família, Barcelona",4,800.0,,1700000,True,False,La Sagrada Família,Dúplex
+244,"Dúplex en El Putxet i el Farró, Barcelona",3,107.0,,580000,True,False,El Putxet i el Farró,Dúplex
+245,"Piso en Vilapicina i la Torre Llobeta, Barcelona",3,73.0,1.0,280000,True,True,Vilapicina i la Torre Llobeta,Piso
+246,"Piso en El Guinardó, Barcelona",3,85.0,1.0,275000,False,True,El Guinardó,Piso
+247,"Piso en El Raval, Barcelona",3,108.0,2.0,298000,False,True,El Raval,Piso
+248,"Piso en La Verneda i la Pau, Barcelona",4,81.0,6.0,270000,True,True,La Verneda i la Pau,Piso
+249,"Piso en Sarrià, Barcelona",4,134.0,,1100000,True,False,Sarrià,Piso
+250,"Ático en Vila de Gràcia, Barcelona",2,109.0,,735000,True,False,Vila de Gràcia,Ático
+251,"Piso en Sant Gervasi - Galvany, Barcelona",3,109.0,1.0,380000,True,True,Sant Gervasi - Galvany,Piso
+252,"Ático en El Putxet i el Farró, Barcelona",4,120.0,,790000,True,False,El Putxet i el Farró,Ático
+253,"Piso en Gran Via de les Corts Catalanes, La Dreta de l'Eixample, Barcelona",6,155.0,5.0,755000,True,True,La Dreta de l'Eixample,Piso
+254,"Piso en calle de Josep Sangenís, La Teixonera, Barcelona",2,68.0,,255000,True,False,La Teixonera,Piso
+255,"Piso en calle de Thous, El Baix Guinardó, Barcelona",3,122.0,3.0,450000,True,True,El Baix Guinardó,Piso
+256,"Piso en calle del Clot, El Clot, Barcelona",3,77.0,4.0,255000,True,True,El Clot,Piso
+257,"Piso en paseo de Gràcia, La Dreta de l'Eixample, Barcelona",3,169.0,6.0,1650000,True,True,La Dreta de l'Eixample,Piso
+258,"Piso en Sarrià, Barcelona",5,160.0,2.0,770000,True,True,Sarrià,Piso
+259,"Piso en calle de Aragón, 528, La Sagrada Família, Barcelona",4,87.0,4.0,354000,True,True,La Sagrada Família,Piso
+260,"Piso en calle de Balmes, Sant Gervasi - Galvany, Barcelona",3,120.0,,430000,True,False,Sant Gervasi - Galvany,Piso
+261,"Piso en calle d'Aragó, La Dreta de l'Eixample, Barcelona",2,105.0,5.0,565000,True,True,La Dreta de l'Eixample,Piso
+262,"Piso en calle de Balmes, Sant Gervasi - Galvany, Barcelona",4,240.0,6.0,960000,True,True,Sant Gervasi - Galvany,Piso
+263,"Dúplex en Provençals del Poblenou, Barcelona",2,107.0,,698000,True,False,Provençals del Poblenou,Dúplex
+264,"Ático en Sant Gervasi - Galvany, Barcelona",4,202.0,8.0,995000,True,True,Sant Gervasi - Galvany,Ático
+265,"Piso en Sant Gervasi - Galvany, Barcelona",4,180.0,1.0,1095000,True,True,Sant Gervasi - Galvany,Piso
+266,"Piso en El Baix Guinardó, Barcelona",3,87.0,5.0,625000,True,True,El Baix Guinardó,Piso
+267,"Piso en Sant Antoni, Barcelona",4,136.0,4.0,820000,True,True,Sant Antoni,Piso
+268,"Piso en avenida de la República Argentina, El Putxet i el Farró, Barcelona",1,60.0,1.0,260000,True,True,El Putxet i el Farró,Piso
+269,"Piso en avenida de Josep Tarradellas, Sants, Barcelona",3,93.0,8.0,415000,True,True,Sants,Piso
+270,"Piso en El Poblenou, Barcelona",3,90.0,,330000,True,False,El Poblenou,Piso
+271,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,100.0,3.0,518150,True,True,L'Antiga Esquerra de l'Eixample,Piso
+272,"Piso en calle d'Amílcar, Vilapicina i la Torre Llobeta, Barcelona",2,65.0,3.0,210000,True,True,Vilapicina i la Torre Llobeta,Piso
+273,"Ático en paseo de la Zona Franca, La Marina del Port, Barcelona",2,59.0,9.0,255000,True,False,La Marina del Port,Ático
+274,"Piso en La Dreta de l'Eixample, Barcelona",5,218.0,4.0,1500000,True,False,La Dreta de l'Eixample,Piso
+275,"Piso en La Maternitat i Sant Ramon, Barcelona",3,80.0,1.0,315000,True,False,La Maternitat i Sant Ramon,Piso
+276,"Ático en Les Tres Torres, Barcelona",4,365.0,5.0,2150000,True,False,Les Tres Torres,Ático
+277,"Ático en Vallcarca i els Penitents, Barcelona",2,80.0,4.0,445000,True,True,Vallcarca i els Penitents,Ático
+278,"Piso en Sant Antoni, Barcelona",1,86.0,3.0,360000,True,False,Sant Antoni,Piso
+279,"Piso en Sant Antoni, Barcelona",1,46.0,,165000,True,False,Sant Antoni,Piso
+280,"Piso en Sant Antoni, Barcelona",3,89.0,1.0,300000,True,False,Sant Antoni,Piso
+281,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,139.0,6.0,959000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+282,"Ático en Can Baró, Barcelona",3,116.0,8.0,499000,True,False,Can Baró,Ático
+283,"Piso en La Sagrada Família, Barcelona",3,89.0,5.0,349000,True,False,La Sagrada Família,Piso
+284,"Ático en El Poblenou, Barcelona",2,93.0,2.0,455000,False,False,El Poblenou,Ático
+285,"Piso en Vila de Gràcia, Barcelona",3,270.0,1.0,780000,False,False,Vila de Gràcia,Piso
+286,"Piso en Sant Gervasi - Galvany, Barcelona",3,124.0,4.0,759000,True,True,Sant Gervasi - Galvany,Piso
+287,"Piso en Sant Gervasi - La Bonanova, Barcelona",4,102.0,4.0,495000,True,False,Sant Gervasi - La Bonanova,Piso
+288,"Piso en Les Corts, Barcelona",3,78.0,8.0,380000,True,False,Les Corts,Piso
+289,"Piso en Pedralbes, Barcelona",6,546.0,4.0,3100000,True,False,Pedralbes,Piso
+290,"Piso en Sant Gervasi - Galvany, Barcelona",4,134.0,3.0,695000,True,False,Sant Gervasi - Galvany,Piso
+291,"Piso en Les Tres Torres, Barcelona",6,185.0,1.0,899000,False,False,Les Tres Torres,Piso
+292,"Ático en Vilapicina i la Torre Llobeta, Barcelona",3,125.0,5.0,460000,True,False,Vilapicina i la Torre Llobeta,Ático
+293,"Casa o chalet independiente en Horta, Barcelona",5,161.0,,490000,False,False,Horta,Casa
+294,"Piso en El Fort Pienc, Barcelona",2,60.0,1.0,338000,True,False,El Fort Pienc,Piso
+295,"Ático en La Nova Esquerra de l'Eixample, Barcelona",5,155.0,9.0,890000,True,False,La Nova Esquerra de l'Eixample,Ático
+296,"Piso en Vallcarca i els Penitents, Barcelona",5,248.0,,598000,False,False,Vallcarca i els Penitents,Piso
+297,"Piso en Vila de Gràcia, Barcelona",3,168.0,4.0,675000,False,False,Vila de Gràcia,Piso
+298,"Piso en calle d'Aribau, Sant Gervasi - Galvany, Barcelona",3,100.0,,650000,True,False,Sant Gervasi - Galvany,Piso
+299,"Chalet adosado en calle de Sòcrates, Sant Andreu, Barcelona",3,75.0,,298000,False,False,Sant Andreu,Chalet
+300,"Piso en avenida Diagonal, El Fort Pienc, Barcelona",1,77.0,,350000,True,True,El Fort Pienc,Piso
+301,"Piso en calle de Thous, El Baix Guinardó, Barcelona",3,122.0,4.0,450000,True,True,El Baix Guinardó,Piso
+302,"Piso en calle del Consell de Cent, 313, La Dreta de l'Eixample, Barcelona",3,110.0,4.0,435000,True,True,La Dreta de l'Eixample,Piso
+303,"Piso en El Raval, Barcelona",3,117.0,2.0,540000,True,True,El Raval,Piso
+304,"Piso en calle de la Riera Alta, 4, El Raval, Barcelona",2,95.0,5.0,370000,True,True,El Raval,Piso
+305,"Piso en calle de Puigmartí, Vila de Gràcia, Barcelona",3,70.0,4.0,295000,True,True,Vila de Gràcia,Piso
+306,"Ático en Espinoi, El Putxet i el Farró, Barcelona",4,130.0,3.0,560000,True,True,El Putxet i el Farró,Ático
+307,"Casa o chalet independiente en Castanys, El Poblenou, Barcelona",4,150.0,,360000,False,False,El Poblenou,Casa
+308,"Piso en calle de Gravina, El Raval, Barcelona",5,175.0,1.0,725000,True,True,El Raval,Piso
+309,"Piso en Cirera, Sant Pere - Santa Caterina i la Ribera, Barcelona",2,74.0,2.0,315000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+310,"Piso en paseo de Gràcia, La Dreta de l'Eixample, Barcelona",7,212.0,2.0,1650000,True,True,La Dreta de l'Eixample,Piso
+311,"Piso en calle de Mallorca, 643, El Clot, Barcelona",2,45.0,2.0,209000,True,True,El Clot,Piso
+312,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,135.0,1.0,639000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+313,"Piso en avenida de Josep Tarradellas, La Nova Esquerra de l'Eixample, Barcelona",3,93.0,8.0,415000,True,True,La Nova Esquerra de l'Eixample,Piso
+314,"Piso en Sants, Barcelona",3,71.0,2.0,235000,True,True,Sants,Piso
+315,"Piso en El Putxet i el Farró, Barcelona",4,265.0,,1490000,True,False,El Putxet i el Farró,Piso
+316,"Piso en Provençals del Poblenou, Barcelona",4,91.0,5.0,260000,True,True,Provençals del Poblenou,Piso
+317,"Piso en Sant Gervasi - La Bonanova, Barcelona",5,200.0,6.0,895000,True,True,Sant Gervasi - La Bonanova,Piso
+318,"Piso en Sants, Barcelona",4,86.0,1.0,320000,True,True,Sants,Piso
+319,"Ático en El Raval, Barcelona",2,63.0,5.0,349000,True,True,El Raval,Ático
+320,"Piso en Sant Gervasi - Galvany, Barcelona",3,104.0,2.0,660000,True,True,Sant Gervasi - Galvany,Piso
+321,"Ático en calle de Sant Antoni Maria Claret, La Sagrada Família, Barcelona",4,180.0,9.0,695000,True,True,La Sagrada Família,Ático
+322,"Piso en La Dreta de l'Eixample, Barcelona",3,174.0,,1850000,True,False,La Dreta de l'Eixample,Piso
+323,"Chalet en Sarrià, Barcelona",5,672.0,,3000000,False,False,Sarrià,Chalet
+324,"Chalet en Pedralbes, Barcelona",9,605.0,,4500000,False,False,Pedralbes,Chalet
+325,"Chalet en Pedralbes, Barcelona",7,900.0,,10000000,False,False,Pedralbes,Chalet
+326,"Chalet en Les Tres Torres, Barcelona",2,224.0,,2750000,False,False,Les Tres Torres,Chalet
+327,"Piso en La Dreta de l'Eixample, Barcelona",4,250.0,,3500000,True,False,La Dreta de l'Eixample,Piso
+328,"Ático en Sant Gervasi - Galvany, Barcelona",5,306.0,,1900000,True,False,Sant Gervasi - Galvany,Ático
+329,"Chalet en Pedralbes, Barcelona",6,800.0,,6500000,False,False,Pedralbes,Chalet
+330,"Ático en Sant Gervasi - Galvany, Barcelona",3,151.0,,1300000,True,False,Sant Gervasi - Galvany,Ático
+331,"Chalet en Pedralbes, Barcelona",10,790.0,,4600000,False,False,Pedralbes,Chalet
+332,"Chalet en El Camp d'En Grassot i Gràcia Nova, Barcelona",3,134.0,,780000,False,False,El Camp d'En Grassot i Gràcia Nova,Chalet
+333,"Chalet en Sant Gervasi - Galvany, Barcelona",7,566.0,,2900000,False,False,Sant Gervasi - Galvany,Chalet
+334,"Piso en El Camp d'En Grassot i Gràcia Nova, Barcelona",4,85.0,6.0,389000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+335,"Piso en La Dreta de l'Eixample, Barcelona",3,211.0,,1450000,True,False,La Dreta de l'Eixample,Piso
+336,"Piso en El Raval, Barcelona",3,196.0,,990000,True,False,El Raval,Piso
+337,"Piso en La Dreta de l'Eixample, Barcelona",6,208.0,,1195000,True,False,La Dreta de l'Eixample,Piso
+338,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,135.0,,890000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+339,"Piso en El Gòtic, Barcelona",2,116.0,,780000,True,False,El Gòtic,Piso
+340,"Piso en Pedralbes, Barcelona",5,286.0,,1550000,True,False,Pedralbes,Piso
+341,"Piso en Les Tres Torres, Barcelona",6,351.0,,2300000,True,False,Les Tres Torres,Piso
+342,"Chalet en Pedralbes, Barcelona",5,340.0,,2060000,False,False,Pedralbes,Chalet
+343,"Ático en Les Tres Torres, Barcelona",4,375.0,,2150000,True,False,Les Tres Torres,Ático
+344,"Chalet en El Putxet i el Farró, Barcelona",5,248.0,,1950000,False,False,El Putxet i el Farró,Chalet
+345,"Piso en La Dreta de l'Eixample, Barcelona",5,213.0,,1798000,True,False,La Dreta de l'Eixample,Piso
+346,"Piso en Pedralbes, Barcelona",4,178.0,,1300000,True,False,Pedralbes,Piso
+347,"Piso en Sant Gervasi - Galvany, Barcelona",5,264.0,,1630000,True,False,Sant Gervasi - Galvany,Piso
+348,"Piso en Sant Gervasi - Galvany, Barcelona",4,327.0,4.0,1850000,True,True,Sant Gervasi - Galvany,Piso
+349,"Piso en Sant Gervasi - Galvany, Barcelona",9,444.0,,1750000,True,False,Sant Gervasi - Galvany,Piso
+350,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,113.0,,770000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+351,"Ático en Sant Gervasi - Galvany, Barcelona",2,144.0,,900000,True,False,Sant Gervasi - Galvany,Ático
+352,"Piso en Sant Gervasi - Galvany, Barcelona",4,222.0,,1350000,True,False,Sant Gervasi - Galvany,Piso
+353,"Piso en La Dreta de l'Eixample, Barcelona",3,93.0,,545000,True,False,La Dreta de l'Eixample,Piso
+354,"Piso en La Dreta de l'Eixample, Barcelona",3,122.0,,1396000,True,False,La Dreta de l'Eixample,Piso
+355,"Piso en La Dreta de l'Eixample, Barcelona",4,123.0,,995000,False,False,La Dreta de l'Eixample,Piso
+356,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,105.0,,695000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+357,"Chalet en Sant Gervasi - La Bonanova, Barcelona",6,474.0,,2350000,False,False,Sant Gervasi - La Bonanova,Chalet
+358,"Piso en Pedralbes, Barcelona",5,367.0,,2400000,True,False,Pedralbes,Piso
+359,"Piso en La Sagrada Família, Barcelona",3,73.0,2.0,320000,True,True,La Sagrada Família,Piso
+360,"Piso en Sant Gervasi - Galvany, Barcelona",5,140.0,,770000,True,False,Sant Gervasi - Galvany,Piso
+361,"Piso en Sant Gervasi - Galvany, Barcelona",5,295.0,,1550000,True,False,Sant Gervasi - Galvany,Piso
+362,"Piso en La Trinitat Vella, Barcelona",3,104.0,3.0,176000,False,True,La Trinitat Vella,Piso
+363,"Piso en Sant Gervasi - Galvany, Barcelona",4,134.0,4.0,595000,True,True,Sant Gervasi - Galvany,Piso
+364,"Chalet en Pedralbes, Barcelona",4,185.0,,860000,False,False,Pedralbes,Chalet
+365,"Piso en Vilapicina i la Torre Llobeta, Barcelona",3,85.0,6.0,253000,True,True,Vilapicina i la Torre Llobeta,Piso
+366,"Ático en Vilapicina i la Torre Llobeta, Barcelona",2,58.0,4.0,260000,True,True,Vilapicina i la Torre Llobeta,Ático
+367,"Piso en La Dreta de l'Eixample, Barcelona",3,149.0,,1150000,True,False,La Dreta de l'Eixample,Piso
+368,"Piso en Josep de Agullo, Les Tres Torres, Barcelona",3,118.0,2.0,795000,True,True,Les Tres Torres,Piso
+369,"Piso en calle de Súria, La Bordeta, Barcelona",3,89.0,2.0,239000,True,True,La Bordeta,Piso
+370,"Piso en calle de Verdi, 228, La Salut, Barcelona",2,75.0,,350000,True,False,La Salut,Piso
+371,"Piso en calle de Vallirana, s/n, El Putxet i el Farró, Barcelona",2,70.0,1.0,385000,True,True,El Putxet i el Farró,Piso
+372,"Piso en arco de triomf, s/n, Sant Pere - Santa Caterina i la Ribera, Barcelona",5,140.0,8.0,670000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+373,"Ático en calle de Mallorca, La Nova Esquerra de l'Eixample, Barcelona",3,116.0,9.0,695000,True,True,La Nova Esquerra de l'Eixample,Ático
+374,"Piso en calle de Balmes, Sant Gervasi - La Bonanova, Barcelona",5,242.0,5.0,980000,True,True,Sant Gervasi - La Bonanova,Piso
+375,"Piso en calle de l'Avenir, Sant Gervasi - Galvany, Barcelona",4,180.0,4.0,860000,True,True,Sant Gervasi - Galvany,Piso
+376,"Ático en Sant Gervasi - La Bonanova, Barcelona",3,151.0,7.0,690000,True,True,Sant Gervasi - La Bonanova,Ático
+377,"Ático en El Putxet i el Farró, Barcelona",3,151.0,7.0,690000,True,True,El Putxet i el Farró,Ático
+378,"Piso en ronda de Sant Pere, La Dreta de l'Eixample, Barcelona",2,100.0,4.0,640000,True,True,La Dreta de l'Eixample,Piso
+379,"Piso en calle de la Costa, El Putxet i el Farró, Barcelona",3,75.0,,299000,True,False,El Putxet i el Farró,Piso
+380,"Piso en calle de Saragossa, El Putxet i el Farró, Barcelona",3,105.0,,595000,True,False,El Putxet i el Farró,Piso
+381,"Piso en El Gòtic, Barcelona",3,145.0,2.0,560000,False,True,El Gòtic,Piso
+382,"Piso en via Augusta, Sant Gervasi - Galvany, Barcelona",4,215.0,,1190000,True,False,Sant Gervasi - Galvany,Piso
+383,"Piso en via Augusta, Sant Gervasi - Galvany, Barcelona",8,275.0,,1095000,True,False,Sant Gervasi - Galvany,Piso
+384,"Piso en avenida Diagonal, Sant Gervasi - Galvany, Barcelona",5,189.0,,1100000,True,False,Sant Gervasi - Galvany,Piso
+385,"Piso en calle de Castellnou, Les Tres Torres, Barcelona",3,105.0,,739000,False,False,Les Tres Torres,Piso
+386,"Ático en Vallcarca i els Penitents, Barcelona",2,108.0,3.0,530000,True,True,Vallcarca i els Penitents,Ático
+387,"Piso en calle de Can Segalar, Les Corts, Barcelona",2,82.0,4.0,862000,True,True,Les Corts,Piso
+388,"Ático en calle Viladomat, La Nova Esquerra de l'Eixample, Barcelona",4,118.0,8.0,650000,True,True,La Nova Esquerra de l'Eixample,Ático
+389,"Piso en calle d'Entença, La Nova Esquerra de l'Eixample, Barcelona",4,140.0,4.0,530000,True,True,La Nova Esquerra de l'Eixample,Piso
+390,"Piso en calle de Ramon Miquel i Planas, Sarrià, Barcelona",2,60.0,2.0,350000,True,True,Sarrià,Piso
+391,"Piso en calle de les Tres Torres, Les Tres Torres, Barcelona",3,152.0,4.0,795000,True,True,Les Tres Torres,Piso
+392,"Piso en calle de Caballero, Les Corts, Barcelona",1,51.0,1.0,280000,True,True,Les Corts,Piso
+393,"Piso en calle de Sol i Padrís, Sarrià, Barcelona",3,92.0,,598000,True,False,Sarrià,Piso
+394,"Piso en calle de Viladomat, La Nova Esquerra de l'Eixample, Barcelona",3,75.0,4.0,365000,True,True,La Nova Esquerra de l'Eixample,Piso
+395,"Piso en calle de Calàbria, Sant Antoni, Barcelona",3,84.0,1.0,359000,True,True,Sant Antoni,Piso
+396,"Piso en calle De Descartes, Sant Gervasi - Galvany, Barcelona",4,152.0,3.0,695000,True,True,Sant Gervasi - Galvany,Piso
+397,"Piso en calle d'Aribau, L'Antiga Esquerra de l'Eixample, Barcelona",4,149.0,3.0,710000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+398,"Piso en calle de Caballero, Les Corts, Barcelona",1,51.0,1.0,280000,True,True,Les Corts,Piso
+399,"Piso en calle de Caballero, Les Corts, Barcelona",1,49.0,2.0,315000,True,True,Les Corts,Piso
+400,"Piso en calle de Verdi, La Salut, Barcelona",3,78.0,,255000,True,False,La Salut,Piso
+401,"Piso en Marina, 247, La Sagrada Família, Barcelona",3,83.0,3.0,418000,True,True,La Sagrada Família,Piso
+402,"Piso en calle de Josep Sangenís, La Teixonera, Barcelona",2,78.0,,240000,True,False,La Teixonera,Piso
+403,"Piso en calle de Valencia, La Nova Esquerra de l'Eixample, Barcelona",2,71.0,4.0,369000,True,True,La Nova Esquerra de l'Eixample,Piso
+404,"Piso en El Fort Pienc, Barcelona",3,100.0,5.0,335000,True,True,El Fort Pienc,Piso
+405,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,133.0,2.0,750000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+406,"Piso en La Sagrada Família, Barcelona",3,385.0,,1450000,False,False,La Sagrada Família,Piso
+407,"Piso en Pedralbes, Barcelona",5,227.0,,1095000,False,False,Pedralbes,Piso
+408,"Piso en calle de Puerto Príncipe, El Congrés i els Indians, Barcelona",4,89.0,4.0,264000,True,True,El Congrés i els Indians,Piso
+409,"Piso en calle de Ruiz de Padrón, El Camp de l'Arpa del Clot, Barcelona",3,75.0,,230000,True,False,El Camp de l'Arpa del Clot,Piso
+410,"Piso en calle de Mallorca, El Camp de l'Arpa del Clot, Barcelona",3,67.0,3.0,205000,True,True,El Camp de l'Arpa del Clot,Piso
+411,"Piso en calle del Rosselló, La Dreta de l'Eixample, Barcelona",3,85.0,,360000,True,True,La Dreta de l'Eixample,Piso
+412,"Piso en calle del Comandant Benítez, La Maternitat i Sant Ramon, Barcelona",4,80.0,1.0,290000,True,True,La Maternitat i Sant Ramon,Piso
+413,"Piso en calle del Moianès, Hostafrancs, Barcelona",3,70.0,2.0,215000,True,True,Hostafrancs,Piso
+414,"Piso en calle de Sardenya, 98, El Parc i la Llacuna del Poblenou, Barcelona",1,62.0,1.0,390000,True,True,El Parc i la Llacuna del Poblenou,Piso
+415,"Piso en carretera del Prat, 46, La Marina del Port, Barcelona",3,86.0,2.0,299000,True,True,La Marina del Port,Piso
+416,"Piso en Salva, El Poble Sec - Parc de Montjuïc, Barcelona",3,129.0,,446000,True,False,El Poble Sec - Parc de Montjuïc,Piso
+417,"Piso en avenida de Madrid, Sants, Barcelona",3,92.0,6.0,375000,True,True,Sants,Piso
+418,"Piso en calle de Jaume Vicens i Vives, La Vila Olímpica del Poblenou, Barcelona",3,111.0,4.0,586000,True,True,La Vila Olímpica del Poblenou,Piso
+419,"Piso en calle Comte d'Urgell, 237, L'Antiga Esquerra de l'Eixample, Barcelona",2,140.0,4.0,750000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+420,"Piso en El Camp d'En Grassot i Gràcia Nova, Barcelona",4,77.0,3.0,180000,True,False,El Camp d'En Grassot i Gràcia Nova,Piso
+421,"Piso en calle del Perú, Provençals del Poblenou, Barcelona",4,79.0,4.0,195000,True,True,Provençals del Poblenou,Piso
+422,"Piso en calle de Vilamur, 18, Les Corts, Barcelona",2,60.0,,358000,True,False,Les Corts,Piso
+423,"Piso en calle de la Marina, El Fort Pienc, Barcelona",3,104.0,5.0,590000,True,True,El Fort Pienc,Piso
+424,"Piso en Gran Via de les Corts Catalanes, El Fort Pienc, Barcelona",4,140.0,4.0,625000,True,False,El Fort Pienc,Piso
+425,"Piso en calle de las Navas de Tolosa, Navas, Barcelona",3,75.0,,305000,True,False,Navas,Piso
+426,"Piso en calle de las Navas de Tolosa, Navas, Barcelona",4,115.0,,380000,True,False,Navas,Piso
+427,"Piso en calle del Vallespir, Sants, Barcelona",2,83.0,,320000,True,False,Sants,Piso
+428,"Piso en calle de Casp, La Dreta de l'Eixample, Barcelona",2,110.0,,599000,True,False,La Dreta de l'Eixample,Piso
+429,"Piso en Sarrià, Barcelona",3,85.0,1.0,365000,False,False,Sarrià,Piso
+430,"Piso en hurtado, 7, El Putxet i el Farró, Barcelona",3,207.0,,755000,True,False,El Putxet i el Farró,Piso
+431,"Piso en Sant Antoni, Barcelona",2,100.0,5.0,535000,True,True,Sant Antoni,Piso
+432,"Piso en paseo de la Zona Franca, La Marina del Port, Barcelona",5,125.0,,380000,True,False,La Marina del Port,Piso
+433,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",4,120.0,6.0,410000,True,False,El Poble Sec - Parc de Montjuïc,Piso
+434,"Piso en Les Tres Torres, Barcelona",3,166.0,4.0,1350000,False,False,Les Tres Torres,Piso
+435,"Piso en Passatge de Cardedeu, Vallcarca i els Penitents, Barcelona",5,260.0,2.0,1050000,True,True,Vallcarca i els Penitents,Piso
+436,"Piso en calle de Josep Serrano, Can Baró, Barcelona",3,70.0,1.0,239000,True,False,Can Baró,Piso
+437,"Piso en calle de l'Abadessa Olzet, Pedralbes, Barcelona",4,400.0,1.0,1790000,True,True,Pedralbes,Piso
+438,"Piso en calle dels Comtes de Bell-Lloc, Sants, Barcelona",2,50.0,2.0,235000,True,True,Sants,Piso
+439,"Piso en Gran Via de les Corts Catalanes, La Dreta de l'Eixample, Barcelona",3,170.0,2.0,1570000,True,True,La Dreta de l'Eixample,Piso
+440,"Piso en Sant Gervasi - Galvany, Barcelona",4,161.0,1.0,499000,True,False,Sant Gervasi - Galvany,Piso
+441,"Piso en plaza Comercial, Sant Pere - Santa Caterina i la Ribera, Barcelona",1,111.0,1.0,1150000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+442,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",2,149.0,6.0,1900000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+443,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",2,149.0,,1325000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+444,"Piso en El Raval, Barcelona",1,38.0,5.0,112000,False,False,El Raval,Piso
+445,"Piso en El Gòtic, Barcelona",4,175.0,3.0,630000,True,False,El Gòtic,Piso
+446,"Piso en calle d'Aragó, El Clot, Barcelona",4,90.0,7.0,345000,True,False,El Clot,Piso
+447,"Piso en ronda de la Universitat, La Dreta de l'Eixample, Barcelona",3,120.0,,660000,True,False,La Dreta de l'Eixample,Piso
+448,"Piso en avenida de Josep Tarradellas, L'Antiga Esquerra de l'Eixample, Barcelona",3,76.0,5.0,460000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+449,"Piso en calle de Bosch i Gimpera, Pedralbes, Barcelona",5,270.0,,2000000,True,False,Pedralbes,Piso
+450,"Piso en paseo de Gràcia, La Dreta de l'Eixample, Barcelona",3,140.0,1.0,2500000,True,True,La Dreta de l'Eixample,Piso
+451,"Piso en Sant Gervasi - Galvany, Barcelona",4,197.0,4.0,1570000,True,True,Sant Gervasi - Galvany,Piso
+452,"Piso en calle de les Moles, 36, El Gòtic, Barcelona",4,95.0,2.0,380000,True,True,El Gòtic,Piso
+453,"Piso en calle de Ramon Rocafull, El Carmel, Barcelona",2,64.0,,109000,True,False,El Carmel,Piso
+454,"Piso en El Putxet i el Farró, Barcelona",2,92.0,1.0,390000,True,True,El Putxet i el Farró,Piso
+455,"Piso en calle de la Mare de Déu de Port, La Marina del Port, Barcelona",3,81.0,2.0,230000,True,True,La Marina del Port,Piso
+456,"Ático en calle de Sardenya, La Sagrada Família, Barcelona",3,89.0,3.0,475000,True,True,La Sagrada Família,Ático
+457,"Piso en Pedralbes, Barcelona",2,65.0,5.0,450000,True,True,Pedralbes,Piso
+458,"Piso en Sant Gervasi - Galvany, Barcelona",5,332.0,5.0,1395000,True,True,Sant Gervasi - Galvany,Piso
+459,"Piso en Sant Gervasi - La Bonanova, Barcelona",4,137.0,3.0,850000,True,True,Sant Gervasi - La Bonanova,Piso
+460,"Piso en plaza de la Llibertat, Vila de Gràcia, Barcelona",2,74.0,1.0,349000,False,True,Vila de Gràcia,Piso
+461,"Piso en La Dreta de l'Eixample, Barcelona",2,86.0,4.0,440000,True,False,La Dreta de l'Eixample,Piso
+462,"Piso en La Dreta de l'Eixample, Barcelona",3,100.0,4.0,640000,True,True,La Dreta de l'Eixample,Piso
+463,"Piso en calle de Viladecans, s/n, La Bordeta, Barcelona",3,65.0,1.0,179000,True,False,La Bordeta,Piso
+464,"Dúplex en calle dels Cavallers, Pedralbes, Barcelona",6,496.0,5.0,3300000,True,True,Pedralbes,Dúplex
+465,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,123.0,5.0,850000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+466,"Piso en calle de les Semoleres, Sant Pere - Santa Caterina i la Ribera, Barcelona",1,40.0,2.0,179000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+467,"Piso en Hedilla, Horta, Barcelona",5,192.0,1.0,450000,True,True,Horta,Piso
+468,"Piso en calle de l'Arquitecte Sert, La Vila Olímpica del Poblenou, Barcelona",3,158.0,3.0,645000,True,True,La Vila Olímpica del Poblenou,Piso
+469,"Piso en La Dreta de l'Eixample, Barcelona",3,122.0,1.0,670000,True,True,La Dreta de l'Eixample,Piso
+470,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,135.0,2.0,890000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+471,"Dúplex en La Dreta de l'Eixample, Barcelona",3,158.0,10.0,1495000,True,True,La Dreta de l'Eixample,Dúplex
+472,"Dúplex en Les Tres Torres, Barcelona",7,435.0,4.0,1850000,True,True,Les Tres Torres,Dúplex
+473,"Ático en Sant Genís Dels Agudells - Montbau, Barcelona",1,66.0,2.0,220000,True,False,Sant Genís Dels Agudells - Montbau,Ático
+474,"Piso en La Maternitat i Sant Ramon, Barcelona",4,81.0,7.0,299000,True,True,La Maternitat i Sant Ramon,Piso
+475,"Piso en Horta, Barcelona",4,182.0,1.0,210000,False,False,Horta,Piso
+476,"Piso en Sant Gervasi - Galvany, Barcelona",4,208.0,1.0,1095000,True,True,Sant Gervasi - Galvany,Piso
+477,"Ático en La Dreta de l'Eixample, Barcelona",3,227.0,9.0,1995000,True,True,La Dreta de l'Eixample,Ático
+478,"Piso en calle de Còrsega, 600, La Sagrada Família, Barcelona",1,85.0,,240000,True,False,La Sagrada Família,Piso
+479,"Chalet adosado en calle del Marquès de Foronda, La Font d'En Fargues, Barcelona",1,47.0,,185000,False,False,La Font d'En Fargues,Chalet
+480,"Piso en El Camp d'En Grassot i Gràcia Nova, Barcelona",3,149.0,1.0,670000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+481,"Piso en calle de Biscaia, Navas, Barcelona",3,79.0,2.0,199500,True,True,Navas,Piso
+482,"Piso en Marina, 247, La Sagrada Família, Barcelona",2,75.0,5.0,385000,True,True,La Sagrada Família,Piso
+483,"Piso en calle de Padilla, La Sagrada Família, Barcelona",3,79.0,6.0,450000,True,True,La Sagrada Família,Piso
+484,"Piso en calle Industria, El Camp d'En Grassot i Gràcia Nova, Barcelona",3,93.0,6.0,385000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+485,"Piso en calle Pintor Ribalta, 13, La Maternitat i Sant Ramon, Barcelona",3,104.0,2.0,500000,True,True,La Maternitat i Sant Ramon,Piso
+486,"Piso en Valencia, La Sagrada Família, Barcelona",3,80.0,5.0,320000,True,True,La Sagrada Família,Piso
+487,"Piso en calle de Lepant, El Fort Pienc, Barcelona",3,83.0,5.0,259000,True,False,El Fort Pienc,Piso
+488,"Piso en calle de Galileu, Les Corts, Barcelona",3,76.0,3.0,340000,True,True,Les Corts,Piso
+489,"Piso en calle del Comandant Benítez, La Maternitat i Sant Ramon, Barcelona",4,78.0,,255000,True,False,La Maternitat i Sant Ramon,Piso
+490,"Piso en Carders, Sant Pere - Santa Caterina i la Ribera, Barcelona",2,64.0,2.0,200000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+491,"Piso en Les Corts, Barcelona",4,143.0,3.0,1010000,True,True,Les Corts,Piso
+492,"Piso en riera Baixa, El Raval, Barcelona",2,45.0,2.0,162000,False,True,El Raval,Piso
+493,"Piso en Sant Gervasi - La Bonanova, Barcelona",4,124.0,,670000,True,False,Sant Gervasi - La Bonanova,Piso
+494,"Casa o chalet independiente en calle d'Alcolea, Sants, Barcelona",4,480.0,,1450000,False,False,Sants,Casa
+495,"Casa o chalet independiente en calle del Tenor Masini, Sants, Barcelona",3,242.0,,598000,False,False,Sants,Casa
+496,"Ático en Les Tres Torres, Barcelona",3,164.0,,1350000,True,False,Les Tres Torres,Ático
+497,"Piso en Les Corts, Barcelona",2,72.0,2.0,495000,True,True,Les Corts,Piso
+498,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",5,422.0,,855000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+499,"Piso en calle de Pau Claris, La Dreta de l'Eixample, Barcelona",3,265.0,1.0,2300000,True,True,La Dreta de l'Eixample,Piso
+500,"Piso en calle de Sant Pere Més Alt, Sant Pere - Santa Caterina i la Ribera, Barcelona",3,81.0,2.0,318000,False,False,Sant Pere - Santa Caterina i la Ribera,Piso
+501,"Piso en AV MERIDIANA, La Sagrera, Barcelona",3,75.0,3.0,249900,True,True,La Sagrera,Piso
+502,"Casa o chalet independiente en Passatge de Montornès, Vallcarca i els Penitents, Barcelona",7,391.0,,1050000,False,False,Vallcarca i els Penitents,Casa
+503,"Dúplex en reina victoria, Sant Gervasi - Galvany, Barcelona",4,245.0,1.0,1350000,True,True,Sant Gervasi - Galvany,Dúplex
+504,"Piso en calle Padilla, La Sagrada Família, Barcelona",3,66.0,6.0,270000,True,True,La Sagrada Família,Piso
+505,"Ático en calle de París, L'Antiga Esquerra de l'Eixample, Barcelona",3,230.0,8.0,1300000,True,True,L'Antiga Esquerra de l'Eixample,Ático
+506,"Piso en calle del Capità Arenas, Pedralbes, Barcelona",2,63.0,6.0,450000,True,True,Pedralbes,Piso
+507,"Piso en calle de Sardenya, La Sagrada Família, Barcelona",3,125.0,3.0,460000,True,True,La Sagrada Família,Piso
+508,"Piso en rambla de Catalunya, La Dreta de l'Eixample, Barcelona",3,129.0,2.0,599000,True,True,La Dreta de l'Eixample,Piso
+509,"Ático en calle del Pare Laínez, El Camp d'En Grassot i Gràcia Nova, Barcelona",3,83.0,4.0,420000,True,True,El Camp d'En Grassot i Gràcia Nova,Ático
+510,"Casa o chalet independiente en Angel Guimera, Les Tres Torres, Barcelona",5,340.0,,2650000,False,False,Les Tres Torres,Casa
+511,"Piso en Av paseo de gracia, La Dreta de l'Eixample, Barcelona",7,228.0,2.0,2200000,True,True,La Dreta de l'Eixample,Piso
+512,"Piso en calle del Clot, El Clot, Barcelona",3,58.0,3.0,245000,True,True,El Clot,Piso
+513,"Piso en magdalenas, El Gòtic, Barcelona",1,102.0,2.0,386000,False,True,El Gòtic,Piso
+514,"Piso en EDUARD TUBAU, Porta, Barcelona",3,72.0,2.0,179500,False,True,Porta,Piso
+515,"Piso en calle de París, La Nova Esquerra de l'Eixample, Barcelona",4,115.0,4.0,560000,True,True,La Nova Esquerra de l'Eixample,Piso
+516,"Piso en via Augusta, Sant Gervasi - Galvany, Barcelona",5,288.0,4.0,1650000,True,True,Sant Gervasi - Galvany,Piso
+517,"Piso en Gran Via de les Corts Catalanes, Provençals del Poblenou, Barcelona",3,73.0,1.0,218000,True,True,Provençals del Poblenou,Piso
+518,"Piso en avenida Meridiana, Sant Andreu, Barcelona",3,64.0,3.0,186000,True,True,Sant Andreu,Piso
+519,"Piso en via augusta, Sant Gervasi - Galvany, Barcelona",4,177.0,4.0,997000,True,True,Sant Gervasi - Galvany,Piso
+520,"Ático en rambla de Catalunya, La Dreta de l'Eixample, Barcelona",3,200.0,5.0,2100000,True,True,La Dreta de l'Eixample,Ático
+521,"Piso en Blasco de Garay, El Poble Sec - Parc de Montjuïc, Barcelona",1,51.0,2.0,245000,False,True,El Poble Sec - Parc de Montjuïc,Piso
+522,"Piso en calle Vallespir, Les Corts, Barcelona",3,85.0,,320000,True,False,Les Corts,Piso
+523,"Piso en calle de Martínez de la Rosa, Vila de Gràcia, Barcelona",4,72.0,2.0,230000,False,True,Vila de Gràcia,Piso
+524,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",3,83.0,4.0,315000,True,True,Diagonal Mar i el Front Marítim del Poblenou,Piso
+525,"Piso en El Coll, Barcelona",1,34.0,2.0,134000,True,True,El Coll,Piso
+526,"Ático en calle de Girona, La Dreta de l'Eixample, Barcelona",3,95.0,6.0,860000,True,True,La Dreta de l'Eixample,Ático
+527,"Piso en La Dreta de l'Eixample, Barcelona",3,150.0,,1495000,True,False,La Dreta de l'Eixample,Piso
+528,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,123.0,,665000,False,False,L'Antiga Esquerra de l'Eixample,Piso
+529,"Piso en calle d'Aragó, L'Antiga Esquerra de l'Eixample, Barcelona",3,90.0,2.0,325000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+530,"Piso en calle d'En Roig, El Raval, Barcelona",3,52.0,2.0,160000,True,True,El Raval,Piso
+531,"Ático en La Dreta de l'Eixample, Barcelona",2,75.0,,655000,True,False,La Dreta de l'Eixample,Ático
+532,"Piso en calle tuset, 13, Sant Gervasi - Galvany, Barcelona",3,118.0,2.0,921000,True,True,Sant Gervasi - Galvany,Piso
+533,"Piso en calle tuset, 13, Sant Gervasi - Galvany, Barcelona",3,90.0,1.0,695000,True,True,Sant Gervasi - Galvany,Piso
+534,"Piso en calle tuset, 13, Sant Gervasi - Galvany, Barcelona",2,87.0,2.0,725000,True,True,Sant Gervasi - Galvany,Piso
+535,"Piso en calle de la Formatgeria, s/n, Sant Pere - Santa Caterina i la Ribera, Barcelona",2,55.0,3.0,190000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+536,"Piso en Hostafrancs, Barcelona",2,69.0,1.0,335000,True,False,Hostafrancs,Piso
+537,"Piso en sant climent, El Raval, Barcelona",1,38.0,4.0,139000,False,True,El Raval,Piso
+538,"Piso en Sant Gervasi - Galvany, Barcelona",3,142.0,5.0,800000,True,True,Sant Gervasi - Galvany,Piso
+539,"Piso en calle de Carreras i Candi, Sants - Badal, Barcelona",3,75.0,2.0,259000,True,True,Sants - Badal,Piso
+540,"Piso en El Fort Pienc, Barcelona",3,85.0,5.0,475000,True,True,El Fort Pienc,Piso
+541,"Piso en Sant Gervasi - Galvany, Barcelona",4,145.0,2.0,850000,True,True,Sant Gervasi - Galvany,Piso
+542,"Estudio en calle d'Anníbal, 25, El Poble Sec - Parc de Montjuïc, Barcelona",30,,,119000,False,False,El Poble Sec - Parc de Montjuïc,Estudio
+543,"Piso en via Augusta, 78, Vila de Gràcia, Barcelona",3,91.0,5.0,389000,True,True,Vila de Gràcia,Piso
+544,"Piso en El Camp d'En Grassot i Gràcia Nova, Barcelona",2,170.0,1.0,630000,True,False,El Camp d'En Grassot i Gràcia Nova,Piso
+545,"Piso en Sants, Barcelona",3,77.0,2.0,245000,False,True,Sants,Piso
+546,"Piso en El Raval, Barcelona",2,120.0,1.0,395000,True,False,El Raval,Piso
+547,"Piso en La Dreta de l'Eixample, Barcelona",3,158.0,3.0,998000,True,False,La Dreta de l'Eixample,Piso
+548,"Piso en El Putxet i el Farró, Barcelona",6,257.0,6.0,1250000,True,False,El Putxet i el Farró,Piso
+549,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",5,222.0,,870000,False,False,El Poble Sec - Parc de Montjuïc,Piso
+550,"Piso en La Dreta de l'Eixample, Barcelona",9,256.0,5.0,950000,True,False,La Dreta de l'Eixample,Piso
+551,"Piso en La Dreta de l'Eixample, Barcelona",4,145.0,4.0,1050000,True,False,La Dreta de l'Eixample,Piso
+552,"Casa o chalet independiente en Les Tres Torres, Barcelona",4,335.0,,1490000,False,False,Les Tres Torres,Casa
+553,"Piso en El Clot, Barcelona",3,128.0,,535000,False,False,El Clot,Piso
+554,"Piso en La Nova Esquerra de l'Eixample, Barcelona",2,79.0,4.0,489000,True,False,La Nova Esquerra de l'Eixample,Piso
+555,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",4,304.0,,675000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+556,"Ático en Sant Gervasi - Galvany, Barcelona",4,185.0,8.0,1190000,True,False,Sant Gervasi - Galvany,Ático
+557,"Piso en La Nova Esquerra de l'Eixample, Barcelona",1,60.0,,235000,True,False,La Nova Esquerra de l'Eixample,Piso
+558,"Piso en El Raval, Barcelona",5,211.0,1.0,790000,False,False,El Raval,Piso
+559,"Piso en El Raval, Barcelona",1,60.0,3.0,185000,False,False,El Raval,Piso
+560,"Piso en paseo de Taulat, 179, El Poblenou, Barcelona",2,81.0,2.0,411000,True,True,El Poblenou,Piso
+561,"Piso en Sant Gervasi - La Bonanova, Barcelona",4,135.0,6.0,595000,True,False,Sant Gervasi - La Bonanova,Piso
+562,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",1,45.0,1.0,395000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+563,"Chalet adosado en La Salut, Barcelona",3,111.0,,430000,False,False,La Salut,Chalet
+564,"Piso en La Vila Olímpica del Poblenou, Barcelona",2,102.0,,535000,True,False,La Vila Olímpica del Poblenou,Piso
+565,"Chalet adosado en Vila de Gràcia, Barcelona",3,186.0,,795000,False,False,Vila de Gràcia,Chalet
+566,"Piso en La Dreta de l'Eixample, Barcelona",2,116.0,4.0,465000,False,False,La Dreta de l'Eixample,Piso
+567,"Piso en La Barceloneta, Barcelona",3,60.0,1.0,269000,True,False,La Barceloneta,Piso
+568,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",2,103.0,,345000,False,False,Sant Pere - Santa Caterina i la Ribera,Piso
+569,"Piso en Horta, Barcelona",3,158.0,,425000,False,False,Horta,Piso
+570,"Piso en Pedralbes, Barcelona",3,73.0,9.0,435000,True,False,Pedralbes,Piso
+571,"Piso en Vila de Gràcia, Barcelona",2,66.0,2.0,295000,False,False,Vila de Gràcia,Piso
+572,"Chalet adosado en Sant Gervasi - Galvany, Barcelona",6,565.0,,2900000,False,False,Sant Gervasi - Galvany,Chalet
+573,"Piso en Pedralbes, Barcelona",6,289.0,5.0,1800000,True,False,Pedralbes,Piso
+574,"Piso en El Camp d'En Grassot i Gràcia Nova, Barcelona",2,76.0,1.0,305000,True,False,El Camp d'En Grassot i Gràcia Nova,Piso
+575,"Casa o chalet independiente en Vallcarca i els Penitents, Barcelona",5,222.0,,975000,False,False,Vallcarca i els Penitents,Casa
+576,"Piso en avenida Diagonal, Les Corts, Barcelona",4,95.0,8.0,570000,True,True,Les Corts,Piso
+577,"Piso en calle de Pau Alsina, El Camp d'En Grassot i Gràcia Nova, Barcelona",3,63.0,2.0,230000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+578,"Piso en calle del Rosselló, La Nova Esquerra de l'Eixample, Barcelona",3,90.0,6.0,329000,True,True,La Nova Esquerra de l'Eixample,Piso
+579,"Piso en La Dreta de l'Eixample, Barcelona",3,117.0,3.0,595000,True,False,La Dreta de l'Eixample,Piso
+580,"Piso en rambla del Raval, El Raval, Barcelona",1,35.0,1.0,119000,False,False,El Raval,Piso
+581,"Piso en paseo de Colom, El Gòtic, Barcelona",3,144.0,1.0,650000,True,True,El Gòtic,Piso
+582,"Piso en avenida de la Granvia, La Bordeta, Barcelona",3,106.0,6.0,299000,True,True,La Bordeta,Piso
+583,"Piso en avenida Diagonal, La Dreta de l'Eixample, Barcelona",2,92.0,1.0,399000,True,True,La Dreta de l'Eixample,Piso
+584,"Piso en calle del Radi, La Marina del Port, Barcelona",3,93.0,6.0,299000,True,True,La Marina del Port,Piso
+585,"Piso en calle del Poeta Cabanyes, El Poble Sec - Parc de Montjuïc, Barcelona",1,57.0,2.0,268000,False,True,El Poble Sec - Parc de Montjuïc,Piso
+586,"Piso en Verdun, Barcelona",3,60.0,2.0,149500,True,False,Verdun,Piso
+587,"Ático en HARMONIA, Sant Genís Dels Agudells - Montbau, Barcelona",3,66.0,14.0,199900,True,True,Sant Genís Dels Agudells - Montbau,Ático
+588,"Piso en El Congrés i els Indians, Barcelona",3,62.0,2.0,220000,True,True,El Congrés i els Indians,Piso
+589,"Piso en Sant Gervasi - La Bonanova, Barcelona",3,139.0,,1450000,True,False,Sant Gervasi - La Bonanova,Piso
+590,"Piso en calle de Palaudàries, El Poble Sec - Parc de Montjuïc, Barcelona",3,74.0,4.0,279900,True,True,El Poble Sec - Parc de Montjuïc,Piso
+591,"Piso en travesía de les Corts, Les Corts, Barcelona",3,94.0,6.0,479000,True,True,Les Corts,Piso
+592,"Piso en calle de Teodora Lamadrid, Sant Gervasi - La Bonanova, Barcelona",2,130.0,,349000,False,False,Sant Gervasi - La Bonanova,Piso
+593,"Piso en calle del Consell de Cent, L'Antiga Esquerra de l'Eixample, Barcelona",5,121.0,1.0,550000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+594,"Piso en calle d'Aragó, L'Antiga Esquerra de l'Eixample, Barcelona",3,113.0,3.0,350000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+595,"Piso en calle de Sicília, El Fort Pienc, Barcelona",3,92.0,,469000,True,False,El Fort Pienc,Piso
+596,"Piso en calle del Putget, El Putxet i el Farró, Barcelona",5,149.0,1.0,495000,True,True,El Putxet i el Farró,Piso
+597,"Piso en calle d'Aragó, La Nova Esquerra de l'Eixample, Barcelona",3,99.0,6.0,360000,True,True,La Nova Esquerra de l'Eixample,Piso
+598,"Piso en calle de Pujades, El Poblenou, Barcelona",3,80.0,6.0,365000,True,True,El Poblenou,Piso
+599,"Piso en plaza de Joaquim Xirau i Palau, El Gòtic, Barcelona",3,65.0,1.0,250000,True,True,El Gòtic,Piso
+600,"Dúplex en calle de Sor Eulàlia d'Anzizu, Pedralbes, Barcelona",5,279.0,2.0,1550000,True,True,Pedralbes,Dúplex
+601,"Piso en calle de Provença, La Dreta de l'Eixample, Barcelona",3,180.0,4.0,895000,True,True,La Dreta de l'Eixample,Piso
+602,"Piso en calle Major de Sarrià, Sarrià, Barcelona",4,120.0,2.0,760000,False,True,Sarrià,Piso
+603,"Piso en calle de la Reina Victòria, Sant Gervasi - Galvany, Barcelona",3,264.0,2.0,1450000,True,True,Sant Gervasi - Galvany,Piso
+604,"Piso en calle del Forn de la Fonda, Sant Pere - Santa Caterina i la Ribera, Barcelona",2,94.0,2.0,319000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+605,"Chalet en avenida del Tibidabo, Sant Gervasi - La Bonanova, Barcelona",11,773.0,,5700000,False,False,Sant Gervasi - La Bonanova,Chalet
+606,"Piso en calle de Rocafort, Sant Antoni, Barcelona",3,94.0,4.0,448000,True,True,Sant Antoni,Piso
+607,"Piso en calle dels Mercaders, Sant Pere - Santa Caterina i la Ribera, Barcelona",3,144.0,2.0,599000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+608,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",2,121.0,2.0,485000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+609,"Piso en calle del Rosselló, La Nova Esquerra de l'Eixample, Barcelona",3,88.0,1.0,400000,True,True,La Nova Esquerra de l'Eixample,Piso
+610,"Piso en calle del Consell de Cent, La Dreta de l'Eixample, Barcelona",4,109.0,4.0,570000,True,True,La Dreta de l'Eixample,Piso
+611,"Piso en calle de València, L'Antiga Esquerra de l'Eixample, Barcelona",2,150.0,1.0,1100000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+612,"Piso en calle de València, L'Antiga Esquerra de l'Eixample, Barcelona",2,157.0,1.0,1100000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+613,"Piso en calle de la Diputació, La Nova Esquerra de l'Eixample, Barcelona",3,110.0,1.0,598000,True,True,La Nova Esquerra de l'Eixample,Piso
+614,"Ático en calle de Ganduxer, Sant Gervasi - La Bonanova, Barcelona",2,200.0,7.0,1780000,True,True,Sant Gervasi - La Bonanova,Ático
+615,"Piso en calle Sarrià- La Bonanova, Sant Gervasi - La Bonanova, Barcelona",2,138.0,,349000,False,False,Sant Gervasi - La Bonanova,Piso
+616,"Piso en avenida del Portal de l'Àngel, El Gòtic, Barcelona",10,485.0,3.0,1900000,True,True,El Gòtic,Piso
+617,"Piso en La Sagrada Família, Barcelona",3,82.0,,545000,True,False,La Sagrada Família,Piso
+618,"Piso en via Layetana, Sant Pere - Santa Caterina i la Ribera, Barcelona",3,131.0,1.0,970000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+619,"Piso en calle de Ribes, El Fort Pienc, Barcelona",4,150.0,1.0,695000,True,True,El Fort Pienc,Piso
+620,"Piso en MARE DE DEU DE PORT, La Marina del Port, Barcelona",3,94.0,1.0,239000,True,True,La Marina del Port,Piso
+621,"Piso en CAVALLERS, Pedralbes, Barcelona",5,257.0,2.0,2995000,True,True,Pedralbes,Piso
+622,"Piso en Cardona, El Raval, Barcelona",2,56.0,3.0,200000,False,False,El Raval,Piso
+623,"Piso en Salva, El Poble Sec - Parc de Montjuïc, Barcelona",3,62.0,1.0,198000,True,True,El Poble Sec - Parc de Montjuïc,Piso
+624,"Piso en calle de Villarroel, L'Antiga Esquerra de l'Eixample, Barcelona",3,180.0,2.0,530000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+625,"Piso en Les Tres Torres, Barcelona",5,200.0,,1380000,True,False,Les Tres Torres,Piso
+626,"Piso en BONSOMS, 24, Sants - Badal, Barcelona",3,61.0,4.0,175000,True,True,Sants - Badal,Piso
+627,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",5,152.0,5.0,665000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+628,"Piso en La Nova Esquerra de l'Eixample, Barcelona",6,149.0,1.0,575000,True,True,La Nova Esquerra de l'Eixample,Piso
+629,"Ático en calle d'Amigó, Sant Gervasi - Galvany, Barcelona",3,102.0,7.0,695000,True,True,Sant Gervasi - Galvany,Ático
+630,"Piso en Sant Gervasi - Galvany, Barcelona",4,155.0,6.0,1100000,True,True,Sant Gervasi - Galvany,Piso
+631,"Piso en Sant Gervasi - Galvany, Barcelona",4,148.0,,850000,True,False,Sant Gervasi - Galvany,Piso
+632,"Piso en La Dreta de l'Eixample, Barcelona",5,197.0,,1430000,True,False,La Dreta de l'Eixample,Piso
+633,"Chalet en Pedralbes, Barcelona",5,660.0,,6900000,False,False,Pedralbes,Chalet
+634,"Chalet en Sant Gervasi - La Bonanova, Barcelona",7,488.0,,2600000,False,False,Sant Gervasi - La Bonanova,Chalet
+635,"Piso en El Raval, Barcelona",4,184.0,,850000,True,False,El Raval,Piso
+636,"Piso en La Dreta de l'Eixample, Barcelona",3,162.0,,1550000,True,False,La Dreta de l'Eixample,Piso
+637,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,132.0,,890000,False,False,L'Antiga Esquerra de l'Eixample,Piso
+638,"Piso en La Dreta de l'Eixample, Barcelona",4,105.0,,740000,True,False,La Dreta de l'Eixample,Piso
+639,"Piso en La Nova Esquerra de l'Eixample, Barcelona",4,186.0,,895000,True,False,La Nova Esquerra de l'Eixample,Piso
+640,"Ático en Sant Gervasi - Galvany, Barcelona",5,200.0,,1475000,True,False,Sant Gervasi - Galvany,Ático
+641,"Chalet en Sarrià, Barcelona",5,310.0,,1590000,False,False,Sarrià,Chalet
+642,"Piso en La Dreta de l'Eixample, Barcelona",3,82.0,,650000,True,False,La Dreta de l'Eixample,Piso
+643,"Ático en El Poblenou, Barcelona",2,134.0,14.0,1900000,True,True,El Poblenou,Ático
+644,"Piso en Pedralbes, Barcelona",5,274.0,,2000000,True,False,Pedralbes,Piso
+645,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",4,130.0,19.0,1950000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Piso
+646,"Piso en Pedralbes, Barcelona",5,212.0,3.0,1595000,True,True,Pedralbes,Piso
+647,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",4,130.0,,895000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+648,"Ático en La Nova Esquerra de l'Eixample, Barcelona",3,125.0,,1100000,True,False,La Nova Esquerra de l'Eixample,Ático
+649,"Piso en calle Balmes, 262, Sant Gervasi - Galvany, Barcelona",1,51.0,1.0,403000,True,True,Sant Gervasi - Galvany,Piso
+650,"Piso en calle Sancho de Ávila, 41, El Parc i la Llacuna del Poblenou, Barcelona",1,89.0,,577500,True,False,El Parc i la Llacuna del Poblenou,Piso
+651,"Ático en calle Sancho de Ávila, 41, El Parc i la Llacuna del Poblenou, Barcelona",1,95.0,2.0,617000,True,True,El Parc i la Llacuna del Poblenou,Ático
+652,"Piso en calle Sancho de Ávila, 41, El Parc i la Llacuna del Poblenou, Barcelona",1,63.0,1.0,378500,True,True,El Parc i la Llacuna del Poblenou,Piso
+653,"Chalet en Sarrià, Barcelona",3,256.0,,2300000,False,False,Sarrià,Chalet
+654,"Piso en La Dreta de l'Eixample, Barcelona",4,135.0,,890000,True,False,La Dreta de l'Eixample,Piso
+655,"Piso en Pedralbes, Barcelona",5,234.0,,1850000,True,False,Pedralbes,Piso
+656,"Piso en Sant Gervasi - La Bonanova, Barcelona",3,129.0,,1290000,True,False,Sant Gervasi - La Bonanova,Piso
+657,"Piso en El Gòtic, Barcelona",4,222.0,5.0,1690000,False,True,El Gòtic,Piso
+658,"Piso en Pedralbes, Barcelona",5,178.0,1.0,1220000,True,True,Pedralbes,Piso
+659,"Piso en El Putxet i el Farró, Barcelona",5,213.0,,1090000,True,False,El Putxet i el Farró,Piso
+660,"Chalet en Sant Gervasi - La Bonanova, Barcelona",7,730.0,,4500000,False,False,Sant Gervasi - La Bonanova,Chalet
+661,"Chalet en Sant Gervasi - La Bonanova, Barcelona",4,284.0,,1950000,False,False,Sant Gervasi - La Bonanova,Chalet
+662,"Ático en Sant Gervasi - Galvany, Barcelona",4,185.0,5.0,1190000,True,True,Sant Gervasi - Galvany,Ático
+663,"Chalet en Sarrià, Barcelona",6,512.0,,3900000,False,False,Sarrià,Chalet
+664,"Ático en La Dreta de l'Eixample, Barcelona",3,144.0,,1495000,True,False,La Dreta de l'Eixample,Ático
+665,"Piso en calle del Consell de Cent, La Nova Esquerra de l'Eixample, Barcelona",4,126.0,3.0,470000,True,False,La Nova Esquerra de l'Eixample,Piso
+666,"Piso en La Dreta de l'Eixample, Barcelona",2,116.0,,1000000,True,False,La Dreta de l'Eixample,Piso
+667,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",4,175.0,,1375000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Piso
+668,"Ático en La Dreta de l'Eixample, Barcelona",3,209.0,,1995000,False,False,La Dreta de l'Eixample,Ático
+669,"Ático en El Fort Pienc, Barcelona",4,113.0,,699000,True,False,El Fort Pienc,Ático
+670,"Piso en calle de Josep Torres, 14, Vila de Gràcia, Barcelona",2,192.0,,622000,True,False,Vila de Gràcia,Piso
+671,"Piso en calle de Josep Torres, 14, Vila de Gràcia, Barcelona",1,52.0,1.0,315000,True,True,Vila de Gràcia,Piso
+672,"Ático en calle dels Comtes de Bell-Lloc, Les Corts, Barcelona",2,72.0,6.0,290000,True,False,Les Corts,Ático
+673,"Piso en calle del Comte Borrell, La Nova Esquerra de l'Eixample, Barcelona",2,62.0,1.0,230000,True,True,La Nova Esquerra de l'Eixample,Piso
+674,"Ático en calle de Mallorca, El Clot, Barcelona",3,99.0,9.0,449000,True,True,El Clot,Ático
+675,"Piso en calle de Sant Màrius, 13, Sant Gervasi - La Bonanova, Barcelona",3,125.0,1.0,590000,True,True,Sant Gervasi - La Bonanova,Piso
+676,"Piso en Bosch i Gimpera, Sarrià, Barcelona",4,235.0,4.0,1336000,True,True,Sarrià,Piso
+677,"Piso en calle del Comte d'Urgell, La Nova Esquerra de l'Eixample, Barcelona",3,100.0,2.0,435000,True,True,La Nova Esquerra de l'Eixample,Piso
+678,"Piso en bruc, La Dreta de l'Eixample, Barcelona",5,159.0,1.0,680000,True,True,La Dreta de l'Eixample,Piso
+679,"Piso en calle de Muntaner, 307, Sant Gervasi - Galvany, Barcelona",3,99.0,6.0,635000,True,True,Sant Gervasi - Galvany,Piso
+680,"Piso en calle del Palau, El Gòtic, Barcelona",5,129.0,,325000,True,True,El Gòtic,Piso
+681,"Ático en Balmes, Sant Gervasi - Galvany, Barcelona",5,277.0,5.0,1900000,True,True,Sant Gervasi - Galvany,Ático
+682,"Piso en La Nova Esquerra de l'Eixample, Barcelona",3,100.0,4.0,420000,True,False,La Nova Esquerra de l'Eixample,Piso
+683,"Ático en via Augusta, Sant Gervasi - Galvany, Barcelona",5,185.0,8.0,1475000,True,True,Sant Gervasi - Galvany,Ático
+684,"Piso en Sant Gervasi - La Bonanova, Barcelona",5,250.0,2.0,1100000,True,True,Sant Gervasi - La Bonanova,Piso
+685,"Piso en calle Diagonal, 630, Sant Gervasi - Galvany, Barcelona",5,270.0,1.0,1045000,True,True,Sant Gervasi - Galvany,Piso
+686,"Piso en ronda de la Universitat, La Dreta de l'Eixample, Barcelona",3,90.0,4.0,680000,True,True,La Dreta de l'Eixample,Piso
+687,"Ático en calle de la Mare de Déu dels Reis, Vallcarca i els Penitents, Barcelona",3,140.0,3.0,595000,True,True,Vallcarca i els Penitents,Ático
+688,"Piso en calle de Sardenya, La Sagrada Família, Barcelona",3,85.0,2.0,348000,True,True,La Sagrada Família,Piso
+689,"Piso en calle de Lepant, La Sagrada Família, Barcelona",4,77.0,6.0,255000,True,True,La Sagrada Família,Piso
+690,"Piso en calle del Capità Arenas, Pedralbes, Barcelona",2,70.0,6.0,440000,True,True,Pedralbes,Piso
+691,"Piso en calle de Còrsega, Vila de Gràcia, Barcelona",3,190.0,3.0,1080000,True,True,Vila de Gràcia,Piso
+692,"Piso en Raset, Sant Gervasi - Galvany, Barcelona",6,325.0,2.0,1500000,True,True,Sant Gervasi - Galvany,Piso
+693,"Piso en calle del Bronze, La Marina del Port, Barcelona",4,110.0,1.0,279000,True,True,La Marina del Port,Piso
+694,"Ático en calle de Biscaia, Navas, Barcelona",3,78.0,8.0,239000,True,True,Navas,Ático
+695,"Piso en calle del Peu de la Creu, El Raval, Barcelona",2,65.0,1.0,195000,True,True,El Raval,Piso
+696,"Piso en calle de Raset, Sant Gervasi - Galvany, Barcelona",6,325.0,2.0,1500000,True,True,Sant Gervasi - Galvany,Piso
+697,"Piso en Sant Gervasi - Galvany, Barcelona",3,98.0,4.0,410000,True,True,Sant Gervasi - Galvany,Piso
+698,"Ático en El Gòtic, Barcelona",3,200.0,4.0,2500000,True,True,El Gòtic,Ático
+699,"Piso en paseo Bonanova, Sant Gervasi - La Bonanova, Barcelona",5,240.0,3.0,1625000,True,True,Sant Gervasi - La Bonanova,Piso
+700,"Piso en calle de Tòquio, Pedralbes, Barcelona",6,360.0,4.0,1800000,True,True,Pedralbes,Piso
+701,"Casa o chalet independiente en Sarrià, Barcelona",5,600.0,,1648000,False,False,Sarrià,Casa
+702,"Piso en Provençals del Poblenou, Barcelona",3,73.0,1.0,218000,True,True,Provençals del Poblenou,Piso
+703,"Piso en GRAN VIA DE LES CORTS CATALANES, La Verneda i la Pau, Barcelona",4,77.0,3.0,180000,True,True,La Verneda i la Pau,Piso
+704,"Piso en El Gòtic, Barcelona",3,131.0,6.0,619000,True,True,El Gòtic,Piso
+705,"Piso en avenida Meridiana, La Sagrera, Barcelona",2,65.0,,155000,True,False,La Sagrera,Piso
+706,"Piso en El Gòtic, Barcelona",3,95.0,4.0,375000,True,True,El Gòtic,Piso
+707,"Piso en calle de Galileu, Les Corts, Barcelona",3,85.0,2.0,349000,True,True,Les Corts,Piso
+708,"Piso en calle dels Sagristans, 7, El Gòtic, Barcelona",4,114.0,2.0,340000,True,True,El Gòtic,Piso
+709,"Piso en PI I MARGALL, El Camp d'En Grassot i Gràcia Nova, Barcelona",2,63.0,2.0,265000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+710,"Piso en La Sagrada Família, Barcelona",2,80.0,,450000,True,False,La Sagrada Família,Piso
+711,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",3,90.0,,280000,True,False,El Poble Sec - Parc de Montjuïc,Piso
+712,"Piso en calle de Pere IV, El Parc i la Llacuna del Poblenou, Barcelona",2,71.0,,292000,True,True,El Parc i la Llacuna del Poblenou,Piso
+713,"Piso en calle de Pere IV, El Parc i la Llacuna del Poblenou, Barcelona",1,51.0,1.0,269000,True,True,El Parc i la Llacuna del Poblenou,Piso
+714,"Piso en calle de Pere IV, El Parc i la Llacuna del Poblenou, Barcelona",1,51.0,2.0,295000,True,True,El Parc i la Llacuna del Poblenou,Piso
+715,"Piso en calle de Sardenya, 98, El Parc i la Llacuna del Poblenou, Barcelona",1,64.0,1.0,400000,True,True,El Parc i la Llacuna del Poblenou,Piso
+716,"Piso en Gran Via de les Corts Catalanes, 576, Sant Antoni, Barcelona",3,135.0,1.0,745000,True,True,Sant Antoni,Piso
+717,"Piso en avenida de la República Argentina, El Putxet i el Farró, Barcelona",3,70.0,,300000,True,False,El Putxet i el Farró,Piso
+718,"Piso en rambla de Guipúscoa, El Clot, Barcelona",3,78.0,5.0,238000,True,True,El Clot,Piso
+719,"Chalet en calle de Sòcrates, Sant Andreu, Barcelona",3,75.0,,298000,False,False,Sant Andreu,Chalet
+720,"Piso en calle del Duc, El Gòtic, Barcelona",4,113.0,3.0,450000,True,True,El Gòtic,Piso
+721,"Piso en calle de Fontova, El Camp de l'Arpa del Clot, Barcelona",3,67.0,1.0,230000,True,False,El Camp de l'Arpa del Clot,Piso
+722,"Piso en calle Doctor Trueta, 33, La Vila Olímpica del Poblenou, Barcelona",4,156.0,3.0,698000,True,True,La Vila Olímpica del Poblenou,Piso
+723,"Piso en calle dels Enamorats, La Sagrada Família, Barcelona",1,59.0,1.0,209000,True,True,La Sagrada Família,Piso
+724,"Piso en calle Major de Sarrià, 5, Sarrià, Barcelona",4,143.0,1.0,700000,True,True,Sarrià,Piso
+725,"Piso en calle de Ventura Plaja, Sants - Badal, Barcelona",3,72.0,1.0,279000,True,True,Sants - Badal,Piso
+726,"Piso en avenida Meridiana, El Camp de l'Arpa del Clot, Barcelona",3,70.0,,320000,True,False,El Camp de l'Arpa del Clot,Piso
+727,"Piso en calle de la Caravel·la la Pinta, Les Corts, Barcelona",3,142.0,3.0,820000,True,True,Les Corts,Piso
+728,"Piso en avenida Diagonal, Sant Gervasi - Galvany, Barcelona",5,270.0,5.0,1300000,True,True,Sant Gervasi - Galvany,Piso
+729,"Piso en calle de Ventura Plaja, Sants - Badal, Barcelona",2,62.0,,244000,False,False,Sants - Badal,Piso
+730,"Piso en paseo del Taulat, Diagonal Mar i el Front Marítim del Poblenou, Barcelona",4,175.0,,1375000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Piso
+731,"Ático en calle de la gleva, El Putxet i el Farró, Barcelona",1,138.0,4.0,495000,True,True,El Putxet i el Farró,Ático
+732,"Ático en Jaume I, El Gòtic, Barcelona",2,95.0,4.0,495000,True,True,El Gòtic,Ático
+733,"Piso en avenida DIAGONAL, L'Antiga Esquerra de l'Eixample, Barcelona",4,240.0,4.0,1250000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+734,"Piso en paseo de la Bonanova, Sant Gervasi - La Bonanova, Barcelona",5,350.0,1.0,1595000,True,True,Sant Gervasi - La Bonanova,Piso
+735,"Piso en calle de les Jonqueres, Sant Pere - Santa Caterina i la Ribera, Barcelona",2,110.0,,599000,True,False,Sant Pere - Santa Caterina i la Ribera,Piso
+736,"Piso en Consell de cent, L'Antiga Esquerra de l'Eixample, Barcelona",4,113.0,4.0,535000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+737,"Piso en calle de Balmes, El Putxet i el Farró, Barcelona",4,179.0,2.0,780000,True,False,El Putxet i el Farró,Piso
+738,"Piso en calle de Tamarit, 115, Sant Antoni, Barcelona",4,200.0,1.0,349000,True,False,Sant Antoni,Piso
+739,"Piso en avenida de Josep Tarradellas, La Nova Esquerra de l'Eixample, Barcelona",3,87.0,7.0,375000,True,True,La Nova Esquerra de l'Eixample,Piso
+740,"Piso en El Gòtic, Barcelona",2,70.0,2.0,375000,True,True,El Gòtic,Piso
+741,"Piso en salvà, El Poble Sec - Parc de Montjuïc, Barcelona",3,57.0,,155000,False,True,El Poble Sec - Parc de Montjuïc,Piso
+742,"Piso en avenida de Josep Tarradellas, 45, Sants, Barcelona",3,78.0,1.0,365000,True,True,Sants,Piso
+743,"Piso en Les Corts, Barcelona",3,55.0,5.0,269000,True,True,Les Corts,Piso
+744,"Piso en calle de Cartellà, Vilapicina i la Torre Llobeta, Barcelona",4,95.0,1.0,356000,True,False,Vilapicina i la Torre Llobeta,Piso
+745,"Piso en taquigraf serra, Les Corts, Barcelona",2,36.0,2.0,240000,False,False,Les Corts,Piso
+746,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",1,47.0,1.0,220000,False,False,Sant Pere - Santa Caterina i la Ribera,Piso
+747,"Ático en Sant Gervasi - Galvany, Barcelona",4,325.0,8.0,1886000,True,True,Sant Gervasi - Galvany,Ático
+748,"Ático en Sant Gervasi - Galvany, Barcelona",5,665.0,6.0,6250000,True,True,Sant Gervasi - Galvany,Ático
+749,"Piso en El Putxet i el Farró, Barcelona",4,267.0,3.0,1490000,True,True,El Putxet i el Farró,Piso
+750,"Piso en Sarrià, Barcelona",6,339.0,1.0,1350000,True,True,Sarrià,Piso
+751,"Piso en calle de las Navas de Tolosa, El Clot, Barcelona",2,50.0,3.0,209000,True,True,El Clot,Piso
+752,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,85.0,3.0,485000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+753,"Piso en La Dreta de l'Eixample, Barcelona",2,62.0,,238000,True,False,La Dreta de l'Eixample,Piso
+754,"Piso en Sant Antoni, Barcelona",4,98.0,5.0,360000,True,True,Sant Antoni,Piso
+755,"Piso en La Nova Esquerra de l'Eixample, Barcelona",4,180.0,8.0,795000,True,True,La Nova Esquerra de l'Eixample,Piso
+756,"Piso en Sarrià, Barcelona",1,62.0,1.0,145000,False,False,Sarrià,Piso
+757,"Piso en calle de Villarroel, L'Antiga Esquerra de l'Eixample, Barcelona",2,72.0,,339500,True,False,L'Antiga Esquerra de l'Eixample,Piso
+758,"Piso en Sant Gervasi - Galvany, Barcelona",3,126.0,1.0,735000,True,False,Sant Gervasi - Galvany,Piso
+759,"Piso en El Fort Pienc, Barcelona",2,80.0,1.0,350000,True,False,El Fort Pienc,Piso
+760,"Piso en Vila de Gràcia, Barcelona",2,59.0,1.0,425000,True,False,Vila de Gràcia,Piso
+761,"Ático en Pedralbes, Barcelona",5,371.0,7.0,2000000,True,True,Pedralbes,Ático
+762,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,72.0,1.0,415000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+763,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",4,169.0,10.0,2250000,True,True,Diagonal Mar i el Front Marítim del Poblenou,Piso
+764,"Piso en El Camp d'En Grassot i Gràcia Nova, Barcelona",2,100.0,4.0,335000,True,False,El Camp d'En Grassot i Gràcia Nova,Piso
+765,"Piso en El Gòtic, Barcelona",8,453.0,4.0,1900000,True,True,El Gòtic,Piso
+766,"Piso en Pedralbes, Barcelona",3,62.0,7.0,395000,False,False,Pedralbes,Piso
+767,"Piso en El Gòtic, Barcelona",4,190.0,2.0,730000,False,False,El Gòtic,Piso
+768,"Piso en El Raval, Barcelona",3,85.0,3.0,485000,True,True,El Raval,Piso
+769,"Casa o chalet independiente en Sarrià, Barcelona",8,520.0,,3900000,False,False,Sarrià,Casa
+770,"Piso en La Sagrada Família, Barcelona",4,95.0,2.0,485000,True,True,La Sagrada Família,Piso
+771,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,318.0,4.0,2500000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+772,"Piso en calle de Móra d'Ebre, El Coll, Barcelona",3,68.0,,149000,True,False,El Coll,Piso
+773,"Piso en calle de les Trompetes, Sant Pere - Santa Caterina i la Ribera, Barcelona",1,60.0,,290000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+774,"Piso en calle de Concepción Arenal, Navas, Barcelona",3,65.0,6.0,239500,True,True,Navas,Piso
+775,"Piso en calle Gran de la Sagrera, La Sagrera, Barcelona",3,65.0,2.0,195000,False,True,La Sagrera,Piso
+776,"Piso en calle de la Marina, La Sagrada Família, Barcelona",3,80.0,1.0,350000,True,True,La Sagrada Família,Piso
+777,"Piso en calle d'Amílcar, Vilapicina i la Torre Llobeta, Barcelona",2,65.0,3.0,210000,True,True,Vilapicina i la Torre Llobeta,Piso
+778,"Dúplex en calle de Pere IV, El Poblenou, Barcelona",3,185.0,,475000,False,False,El Poblenou,Dúplex
+779,"Piso en rambla de Prim, El Besòs, Barcelona",3,72.0,10.0,150000,True,True,El Besòs,Piso
+780,"Piso en pedrell, La Font d'En Fargues, Barcelona",4,275.0,1.0,450000,True,True,La Font d'En Fargues,Piso
+781,"Piso en calle de la Indústria, El Camp d'En Grassot i Gràcia Nova, Barcelona",2,62.0,7.0,350000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+782,"Chalet en calle d'Escipió, El Putxet i el Farró, Barcelona",4,178.0,,995000,False,False,El Putxet i el Farró,Chalet
+783,"Piso en paseo de Manuel Girona, Sarrià, Barcelona",4,196.0,4.0,1150000,True,True,Sarrià,Piso
+784,"Piso en calle de París, La Nova Esquerra de l'Eixample, Barcelona",4,115.0,,560000,True,False,La Nova Esquerra de l'Eixample,Piso
+785,"Piso en calle de Calàbria, La Nova Esquerra de l'Eixample, Barcelona",4,94.0,4.0,389000,True,True,La Nova Esquerra de l'Eixample,Piso
+786,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,122.0,4.0,665000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+787,"Piso en El Raval, Barcelona",3,49.0,4.0,147000,False,True,El Raval,Piso
+788,"Piso en calle de Lepant, La Sagrada Família, Barcelona",4,70.0,6.0,255000,True,True,La Sagrada Família,Piso
+789,"Piso en N-340, La Maternitat i Sant Ramon, Barcelona",3,64.0,2.0,260000,True,True,La Maternitat i Sant Ramon,Piso
+790,"Piso en Passatge d'Alió, El Camp d'En Grassot i Gràcia Nova, Barcelona",2,56.0,5.0,312000,False,True,El Camp d'En Grassot i Gràcia Nova,Piso
+791,"Piso en calle de Ginebra, La Barceloneta, Barcelona",2,82.0,,295000,True,False,La Barceloneta,Piso
+792,"Piso en calle de Felip II, Navas, Barcelona",4,95.0,7.0,295000,True,True,Navas,Piso
+793,"Piso en calle de Juan de Sada, Sants - Badal, Barcelona",1,41.0,,199000,False,False,Sants - Badal,Piso
+794,"Piso en calle de Bosch i Gimpera, Pedralbes, Barcelona",5,309.0,4.0,2000000,True,True,Pedralbes,Piso
+795,"Piso en Las Ramblas, Barcelona, El Gòtic, Barcelona",2,106.0,2.0,790000,True,True,El Gòtic,Piso
+796,"Piso en calle de Josep Pla, Provençals del Poblenou, Barcelona",4,79.0,4.0,195000,True,True,Provençals del Poblenou,Piso
+797,"Piso en rambla de Prim, El Besòs, Barcelona",3,72.0,10.0,150000,True,True,El Besòs,Piso
+798,"Piso en REGENT MENDIETA, La Maternitat i Sant Ramon, Barcelona",3,85.0,1.0,265000,True,False,La Maternitat i Sant Ramon,Piso
+799,"Piso en calle de Pallars, El Poblenou, Barcelona",3,70.0,1.0,249000,True,False,El Poblenou,Piso
+800,"Piso en calle de Provença, La Nova Esquerra de l'Eixample, Barcelona",4,190.0,5.0,895000,True,True,La Nova Esquerra de l'Eixample,Piso
+801,"Piso en travesía de Dalt, La Salut, Barcelona",4,89.0,8.0,315000,True,True,La Salut,Piso
+802,"Piso en calle de Pujades, El Poblenou, Barcelona",4,90.0,6.0,380000,True,True,El Poblenou,Piso
+803,"Piso en calle de Sardenya, El Parc i la Llacuna del Poblenou, Barcelona",4,64.0,5.0,195000,False,True,El Parc i la Llacuna del Poblenou,Piso
+804,"Piso en calle de Sant Carles, La Barceloneta, Barcelona",2,39.0,,159900,True,False,La Barceloneta,Piso
+805,"Piso en plaza de la Universidad, Sant Antoni, Barcelona",3,94.0,3.0,485000,True,True,Sant Antoni,Piso
+806,"Piso en calle dels Banys Nous, El Gòtic, Barcelona",1,86.0,3.0,299000,False,True,El Gòtic,Piso
+807,"Piso en paseo de Taulat, 179, El Poblenou, Barcelona",2,76.0,1.0,426000,True,True,El Poblenou,Piso
+808,"Piso en calle Mallorca, L'Antiga Esquerra de l'Eixample, Barcelona",3,96.0,1.0,570000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+809,"Ático en El Gòtic, Barcelona",4,265.0,,1450000,True,False,El Gòtic,Ático
+810,"Piso en Vila de Gràcia, Barcelona",1,110.0,,575000,False,False,Vila de Gràcia,Piso
+811,"Piso en El Raval, Barcelona",1,52.0,2.0,200000,True,True,El Raval,Piso
+812,"Ático en Sant Gervasi - Galvany, Barcelona",3,183.0,6.0,1790000,True,True,Sant Gervasi - Galvany,Ático
+813,"Piso en La Dreta de l'Eixample, Barcelona",2,70.0,,795000,True,False,La Dreta de l'Eixample,Piso
+814,"Ático en Pedralbes, Barcelona",5,334.0,,2650000,True,False,Pedralbes,Ático
+815,"Piso en Vila de Gràcia, Barcelona",2,207.0,,750000,False,False,Vila de Gràcia,Piso
+816,"Piso en La Dreta de l'Eixample, Barcelona",3,113.0,,430000,True,True,La Dreta de l'Eixample,Piso
+817,"Dúplex en ronda de Sant Antoni, Sant Antoni, Barcelona",2,230.0,5.0,1295000,True,True,Sant Antoni,Dúplex
+818,"Piso en Sant Gervasi - Galvany, Barcelona",5,270.0,3.0,1395000,True,True,Sant Gervasi - Galvany,Piso
+819,"Piso en Vallvidrera - El Tibidabo i les Planes, Barcelona",4,128.0,3.0,649000,True,True,Vallvidrera - El Tibidabo i les Planes,Piso
+820,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,144.0,,795000,True,False,Sant Pere - Santa Caterina i la Ribera,Piso
+821,"Piso en La Dreta de l'Eixample, Barcelona",5,241.0,,2550000,True,False,La Dreta de l'Eixample,Piso
+822,"Piso en Sant Gervasi - Galvany, Barcelona",3,113.0,5.0,750000,True,True,Sant Gervasi - Galvany,Piso
+823,"Piso en Verdun, Verdun, Barcelona",3,60.0,2.0,149500,True,False,Verdun,Piso
+824,"Estudio en paseo SAN JUAN, 102, La Dreta de l'Eixample, Barcelona",366,1.0,,1500000,False,False,La Dreta de l'Eixample,Estudio
+825,"Piso en La Dreta de l'Eixample, Barcelona",4,179.0,2.0,765000,True,True,La Dreta de l'Eixample,Piso
+826,"Piso en El Gòtic, Barcelona",2,92.0,1.0,392000,False,True,El Gòtic,Piso
+827,"Piso en via Augusta, Sant Gervasi - Galvany, Barcelona",4,177.0,4.0,895000,True,True,Sant Gervasi - Galvany,Piso
+828,"Piso en La Prosperitat, Barcelona",3,60.0,2.0,142000,False,True,La Prosperitat,Piso
+829,"Piso en calle de Sant Roc, Hostafrancs, Barcelona",2,70.0,,162000,True,False,Hostafrancs,Piso
+830,"Piso en calle del Comte Borrell, Sant Antoni, Barcelona",3,72.0,5.0,360000,True,True,Sant Antoni,Piso
+831,"Piso en calle de Pau Claris, La Dreta de l'Eixample, Barcelona",8,630.0,1.0,2520000,True,True,La Dreta de l'Eixample,Piso
+832,"Piso en calle Rocafort, La Nova Esquerra de l'Eixample, Barcelona",3,90.0,1.0,340000,True,True,La Nova Esquerra de l'Eixample,Piso
+833,"Piso en calle de Salvà, 58, El Poble Sec - Parc de Montjuïc, Barcelona",2,70.0,3.0,345000,False,False,El Poble Sec - Parc de Montjuïc,Piso
+834,"Piso en alberes, Vallvidrera - El Tibidabo i les Planes, Barcelona",4,124.0,2.0,590000,True,True,Vallvidrera - El Tibidabo i les Planes,Piso
+835,"Piso en calle Guineueta, La Guineueta, Barcelona",3,56.0,2.0,129000,True,True,La Guineueta,Piso
+836,"Piso en calle de Sepúlveda, Sant Antoni, Barcelona",3,80.0,2.0,355000,True,True,Sant Antoni,Piso
+837,"Piso en calle de Sant Fructuós, La Font de la Guatlla, Barcelona",4,110.0,4.0,360000,True,True,La Font de la Guatlla,Piso
+838,"Chalet adosado en calle de Besalú, El Camp de l'Arpa del Clot, Barcelona",4,170.0,,453000,False,False,El Camp de l'Arpa del Clot,Chalet
+839,"Piso en avenida d'Elies Pagès, Sant Genís Dels Agudells - Montbau, Barcelona",3,83.0,1.0,159900,False,True,Sant Genís Dels Agudells - Montbau,Piso
+840,"Ático en paseo Urrutia, La Guineueta, Barcelona",4,91.0,12.0,359900,True,True,La Guineueta,Ático
+841,"Piso en calle de Marià Aguiló, El Poblenou, Barcelona",3,129.0,,470000,True,False,El Poblenou,Piso
+842,"Piso en Navas, Barcelona",3,94.0,6.0,254900,True,True,Navas,Piso
+843,"Piso en calle d'Aulèstia i Pijoan, Vila de Gràcia, Barcelona",3,83.0,,335000,True,True,Vila de Gràcia,Piso
+844,"Piso en calle de Lepant, El Fort Pienc, Barcelona",3,112.0,7.0,530000,True,True,El Fort Pienc,Piso
+845,"Piso en calle del Comandant Benítez, La Maternitat i Sant Ramon, Barcelona",4,72.0,5.0,255000,True,True,La Maternitat i Sant Ramon,Piso
+846,"Piso en calle d'Aragó, La Dreta de l'Eixample, Barcelona",5,209.0,3.0,859000,True,True,La Dreta de l'Eixample,Piso
+847,"Piso en calle de la Mare de Déu de Port, La Marina del Port, Barcelona",3,59.0,,178000,True,False,La Marina del Port,Piso
+848,"Ático en calle de Balmes, Sant Gervasi - Galvany, Barcelona",5,188.0,4.0,880000,True,True,Sant Gervasi - Galvany,Ático
+849,"Piso en Escorial, El Camp d'En Grassot i Gràcia Nova, Barcelona",4,90.0,1.0,349000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+850,"Piso en El Gòtic, Barcelona",5,161.0,1.0,690000,True,True,El Gòtic,Piso
+851,"Ático en El Congrés i els Indians, Barcelona",3,76.0,4.0,299000,True,True,El Congrés i els Indians,Ático
+852,"Piso en Provençals del Poblenou, Barcelona",4,79.0,4.0,195000,True,True,Provençals del Poblenou,Piso
+853,"Piso en Pedralbes, Barcelona",5,269.0,2.0,1550000,True,True,Pedralbes,Piso
+854,"Chalet en Sarrià, Barcelona",6,296.0,,1350000,False,False,Sarrià,Chalet
+855,"Piso en El Raval, Barcelona",1,47.0,4.0,119000,False,False,El Raval,Piso
+856,"Ático en Sarrià, Barcelona",4,230.0,6.0,2050000,True,True,Sarrià,Ático
+857,"Chalet pareado en Pedralbes, Barcelona",4,185.0,,860000,False,False,Pedralbes,Chalet
+858,"Piso en La Dreta de l'Eixample, Barcelona",3,150.0,3.0,1495000,True,True,La Dreta de l'Eixample,Piso
+859,"Piso en La Sagrada Família, Barcelona",3,153.0,,790000,False,False,La Sagrada Família,Piso
+860,"Piso en calle del Consell de Cent, La Dreta de l'Eixample, Barcelona",3,63.0,1.0,200000,True,True,La Dreta de l'Eixample,Piso
+861,"Piso en calle Doctor Santponç, Sant Andreu, Barcelona",3,95.0,5.0,298000,True,True,Sant Andreu,Piso
+862,"Piso en calle de la Diputació, El Fort Pienc, Barcelona",4,60.0,1.0,225000,True,False,El Fort Pienc,Piso
+863,"Piso en El Gòtic, Barcelona",2,88.0,2.0,545000,True,True,El Gòtic,Piso
+864,"Piso en calle de Josep Torres, 14, Vila de Gràcia, Barcelona",1,54.0,1.0,280000,True,True,Vila de Gràcia,Piso
+865,"Piso en calle Navàs de Tolosa, El Clot, Barcelona",1,45.0,2.0,190000,True,True,El Clot,Piso
+866,"Dúplex en Pedralbes, Barcelona",8,447.0,5.0,2500000,True,True,Pedralbes,Dúplex
+867,"Piso en calle d'Aragó, L'Antiga Esquerra de l'Eixample, Barcelona",5,125.0,4.0,485000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+868,"Piso en Salvà, El Poble Sec - Parc de Montjuïc, Barcelona",3,60.0,,178000,False,False,El Poble Sec - Parc de Montjuïc,Piso
+869,"Piso en calle de la Garrotxa, El Guinardó, Barcelona",2,65.0,2.0,169800,False,True,El Guinardó,Piso
+870,"Piso en La Dreta de l'Eixample, Barcelona",3,179.0,6.0,1650000,True,True,La Dreta de l'Eixample,Piso
+871,"Ático en Passatge de Vilaret, La Sagrada Família, Barcelona",3,100.0,2.0,320000,False,True,La Sagrada Família,Ático
+872,"Piso en calle Padilla, La Sagrada Família, Barcelona",3,66.0,6.0,270000,True,True,La Sagrada Família,Piso
+873,"Ático en calle Casals I Cubero, Verdun, Barcelona",3,68.0,4.0,147500,False,True,Verdun,Ático
+874,"Piso en calle de Muntaner, L'Antiga Esquerra de l'Eixample, Barcelona",2,85.0,7.0,395000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+875,"Piso en calle Viladomat, Sant Antoni, Barcelona",4,99.0,6.0,433000,True,True,Sant Antoni,Piso
+876,"Dúplex en El Fort Pienc, Barcelona",3,113.0,,765000,True,False,El Fort Pienc,Dúplex
+877,"Dúplex en Pedralbes, Barcelona",8,447.0,5.0,2500000,True,True,Pedralbes,Dúplex
+878,"Piso en La Nova Esquerra de l'Eixample, Barcelona",3,90.0,3.0,440000,True,False,La Nova Esquerra de l'Eixample,Piso
+879,"Piso en calle de Roger de Flor, El Camp d'En Grassot i Gràcia Nova, Barcelona",2,75.0,1.0,345000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+880,"Piso en GABRIEL Y GALAN, El Clot, Barcelona",5,120.0,1.0,375000,True,True,El Clot,Piso
+881,"Piso en Sant Gervasi - La Bonanova, Barcelona",1,58.0,1.0,260000,False,True,Sant Gervasi - La Bonanova,Piso
+882,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,80.0,1.0,740000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+883,"Casa o chalet independiente en Sant Gervasi - La Bonanova, Barcelona",13,491.0,,3500000,False,False,Sant Gervasi - La Bonanova,Casa
+884,"Piso en Sant Gervasi - La Bonanova, Barcelona",5,181.0,4.0,795000,True,True,Sant Gervasi - La Bonanova,Piso
+885,"Piso en calle de Rubió i Ors, 8, El Guinardó, Barcelona",4,89.0,1.0,259500,True,True,El Guinardó,Piso
+886,"Piso en paseo de Taulat, 179, El Poblenou, Barcelona",3,96.0,2.0,473500,True,True,El Poblenou,Piso
+887,"Piso en Sant Gervasi - Galvany, Barcelona",4,205.0,5.0,1380000,True,True,Sant Gervasi - Galvany,Piso
+888,"Piso en LLORET DE MAR, Horta, Barcelona",3,65.0,2.0,170000,False,True,Horta,Piso
+889,"Piso en calle del Guadiana, Sants, Barcelona",3,68.0,3.0,249000,True,True,Sants,Piso
+890,"Piso en calle d'Amigó, Sant Gervasi - Galvany, Barcelona",5,200.0,5.0,999000,True,True,Sant Gervasi - Galvany,Piso
+891,"Piso en calle del Consell de Cent, El Fort Pienc, Barcelona",2,59.0,,338000,True,False,El Fort Pienc,Piso
+892,"Ático en calle de Vilafranca, Vila de Gràcia, Barcelona",2,58.0,2.0,288000,False,True,Vila de Gràcia,Ático
+893,"Ático en calle de Jaume I, El Gòtic, Barcelona",2,65.0,5.0,330000,True,True,El Gòtic,Ático
+894,"Piso en calle de Pere IV, El Parc i la Llacuna del Poblenou, Barcelona",2,50.0,,229000,True,True,El Parc i la Llacuna del Poblenou,Piso
+895,"Piso en calle de Berenguer de Palou, La Sagrera, Barcelona",3,55.0,,138000,True,False,La Sagrera,Piso
+896,"Piso en La Vall d'Hebron - La Clota, Barcelona",2,80.0,8.0,299000,True,True,La Vall d'Hebron - La Clota,Piso
+897,"Piso en El Putxet i el Farró, Barcelona",2,87.0,1.0,600000,True,True,El Putxet i el Farró,Piso
+898,"Piso en calle del Doctor Trueta, El Poblenou, Barcelona",1,56.0,1.0,220000,False,True,El Poblenou,Piso
+899,"Piso en calle Mallorca, La Nova Esquerra de l'Eixample, Barcelona",4,100.0,2.0,350000,True,True,La Nova Esquerra de l'Eixample,Piso
+900,"Piso en Les Roquetes, Barcelona",2,67.0,,70500,False,False,Les Roquetes,Piso
+901,"Piso en El Camp de l'Arpa del Clot, Barcelona",1,55.0,3.0,235000,True,True,El Camp de l'Arpa del Clot,Piso
+902,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",5,162.0,2.0,495000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+903,"Piso en Pedralbes, Barcelona",5,212.0,4.0,1595000,True,True,Pedralbes,Piso
+904,"Piso en La Sagrera, Barcelona",3,57.0,5.0,165000,True,True,La Sagrera,Piso
+905,"Casa o chalet independiente en Sarrià, Barcelona",6,516.0,,3750000,False,False,Sarrià,Casa
+906,"Piso en El Camp de l'Arpa del Clot, Barcelona",3,58.0,4.0,180000,False,True,El Camp de l'Arpa del Clot,Piso
+907,"Piso en El Parc i la Llacuna del Poblenou, Barcelona",1,64.0,1.0,400000,True,True,El Parc i la Llacuna del Poblenou,Piso
+908,"Piso en El Parc i la Llacuna del Poblenou, Barcelona",1,65.0,1.0,400000,True,True,El Parc i la Llacuna del Poblenou,Piso
+909,"Piso en El Poblenou, Barcelona",4,133.0,4.0,990000,True,True,El Poblenou,Piso
+910,"Piso en La Sagrada Família, Barcelona",3,82.0,3.0,545000,True,False,La Sagrada Família,Piso
+911,"Piso en Av. Meridiana, La Sagrera, Barcelona",3,82.0,3.0,229000,True,True,La Sagrera,Piso
+912,"Ático en El Gòtic, Barcelona",3,112.0,5.0,790000,True,True,El Gòtic,Ático
+913,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,135.0,2.0,639000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+914,"Dúplex en El Putxet i el Farró, Barcelona",3,190.0,,890000,True,False,El Putxet i el Farró,Dúplex
+915,"Piso en Verdun, Barcelona",3,60.0,2.0,149500,True,False,Verdun,Piso
+916,"Piso en calle de Bonsoms, Sants - Badal, Barcelona",2,70.0,1.0,259000,True,True,Sants - Badal,Piso
+917,"Piso en calle de la Residència, Sant Andreu, Barcelona",3,61.0,2.0,185000,True,True,Sant Andreu,Piso
+918,"Piso en calle de la Torre dels Pardals, El Guinardó, Barcelona",2,76.0,,213000,False,False,El Guinardó,Piso
+919,"Piso en calle dels Salvador, El Raval, Barcelona",2,42.0,2.0,118000,False,True,El Raval,Piso
+920,"Piso en Gran Via de les Corts Catalanes, Sant Martí de Provençals, Barcelona",3,75.0,,209000,True,True,Sant Martí de Provençals,Piso
+921,"Piso en calle dels Àngels, El Raval, Barcelona",3,75.0,2.0,299000,True,True,El Raval,Piso
+922,"Piso en Travessera de Dalt, 97, La Salut, Barcelona",3,106.0,,536500,False,False,La Salut,Piso
+923,"Piso en Enric Granados, L'Antiga Esquerra de l'Eixample, Barcelona",4,159.0,4.0,800000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+924,"Piso en Sants, Sants, Barcelona",3,93.0,3.0,300000,True,True,Sants,Piso
+925,"Estudio en Provençals del Poblenou, Barcelona",62,2.0,,210000,False,False,Provençals del Poblenou,Estudio
+926,"Piso en calle de la Indústria, El Camp de l'Arpa del Clot, Barcelona",1,56.0,6.0,210000,True,True,El Camp de l'Arpa del Clot,Piso
+927,"Piso en calle de la Garrotxa, El Guinardó, Barcelona",3,65.0,2.0,169800,False,False,El Guinardó,Piso
+928,"Piso en Les Tres Torres, Barcelona",5,215.0,2.0,930000,True,True,Les Tres Torres,Piso
+929,"Piso en calle de l'Argenter, Sant Pere - Santa Caterina i la Ribera, Barcelona",3,73.0,1.0,259000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+930,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",3,68.0,3.0,162000,False,True,El Poble Sec - Parc de Montjuïc,Piso
+931,"Piso en Horta, Barcelona",3,71.0,,185000,False,False,Horta,Piso
+932,"Piso en La Nova Esquerra de l'Eixample, Barcelona",4,140.0,6.0,630000,True,True,La Nova Esquerra de l'Eixample,Piso
+933,"Piso en calle de Lope de Vega, El Poblenou, Barcelona",3,70.0,6.0,321500,True,True,El Poblenou,Piso
+934,"Piso en La Dreta de l'Eixample, Barcelona",3,90.0,1.0,499000,True,True,La Dreta de l'Eixample,Piso
+935,"Piso en La Marina del Port, Barcelona",3,64.0,1.0,220000,True,True,La Marina del Port,Piso
+936,"Ático en El Gòtic, Barcelona",1,58.0,3.0,370000,True,True,El Gòtic,Ático
+937,"Piso en calle de Sòcrates, Sant Andreu, Barcelona",3,72.0,3.0,228000,True,True,Sant Andreu,Piso
+938,"Ático en via augusta, Sant Gervasi - Galvany, Barcelona",3,230.0,8.0,1980000,True,True,Sant Gervasi - Galvany,Ático
+939,"Piso en Sants, Barcelona",2,103.0,,240000,False,False,Sants,Piso
+940,"Piso en El Fort Pienc, Barcelona",4,98.0,3.0,430000,True,True,El Fort Pienc,Piso
+941,"Piso en La Barceloneta, Barcelona",2,83.0,,390000,True,False,La Barceloneta,Piso
+942,"Ático en calle de Piquer, El Poble Sec - Parc de Montjuïc, Barcelona",1,50.0,4.0,250000,True,True,El Poble Sec - Parc de Montjuïc,Ático
+943,"Piso en calle del Taulat, El Poblenou, Barcelona",2,60.0,1.0,259999,False,False,El Poblenou,Piso
+944,"Piso en calle de Bertran, El Putxet i el Farró, Barcelona",3,180.0,1.0,885000,True,True,El Putxet i el Farró,Piso
+945,"Piso en calle de Piquer, El Poble Sec - Parc de Montjuïc, Barcelona",3,68.0,5.0,220000,True,True,El Poble Sec - Parc de Montjuïc,Piso
+946,"Ático en calle d'Entença, Sant Antoni, Barcelona",2,90.0,8.0,590000,True,True,Sant Antoni,Ático
+947,"Piso en paseo de Sant Joan, La Dreta de l'Eixample, Barcelona",3,105.0,5.0,435000,True,False,La Dreta de l'Eixample,Piso
+948,"Chalet adosado en calle de Pere Blai, El Besòs, Barcelona",2,81.0,,225000,False,False,El Besòs,Chalet
+949,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,122.0,1.0,720000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+950,"Piso en Sant Gervasi - Galvany, Barcelona",5,397.0,5.0,2250000,True,False,Sant Gervasi - Galvany,Piso
+951,"Piso en Sants, Barcelona",3,92.0,3.0,269000,True,True,Sants,Piso
+952,"Piso en La Dreta de l'Eixample, Barcelona",3,169.0,,1600000,False,False,La Dreta de l'Eixample,Piso
+953,"Piso en Sant Gervasi - La Bonanova, Barcelona",4,156.0,3.0,1090000,True,False,Sant Gervasi - La Bonanova,Piso
+954,"Piso en La Nova Esquerra de l'Eixample, Barcelona",2,88.0,5.0,479000,True,False,La Nova Esquerra de l'Eixample,Piso
+955,"Piso en El Putxet i el Farró, Barcelona",5,132.0,3.0,510000,True,False,El Putxet i el Farró,Piso
+956,"Piso en El Gòtic, Barcelona",2,92.0,,392000,False,True,El Gòtic,Piso
+957,"Piso en La Dreta de l'Eixample, Barcelona",3,169.0,,950000,True,False,La Dreta de l'Eixample,Piso
+958,"Ático en La Dreta de l'Eixample, Barcelona",4,279.0,,2950000,True,False,La Dreta de l'Eixample,Ático
+959,"Piso en La Nova Esquerra de l'Eixample, Barcelona",4,99.0,4.0,359300,True,True,La Nova Esquerra de l'Eixample,Piso
+960,"Piso en La Dreta de l'Eixample, Barcelona",5,246.0,,1950000,True,False,La Dreta de l'Eixample,Piso
+961,"Piso en La Dreta de l'Eixample, Barcelona",5,207.0,,1395000,True,False,La Dreta de l'Eixample,Piso
+962,"Piso en La Nova Esquerra de l'Eixample, Barcelona",2,94.0,,315000,False,False,La Nova Esquerra de l'Eixample,Piso
+963,"Casa o chalet independiente en Sarrià, Barcelona",4,201.0,,1590000,False,False,Sarrià,Casa
+964,"Piso en avenida de Josep Tarradellas, La Nova Esquerra de l'Eixample, Barcelona",3,87.0,1.0,360000,True,True,La Nova Esquerra de l'Eixample,Piso
+965,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",3,78.0,,315000,True,False,El Poble Sec - Parc de Montjuïc,Piso
+966,"Piso en avenida del Paral·lel, Sant Antoni, Barcelona",4,84.0,2.0,309000,True,True,Sant Antoni,Piso
+967,"Piso en Torrent de les Flors, Vila de Gràcia, Barcelona",2,75.0,2.0,365000,True,True,Vila de Gràcia,Piso
+968,"Piso en calle del Beat Almató, s/n, El Coll, Barcelona",2,64.0,1.0,239000,True,True,El Coll,Piso
+969,"Piso en calle de Còrsega, L'Antiga Esquerra de l'Eixample, Barcelona",3,125.0,5.0,690000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+970,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",6,166.0,,675000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+971,"Piso en calle de Frederic Mompou, La Vila Olímpica del Poblenou, Barcelona",3,130.0,,695000,True,True,La Vila Olímpica del Poblenou,Piso
+972,"Piso en calle del Carme, El Raval, Barcelona",5,110.0,4.0,358000,True,True,El Raval,Piso
+973,"Piso en calle de l'Arc de Sant Ramon del Call, El Gòtic, Barcelona",3,115.0,1.0,380000,False,False,El Gòtic,Piso
+974,"Ático en calle Paris, 210, L'Antiga Esquerra de l'Eixample, Barcelona",3,105.0,5.0,1269000,True,True,L'Antiga Esquerra de l'Eixample,Ático
+975,"Piso en calle Paris, 210, L'Antiga Esquerra de l'Eixample, Barcelona",3,105.0,1.0,1075000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+976,"Piso en calle Paris, 210, L'Antiga Esquerra de l'Eixample, Barcelona",4,210.0,1.0,1879000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+977,"Ático en avenida Diagonal, Sant Gervasi - Galvany, Barcelona",4,185.0,9.0,1100000,True,True,Sant Gervasi - Galvany,Ático
+978,"Piso en avenida de la Riera de Cassoles, Vila de Gràcia, Barcelona",5,139.0,1.0,495000,True,False,Vila de Gràcia,Piso
+979,"Piso en calle de València, La Nova Esquerra de l'Eixample, Barcelona",3,85.0,6.0,380000,True,False,La Nova Esquerra de l'Eixample,Piso
+980,"Ático en calle de Calàbria, Sant Antoni, Barcelona",4,155.0,6.0,695000,True,True,Sant Antoni,Ático
+981,"Ático en calle del Consell de Cent, La Dreta de l'Eixample, Barcelona",2,101.0,7.0,780000,True,True,La Dreta de l'Eixample,Ático
+982,"Piso en calle del Rosselló, La Dreta de l'Eixample, Barcelona",5,150.0,3.0,545000,True,True,La Dreta de l'Eixample,Piso
+983,"Piso en paseo de Garcia Fària, Diagonal Mar i el Front Marítim del Poblenou, Barcelona",3,156.0,10.0,1050000,True,True,Diagonal Mar i el Front Marítim del Poblenou,Piso
+984,"Piso en calle de Pelai, La Dreta de l'Eixample, Barcelona",4,174.0,3.0,850000,True,True,La Dreta de l'Eixample,Piso
+985,"Chalet en calle de la Marina, La Sagrada Família, Barcelona",5,585.0,,1950000,False,False,La Sagrada Família,Chalet
+986,"Ático en via Augusta, s/n, Les Tres Torres, Barcelona",4,181.0,,995000,True,False,Les Tres Torres,Ático
+987,"Piso en calle de Sors, s/n, Vila de Gràcia, Barcelona",3,99.0,2.0,449000,True,True,Vila de Gràcia,Piso
+988,"Piso en VIRGILI, Sant Andreu, Barcelona",3,88.0,7.0,445000,True,True,Sant Andreu,Piso
+989,"Ático en calle de la Mare de Déu dels Angels, La Teixonera, Barcelona",3,115.0,2.0,449000,False,False,La Teixonera,Ático
+990,"Piso en calle de Villarroel, L'Antiga Esquerra de l'Eixample, Barcelona",2,60.0,2.0,270000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+991,"Chalet adosado en El Poblenou, Barcelona",3,200.0,,1050000,False,False,El Poblenou,Chalet
+992,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",3,144.0,,985000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Piso
+993,"Ático en calle de la Mare de Déu dels Reis, Vallcarca i els Penitents, Barcelona",3,140.0,3.0,595000,True,True,Vallcarca i els Penitents,Ático
+994,"Piso en calle de Muntaner, Barcelona, Sant Gervasi - Galvany, Barcelona",5,332.0,5.0,1395000,True,True,Sant Gervasi - Galvany,Piso
+995,"Piso en calle de Rubió i Ors, 8, El Guinardó, Barcelona",4,86.0,1.0,259500,False,False,El Guinardó,Piso
+996,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",5,164.0,,695000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+997,"Piso en calle del Clot, El Clot, Barcelona",2,75.0,3.0,239000,True,True,El Clot,Piso
+998,"Piso en El Camp d'En Grassot i Gràcia Nova, Barcelona",3,189.0,,1140000,True,False,El Camp d'En Grassot i Gràcia Nova,Piso
+999,"Piso en calle Mossèn Quintí Mallofré, 37, Sant Andreu, Barcelona",3,75.0,,205000,True,True,Sant Andreu,Piso
+1000,"Piso en paseo de Sant Joan, La Dreta de l'Eixample, Barcelona",4,100.0,,460000,True,True,La Dreta de l'Eixample,Piso
+1001,"Piso en calle del Cardener, s/n, La Salut, Barcelona",2,104.0,,359000,False,False,La Salut,Piso
+1002,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",3,155.0,,665000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1003,"Piso en calle de Roger de Llúria, Barcelona, La Dreta de l'Eixample, Barcelona",4,138.0,2.0,595000,True,True,La Dreta de l'Eixample,Piso
+1004,"Piso en calle de Musitu, 18, El Putxet i el Farró, Barcelona",5,147.0,,515000,True,False,El Putxet i el Farró,Piso
+1005,"Dúplex en calle del Repartidor, La Salut, Barcelona",2,94.0,,285000,True,False,La Salut,Dúplex
+1006,"Piso en calle d'Entença, 20, Sant Antoni, Barcelona",3,95.0,6.0,360000,True,True,Sant Antoni,Piso
+1007,"Casa o chalet independiente en Sarrià, Barcelona",5,554.0,,2975000,False,False,Sarrià,Casa
+1008,"Ático en Les Corts, Barcelona",5,244.0,8.0,1420000,True,False,Les Corts,Ático
+1009,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",4,171.0,4.0,690000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+1010,"Piso en Selva de Mar, Sant Martí de Provençals, Barcelona",3,67.0,5.0,169000,True,True,Sant Martí de Provençals,Piso
+1011,"Piso en calle Monistrol, s/n, Vila de Gràcia, Barcelona",2,65.0,,349500,True,False,Vila de Gràcia,Piso
+1012,"Piso en Gran Via de les Corts Catalanes, 567, L'Antiga Esquerra de l'Eixample, Barcelona",6,133.0,2.0,720000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1013,"Piso en calle del Rosselló, La Dreta de l'Eixample, Barcelona",4,152.0,3.0,660000,True,True,La Dreta de l'Eixample,Piso
+1014,"Piso en calle del Rosselló, La Dreta de l'Eixample, Barcelona",3,89.0,4.0,400000,True,True,La Dreta de l'Eixample,Piso
+1015,"Piso en ronda Sant Antoni, El Raval, Barcelona",2,62.0,1.0,195000,True,True,El Raval,Piso
+1016,"Piso en calle Mallorca, El Camp de l'Arpa del Clot, Barcelona",3,99.0,4.0,340000,True,True,El Camp de l'Arpa del Clot,Piso
+1017,"Piso en calle de Bailèn, La Dreta de l'Eixample, Barcelona",4,123.0,1.0,595000,True,True,La Dreta de l'Eixample,Piso
+1018,"Piso en calle de Gelabert, Les Corts, Barcelona",2,81.0,,280000,False,False,Les Corts,Piso
+1019,"Piso en La Dreta de l'Eixample, Barcelona",3,158.0,,998000,True,False,La Dreta de l'Eixample,Piso
+1020,"Ático en La Nova Esquerra de l'Eixample, Barcelona",6,336.0,,1890000,True,False,La Nova Esquerra de l'Eixample,Ático
+1021,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",3,105.0,,795000,True,False,Diagonal Mar i el Front Marítim del Poblenou,Piso
+1022,"Piso en El Putxet i el Farró, Barcelona",4,145.0,7.0,649000,True,True,El Putxet i el Farró,Piso
+1023,"Piso en La Dreta de l'Eixample, Barcelona",4,240.0,,2550000,True,False,La Dreta de l'Eixample,Piso
+1024,"Piso en Diagonal Mar i el Front Marítim del Poblenou, Barcelona",3,176.0,10.0,1522500,True,True,Diagonal Mar i el Front Marítim del Poblenou,Piso
+1025,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,120.0,1.0,599000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1026,"Piso en calle de les Beates, Sant Pere - Santa Caterina i la Ribera, Barcelona",5,80.0,,299000,False,False,Sant Pere - Santa Caterina i la Ribera,Piso
+1027,"Piso en El Poblenou, Barcelona",3,83.0,2.0,360000,True,True,El Poblenou,Piso
+1028,"Piso en Sant Gervasi - Galvany, Barcelona",5,201.0,,1200000,True,False,Sant Gervasi - Galvany,Piso
+1029,"Piso en Sant Gervasi - Galvany, Barcelona",5,224.0,,1030000,True,False,Sant Gervasi - Galvany,Piso
+1030,"Piso en El Gòtic, Barcelona",2,122.0,,720000,True,False,El Gòtic,Piso
+1031,"Chalet en calle d'En Fontrodona, s/n, El Poble Sec - Parc de Montjuïc, Barcelona",3,159.0,,450000,False,False,El Poble Sec - Parc de Montjuïc,Chalet
+1032,"Piso en calle de Bac de Roda, Sant Martí de Provençals, Barcelona",3,96.0,6.0,200000,True,True,Sant Martí de Provençals,Piso
+1033,"Piso en Mare de Déu dels Àngels, La Teixonera, Barcelona",3,90.0,,435000,True,False,La Teixonera,Piso
+1034,"Piso en calle del Llobregós, s/n, El Carmel, Barcelona",3,87.0,,339000,True,False,El Carmel,Piso
+1035,"Piso en calle de Parcerisa, s/n, La Bordeta, Barcelona",2,92.0,1.0,319000,True,True,La Bordeta,Piso
+1036,"Piso en calle de Còrsega, s/n, La Sagrada Família, Barcelona",2,69.0,1.0,279500,True,True,La Sagrada Família,Piso
+1037,"Piso en calle de Sant Quintí, 41, El Camp de l'Arpa del Clot, Barcelona",4,113.0,3.0,395000,True,True,El Camp de l'Arpa del Clot,Piso
+1038,"Piso en paseo de Fabra i Puig, 193, Vilapicina i la Torre Llobeta, Barcelona",3,72.0,2.0,240000,True,True,Vilapicina i la Torre Llobeta,Piso
+1039,"Piso en Passatge del Vapor Vell, Sants, Barcelona",3,123.0,,465000,False,False,Sants,Piso
+1040,"Piso en calle de Valencia, L'Antiga Esquerra de l'Eixample, Barcelona",4,140.0,1.0,500000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1041,"Piso en calle de Besalú, El Camp de l'Arpa del Clot, Barcelona",4,170.0,1.0,453000,False,True,El Camp de l'Arpa del Clot,Piso
+1042,"Ático en calle Mallorca, La Dreta de l'Eixample, Barcelona",1,150.0,8.0,850000,True,True,La Dreta de l'Eixample,Ático
+1043,"Piso en calle de l'Arc del Teatre, s/n, El Raval, Barcelona",1,50.0,,185000,False,True,El Raval,Piso
+1044,"Piso en calle de Laforja, Sant Gervasi - Galvany, Barcelona",2,65.0,2.0,380000,True,True,Sant Gervasi - Galvany,Piso
+1045,"Piso en Gran Via de les Corts Catalanes, La Nova Esquerra de l'Eixample, Barcelona",4,158.0,4.0,555000,True,True,La Nova Esquerra de l'Eixample,Piso
+1046,"Piso en bisbe laguarda, El Raval, Barcelona",3,62.0,2.0,205000,True,True,El Raval,Piso
+1047,"Piso en La Nova Esquerra de l'Eixample, Barcelona",2,80.0,,489000,True,False,La Nova Esquerra de l'Eixample,Piso
+1048,"Piso en GRAN VIA DE LES CORTS CATALANES, 423, La Nova Esquerra de l'Eixample, Barcelona",4,148.0,1.0,629000,True,True,La Nova Esquerra de l'Eixample,Piso
+1049,"Chalet adosado en Vallvidrera - El Tibidabo i les Planes, Barcelona",3,116.0,,395000,False,False,Vallvidrera - El Tibidabo i les Planes,Chalet
+1050,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",5,220.0,,625000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1051,"Piso en El Gòtic, Barcelona",4,156.0,2.0,630000,True,True,El Gòtic,Piso
+1052,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",6,480.0,,1350000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1053,"Piso en El Camp de l'Arpa del Clot, Barcelona",3,68.0,,192000,True,True,El Camp de l'Arpa del Clot,Piso
+1054,"Piso en calle de la Riereta, El Raval, Barcelona",1,60.0,1.0,339000,True,False,El Raval,Piso
+1055,"Piso en paseo de Manuel Girona, Pedralbes, Barcelona",4,180.0,4.0,990000,True,True,Pedralbes,Piso
+1056,"Piso en calle del Doctor Bové, El Carmel, Barcelona",3,98.0,2.0,409000,True,True,El Carmel,Piso
+1057,"Piso en calle de Sol i Padrís, Sarrià, Barcelona",5,180.0,,990000,True,True,Sarrià,Piso
+1058,"Piso en calle del Rosselló, La Nova Esquerra de l'Eixample, Barcelona",4,133.0,2.0,559000,True,True,La Nova Esquerra de l'Eixample,Piso
+1059,"Piso en paseo de Gràcia, La Dreta de l'Eixample, Barcelona",4,231.0,3.0,2750000,True,True,La Dreta de l'Eixample,Piso
+1060,"Piso en calle del Consell de Cent, La Dreta de l'Eixample, Barcelona",4,145.0,4.0,760000,True,True,La Dreta de l'Eixample,Piso
+1061,"Piso en calle Viladomat, La Nova Esquerra de l'Eixample, Barcelona",2,80.0,5.0,359000,True,True,La Nova Esquerra de l'Eixample,Piso
+1062,"Dúplex en calle d'En Llàstics, Sant Pere - Santa Caterina i la Ribera, Barcelona",2,89.0,1.0,550000,True,True,Sant Pere - Santa Caterina i la Ribera,Dúplex
+1063,"Chalet adosado en carretera del Prat, La Marina del Port, Barcelona",5,295.0,,1075000,False,False,La Marina del Port,Chalet
+1064,"Ático en via Augusta, El Putxet i el Farró, Barcelona",3,114.0,8.0,500000,True,True,El Putxet i el Farró,Ático
+1065,"Piso en paseo de Manuel Girona, Sarrià, Barcelona",5,217.0,4.0,1150000,True,True,Sarrià,Piso
+1066,"Piso en camelias, El Baix Guinardó, Barcelona",4,110.0,1.0,300000,True,True,El Baix Guinardó,Piso
+1067,"Piso en calle de la Portaferrissa, El Gòtic, Barcelona",4,172.0,2.0,1145000,True,True,El Gòtic,Piso
+1068,"Piso en calle Bori i Fontestà, Sant Gervasi - Galvany, Barcelona",3,220.0,1.0,1100000,True,True,Sant Gervasi - Galvany,Piso
+1069,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",3,83.0,,335000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1070,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",6,519.0,,1350000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1071,"Ático en La Sagrada Família, Barcelona",3,135.0,4.0,995000,True,True,La Sagrada Família,Ático
+1072,"Piso en El Gòtic, Barcelona",3,86.0,2.0,359000,False,True,El Gòtic,Piso
+1073,"Piso en El Clot, Barcelona",4,90.0,8.0,299000,True,False,El Clot,Piso
+1074,"Piso en Sant Gervasi - Galvany, Barcelona",5,150.0,1.0,750000,True,True,Sant Gervasi - Galvany,Piso
+1075,"Ático en La Nova Esquerra de l'Eixample, Barcelona",4,197.0,4.0,550000,True,True,La Nova Esquerra de l'Eixample,Ático
+1076,"Ático en Sant Gervasi - Galvany, Barcelona",5,160.0,3.0,950000,True,True,Sant Gervasi - Galvany,Ático
+1077,"Piso en calle de Toledo, La Bordeta, Barcelona",3,77.0,,185000,True,True,La Bordeta,Piso
+1078,"Piso en calle del Rosselló, La Dreta de l'Eixample, Barcelona",1,42.0,4.0,260000,True,True,La Dreta de l'Eixample,Piso
+1079,"Piso en avenida Diagonal, L'Antiga Esquerra de l'Eixample, Barcelona",4,125.0,3.0,689000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1080,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",4,140.0,11.0,750000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1081,"Piso en calle d'en Serra, El Gòtic, Barcelona",4,114.0,2.0,295000,False,True,El Gòtic,Piso
+1082,"Piso en calle d'Emèrita Augusta, La Maternitat i Sant Ramon, Barcelona",4,72.0,3.0,275000,True,True,La Maternitat i Sant Ramon,Piso
+1083,"Piso en calle de Praga, 18, El Baix Guinardó, Barcelona",3,85.0,,300000,True,False,El Baix Guinardó,Piso
+1084,"Piso en calle de Badalona, Sants, Barcelona",3,84.0,2.0,245000,False,True,Sants,Piso
+1085,"Piso en calle de Cartagena, 260, La Sagrada Família, Barcelona",4,101.0,1.0,390000,True,True,La Sagrada Família,Piso
+1086,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",4,304.0,,675000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1087,"Piso en calle del Rosselló, La Dreta de l'Eixample, Barcelona",3,140.0,1.0,620000,True,True,La Dreta de l'Eixample,Piso
+1088,"Piso en avenida de Josep Tarradellas, L'Antiga Esquerra de l'Eixample, Barcelona",2,84.0,1.0,630000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1089,"Piso en calle de Guillem Tell, 21, El Putxet i el Farró, Barcelona",3,95.0,2.0,359000,True,True,El Putxet i el Farró,Piso
+1090,"Piso en Gran Vía de les Corts Catalanes, Provençals del Poblenou, Barcelona",3,73.0,8.0,229000,True,True,Provençals del Poblenou,Piso
+1091,"Piso en Provençals del Poblenou, Barcelona",4,79.0,4.0,195000,True,True,Provençals del Poblenou,Piso
+1092,"Piso en La Vila Olímpica del Poblenou, Barcelona",4,139.0,3.0,698000,True,True,La Vila Olímpica del Poblenou,Piso
+1093,"Chalet pareado en La Font d'En Fargues, Barcelona",5,160.0,,595000,False,False,La Font d'En Fargues,Chalet
+1094,"Piso en La Dreta de l'Eixample, Barcelona",2,142.0,,850000,True,False,La Dreta de l'Eixample,Piso
+1095,"Piso en Sarrià, Barcelona",3,264.0,,2200000,True,False,Sarrià,Piso
+1096,"Piso en calle de Ramon Turró, La Vila Olímpica del Poblenou, Barcelona",2,110.0,4.0,644000,True,True,La Vila Olímpica del Poblenou,Piso
+1097,"Ático en calle del Capità Arenas, 25, Pedralbes, Barcelona",5,147.0,8.0,695000,True,True,Pedralbes,Ático
+1098,"Piso en calle de los castillejos, La Sagrada Família, Barcelona",3,84.0,,299000,True,False,La Sagrada Família,Piso
+1099,"Piso en CABALLERO, Les Corts, Barcelona",4,131.0,2.0,449000,True,True,Les Corts,Piso
+1100,"Piso en GUITARD, Les Corts, Barcelona",4,131.0,2.0,449000,True,True,Les Corts,Piso
+1101,"Piso en Gran Via de Carles III, La Maternitat i Sant Ramon, Barcelona",4,108.0,3.0,430000,True,True,La Maternitat i Sant Ramon,Piso
+1102,"Piso en Gran Via de Carles III, La Maternitat i Sant Ramon, Barcelona",4,108.0,3.0,430000,True,True,La Maternitat i Sant Ramon,Piso
+1103,"Estudio en Anna Maria Martinez, El Guinardó, Barcelona",48,,,85000,False,False,El Guinardó,Estudio
+1104,"Piso en Almagro, Verdun, Barcelona",2,40.0,4.0,105000,False,True,Verdun,Piso
+1105,"Piso en Conseil de cents, La Nova Esquerra de l'Eixample, Barcelona",2,70.0,1.0,445000,True,True,La Nova Esquerra de l'Eixample,Piso
+1106,"Piso en calle de Bac de Roda, Sant Martí de Provençals, Barcelona",4,100.0,2.0,259000,True,True,Sant Martí de Provençals,Piso
+1107,"Piso en Gran Via de les Corts Catalanes, La Nova Esquerra de l'Eixample, Barcelona",5,146.0,7.0,599850,True,True,La Nova Esquerra de l'Eixample,Piso
+1108,"Piso en Gran Via de les Corts Catalanes, L'Antiga Esquerra de l'Eixample, Barcelona",5,146.0,7.0,599850,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1109,"Piso en Gran Via de les Corts Catalanes, Sant Antoni, Barcelona",5,146.0,7.0,599850,True,True,Sant Antoni,Piso
+1110,"Piso en calle d'Aragó, La Nova Esquerra de l'Eixample, Barcelona",2,71.0,1.0,319000,True,True,La Nova Esquerra de l'Eixample,Piso
+1111,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",2,121.0,5.0,400000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1112,"Ático en calle dels Comtes de Bell-Lloc, 172, Les Corts, Barcelona",2,72.0,6.0,290000,True,True,Les Corts,Ático
+1113,"Piso en calle Industria, La Sagrada Família, Barcelona",4,95.0,4.0,610000,True,True,La Sagrada Família,Piso
+1114,"Piso en avenida de la Mare de Déu de Montserrat, El Guinardó, Barcelona",4,90.0,2.0,240000,True,True,El Guinardó,Piso
+1115,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",4,97.0,1.0,399000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1116,"Piso en La Sagrada Família, Barcelona",2,71.0,1.0,255000,False,False,La Sagrada Família,Piso
+1117,"Piso en Sant Antoni, Barcelona",3,89.0,1.0,399000,True,False,Sant Antoni,Piso
+1118,"Piso en Sants, 196, Sants, Barcelona",3,70.0,2.0,175000,False,True,Sants,Piso
+1119,"Piso en calle de Berenguer de Palou, s/n, Sant Andreu, Barcelona",3,62.0,4.0,198000,True,True,Sant Andreu,Piso
+1120,"Piso en calle de la Diputació, s/n, El Fort Pienc, Barcelona",4,60.0,1.0,225000,True,False,El Fort Pienc,Piso
+1121,"Piso en calle del Comte d'Urgell, 203, La Nova Esquerra de l'Eixample, Barcelona",3,82.0,1.0,359900,False,True,La Nova Esquerra de l'Eixample,Piso
+1122,"Piso en calle de la Indústria, El Camp de l'Arpa del Clot, Barcelona",2,75.0,5.0,345000,False,False,El Camp de l'Arpa del Clot,Piso
+1123,"Piso en ronda del General Mitre, 227, El Putxet i el Farró, Barcelona",3,148.0,2.0,635000,True,True,El Putxet i el Farró,Piso
+1124,"Piso en paseo de Montjuïc, El Poble Sec - Parc de Montjuïc, Barcelona",3,117.0,4.0,420000,True,True,El Poble Sec - Parc de Montjuïc,Piso
+1125,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",2,81.0,4.0,299000,True,True,El Poble Sec - Parc de Montjuïc,Piso
+1126,"Casa o chalet independiente en El Putxet i el Farró, Barcelona",4,220.0,,890000,False,False,El Putxet i el Farró,Casa
+1127,"Piso en calle de Narbona, El Besòs, Barcelona",3,67.0,1.0,110000,False,True,El Besòs,Piso
+1128,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",4,163.0,,1125000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+1129,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",8,483.0,,2750000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1130,"Casa o chalet independiente en Vallvidrera - El Tibidabo i les Planes, Barcelona",6,380.0,,1850000,False,False,Vallvidrera - El Tibidabo i les Planes,Casa
+1131,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",4,84.0,,299000,False,False,Sant Pere - Santa Caterina i la Ribera,Piso
+1132,"Ático en calle de Provença, La Nova Esquerra de l'Eixample, Barcelona",4,82.0,7.0,310000,True,True,La Nova Esquerra de l'Eixample,Ático
+1133,"Piso en calle Frederich Rahola, 43, La Font d'En Fargues, Barcelona",3,114.0,1.0,430000,True,True,La Font d'En Fargues,Piso
+1134,"Piso en calle Frederich Rahola, 43, La Font d'En Fargues, Barcelona",3,116.0,1.0,399000,True,True,La Font d'En Fargues,Piso
+1135,"Piso en calle Frederich Rahola, 43, La Font d'En Fargues, Barcelona",3,117.0,2.0,440000,True,True,La Font d'En Fargues,Piso
+1136,"Piso en calle de Josep Pla, Provençals del Poblenou, Barcelona",4,79.0,4.0,195000,True,True,Provençals del Poblenou,Piso
+1137,"Piso en calle d'Argullós, La Prosperitat, Barcelona",3,57.0,4.0,160000,False,True,La Prosperitat,Piso
+1138,"Piso en calle del Pintor Tapiró, La Maternitat i Sant Ramon, Barcelona",4,125.0,1.0,549000,True,True,La Maternitat i Sant Ramon,Piso
+1139,"Piso en calle de Londres, L'Antiga Esquerra de l'Eixample, Barcelona",4,95.0,2.0,390000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1140,"Piso en calle de Concepción Arenal, El Congrés i els Indians, Barcelona",4,99.0,6.0,345000,True,True,El Congrés i els Indians,Piso
+1141,"Piso en calle de Plutó, La Teixonera, Barcelona",3,61.0,2.0,125000,False,True,La Teixonera,Piso
+1142,"Piso en calle de València, La Sagrada Família, Barcelona",3,110.0,,525000,True,True,La Sagrada Família,Piso
+1143,"Piso en calle de Pau Claris, La Dreta de l'Eixample, Barcelona",4,225.0,2.0,1975000,True,True,La Dreta de l'Eixample,Piso
+1144,"Piso en travesía de Dalt, La Salut, Barcelona",4,122.0,5.0,595000,True,True,La Salut,Piso
+1145,"Ático en calle d'Enric Granados, L'Antiga Esquerra de l'Eixample, Barcelona",3,90.0,5.0,1430000,True,True,L'Antiga Esquerra de l'Eixample,Ático
+1146,"Piso en calle de Balmes, Sant Gervasi - Galvany, Barcelona",6,274.0,2.0,1190000,True,True,Sant Gervasi - Galvany,Piso
+1147,"Piso en paseo de la Bonanova, Sant Gervasi - La Bonanova, Barcelona",6,492.0,1.0,4000000,True,True,Sant Gervasi - La Bonanova,Piso
+1148,"Ático en calle de Mallorca, La Dreta de l'Eixample, Barcelona",1,126.0,6.0,850000,True,True,La Dreta de l'Eixample,Ático
+1149,"Piso en calle de Ríos Rosas, 13, El Putxet i el Farró, Barcelona",4,120.0,,449000,False,False,El Putxet i el Farró,Piso
+1150,"Ático en calle de Requesens, 5, El Raval, Barcelona",1,38.0,5.0,130000,False,False,El Raval,Ático
+1151,"Piso en calle de Bilbao, El Poblenou, Barcelona",4,105.0,2.0,485000,True,True,El Poblenou,Piso
+1152,"Piso en calle de Ganduxer, Sant Gervasi - La Bonanova, Barcelona",5,200.0,2.0,1350000,True,True,Sant Gervasi - La Bonanova,Piso
+1153,"Piso en paralelo, Sant Antoni, Barcelona",4,98.0,2.0,406000,True,True,Sant Antoni,Piso
+1154,"Piso en AV MADRID, Sants - Badal, Barcelona",3,120.0,6.0,463000,True,True,Sants - Badal,Piso
+1155,"Piso en Provençals del Poblenou, Barcelona",3,71.0,1.0,188000,True,True,Provençals del Poblenou,Piso
+1156,"Ático en Verdun, Barcelona",3,68.0,4.0,147500,False,False,Verdun,Ático
+1157,"Piso en Provençals del Poblenou, Barcelona",3,71.0,1.0,188000,True,True,Provençals del Poblenou,Piso
+1158,"Piso en Les Corts, Barcelona",2,50.0,1.0,200000,True,False,Les Corts,Piso
+1159,"Piso en calle de Ramon Turró, La Vila Olímpica del Poblenou, Barcelona",2,91.0,1.0,520000,True,True,La Vila Olímpica del Poblenou,Piso
+1160,"Dúplex en calle de Sant Joan de Malta, Provençals del Poblenou, Barcelona",3,105.0,,695000,True,False,Provençals del Poblenou,Dúplex
+1161,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",3,108.0,2.0,409000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1162,"Piso en calle de l'Alcalde de Móstoles, 47, El Baix Guinardó, Barcelona",3,80.0,4.0,265000,True,True,El Baix Guinardó,Piso
+1163,"Piso en calle Samsó, Vila de Gràcia, Barcelona",3,72.0,1.0,245000,False,False,Vila de Gràcia,Piso
+1164,"Piso en Mallorca-Viladomat, La Nova Esquerra de l'Eixample, Barcelona",3,75.0,6.0,265000,True,True,La Nova Esquerra de l'Eixample,Piso
+1165,"Piso en ronda de Sant Pere, La Dreta de l'Eixample, Barcelona",5,183.0,4.0,699000,True,True,La Dreta de l'Eixample,Piso
+1166,"Piso en calle de Puigcerdà, La Verneda i la Pau, Barcelona",3,92.0,4.0,210000,True,True,La Verneda i la Pau,Piso
+1167,"Piso en marques de barbera, El Raval, Barcelona",1,50.0,2.0,185000,False,True,El Raval,Piso
+1168,"Piso en Les Corts, Barcelona",3,86.0,1.0,310000,True,False,Les Corts,Piso
+1169,"Piso en Hostafrancs, Barcelona",4,88.0,5.0,295000,True,False,Hostafrancs,Piso
+1170,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",1,54.0,3.0,225000,False,False,Sant Pere - Santa Caterina i la Ribera,Piso
+1171,"Piso en Vila de Gràcia, Barcelona",2,202.0,,770000,False,False,Vila de Gràcia,Piso
+1172,"Piso en La Font de la Guatlla, Barcelona",3,76.0,2.0,460000,True,True,La Font de la Guatlla,Piso
+1173,"Piso en La Maternitat i Sant Ramon, Barcelona",2,67.0,2.0,416000,True,True,La Maternitat i Sant Ramon,Piso
+1174,"Piso en Sant Martí de Provençals, Barcelona",3,83.0,3.0,259000,True,True,Sant Martí de Provençals,Piso
+1175,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,80.0,3.0,630000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1176,"Piso en El Raval, Barcelona",5,111.0,1.0,480000,True,False,El Raval,Piso
+1177,"Piso en El Raval, Barcelona",4,206.0,1.0,600000,True,True,El Raval,Piso
+1178,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,103.0,,399000,True,False,Sant Pere - Santa Caterina i la Ribera,Piso
+1179,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,148.0,,1325000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+1180,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,148.0,2.0,1275000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1181,"Piso en La Nova Esquerra de l'Eixample, Barcelona",3,89.0,6.0,350000,True,False,La Nova Esquerra de l'Eixample,Piso
+1182,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,131.0,1.0,970000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1183,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",2,148.0,1.0,1200000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1184,"Piso en La Dreta de l'Eixample, Barcelona",2,81.0,,535000,True,False,La Dreta de l'Eixample,Piso
+1185,"Piso en El Raval, Barcelona",3,77.0,4.0,149000,False,True,El Raval,Piso
+1186,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,60.0,5.0,237000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1187,"Piso en La Nova Esquerra de l'Eixample, Barcelona",2,116.0,2.0,450000,True,True,La Nova Esquerra de l'Eixample,Piso
+1188,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,131.0,2.0,1025000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1189,"Piso en Sant Antoni, Barcelona",2,98.0,3.0,420000,True,False,Sant Antoni,Piso
+1190,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,131.0,3.0,1145000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1191,"Piso en Sant Pere - Santa Caterina i la Ribera, Barcelona",3,131.0,4.0,1145000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1192,"Piso en L'Antiga Esquerra de l'Eixample, Barcelona",3,78.0,,330000,True,False,L'Antiga Esquerra de l'Eixample,Piso
+1193,"Piso en El Gòtic, Barcelona",3,132.0,2.0,575000,True,True,El Gòtic,Piso
+1194,"Piso en El Gòtic, Barcelona",3,241.0,,1690000,True,False,El Gòtic,Piso
+1195,"Piso en El Gòtic, Barcelona",3,183.0,1.0,1115000,True,True,El Gòtic,Piso
+1196,"Piso en Pedralbes, Barcelona",3,117.0,4.0,495000,True,True,Pedralbes,Piso
+1197,"Piso en Pedralbes, Barcelona",5,285.0,4.0,2000000,True,True,Pedralbes,Piso
+1198,"Piso en La Marina del Port, Barcelona",3,73.0,3.0,210000,True,True,La Marina del Port,Piso
+1199,"Piso en Sants, Barcelona",4,149.0,6.0,590000,True,True,Sants,Piso
+1200,"Piso en El Poble Sec - Parc de Montjuïc, Barcelona",2,77.0,3.0,295000,True,True,El Poble Sec - Parc de Montjuïc,Piso
+1201,"Piso en Provençals del Poblenou, Barcelona",4,79.0,4.0,195000,True,True,Provençals del Poblenou,Piso
+1202,"Piso en La Sagrada Família, Barcelona",3,80.0,5.0,349000,True,True,La Sagrada Família,Piso
+1203,"Piso en Gran Via de les Corts Catalanes, La Nova Esquerra de l'Eixample, Barcelona",3,152.0,4.0,550000,True,True,La Nova Esquerra de l'Eixample,Piso
+1204,"Piso en travesía de Gràcia, El Baix Guinardó, Barcelona",2,69.0,2.0,270000,True,True,El Baix Guinardó,Piso
+1205,"Piso en calle dels Vigatans, Sant Pere - Santa Caterina i la Ribera, Barcelona",1,72.0,1.0,275000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1206,"Piso en calle del Comte Borrell, La Nova Esquerra de l'Eixample, Barcelona",2,72.0,1.0,360000,True,True,La Nova Esquerra de l'Eixample,Piso
+1207,"Piso en calle de Radas, El Poble Sec - Parc de Montjuïc, Barcelona",2,69.0,4.0,228000,False,True,El Poble Sec - Parc de Montjuïc,Piso
+1208,"Piso en calle de Ausias March, El Fort Pienc, Barcelona",3,87.0,1.0,395000,True,True,El Fort Pienc,Piso
+1209,"Ático en calle del Dos de Maig, El Camp de l'Arpa del Clot, Barcelona",3,90.0,7.0,765000,True,True,El Camp de l'Arpa del Clot,Ático
+1210,"Piso en La Sagrera, Barcelona",2,97.0,,360000,True,False,La Sagrera,Piso
+1211,"Piso en calle de Joan Güell, Les Corts, Barcelona",4,144.0,2.0,670000,True,True,Les Corts,Piso
+1212,"Piso en rambla de Catalunya, 3, La Dreta de l'Eixample, Barcelona",3,290.0,,2450000,True,True,La Dreta de l'Eixample,Piso
+1213,"Ático en calle de Sant Isidre, El Poble Sec - Parc de Montjuïc, Barcelona",2,60.0,5.0,260000,True,True,El Poble Sec - Parc de Montjuïc,Ático
+1214,"Piso en calle de Nicaragua, 75, Les Corts, Barcelona",2,185.0,5.0,1600000,True,True,Les Corts,Piso
+1215,"Chalet en El Camp de l'Arpa del Clot, Barcelona",3,300.0,,1450000,False,False,El Camp de l'Arpa del Clot,Chalet
+1216,"Piso en industria, El Camp d'En Grassot i Gràcia Nova, Barcelona",3,92.0,6.0,385000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+1217,"Piso en calle d'Aragó, La Sagrada Família, Barcelona",4,87.0,4.0,354000,True,True,La Sagrada Família,Piso
+1218,"Piso en calle del Parlament, Sant Antoni, Barcelona",2,54.0,6.0,185000,False,True,Sant Antoni,Piso
+1219,"Piso en calle de Ruiz de Padrón, El Camp de l'Arpa del Clot, Barcelona",3,75.0,,230000,True,False,El Camp de l'Arpa del Clot,Piso
+1220,"Piso en calle d'Andrade, La Verneda i la Pau, Barcelona",4,80.0,10.0,230000,True,True,La Verneda i la Pau,Piso
+1221,"Piso en ANDRADE, La Verneda i la Pau, Barcelona",4,100.0,6.0,269900,True,True,La Verneda i la Pau,Piso
+1222,"Piso en calle del Paraguai, Provençals del Poblenou, Barcelona",3,71.0,1.0,188000,True,True,Provençals del Poblenou,Piso
+1223,"Piso en calle de Rodrigo Caro, Les Roquetes, Barcelona",3,105.0,1.0,240000,False,True,Les Roquetes,Piso
+1224,"Piso en calle del Consell de Cent, La Nova Esquerra de l'Eixample, Barcelona",3,140.0,7.0,675000,True,True,La Nova Esquerra de l'Eixample,Piso
+1225,"Piso en calle de Bailèn, El Camp d'En Grassot i Gràcia Nova, Barcelona",3,77.0,1.0,385000,True,True,El Camp d'En Grassot i Gràcia Nova,Piso
+1226,"Piso en Sant Gervasi - Galvany, Barcelona",3,120.0,1.0,430000,True,False,Sant Gervasi - Galvany,Piso
+1227,"Piso en Les Tres Torres, Barcelona",3,118.0,2.0,795000,True,True,Les Tres Torres,Piso
+1228,"Piso en Pedralbes, Barcelona",5,280.0,6.0,2500000,True,True,Pedralbes,Piso
+1229,"Ático en El Clot, Barcelona",3,114.0,5.0,465000,True,True,El Clot,Ático
+1230,"Piso en El Raval, Barcelona",2,81.0,2.0,440000,False,True,El Raval,Piso
+1231,"Piso en Sant Gervasi - Galvany, Barcelona",4,280.0,,2750000,True,False,Sant Gervasi - Galvany,Piso
+1232,"Piso en El Gòtic, Barcelona",2,219.0,1.0,1280000,True,True,El Gòtic,Piso
+1233,"Chalet en El Putxet i el Farró, Barcelona",4,323.0,,1890000,False,False,El Putxet i el Farró,Chalet
+1234,"Piso en Vila de Gràcia, Barcelona",2,85.0,3.0,410000,False,True,Vila de Gràcia,Piso
+1235,"Piso en El Putxet i el Farró, Barcelona",5,210.0,1.0,1090000,True,True,El Putxet i el Farró,Piso
+1236,"Piso en El Gòtic, Barcelona",2,103.0,1.0,680000,True,True,El Gòtic,Piso
+1237,"Piso en El Fort Pienc, Barcelona",2,73.0,5.0,390000,True,False,El Fort Pienc,Piso
+1238,"Piso en calle de Calàbria, La Nova Esquerra de l'Eixample, Barcelona",1,82.0,1.0,260000,True,True,La Nova Esquerra de l'Eixample,Piso
+1239,"Piso en calle de Sant Pere Mitjà, Sant Pere - Santa Caterina i la Ribera, Barcelona",3,86.0,1.0,270000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1240,"Piso en El Gòtic, Barcelona",3,78.0,4.0,266000,False,True,El Gòtic,Piso
+1241,"Piso en calle de Bailèn, La Dreta de l'Eixample, Barcelona",4,145.0,6.0,760000,True,True,La Dreta de l'Eixample,Piso
+1242,"Piso en calle de Josep Anselm Clavé, El Gòtic, Barcelona",2,134.0,,449000,True,False,El Gòtic,Piso
+1243,"Piso en calle de la Florida, La Prosperitat, Barcelona",3,62.0,1.0,139000,False,True,La Prosperitat,Piso
+1244,"Piso en calle de Florència, El Guinardó, Barcelona",2,71.0,3.0,260000,True,True,El Guinardó,Piso
+1245,"Piso en calle Sicilia, El Fort Pienc, Barcelona",3,100.0,3.0,469000,True,True,El Fort Pienc,Piso
+1246,"Piso en via Favència, Canyelles, Barcelona",3,96.0,12.0,215000,True,True,Canyelles,Piso
+1247,"Piso en calle de Sant Pere Mitjà, Sant Pere - Santa Caterina i la Ribera, Barcelona",3,81.0,1.0,225000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1248,"Piso en Gran Via de les Corts Catalanes, La Verneda i la Pau, Barcelona",4,76.0,3.0,169000,True,True,La Verneda i la Pau,Piso
+1249,"Piso en calle Mallorca, El Clot, Barcelona",2,45.0,2.0,209000,True,True,El Clot,Piso
+1250,"Piso en calle de Menorca, La Verneda i la Pau, Barcelona",3,70.0,5.0,178000,True,True,La Verneda i la Pau,Piso
+1251,"Piso en calle de Còrsega, El Camp d'En Grassot i Gràcia Nova, Barcelona",4,117.0,3.0,495000,False,True,El Camp d'En Grassot i Gràcia Nova,Piso
+1252,"Piso en avenida del Paral·lel, 38, El Raval, Barcelona",3,63.0,6.0,235000,True,True,El Raval,Piso
+1253,"Piso en calle de las Navas de Tolosa, 361, Navas, Barcelona",4,93.0,2.0,329000,True,True,Navas,Piso
+1254,"Piso en avenida Diputación, La Dreta de l'Eixample, Barcelona",4,117.0,1.0,280000,True,True,La Dreta de l'Eixample,Piso
+1255,"Piso en calle de Vila i Vilà, 31, El Poble Sec - Parc de Montjuïc, Barcelona",4,100.0,5.0,300000,True,True,El Poble Sec - Parc de Montjuïc,Piso
+1256,"Piso en calle de la Diputació, La Nova Esquerra de l'Eixample, Barcelona",2,112.0,,550000,True,True,La Nova Esquerra de l'Eixample,Piso
+1257,"Piso en Gran Via de les Corts Catalanes, 316, La Font de la Guatlla, Barcelona",4,93.0,6.0,335000,True,True,La Font de la Guatlla,Piso
+1258,"Piso en calle de Sepúlveda, 103, Sant Antoni, Barcelona",3,61.0,4.0,299000,True,True,Sant Antoni,Piso
+1259,"Piso en calle Escocia, 75, Vilapicina i la Torre Llobeta, Barcelona",3,83.0,3.0,418200,True,True,Vilapicina i la Torre Llobeta,Piso
+1260,"Piso en calle de Gresolet, 17, Sarrià, Barcelona",3,85.0,1.0,445000,True,True,Sarrià,Piso
+1261,"Piso en calle de Galileu, Les Corts, Barcelona",3,85.0,1.0,380000,True,True,Les Corts,Piso
+1262,"Piso en calle de Tamarit, 77, El Poble Sec - Parc de Montjuïc, Barcelona",3,69.0,,310000,True,False,El Poble Sec - Parc de Montjuïc,Piso
+1263,"Piso en calle de Concepción Arenal, 67, El Congrés i els Indians, Barcelona",3,69.0,1.0,259000,False,True,El Congrés i els Indians,Piso
+1264,"Piso en calle d'Elkano, 53, El Poble Sec - Parc de Montjuïc, Barcelona",4,112.0,1.0,379000,True,True,El Poble Sec - Parc de Montjuïc,Piso
+1265,"Piso en calle de la Mare de Déu del Pilar, 8, Sant Pere - Santa Caterina i la Ribera, Barcelona",2,63.0,,240000,False,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1266,"Piso en paseo de Garcia Fària, 79, Diagonal Mar i el Front Marítim del Poblenou, Barcelona",4,170.0,6.0,1796000,True,True,Diagonal Mar i el Front Marítim del Poblenou,Piso
+1267,"Piso en avenida de Roma, La Nova Esquerra de l'Eixample, Barcelona",2,91.0,1.0,375000,True,True,La Nova Esquerra de l'Eixample,Piso
+1268,"Piso en calle de Sardenya, El Parc i la Llacuna del Poblenou, Barcelona",2,62.0,1.0,390000,True,True,El Parc i la Llacuna del Poblenou,Piso
+1269,"Piso en calle de Sardenya, El Parc i la Llacuna del Poblenou, Barcelona",1,64.0,1.0,400000,True,True,El Parc i la Llacuna del Poblenou,Piso
+1270,"Piso en rambla de Catalunya, La Dreta de l'Eixample, Barcelona",6,237.0,,1800000,True,True,La Dreta de l'Eixample,Piso
+1271,"Piso en paseo de Gràcia, La Dreta de l'Eixample, Barcelona",3,200.0,5.0,1950000,True,True,La Dreta de l'Eixample,Piso
+1272,"Piso en calle de Balmes, L'Antiga Esquerra de l'Eixample, Barcelona",3,134.0,3.0,890000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1273,"Piso en avenida de Josep Tarradellas, La Nova Esquerra de l'Eixample, Barcelona",3,87.0,4.0,385000,True,True,La Nova Esquerra de l'Eixample,Piso
+1274,"Piso en calle de Casp, La Dreta de l'Eixample, Barcelona",3,114.0,,1650000,True,True,La Dreta de l'Eixample,Piso
+1275,"Piso en calle de Muntaner, L'Antiga Esquerra de l'Eixample, Barcelona",3,110.0,3.0,695000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1276,"Piso en calle de Pujades, El Poblenou, Barcelona",3,84.0,6.0,365000,True,True,El Poblenou,Piso
+1277,"Casa o chalet independiente en Passatge de Montornès, Vallcarca i els Penitents, Barcelona",7,420.0,,1050000,False,False,Vallcarca i els Penitents,Casa
+1278,"Piso en rambla de Catalunya, La Dreta de l'Eixample, Barcelona",7,259.0,6.0,2450000,True,True,La Dreta de l'Eixample,Piso
+1279,"Piso en calle de Provença, La Dreta de l'Eixample, Barcelona",4,475.0,3.0,5000000,True,True,La Dreta de l'Eixample,Piso
+1280,"Piso en avenida de Madrid, Sants - Badal, Barcelona",4,77.0,5.0,295000,True,True,Sants - Badal,Piso
+1281,"Piso en calle de la Diputació, L'Antiga Esquerra de l'Eixample, Barcelona",2,148.0,,1325000,True,True,L'Antiga Esquerra de l'Eixample,Piso
+1282,"Piso en calle de Balmes, El Putxet i el Farró, Barcelona",6,257.0,6.0,1250000,True,True,El Putxet i el Farró,Piso
+1283,"Piso en via Laietana, Sant Pere - Santa Caterina i la Ribera, Barcelona",4,269.0,,1290000,True,True,Sant Pere - Santa Caterina i la Ribera,Piso
+1284,"Piso en calle de Mallorca, La Dreta de l'Eixample, Barcelona",7,336.0,4.0,1150000,True,True,La Dreta de l'Eixample,Piso
+1285,"Piso en ronda de la Universitat, La Dreta de l'Eixample, Barcelona",3,120.0,2.0,660000,True,True,La Dreta de l'Eixample,Piso
+1286,"Piso en calle de Lepant, La Sagrada Família, Barcelona",3,94.0,2.0,439000,True,True,La Sagrada Família,Piso
+1287,"Piso en Gran Via de les Corts Catalanes, Sant Antoni, Barcelona",3,120.0,,650000,True,True,Sant Antoni,Piso
+1288,"Ático en via Augusta, Sant Gervasi - Galvany, Barcelona",6,406.0,5.0,2700000,True,True,Sant Gervasi - Galvany,Ático
+1289,"Ático en calle de la Marina, El Fort Pienc, Barcelona",5,164.0,7.0,690000,True,True,El Fort Pienc,Ático

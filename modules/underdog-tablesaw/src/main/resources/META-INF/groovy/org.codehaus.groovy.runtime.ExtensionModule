@@ -1,4 +1,0 @@
-moduleName=Tablesaw Extensions
-moduleVersion=1.0.0-SNAPSHOT
-extensionClasses=com.github.grooviter.underdog.tablesaw.TableExtensions,com.github.grooviter.underdog.tablesaw.ColumnExtensions,com.github.grooviter.underdog.tablesaw.columns.DateColumnExtensions,com.github.grooviter.underdog.tablesaw.columns.IntColumnExtensions,com.github.grooviter.underdog.tablesaw.columns.DoubleColumnExtensions,com.github.grooviter.underdog.tablesaw.columns.NumberColumnExtensions,com.github.grooviter.underdog.tablesaw.columns.StringColumnExtensions,com.github.grooviter.underdog.tablesaw.RangeExtensions,com.github.grooviter.underdog.io.ReadProxyExtensions,com.github.grooviter.underdog.tablesaw.ListExtensions
-staticExtensionClasses=com.github.grooviter.underdog.tablesaw.DataFrameReaderExtensions
