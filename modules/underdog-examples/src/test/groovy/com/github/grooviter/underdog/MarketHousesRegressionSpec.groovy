@@ -83,7 +83,7 @@ class MarketHousesRegressionSpec extends Specification {
         def prediction = model.predict(xTest)
 
         and: "getting r2-score"
-        def score = Smile.validation.scoreR2(yTest, prediction)
+        def score = Smile.metrics.R2Score(yTest, prediction)
 
         then: "the prediction accuracy is really bad because is between 0.01 and 0.02"
         (0.79..0.80).containsWithinBounds(score)
@@ -107,7 +107,7 @@ class MarketHousesRegressionSpec extends Specification {
         def prediction = model.predict(xTest)
 
         and: "getting r2-score"
-        def score = Smile.validation.scoreR2(yTest, prediction)
+        def score = Smile.metrics.R2Score(yTest, prediction)
 
         then: "the prediction accuracy is really bad because is between 0.01 and 0.02"
         (0.79..0.80).containsWithinBounds(score)
@@ -131,7 +131,7 @@ class MarketHousesRegressionSpec extends Specification {
         def prediction = model.predict(xTest)
 
         and: "getting r2-score"
-        def score = Smile.validation.scoreR2(yTest, prediction)
+        def score = Smile.metrics.R2Score(yTest, prediction)
 
         then: "the prediction accuracy is really bad because is between 0.01 and 0.02"
         (0.79..0.80).containsWithinBounds(score)

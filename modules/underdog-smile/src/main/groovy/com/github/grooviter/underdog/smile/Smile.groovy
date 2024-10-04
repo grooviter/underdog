@@ -17,7 +17,7 @@ class Smile {
     /**
      * @since 0.1.0
      */
-    static Validation validation = new Validation()
+    static Metrics metrics = new Metrics()
 
     /**
      * @since 0.1.0

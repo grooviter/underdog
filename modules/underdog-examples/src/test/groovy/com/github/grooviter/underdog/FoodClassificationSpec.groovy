@@ -3,7 +3,6 @@ package com.github.grooviter.underdog
 import com.github.grooviter.underdog.smile.Smile
 import smile.classification.KNN
 import smile.validation.CrossValidation
-import smile.validation.metric.R2
 import spock.lang.Specification
 import com.github.grooviter.underdog.Underdog as ud
 
@@ -123,7 +122,7 @@ class FoodClassificationSpec extends Specification {
 
         when:
         def prediction = knn.predict(xTest)
-        def predictionScore = Smile.validation.scoreR2(yTest, prediction)
+        def predictionScore = Smile.metrics.R2Score(yTest, prediction)
 
         then: "using r-squared to see that the prediction is"
         (0.58..0.59).containsWithinBounds(predictionScore)

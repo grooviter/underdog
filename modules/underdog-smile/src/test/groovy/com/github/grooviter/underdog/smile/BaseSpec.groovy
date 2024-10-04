@@ -4,12 +4,13 @@ import com.github.grooviter.underdog.Underdog
 import spock.lang.Specification
 
 class BaseSpec extends Specification {
-    Tuple4<double[][], double[][], int[], int[]> binaryClassificationTrainTestSplit() {
+    Tuple4<double[][], double[][], int[], int[]> binaryClassificationTrainTestSplit(List<Integer> classes = [1, -1]) {
+        def (on, off) = classes
         def df = Underdog
             .read_csv(path: "src/test/resources/data/food.csv", sep: ";")
             .dropna()
 
-        df['y'] = df['TRAFFICLIGHT VALUE'](Integer, Integer){it == 3 ? 1 : -1 }
+        df['y'] = df['TRAFFICLIGHT VALUE'](Integer, Integer){it == 3 ? on : off }
 
         def X = df[['CARBS', 'SUGAR', 'PROTEINS', 'FAT', 'SALT', 'FIBER']] as double[][]
         def y = df['y'] as int[]

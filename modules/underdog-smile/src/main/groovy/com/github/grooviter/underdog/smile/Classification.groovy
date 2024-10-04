@@ -10,7 +10,6 @@ import smile.classification.LDA
 import smile.classification.LogisticRegression
 import smile.classification.RandomForest
 import smile.classification.SVM
-import smile.data.Tuple
 import smile.data.formula.Formula
 
 import static java.lang.Math.floor

@@ -11,7 +11,7 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.34..0.35).containsWithinBounds(Smile.validation.scoreR2(yTest, prediction))
+        (0.34..0.35).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
     }
 
     def "logistic regression"() {
@@ -23,7 +23,7 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.65..0.66).containsWithinBounds(Smile.validation.scoreR2(yTest, prediction))
+        (0.65..0.66).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
     }
 
     def "svc"() {
@@ -35,7 +35,7 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.09..0.10).containsWithinBounds(Smile.validation.scoreR2(yTest, prediction))
+        (0.09..0.10).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
     }
 
     def "decision tree"() {
@@ -47,7 +47,7 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.63..0.64).containsWithinBounds(Smile.validation.scoreR2(yTest, prediction))
+        (0.63..0.64).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
     }
 
     def "random forest"() {
@@ -59,6 +59,6 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.75..0.76).containsWithinBounds(Smile.validation.scoreR2(yTest, prediction))
+        (0.75..0.76).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
     }
 }
