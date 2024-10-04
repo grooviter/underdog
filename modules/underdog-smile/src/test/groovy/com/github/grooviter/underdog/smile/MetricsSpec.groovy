@@ -1,7 +1,5 @@
 package com.github.grooviter.underdog.smile
 
-import java.math.RoundingMode
-
 class MetricsSpec extends BaseSpec {
     def "confusion matrix"() {
         setup:
@@ -20,19 +18,21 @@ class MetricsSpec extends BaseSpec {
 
     def "classification report"() {
         setup:
-        int[] truth = [1, 1, 1, 1, 0, 1, 0, 1]
-        int[] prediction = [1, 1, 1, 0, 0, 1, 0, 1]
+        def (xTrain, xTest, yTrain, yTest) = binaryClassificationTrainTestSplit([1, 0])
+        def model = Smile.classification.logisticRegression(xTrain, yTrain)
+        def prediction = model.predict(xTest)
 
         when:
-        def result = Smile.metrics.binaryClassificationReport(truth, prediction)
+        def result = Smile.metrics.binaryClassificationReport(yTest, prediction)
 
         then:
-        result.class_0['accuracy'] == 1.0
-        result.class_1['accuracy'] == 0.8333333333333334
+        result.positive['accuracy'].toBigDecimal().round(2) == 0.90
+        result.negative['accuracy'].toBigDecimal().round(2) == 0.93
 
         and:
-        result.class_0['count'] == 2
-        result.class_1['count'] == 6
+        result.positive['count'] == 205
+        result.negative['count'] == 302
+        result.totals['count'] == 507
     }
 
     def "classification report with target names"() {
@@ -47,11 +47,12 @@ class MetricsSpec extends BaseSpec {
                 targetNames: ['healthy', 'no_healthy'])
 
         then:
-        result.healthy['accuracy'] == 1.0
-        result.no_healthy['accuracy'] == 0.8333333333333334
+        result.positive['accuracy'] == 1.0
+        result.negative['accuracy'] == 0.8333333333333334
 
         and:
-        result.healthy['count'] == 2
-        result.no_healthy['count'] == 6
+        result.positive['count'] == 2
+        result.negative['count'] == 6
+        result.totals['count'] == 8
     }
 }

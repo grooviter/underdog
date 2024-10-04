@@ -1,5 +1,6 @@
 package com.github.grooviter.underdog.smile
 
+import com.github.grooviter.underdog.smile.xvalidation.BinaryClassificationReport
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import smile.validation.metric.Accuracy
@@ -112,7 +113,7 @@ class Metrics {
 
     /**
      * Build a map showing the main classification metrics for positive and negative classes in a
-     * binary classification
+     * binary classification. Labels should be either 1 (positive) or 0 (negative)
      *
      * @param truth the ground truth
      * @param prediction the prediction
@@ -122,18 +123,20 @@ class Metrics {
      * @since 0.1.0
      */
     @NamedVariant
-    Map<String, ?> binaryClassificationReport(
+    BinaryClassificationReport binaryClassificationReport(
             int[] truth,
             int[] prediction,
             @NamedParam(required = false) List<String> targetNames = []) {
         int[] classes = truth.toList().unique()
         Map<Integer, String> indexedTargetNames = targetNames.indexed()
 
-        if (targetNames.size() > 0 && classes.length !== targetNames.size()) {
-            throw new RuntimeException("targetNames size (${targetNames.size()}) is different from classes size ${classes.length}")
+        if (targetNames.size() !== 0 && classes.length !== targetNames.size()) {
+            throw new RuntimeException(
+                "targetNames size (${targetNames.size()}) is different from classes size ${classes.length}"
+            )
         }
 
-        return classes.inject([:]) { Map agg, int targetValue ->
+        Map<String, Map<String, Number>> metrics = classes.inject([:]) { Map<String, Map<String, Number>> agg, int targetValue ->
             Map<Integer, Integer> currentTruthIndexed = truth
                 .indexed()
                 .findAll { k, v -> v === targetValue }
@@ -142,8 +145,13 @@ class Metrics {
                 .indexed()
                 .findAll { k, v -> k in currentTruthIndexed.keySet() }
 
-            int[] currentTruth = currentTruthIndexed.values().collect(applyCurrentTruth(targetValue))
-            int[] currentPrediction = currentPredictionIndexed.values().collect(applyCurrentTruth(targetValue))
+            int[] currentTruth = currentTruthIndexed
+                .values()
+                .collect(applyCurrentTruth(targetValue))
+
+            int[] currentPrediction = currentPredictionIndexed
+                .values()
+                .collect(applyCurrentTruth(targetValue))
 
             String classKey = indexedTargetNames[targetValue] ?: "class_${targetValue}"
 
@@ -153,10 +161,28 @@ class Metrics {
                 recall: Recall.of(currentTruth, currentPrediction),
                 F1: FScore.F1.score(currentTruth, currentPrediction),
                 count: currentTruth.size()
-            ]
+            ] as Map<String, Number>
 
             return agg
         }
+
+        metrics['avg_total'] = [
+            accuracy: extractAverage(metrics, 'accuracy'),
+            precision: extractAverage(metrics, 'precision'),
+            recall: extractAverage(metrics, 'recall'),
+            F1: extractAverage(metrics, 'F1'),
+            count: metrics.collect { k, v -> v['count'] }.sum(),
+        ] as Map<String, Number>
+
+        return new BinaryClassificationReport(
+            metrics[metrics.keySet()[-2]],
+            metrics[metrics.keySet()[0]],
+            metrics['avg_total'],
+            targetNames)
+    }
+
+    private static BigDecimal extractAverage(Map<String, Map<String, Double>> map, String property) {
+        return map.collect { k, v -> v[property] }.average() as BigDecimal
     }
 
     private static Closure<Integer> applyCurrentTruth(int targetValue) {
