@@ -12,12 +12,12 @@ class XValidationSpec extends BaseSpec {
         validation.avg.accuracy > rate
 
         where:
-        tag             | data                                 | trainer                                  | rate
-        'logistic'      | multiClassificationTrainTestSplit()  | Smile.classification::logisticRegression | 0.80
-        'knn'           | multiClassificationTrainTestSplit()  | Smile.classification::knn                | 0.80
-        'lda'           | multiClassificationTrainTestSplit()  | Smile.classification::lda                | 0.80
-        'decision-tree' | multiClassificationTrainTestSplit()  | Smile.classification::decisionTree       | 0.80
-        'random-forest' | multiClassificationTrainTestSplit()  | Smile.classification::randomForest       | 0.80
-        'svc'           | binaryClassificationTrainTestSplit() | Smile.classification::svc                | 0.20
+        tag             | data                                       | trainer                                  | rate
+        'logistic'      | multiClassificationTrainTestSplit()        | Smile.classification::logisticRegression | 0.80
+        'knn'           | multiClassificationTrainTestSplit()        | Smile.classification::knn                | 0.80
+        'lda'           | multiClassificationTrainTestSplit()        | Smile.classification::lda                | 0.80
+        'decision-tree' | multiClassificationTrainTestSplit()        | Smile.classification::decisionTree       | 0.80
+        'random-forest' | binaryClassificationTrainTestSplit([0, 1]) | Smile.classification::randomForest       | 0.80
+        'svc'           | binaryClassificationTrainTestSplit()       | Smile.classification::svc                | 0.20
     }
 }

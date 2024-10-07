@@ -436,17 +436,16 @@ class TSDataFrame implements DataFrame {
             @NamedParam(required = false) boolean copy) {
 
         if (columns) {
-            this.renameByList(columns)
+            return this.renameByList(columns)
         }
 
         if (mapper){
-            this.renameByMapper(mapper)
+            return this.renameByMapper(mapper)
         }
 
         if (fn) {
-            this.renameByFn(fn)
+            return this.renameByFn(fn)
         }
-
 
         return this
     }

@@ -1,6 +1,13 @@
 package com.github.grooviter.underdog.smile
 
 
+import smile.math.kernel.GaussianKernel
+import smile.math.kernel.HyperbolicTangentKernel
+import smile.math.kernel.LinearKernel
+import smile.math.kernel.PearsonKernel
+import smile.math.kernel.PolynomialKernel
+
+
 class ClassificationSpec extends BaseSpec {
     def "knn"() {
         setup:
@@ -11,7 +18,7 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.34..0.35).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
+        (0.80..0.85).containsWithinBounds(Smile.metrics.accuracy(yTest, prediction))
     }
 
     def "logistic regression"() {
@@ -23,7 +30,7 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.65..0.66).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
+        (0.90..0.95).containsWithinBounds(Smile.metrics.accuracy(yTest, prediction))
     }
 
     def "svc"() {
@@ -31,11 +38,19 @@ class ClassificationSpec extends BaseSpec {
         def (xTrain, xTest, yTrain, yTest) = binaryClassificationTrainTestSplit()
 
         when:
-        def model = Smile.classification.svc(xTrain, yTrain)
+        def model = Smile.classification.svc(xTrain, yTrain, kernel: kernel, C: 0.01)
         def prediction = model.predict(xTest)
 
         then:
-        (0.09..0.10).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
+        range.containsWithinBounds(Smile.metrics.accuracy(yTest, prediction))
+
+        where:
+        kernel                                | range
+        new LinearKernel()                    | 0.80..0.90
+        new PolynomialKernel(3)               | 0.40..0.60
+        new GaussianKernel(0.1)               | 0.40..0.60
+        new PearsonKernel(0.1, 0.0)           | 0.40..0.60
+        new HyperbolicTangentKernel(0.1, 0.0) | 0.40..0.60
     }
 
     def "decision tree"() {
@@ -47,7 +62,7 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.63..0.64).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
+        (0.70..0.80).containsWithinBounds(Smile.metrics.accuracy(yTest, prediction))
     }
 
     def "random forest"() {
@@ -59,6 +74,30 @@ class ClassificationSpec extends BaseSpec {
         def prediction = model.predict(xTest)
 
         then:
-        (0.75..0.76).containsWithinBounds(Smile.metrics.R2Score(yTest, prediction))
+        (0.80..0.90).containsWithinBounds(Smile.metrics.accuracy(yTest, prediction))
+    }
+
+    def "gradient boost"() {
+        setup:
+        def (xTrain, xTest, yTrain, yTest) = binaryClassificationTrainTestSplit([0,1])
+
+        when:
+        def model = Smile.classification.gradientBoost(xTrain, yTrain, maxDepth: 4)
+        def prediction = model.predict(xTest)
+
+        then:
+        (0.85..0.98).containsWithinBounds(Smile.metrics.accuracy(yTest, prediction))
+    }
+
+    def "multi-layer-perceptron"() {
+        setup:
+        def (xTrain, xTest, yTrain, yTest) = binaryClassificationTrainTestSplit([0,1])
+
+        when:
+        def model = Smile.classification.multilayerPerceptron(xTrain, yTrain)
+        def prediction = model.predict(xTest)
+
+        then:
+        (0.85..0.90).containsWithinBounds(Smile.metrics.accuracy(yTest, prediction))
     }
 }

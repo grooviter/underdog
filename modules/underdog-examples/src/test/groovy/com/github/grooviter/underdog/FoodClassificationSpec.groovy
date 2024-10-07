@@ -117,12 +117,11 @@ class FoodClassificationSpec extends Specification {
             shuffle: true)
 
         and: "select the sensitivity with better average accuracy to train data"
-        def (sensitivity, _) = bestKNNAccuracyAvg(xTrain, yTrain, 3..5)
-        def knn = Smile.classification.knn(xTrain, yTrain, k: sensitivity)
+        def knn = Smile.classification.knn(xTrain, yTrain, k: 5)
 
         when:
         def prediction = knn.predict(xTest)
-        def predictionScore = Smile.metrics.R2Score(yTest, prediction)
+        def predictionScore = Smile.metrics.r2Score(yTest, prediction)
 
         then: "using r-squared to see that the prediction is"
         (0.58..0.59).containsWithinBounds(predictionScore)

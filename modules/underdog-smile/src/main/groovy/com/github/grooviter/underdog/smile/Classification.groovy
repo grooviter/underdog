@@ -5,12 +5,15 @@ import groovy.transform.NamedVariant
 import smile.base.cart.SplitRule
 import smile.classification.Classifier
 import smile.classification.DecisionTree
+import smile.classification.GradientTreeBoost
 import smile.classification.KNN
 import smile.classification.LDA
 import smile.classification.LogisticRegression
+import smile.classification.MLP
 import smile.classification.RandomForest
 import smile.classification.SVM
 import smile.data.formula.Formula
+import smile.math.kernel.MercerKernel
 
 import static java.lang.Math.floor
 import static java.lang.Math.sqrt
@@ -94,8 +97,9 @@ class Classification {
         double[][] X,
         int[] y,
         @NamedParam(required = false) double C = 1.0,
-        @NamedParam(required = false) double toleration = 1e-4) {
-        return SVM.fit(X, y, C, toleration)
+        @NamedParam(required = false) double toleration = 1e-4,
+        @NamedParam(required = false) MercerKernel kernel = MercerKernel.of('linear')) {
+        return SVM.fit(X, y, kernel, C, toleration)
     }
 
     /**
@@ -188,5 +192,68 @@ class Classification {
         @NamedParam(required = false) double[] priori,
         @NamedParam(required = false) double tot = 1.0E-4) {
         return LDA.fit(X, y, priori ?: null, tot)
+    }
+
+    /**
+     * Gradient boosting for classification. Gradient boosting is typically used with decision trees
+     * (especially CART regression trees) of a fixed size as base learners. For this special case Friedman
+     * proposes a modification to gradient boosting method which improves the quality of fit of each base learner.
+     *
+     * @param X features matrix
+     * @param y labels matrix
+     * @param nTress the number of iterations (trees)
+     * @param maxDepth the maximum depth of the tree
+     * @param maxNodes the maximum number of leaf nodes in the tree
+     * @param nodeSize the number of instances in a node below which the tree will not split
+     * @param shrinkage  the shrinkage parameter in (0, 1] controls the learning rate of procedure
+     * @param subSample the sampling fraction for stochastic tree boosting
+     * @return {@link GradientTreeBoost}
+     */
+    @NamedVariant
+    GradientTreeBoost gradientBoost(
+            double[][] X,
+            int[] y,
+            @NamedParam(required = false) int nTrees = 500,
+            @NamedParam(required = false) int maxDepth = 20,
+            @NamedParam(required = false) int maxNodes = 6,
+            @NamedParam(required = false) int nodeSize = 5,
+            @NamedParam(required = false) double shrinkage = 0.05,
+            @NamedParam(required = false) double subSample = 0.7) {
+        return GradientTreeBoost.fit(
+                FORMULA_Y,
+                Utils.createDataFrameFrom(X, y),
+                nTrees,
+                maxDepth,
+                maxNodes,
+                nodeSize,
+                shrinkage,
+                subSample)
+    }
+
+    /**
+     * Fully connected multilayer perceptron neural network. An MLP consists of at least three layers of nodes:
+     * an input layer, a hidden layer and an output layer
+     *
+     * @param X
+     * @param y
+     * @param layers
+     * @param epochs
+     * @param miniBatch
+     * @return {@link Classifier}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    Classifier<double[]> multilayerPerceptron(
+            double[][] X,
+            int[] y,
+            @NamedParam(required = false) String layers = "ReLU(100)",
+            @NamedParam(required = false) int epochs = 100,
+            @NamedParam(required = false) int miniBatch = 32
+    ) {
+        Properties props = new Properties()
+        props.put("smile.mlp.layers", layers)
+        props.put("smile.mlp.epochs", epochs.toString())
+        props.put("smile.mlp.mini_batch", miniBatch.toString())
+        return MLP.fit(X, y, props)
     }
 }

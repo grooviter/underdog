@@ -12,6 +12,11 @@ class Smile {
     /**
      * @since 0.1.0
      */
+    static Features features = new Features()
+
+    /**
+     * @since 0.1.0
+     */
     static Regression regression = new Regression()
 
     /**

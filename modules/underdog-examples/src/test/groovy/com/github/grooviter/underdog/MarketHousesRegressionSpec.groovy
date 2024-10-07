@@ -5,6 +5,8 @@ import smile.validation.metric.Accuracy
 import spock.lang.Specification
 import com.github.grooviter.underdog.Underdog as ud
 
+import java.math.RoundingMode
+
 class MarketHousesRegressionSpec extends Specification {
     static String PRICES_CSV = "src/test/resources/com/github/grooviter/underdog/tablesaw/idealistaBCN.csv"
     static List<String> FEATURES = ['habs', 'm2', 'floor']
@@ -83,7 +85,7 @@ class MarketHousesRegressionSpec extends Specification {
         def prediction = model.predict(xTest)
 
         and: "getting r2-score"
-        def score = Smile.metrics.R2Score(yTest, prediction)
+        def score = Smile.metrics.r2Score(yTest, prediction)
 
         then: "the prediction accuracy is really bad because is between 0.01 and 0.02"
         (0.79..0.80).containsWithinBounds(score)
@@ -107,7 +109,7 @@ class MarketHousesRegressionSpec extends Specification {
         def prediction = model.predict(xTest)
 
         and: "getting r2-score"
-        def score = Smile.metrics.R2Score(yTest, prediction)
+        def score = Smile.metrics.r2Score(yTest, prediction)
 
         then: "the prediction accuracy is really bad because is between 0.01 and 0.02"
         (0.79..0.80).containsWithinBounds(score)
@@ -125,13 +127,18 @@ class MarketHousesRegressionSpec extends Specification {
         def (xTrain, xTest, yTrain, yTest) = Smile.utils.trainTestSplit(X, y)
 
         when: "creating the model from training datasets"
-        def model = Smile.regression.ols(xTrain, yTrain, method: method, stderr: stderr, recursive: recursive)
+        def model = Smile.regression.ols(
+                xTrain,
+                yTrain,
+                method: method,
+                stderr: stderr,
+                recursive: recursive)
 
         and: "using prediction against test dataset"
         def prediction = model.predict(xTest)
 
         and: "getting r2-score"
-        def score = Smile.metrics.R2Score(yTest, prediction)
+        def score = Smile.metrics.r2Score(yTest, prediction)
 
         then: "the prediction accuracy is really bad because is between 0.01 and 0.02"
         (0.79..0.80).containsWithinBounds(score)
@@ -144,5 +151,34 @@ class MarketHousesRegressionSpec extends Specification {
         'svd'  | true   | true
         'svd'  | false  | true
         'svd'  | true   | false
+    }
+
+    def "Question 4: use SVM based regression 2"() {
+        setup: "getting dataframe"
+        def df = Underdog
+            .read_csv(path: "src/test/resources/com/github/grooviter/underdog/tablesaw/day.csv")
+            .dropna()
+
+        and: "creating target and features datasets"
+        def X = df[['temp']] as double[][]
+        def y = df['registered'] as double[]
+
+        and: "splitting dataset between train and test datasets"
+        def (xTrain, xTest, yTrain, yTest) = Smile.utils.trainTestSplit(X, y)
+
+        when: "creating the model from training datasets"
+        def model = Smile.regression.ols(xTrain, yTrain)
+
+        and: "using prediction against test dataset"
+        def prediction = model.predict(xTest)
+
+        and: "getting r2-score"
+        def score = Smile.metrics
+                .r2Score(yTest, prediction)
+                .toBigDecimal()
+                .setScale(2, RoundingMode.HALF_EVEN)
+
+        then: "the prediction accuracy is really bad because is between 0.01 and 0.02"
+        (0.30..0.40).containsWithinBounds(score)
     }
 }

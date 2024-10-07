@@ -5,15 +5,24 @@ import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import smile.validation.metric.Accuracy
 import smile.validation.metric.ConfusionMatrix
+import smile.validation.metric.MAD
+import smile.validation.metric.MSE
 import smile.validation.metric.Precision
-import smile.validation.metric.R2
 import smile.validation.metric.FScore
+import smile.validation.metric.R2
 import smile.validation.metric.Recall
 
 /**
+ * Model validation metrics. A validation metric provides a quantitative measure of agreement between a predictive
+ * model and physical observations.
+ *
  * @since 0.1.0
  */
 class Metrics {
+
+    double accuracy(int[] truth, int[] prediction) {
+        return Accuracy.of(truth, prediction)
+    }
 
     /**
      * The F-score (or F-measure) considers both the precision and the recall of the test to compute the score.
@@ -81,7 +90,7 @@ class Metrics {
      * @return the R2-score metric value
      * @since 0.1.0
      */
-    double R2Score(double[] truth, double[] prediction) {
+    double r2Score(double[] truth, double[] prediction) {
         return new R2().score(truth, prediction)
     }
 
@@ -94,8 +103,32 @@ class Metrics {
      * @return the R2-score metric value
      * @since 0.1.0
      */
-    double R2Score(int[] truth, int[] prediction) {
+    double r2Score(int[] truth, int[] prediction) {
         return new R2().score(truth as double[], prediction as double[])
+    }
+
+    /**
+     * Mean absolute error
+     *
+     * @param truth the ground truth
+     * @param prediction the prediction
+     * @return the score metric value
+     * @since 0.1.0
+     */
+    double meanAbsoluteError(double[] truth, double[] prediction) {
+        return MAD.of(truth, prediction)
+    }
+
+    /**
+     * Mean squared error
+     *
+     * @param truth the ground truth
+     * @param prediction the prediction
+     * @return the score metric value
+     * @since 0.1.0
+     */
+    double meanSquaredError(double[] truth, double[] prediction) {
+        return MSE.of(truth, prediction)
     }
 
     /**

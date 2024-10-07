@@ -2,6 +2,7 @@ package com.github.grooviter.underdog.smile
 
 import smile.classification.Classifier
 import smile.classification.DecisionTree
+import smile.classification.GradientTreeBoost
 import smile.classification.RandomForest
 import smile.data.DataFrame
 import smile.data.Tuple
@@ -54,7 +55,15 @@ class ClassificationExtensions {
         return predictTuple(classifier, X, posteriori)
     }
 
-    private static <M extends Classifier<Tuple>> int[] predictTuple(M classifier, double[][] X, double[][] posteriori) {
+    static int[] predict(GradientTreeBoost classifier, double[][] X, double[][] posteriori) {
+        return predictTuple(classifier, X, posteriori)
+    }
+
+    static int[] predict(GradientTreeBoost classifier, double[][] X) {
+        return predictTuple(classifier, X, null)
+    }
+
+    static <M extends Classifier<Tuple>> int[] predictTuple(M classifier, double[][] X, double[][] posteriori) {
         if (X?.length <= 0) {
             return [] as int[]
         }

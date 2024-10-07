@@ -1,7 +1,22 @@
 package com.github.grooviter.underdog.smile
 
 class MetricsSpec extends BaseSpec {
-    def "confusion matrix"() {
+    def "confusion matrix: binary-class"() {
+        setup:
+        def (xTrain, xTest, yTrain, yTest) = binaryClassificationTrainTestSplit([1, 0])
+
+        when:
+        def model = Smile.classification.randomForest(xTrain, yTrain)
+        def prediction = model.predict(xTest)
+
+        and:
+        def result = Smile.metrics.confusionMatrix(yTest, prediction)
+
+        then:
+        result.shape() == [2, 2]
+    }
+
+     def "confusion matrix: multi-class"() {
         setup:
         def (xTrain, xTest, yTrain, yTest) = multiClassificationTrainTestSplit()
 
@@ -13,7 +28,7 @@ class MetricsSpec extends BaseSpec {
         def result = Smile.metrics.confusionMatrix(yTest, prediction)
 
         then:
-        result.matrix.length == 4
+        result.shape() == [4, 4]
     }
 
     def "classification report"() {

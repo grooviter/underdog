@@ -72,6 +72,11 @@ class Utils {
         return DataFrame.of([*vectorList, yAsIntegerVector] as BaseVector[])
     }
 
+    static DataFrame createDataFrameFrom(double[][] X) {
+        String[] names = (0..<X[0].length).collect { "X$it" }
+        return DataFrame.of(X, names)
+    }
+
     /**
      * This method returns a {@link smile.data.DataFrame} from a features (X) and labels (y) arrays. All the
      * feature columns will have names from X0...Xn and the last column of the dataframe will be "y". All columns

@@ -303,4 +303,15 @@ class TSSeries implements Series {
     Series dropna() {
         return new TSSeries(column.removeMissing())
     }
+
+    @NamedVariant
+    Series sort(@NamedParam(required = false) boolean descending = false) {
+        if (descending) {
+            this.column.sortDescending()
+        } else {
+            this.column.sortAscending()
+        }
+
+        return new TSSeries(this.column)
+    }
 }
