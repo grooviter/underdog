@@ -65,8 +65,18 @@ class Underdog {
             @NamedParam(required = false) List<String> nanValues,
             @NamedParam(required = false) boolean allowedDuplicatedNames,
             @NamedParam(required = false) String dateFormat,
-            @NamedParam(required = false) String dateTimeFormat){
+            @NamedParam(required = false) String dateTimeFormat,
+            @NamedParam(required = false) int maxCharsPerColumn,
+            @NamedParam(required = false) int maxNumberOfColumns){
         TSCsvReaderOptions.Builder builder = TSCsvReaderOptions.builder(new File(path))
+
+        if (maxCharsPerColumn) {
+            builder.maxCharsPerColumn(maxCharsPerColumn)
+        }
+
+        if (maxNumberOfColumns) {
+            builder.maxNumberOfColumns(maxNumberOfColumns)
+        }
 
         if (dateFormat) {
             builder.dateFormat(dateFormat)

@@ -11,7 +11,9 @@ dependencies {
     api "org.apache.groovy:groovy-json:$groovy"
     api "org.apache.groovy:groovy-templates:$groovy"
     api "org.apache.groovy:groovy-dateutil:$groovy"
+
     implementation "com.github.haifengl:smile-core:3.1.1"
+    implementation "com.github.haifengl:smile-nlp:3.1.1"
 
     implementation "tech.tablesaw:tablesaw-core:$tablesaw"
     implementation "org.apache.groovy:groovy-macro:$groovy"

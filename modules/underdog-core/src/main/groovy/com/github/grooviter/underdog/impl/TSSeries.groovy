@@ -64,10 +64,13 @@ class TSSeries implements Series {
     }
 
     @Override
-    def <P, O> Series call(Class<P> clazz, Class<O> output, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func) {
-        Column newCol = switch(output) {
-            case Integer -> ColumnType.INTEGER.create("random")
+    <P, O> Series call(Class<P> clazz, Class<O> output, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func) {
+        ColumnType newColType = switch(output) {
+            case BigInteger -> ColumnType.LONG
+            case BigDecimal -> ColumnType.DOUBLE
+            default -> ColumnType.valueOf(output.simpleName.toUpperCase())
         }
+        Column newCol = newColType.create("random")
         (0..<this.size()).each { newCol.appendMissing() }
         Function<P, O> fn = i -> func(i)
         return new TSSeries(this.column.mapInto(fn, newCol))
@@ -273,6 +276,11 @@ class TSSeries implements Series {
     @Override
     DataFrame describe() {
         return new TSDataFrame(this.column.summary())
+    }
+
+    @Override
+    String[] toStringArray() {
+        return this.column.asStringColumn().asList() as String[]
     }
 
     @Override

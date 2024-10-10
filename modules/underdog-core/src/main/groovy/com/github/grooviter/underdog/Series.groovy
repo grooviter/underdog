@@ -167,6 +167,8 @@ interface Series extends Columnar {
      */
     DataFrame describe()
 
+    String[] toStringArray()
+
     @NamedVariant
     Series sort(@NamedParam(required = false) boolean descending)
 

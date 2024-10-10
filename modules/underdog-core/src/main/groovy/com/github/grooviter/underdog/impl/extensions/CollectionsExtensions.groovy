@@ -2,7 +2,6 @@ package com.github.grooviter.underdog.impl.extensions
 
 import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.impl.TSDataFrame
-import tech.tablesaw.api.Table
 
 /**
  * @since 0.1.0
