@@ -1,9 +1,16 @@
 package com.github.grooviter.underdog.smile
 
+import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.Underdog
 import spock.lang.Specification
 
 class BaseSpec extends Specification {
+    DataFrame loadFoodDataFrame() {
+        return Underdog
+                .read_csv(path: "src/test/resources/data/food.csv", sep: ";")
+                .dropna()
+    }
+
     Tuple4<double[][], double[][], int[], int[]> binaryClassificationTrainTestSplit(List<Integer> classes = [1, -1]) {
         def (on, off) = classes
         def df = Underdog

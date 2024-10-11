@@ -1,7 +1,9 @@
 package com.github.grooviter.underdog.smile
 
+import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import smile.data.transform.InvertibleColumnTransform
+import smile.feature.extraction.ProbabilisticPCA
 import smile.feature.transform.Scaler
 import smile.feature.transform.Standardizer
 import smile.nlp.dictionary.EnglishStopWords
@@ -58,5 +60,19 @@ class Features {
             int maxFeatures = 10
     ) {
         return new CountVectorizer(tokenizer, stemmer, stopWords, maxFeatures)
+    }
+
+    /**
+     * Principal component analysis. PCA is an orthogonal linear transformation that transforms a number of possibly
+     * correlated variables into a smaller number of uncorrelated variables called principal components.
+     *
+     * @param X data to reduce the dimensionality from
+     * @param nComponents the number of components to reduce the dimensionality of X
+     * @return a {@link ProbabilisticPCA}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    ProbabilisticPCA pca(double[][] X, @NamedParam(required = false) int nComponents = 2) {
+        return ProbabilisticPCA.fit(X, nComponents)
     }
 }

@@ -12,6 +12,11 @@ class Smile {
     /**
      * @since 0.1.0
      */
+    static Clustering clustering = new Clustering()
+
+    /**
+     * @since 0.1.0
+     */
     static Features features = new Features()
 
     /**

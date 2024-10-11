@@ -4,6 +4,8 @@ import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.impl.TSDataFrame
 
 /**
+ * Utils methods when working with arrays and collections
+ *
  * @since 0.1.0
  */
 class CollectionsExtensions {
@@ -61,5 +63,21 @@ class CollectionsExtensions {
      */
     static DataFrame toDataFrame(Map<String,List<?>> map, String dataFrameName) {
         return TSDataFrame.from(dataFrameName, map)
+    }
+
+    /**
+     * Returns the shape of a given double[][] array. If array is empty or null returns [0, 0] the rest of the
+     * time it returns the length of the array (length) and the length of the first array (width).
+     *
+     * @param data the array the get the shape from
+     * @return a list of type [length, width] of the array
+     * @since 0.1.0
+     */
+    static List<Integer> shape(double[][] data) {
+        if (!data) {
+            return [0, 0]
+        }
+        def firstNestedArray = (data.find() ?: []) as double[]
+        return [data.length, firstNestedArray.length]
     }
 }

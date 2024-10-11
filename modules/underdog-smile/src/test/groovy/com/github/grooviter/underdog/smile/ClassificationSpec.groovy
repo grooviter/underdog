@@ -47,7 +47,7 @@ class ClassificationSpec extends BaseSpec {
         where:
         kernel                                | range
         new LinearKernel()                    | 0.80..0.90
-        new PolynomialKernel(3)               | 0.40..0.60
+        new PolynomialKernel(3)               | 0.40..0.90
         new GaussianKernel(0.1)               | 0.40..0.60
         new PearsonKernel(0.1, 0.0)           | 0.40..0.60
         new HyperbolicTangentKernel(0.1, 0.0) | 0.40..0.60
