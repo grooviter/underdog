@@ -14,8 +14,10 @@ import org.jgrapht.traverse.MaximumCardinalityIterator
 class TraversalExtensions {
 
     /**
-     * @param graph
-     * @return
+     * Creates a breadth-first iterator for a directed or undirected graph
+     *
+     * @param graph the graph to create the iterator from
+     * @return a {@link BreadthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> BreadthFirstIterator<V,E> 'get*'(G graph) {
@@ -23,9 +25,11 @@ class TraversalExtensions {
     }
 
     /**
-     * @param graph
-     * @param startVertex
-     * @return
+     * Creates a breadth-first iterator for a directed or undirected graph
+     *
+     * @param graph the graph to create the iterator from
+     * @param startVertex the vertices to start from
+     * @return a {@link BreadthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> BreadthFirstIterator<V,E> 'get*'(G graph, V startVertex) {
@@ -33,8 +37,10 @@ class TraversalExtensions {
     }
 
     /**
-     * @param graph
-     * @return
+     * Creates a breadth-first iterator for a directed or undirected graph
+     *
+     * @param graph the graph to create the iterator from
+     * @return a {@link BreadthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> BreadthFirstIterator<V,E> breadthFirst(G graph) {
@@ -42,9 +48,11 @@ class TraversalExtensions {
     }
 
     /**
-     * @param graph
-     * @param startVertex
-     * @return
+     * Creates a breadth-first iterator for a directed or undirected graph
+     *
+     * @param graph the graph to create the iterator from
+     * @param startVertex the vertices to start from
+     * @return a {@link BreadthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> BreadthFirstIterator<V,E> breadthFirst(G graph, V startVertex) {
@@ -52,9 +60,10 @@ class TraversalExtensions {
     }
 
     /**
+     * Creates a depth-first iterator for a directed or undirected graph
      *
-     * @param graph
-     * @return
+     * @param graph the graph to create the iterator from
+     * @return a {@link DepthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> DepthFirstIterator<V, E> 'get**'(G graph) {
@@ -62,9 +71,11 @@ class TraversalExtensions {
     }
 
     /**
-     * @param graph
-     * @param startVertex
-     * @return
+     * Creates a depth-first iterator for a directed or undirected graph
+     *
+     * @param graph the graph to create the iterator from
+     * @param startVertex the vertices to start from
+     * @return a {@link DepthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> DepthFirstIterator<V, E> 'get**'(G graph, V startVertex) {
@@ -72,8 +83,10 @@ class TraversalExtensions {
     }
 
     /**
-     * @param graph
-     * @return
+     * Creates a depth-first iterator for a directed or undirected graph
+     *
+     * @param graph the graph to create the iterator from
+     * @return a {@link DepthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> DepthFirstIterator<V, E> depthFirst(G graph) {
@@ -81,9 +94,11 @@ class TraversalExtensions {
     }
 
     /**
-     * @param graph
-     * @param startVertex
-     * @return
+     * Creates a depth-first iterator for a directed or undirected graph
+     *
+     * @param graph the graph to create the iterator from
+     * @param startVertex the vertices to start from
+     * @return a {@link DepthFirstIterator}
      * @since 0.1.0
      */
     static <V, E, G extends Graph<V,E>> DepthFirstIterator<V, E> depthFirst(G graph, V startVertex) {
@@ -91,8 +106,12 @@ class TraversalExtensions {
     }
 
     /**
-     * @param graph
-     * @return
+     * A maximum cardinality search iterator for an undirected graph. For every vertex in graph its cardinality
+     * is defined as the number of its neighbours, which have been already visited by this iterator.
+     * Iterator chooses vertex with the maximum cardinality, breaking ties arbitrarily
+     *
+     * @param graph the graph to create the iterator from
+     * @return a {@link MaximumCardinalityIterator}
      * @since 0.1.0
      */
     static <V,E, G extends AbstractBaseGraph<V, E>> MaximumCardinalityIterator<V,E> iterateWithMaximumCardinality(G graph) {
