@@ -1,6 +1,21 @@
 package com.github.grooviter.underdog.graphs
 
 class CreationSpec extends BaseSpec {
+    def "create: DSL"() {
+        when:
+        def graph = Graphs.graph(String) {
+            ('A'..'C').each(delegate::vertex)
+            edge('A', 'B', is: "employer")
+            edge('A', 'C', is: "employer")
+            edge('B', 'A', is: "employee")
+            edge('C', 'A', is: "employee")
+        }
+
+        then:
+        graph.vertexSet().size() == 3
+        graph.edgeSet().size() == 2
+    }
+
     def "create: #type"() {
         expect:
         employees.edgeSet().size() == expectedEdges

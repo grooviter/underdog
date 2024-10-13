@@ -4,17 +4,39 @@ import com.github.grooviter.underdog.graphs.edges.RelationshipEdge
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import groovy.transform.TupleConstructor
-import org.jgrapht.graph.AbstractBaseGraph
+import org.jgrapht.Graph
 
+/**
+ * DSL to build a new {@link Graph}
+ *
+ * @since 0.1.0
+ */
 @TupleConstructor
-class GraphBuilder<V, G extends AbstractBaseGraph<V, RelationshipEdge>> {
+class GraphBuilder<V, G extends Graph<V, RelationshipEdge>> {
     G graph
 
-    GraphBuilder<V,G> vertex(V id){
-        this.graph.addVertex(id)
+    /**
+     * Adds a vertex to the graph
+     *
+     * @param vertex
+     * @return the current builder instance
+     * @since 0.1.0
+     */
+    GraphBuilder<V,G> vertex(V vertex){
+        this.graph.addVertex(vertex)
         return this
     }
 
+    /**
+     * Adds a new edge to the graph
+     *
+     * @param source source vertex
+     * @param target target vertex
+     * @param is the relationship between source->target
+     * @param weight the weight of the edge
+     * @return the current builder instance
+     * @since 0.1.0
+     */
     @NamedVariant
     GraphBuilder<V,G> edge(
             V source,
@@ -25,6 +47,12 @@ class GraphBuilder<V, G extends AbstractBaseGraph<V, RelationshipEdge>> {
         return this
     }
 
+    /**
+     * Returns the result Graph
+     *
+     * @return the final graph
+     * @since 0.1.0
+     */
     G build() {
         return this.graph
     }
