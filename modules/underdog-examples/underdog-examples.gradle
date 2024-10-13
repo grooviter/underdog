@@ -6,6 +6,7 @@ plugins {
 dependencies {
     api project(":underdog-core")
     api project(":underdog-smile")
+    api project(":underdog-jgrapht")
 
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
@@ -14,11 +15,15 @@ dependencies {
     api "org.apache.groovy:groovy-test:$groovy"
     api "org.apache.groovy:groovy-dateutil:$groovy"
 
-    implementation "tech.tablesaw:tablesaw-core:$tablesaw"
-    implementation "tech.tablesaw:tablesaw-jsplot:$tablesaw"
-    implementation "org.apache.groovy:groovy-macro:$groovy"
-    implementation "com.github.haifengl:smile-core:3.1.1"
+//    implementation "tech.tablesaw:tablesaw-core:$tablesaw"
+//    implementation "tech.tablesaw:tablesaw-jsplot:$tablesaw"
+//    implementation "org.apache.groovy:groovy-macro:$groovy"
+//    implementation "com.github.haifengl:smile-core:3.1.1"
+//    implementation "com.github.haifengl:smile-nlp:3.1.1"
 
+//    testImplementation 'org.apache.tinkerpop:gremlin-groovy:3.7.2'
+//    testImplementation 'org.apache.tinkerpop:gremlin-driver:3.7.2'
+//    testImplementation 'org.apache.tinkerpop:tinkergraph-gremlin:3.7.2'
     testImplementation "org.spockframework:spock-core:$spock"
 }
 

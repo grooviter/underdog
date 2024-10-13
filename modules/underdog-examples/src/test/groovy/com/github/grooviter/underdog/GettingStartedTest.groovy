@@ -5,7 +5,6 @@ package com.github.grooviter.underdog
 
 import spock.lang.Specification
 import com.github.grooviter.underdog.Underdog as ud
-import tech.tablesaw.columns.Column
 
 class GettingStartedTest extends Specification {
     static CSV_FOOD = "src/test/resources/com/github/grooviter/underdog/tablesaw/food.csv"
