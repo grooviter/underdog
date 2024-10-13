@@ -41,9 +41,9 @@ class Graphs {
     static <V, X extends GraphBuilder<V, DefaultUndirectedWeightedGraph<V, RelationshipEdge>>> DefaultUndirectedWeightedGraph<V, RelationshipEdge> graph(
             Class<V> valueClass,
             @DelegatesTo(type='X') Closure builder) {
-        def closure = builder.clone() as Closure<X>
         def builderSource = new DefaultUndirectedWeightedGraph<V, RelationshipEdge>(RelationshipEdge)
         def graphBuilder = new GraphBuilder<V, DefaultUndirectedWeightedGraph<V, RelationshipEdge>>(builderSource)
+        def closure = builder.clone() as Closure<X>
         graphBuilder.with(closure)
         return graphBuilder.build()
     }
@@ -74,9 +74,9 @@ class Graphs {
     static <V, X extends GraphBuilder<V, DefaultDirectedWeightedGraph<V, RelationshipEdge>>> DefaultDirectedWeightedGraph<V, RelationshipEdge> digraph(
             Class<V> valueClass,
             @DelegatesTo(type='X') Closure builder) {
-        def closure = builder.clone() as Closure<X>
         def builderSource = new DefaultDirectedWeightedGraph<V, RelationshipEdge>(RelationshipEdge)
         def graphBuilder =  new GraphBuilder<V, DefaultDirectedWeightedGraph<V, RelationshipEdge>>(builderSource)
+        def closure = builder.clone() as Closure<X>
         graphBuilder.with(closure)
         return graphBuilder.build()
     }
@@ -105,9 +105,9 @@ class Graphs {
     static <V, X extends GraphBuilder<V, WeightedPseudograph<V, RelationshipEdge>>> WeightedPseudograph<V, RelationshipEdge> multigraph(
             Class<V> valueClass,
             @DelegatesTo(type='X') Closure builder) {
-        def closure = builder.clone() as Closure<X>
         def builderSource = new WeightedPseudograph<V, RelationshipEdge>(RelationshipEdge)
         def graphBuilder = new GraphBuilder<V, WeightedPseudograph<V, RelationshipEdge>>(builderSource)
+        def closure = builder.clone() as Closure<X>
         graphBuilder.with(closure)
         return graphBuilder.build()
     }
@@ -136,9 +136,9 @@ class Graphs {
     static <V, X extends GraphBuilder<V, DirectedWeightedPseudograph<V, RelationshipEdge>>> DirectedWeightedPseudograph<V, RelationshipEdge> multidigraph(
             Class<V> valueClass,
             @DelegatesTo(type='X') Closure builder) {
-        def closure = builder.clone() as Closure<X>
         def builderSource = new DirectedWeightedPseudograph<V, RelationshipEdge>(RelationshipEdge)
         def graphBuilder = new GraphBuilder<V, DirectedWeightedPseudograph<V, RelationshipEdge>>(builderSource)
+        def closure = builder.clone() as Closure<X>
         graphBuilder.with(closure)
         return graphBuilder.build()
     }
