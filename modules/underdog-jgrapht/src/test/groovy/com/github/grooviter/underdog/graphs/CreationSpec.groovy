@@ -5,10 +5,10 @@ class CreationSpec extends BaseSpec {
         when:
         def graph = Graphs.graph(String) {
             ('A'..'C').each(delegate::vertex)
-            edge('A', 'B', is: "employer")
-            edge('A', 'C', is: "employer")
-            edge('B', 'A', is: "employee")
-            edge('C', 'A', is: "employee")
+            edge('A', 'B', relation: "employer")
+            edge('A', 'C', relation: "employer")
+            edge('B', 'A', relation: "employee")
+            edge('C', 'A', relation: "employee")
         }
 
         then:
@@ -31,10 +31,10 @@ class CreationSpec extends BaseSpec {
     private static Closure getCreationClosure() {
         return  {
             ('A'..'C').each(delegate::vertex)
-            edge('A', 'B', is: "employer")
-            edge('A', 'C', is: "employer")
-            edge('B', 'A', is: "employee")
-            edge('C', 'A', is: "employee")
+            edge('A', 'B', relation: "employer")
+            edge('A', 'C', relation: "employer")
+            edge('B', 'A', relation: "employee")
+            edge('C', 'A', relation: "employee")
         }
     }
 }

@@ -32,7 +32,7 @@ class GraphBuilder<V, G extends Graph<V, RelationshipEdge>> {
      *
      * @param source source vertex
      * @param target target vertex
-     * @param is the relationship between source->target
+     * @param relation the relationship between source->target
      * @param weight the weight of the edge
      * @return the current builder instance
      * @since 0.1.0
@@ -41,9 +41,9 @@ class GraphBuilder<V, G extends Graph<V, RelationshipEdge>> {
     GraphBuilder<V,G> edge(
             V source,
             V target,
-            @NamedParam(required = false) String is = null,
+            @NamedParam(required = false) String relation = null,
             @NamedParam(required = false) double weight = 0.0) {
-        this.graph.addEdge(source, target, new RelationshipEdge(is, weight))
+        this.graph.addEdge(source, target, new RelationshipEdge(relation, weight))
         return this
     }
 

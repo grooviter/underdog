@@ -16,11 +16,11 @@ class BaseSpec extends Specification {
             [peter, laura, chris, bobby].each(delegate::vertex)
             // 2) peter laura and troy are friends
             [peter, laura, chris].permutations().each { Person a, Person b, Person c ->
-                edge(a, b, is: "friend")
+                edge(a, b, relation: "friend")
             }
             // 3) troyTeacher is teacher of the rest of the people+
             [[bobby], [peter, laura, chris]].combinations().each { Person a, Person b ->
-                edge(a, b, is: "teacher")
+                edge(a, b, relation: "teacher")
             }
         }
     }
@@ -32,7 +32,7 @@ class BaseSpec extends Specification {
         return Graphs.digraph(Person) {
             [peter, laura, pablo].each(delegate::vertex)
             [[pablo], [peter, laura]].combinations().each { Person master, Person pupil ->
-                edge(master, pupil, is: "master")
+                edge(master, pupil, relation: "master")
             }
         }
     }
