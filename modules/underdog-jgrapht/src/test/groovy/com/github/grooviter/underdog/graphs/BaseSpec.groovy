@@ -36,4 +36,16 @@ class BaseSpec extends Specification {
             }
         }
     }
+
+    Graph<Object, RelationshipEdge> loadBasketballGraph() {
+        def vertices = ('A'..'E') + (1..6)
+        return Graphs.digraph(Object) {
+            vertices.each(delegate::vertex)
+            [['A'], [1]].combinations().each { String fan, Integer team -> edge(fan, team, relation: 'fan') }
+            [['B'], (1..2)].combinations().each { String fan, Integer team -> edge(fan, team, relation: 'fan') }
+            [['C'], (3..4)].combinations().each { String fan, Integer team -> edge(fan, team, relation: 'fan') }
+            [['D'], (4..6)].combinations().each { String fan, Integer team -> edge(fan, team, relation: 'fan') }
+            [['E'], (2..4)].combinations().each { String fan, Integer team -> edge(fan, team, relation: 'fan') }
+        }
+    }
 }

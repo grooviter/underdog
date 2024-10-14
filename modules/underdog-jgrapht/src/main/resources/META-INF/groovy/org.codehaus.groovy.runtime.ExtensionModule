@@ -1,4 +1,4 @@
 moduleName=undercore-jgrapht-extensions
 moduleVersion=1.0.0-SNAPSHOT
-extensionClasses=com.github.grooviter.underdog.graphs.OperatorsExtensions,com.github.grooviter.underdog.graphs.TraversalExtensions
+extensionClasses=com.github.grooviter.underdog.graphs.OperatorsExtensions,com.github.grooviter.underdog.graphs.TraversalExtensions,com.github.grooviter.underdog.graphs.BipartiteExtensions
 # staticExtensionClasses=com.github.grooviter.underdog.tablesaw.DataFrameReaderExtensions
