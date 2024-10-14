@@ -5,6 +5,9 @@ import org.jgrapht.Graph
 import spock.lang.Specification
 
 class BaseSpec extends Specification {
+    static final String ADJ_LIST_SCHOOL_PATH = "src/test/resources/adjacency-lists/school-adjlist.txt"
+    static final String EDGE_LIST_SCHOOL_PATH = "src/test/resources/adjacency-lists/school-edglist.txt"
+
     Graph<Person, RelationshipEdge> loadSchoolGraph() {
         def peter = new Person("Peter", 22)
         def laura = new Person("Laura", 23)
@@ -47,5 +50,9 @@ class BaseSpec extends Specification {
             [['D'], (4..6)].combinations().each { String fan, Integer team -> edge(fan, team, relation: 'fan') }
             [['E'], (2..4)].combinations().each { String fan, Integer team -> edge(fan, team, relation: 'fan') }
         }
+    }
+
+    List<Integer> getVerticesAndEdgesSizes(Graph graph) {
+        return [graph.vertexSet(), graph.edgeSet()]*.size()
     }
 }

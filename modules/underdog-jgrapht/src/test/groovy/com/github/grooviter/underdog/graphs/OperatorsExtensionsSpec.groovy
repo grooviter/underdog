@@ -1,6 +1,6 @@
 package com.github.grooviter.underdog.graphs
 
-class OperatorsSpec extends BaseSpec {
+class OperatorsExtensionsSpec extends BaseSpec {
     def "graph union: plus operator"() {
         setup:
         def school = loadSchoolGraph()

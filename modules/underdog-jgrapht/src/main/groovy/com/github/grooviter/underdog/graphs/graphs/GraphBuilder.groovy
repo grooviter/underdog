@@ -43,7 +43,40 @@ class GraphBuilder<V, G extends Graph<V, RelationshipEdge>> {
             V target,
             @NamedParam(required = false) String relation = null,
             @NamedParam(required = false) double weight = 0.0) {
-        this.graph.addEdge(source, target, new RelationshipEdge(relation, weight))
+        def edge = new RelationshipEdge(relation)
+        if (this.graph.addEdge(source, target, edge)) {
+            this.graph.setEdgeWeight(edge, weight)
+        }
+        return this
+    }
+
+    /**
+     * Adds pairs of vertices
+     *
+     * <code>
+     * Graphs.graph(String) {
+     *     ('A'..'D').each(delegate::vertex)
+     *     edges(
+     *         'A', 'B',
+     *         'B', 'C',
+     *         'A', 'D')
+     * }
+     * </code>
+     *
+     * @param vertices pairs of vertices to add
+     * @return the current builder instance
+     * @since 0.1.0
+     */
+    GraphBuilder<V, G> edges(V... vertices) {
+        assert vertices.length % 2 == 0, "edges are not even number ${vertices.size()}"
+
+        def nPartitions = (vertices.length / 2).toInteger()
+        def partitions = (0..<nPartitions).collect { 2 } as int[]
+
+        vertices.chop(partitions).each {
+            this.graph.addEdge(it[0], it[1])
+        }
+
         return this
     }
 

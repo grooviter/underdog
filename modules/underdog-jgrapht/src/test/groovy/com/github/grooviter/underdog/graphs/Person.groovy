@@ -1,8 +1,12 @@
 package com.github.grooviter.underdog.graphs
 
-import groovy.transform.Canonical
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+import groovy.transform.TupleConstructor
 
-@Canonical
+@ToString(includePackage = false,ignoreNulls = true)
+@TupleConstructor
+@EqualsAndHashCode
 class Person {
     String name
     Integer age

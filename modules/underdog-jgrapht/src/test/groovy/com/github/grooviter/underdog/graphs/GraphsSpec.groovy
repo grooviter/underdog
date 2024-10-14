@@ -1,6 +1,9 @@
 package com.github.grooviter.underdog.graphs
 
-class CreationSpec extends BaseSpec {
+import com.github.grooviter.underdog.graphs.edges.RelationshipEdge
+import org.jgrapht.Graph
+
+class GraphsSpec extends BaseSpec {
     def "create: DSL"() {
         when:
         def graph = Graphs.graph(String) {

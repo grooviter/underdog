@@ -1,6 +1,6 @@
 package com.github.grooviter.underdog.graphs
 
-class IteratorsSpec extends BaseSpec {
+class TraversalExtensionsSpec extends BaseSpec {
     def "iterators: depthfirst operator"() {
         setup:
         def school = loadSchoolGraph()

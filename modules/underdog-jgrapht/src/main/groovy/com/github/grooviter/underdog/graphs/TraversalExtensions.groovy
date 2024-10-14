@@ -117,17 +117,4 @@ class TraversalExtensions {
     static <V,E, G extends AbstractBaseGraph<V, E>> MaximumCardinalityIterator<V,E> iterateWithMaximumCardinality(G graph) {
         return new MaximumCardinalityIterator<V,E>(graph)
     }
-
-
-    /**
-     * Returns vertices from a given edge
-     *
-     * @param graph the graph where the edge is located
-     * @param edge the edge to take the vertices from
-     * @return a list with two vertex elements [source, target[
-     * @since 0.1.0
-     */
-    static <V, E, G extends Graph<V,E>> List<V> getVerticesFromEdge(G graph, E edge) {
-        return [graph.getEdgeSource(edge), graph.getEdgeTarget(edge)]
-    }
 }

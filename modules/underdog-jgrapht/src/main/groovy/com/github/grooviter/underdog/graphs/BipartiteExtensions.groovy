@@ -20,6 +20,14 @@ class BipartiteExtensions {
         return new BipartitePartitioning<>(graph).isBipartite()
     }
 
+    /**
+     * Returns the projected graph of a list of vertices
+     *
+     * @param graph the graph to get the projected graph from
+     * @param vertices the vertices
+     * @return a {@link Set} of the edges part of the projected graph
+     * @since 0.1.0
+     */
     static <V, E, G extends Graph<V,E>> Set<E> projectedGraph(G graph, List<V> vertices) {
         return vertices.collectMany { graph.edgesOf(it) } as Set
     }

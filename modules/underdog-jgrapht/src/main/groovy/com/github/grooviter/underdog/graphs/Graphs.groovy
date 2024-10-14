@@ -2,12 +2,22 @@ package com.github.grooviter.underdog.graphs
 
 import com.github.grooviter.underdog.graphs.edges.RelationshipEdge
 import com.github.grooviter.underdog.graphs.graphs.GraphBuilder
-
+import groovy.transform.NamedParam
+import groovy.transform.NamedVariant
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.SimpleType
+import org.jgrapht.Graph
+import org.jgrapht.graph.AbstractBaseGraph
 import org.jgrapht.graph.DefaultDirectedWeightedGraph
 import org.jgrapht.graph.DefaultEdge
 import org.jgrapht.graph.DefaultUndirectedWeightedGraph
 import org.jgrapht.graph.DirectedWeightedPseudograph
 import org.jgrapht.graph.WeightedPseudograph
+import org.jgrapht.nio.csv.CSVFormat
+import org.jgrapht.nio.csv.CSVImporter
+
+import static org.jgrapht.nio.csv.CSVFormat.ADJACENCY_LIST
+import static org.jgrapht.nio.csv.CSVFormat.EDGE_LIST
 
 /**
  * This class creates different types of graphs using the <a href="https://jgrapht.org/">JGraphT</a> library. Some
@@ -27,6 +37,17 @@ class Graphs {
      */
     static <V> DefaultUndirectedWeightedGraph<V, RelationshipEdge> graph(Class<V> valueClass) {
         return new DefaultUndirectedWeightedGraph<V, RelationshipEdge>(RelationshipEdge)
+    }
+
+    /**
+     * The default implementation of an undirected graph. A default undirected graph is a non-simple undirected graph
+     * in which multiple (parallel) edges between any two vertices are not permitted, but loops are.
+     *
+     * @return an instance of {@link DefaultUndirectedWeightedGraph}
+     * @since 0.1.0
+     */
+    static DefaultUndirectedWeightedGraph<String, RelationshipEdge> graph() {
+        return new DefaultUndirectedWeightedGraph<String, RelationshipEdge>(RelationshipEdge)
     }
 
     /**
