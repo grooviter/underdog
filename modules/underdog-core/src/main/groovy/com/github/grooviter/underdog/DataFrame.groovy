@@ -116,7 +116,12 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame add(DataFrame other, TypeAxis axis, Integer level, BigDecimal fill)
+    DataFrame add(
+            DataFrame other,
+            @NamedParam(required = false) boolean inPlace,
+            @NamedParam(required = false) TypeAxis axis,
+            @NamedParam(required = false) Object fill,
+            @NamedParam(required = false) String index)
 
     /*
      *
@@ -308,12 +313,19 @@ interface DataFrame extends Columnar {
     Series max(TypeAxis axisType)
 
     /**
-     * Compute correlation with other Series, excluding missing values.
+     *
+     *
+     * @since 0.1.0
+     */
+    DataFrame nlargest(Integer n)
+
+    /**
+     *
      *
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame nlargest(Integer n, List<String> columns)
+    DataFrame nlargest(Integer n, @NamedParam(required = false) List<String> columns)
 
     /**
      * Rename columns or index labels.

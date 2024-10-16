@@ -377,4 +377,107 @@ class DataFrameSpec extends BaseSpec {
         then:
         result == 7.4625
     }
+
+    def "[DataFrame/add]: TypeAxis.rows w/ same columns"() {
+        setup:
+        def df1 = [a: (1..10), b: (1..10)].toDataFrame()
+        def df2 = [a: (10..1), b: (10..1)].toDataFrame()
+
+        when: "adding at row level"
+        def df3 = df1.add(df2, axis: TypeAxis.rows)
+
+        and: "getting the first and last result when adding rows"
+        def aFirstNumber = df3.loc['a'].iloc[0] as double
+        def aLastNumber = df3.loc['a'].iloc[(df3.size() - 1).toInteger()] as double
+
+        then: "result and source tables are same size"
+        df3.size() == df1.size()
+
+        and: "first and last number should be the same"
+        aFirstNumber == aLastNumber
+
+        and: "no new columns were added"
+        df3.columns == df1.columns
+        df3.columns == df2.columns
+    }
+
+    def "[DataFrame/add]: TypeAxis.rows / different columns / same row size"() {
+        setup:
+        def df1 = [a: (1..10), b: (1..10)].toDataFrame()
+        def df2 = [a: (10..1), b: (10..1), c: (10..19)].toDataFrame()
+
+        when: "adding at row level"
+        def df3 = df1.add(df2, axis: TypeAxis.rows)
+
+        and: "getting the first and last result when adding rows"
+        def aFirstNumber = df3.loc['a'].iloc[0] as double
+        def aLastNumber = df3.loc['a'].iloc[(df3.size() - 1).toInteger()] as double
+
+        then: "result and source tables are same size"
+        df3.size() == df1.size()
+
+        and: "first and last number should be the same"
+        aFirstNumber == aLastNumber
+
+        and: "new columns were added"
+        df3.columns == df1.columns + ['c']
+    }
+
+    def "[DataFrame/add]: TypeAxis.rows / different columns / different row size"() {
+        setup:
+        def df1 = [a: (1..10), b: (1..10)].toDataFrame()
+        def df2 = [a: (10..0), b: (10..0), c: (10..20)].toDataFrame()
+
+        when: "adding at row level"
+        def df3 = df1.add(df2, axis: TypeAxis.rows, fill: 0)
+
+        and: "getting the first and last result when adding rows"
+        def aFirstNumber = df3.loc['a'].iloc[0] as double
+        def aLastNumber = df3.loc['a'].iloc[(df3.size() - 1).toInteger()] as double
+
+        then: "result and source tables are same size"
+        df3.size() == df1.size() + 1
+
+        and: "first and last number should be the same"
+        aFirstNumber == 11
+        aLastNumber == 0
+
+        and: "new columns were added"
+        df3.columns == df1.columns + ['c']
+    }
+
+    def "[DataFrame/add]: TypeAxis.columns"() {
+        setup:
+        def df1 = [a: (1..10), b: (1..10)].toDataFrame()
+        def df2 = [c: (11..20), d: (11..20)].toDataFrame()
+
+        when:
+        def df3 = df1.add(df2, axis: TypeAxis.columns)
+
+        then:
+        df3.columns == 'a'..'d'
+        df3.size() == df1.size()
+        df3.size() == df2.size()
+    }
+
+    def "[DataFrame/add]: TypeAxis.rows / using index"() {
+        setup:
+        def df1 = [
+                id: [1, 2, 34, 65, 100],
+                weight: [10, 20, 300, 600, 1000]
+        ].toDataFrame()
+        def df2 = [
+                id: [2, 34, 65, 100, 1],
+                weight: [2, 3, 4, 5, 1]
+        ].toDataFrame()
+
+        when:
+        def df3 = df1.add(df2, axis: TypeAxis.rows, index: 'id')
+        def weights = df3['weight'] as int[]
+        def columns = df3.columns
+
+        then:
+        columns == ['id', 'weight']
+        weights == [11, 22, 303, 604, 1005] as int[]
+    }
 }

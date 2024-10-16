@@ -7,7 +7,7 @@ import spock.lang.Specification
 class BaseSpec extends Specification {
     Tuple4<double[][], double[][], int[], int[]> binaryClassificationTrainTestSplit() {
         def df = Underdog
-            .read_csv(path: "src/test/resources/com/github/grooviter/underdog/tablesaw/food.csv", sep: ";")
+            .read_csv("src/test/resources/com/github/grooviter/underdog/tablesaw/food.csv", sep: ";")
             .dropna()
 
         df['y'] = df['TRAFFICLIGHT VALUE'](Integer, Integer){it == 3 ? 1 : -1 }
@@ -20,7 +20,7 @@ class BaseSpec extends Specification {
 
     Tuple4<double[][], double[][], int[], int[]> multiClassificationTrainTestSplit() {
         def df = Underdog
-                .read_csv(path: "src/test/resources/com/github/grooviter/underdog/tablesaw/food.csv", sep: ";")
+                .read_csv("src/test/resources/com/github/grooviter/underdog/tablesaw/food.csv", sep: ";")
                 .dropna()
 
         df['y'] = df['TRAFFICLIGHT VALUE']

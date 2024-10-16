@@ -163,10 +163,68 @@ class TSDataFrame implements DataFrame {
     @NamedVariant
     DataFrame add(
             DataFrame other,
-            TypeAxis axis,
-            Integer level,
-            BigDecimal fill) {
-        return null
+            @NamedParam(required = false) boolean inPlace = false,
+            @NamedParam(required = false) TypeAxis axis = TypeAxis.rows,
+            @NamedParam(required = false) Object fill = null,
+            @NamedParam(required = false) String index = null) {
+        Table thisTable = inPlace ? this.table : this.table.copy()
+        Table otherTable = other.implementation as Table
+
+        if (axis == TypeAxis.columns){
+            return new TSDataFrame(thisTable.concat(otherTable))
+        }
+
+
+        if (index) {
+            thisTable.each {
+                def currentIndex = it.getObject(index)
+                thisTable.columnNames()
+                        .findAll {it != index }
+                        .each { currentColumn ->
+                            def thisValue = it.getObject(currentColumn) ?: fill
+                            def otherTablePointer = otherTable.where(otherTable.column(index).isEqualTo(currentIndex))
+                            def otherValue = otherTablePointer.size() > 0
+                                    ? otherTablePointer.row(0).getObject(currentColumn)
+                                    : fill
+                            thisTable.column(currentColumn).set(it.rowNumber, (thisValue + otherValue) as Object)
+                        }
+            }
+        } else {
+            def thisTableSize =thisTable.size()
+            def otherTableSize = otherTable.size()
+
+            if (thisTableSize < otherTableSize) {
+                (thisTableSize..<otherTableSize).each {
+                    thisTable.appendRow()
+                }
+            }
+
+            otherTable
+                    .columns()
+                    .findAll { it.name() in thisTable.columnNames() }
+                    .each { Column otherColumn ->
+                        otherColumn.eachWithIndex { Object otherValue = fill, i ->
+                            def thisColumn = thisTable.column(otherColumn.name())
+                            def thisValue = thisColumn.get(i) ?: fill
+                            thisColumn.set(i, otherValue + thisValue as Object)
+                        }
+                    }
+        }
+
+        otherTable
+            .columns()
+            .findAll { it.name() !in thisTable.columnNames() }
+            .each { Column newColumn ->
+                Column columnToAdd = newColumn.copy()
+                if (newColumn.size() < thisTable.size()) {
+                    (columnToAdd.size()..<thisTable.size()).each {
+                        columnToAdd.appendMissing()
+                    }
+                }
+                thisTable.addColumns(columnToAdd)
+            }
+
+        return new TSDataFrame(thisTable)
     }
 
     @NamedVariant
@@ -422,8 +480,13 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    DataFrame nlargest(Integer n) {
+        return new TSDataFrame(this.table.first(n))
+    }
+
+    @Override
     @NamedVariant
-    DataFrame nlargest(@NamedParam(required = true) Integer n, @NamedParam(required = true) List<String> columns) {
+    DataFrame nlargest(Integer n, @NamedParam(required = false) List<String> columns) {
         return new TSDataFrame(this.table.sortDescendingOn(columns as String[]).first(n))
     }
 

@@ -11,6 +11,6 @@ class BaseSpec extends Specification {
     DataFrame df
 
     void setup() {
-        df = Underdog.read_csv(path: CSV_PATH, nanValues: ["NaN"], sep: ";")
+        df = Underdog.read_csv(CSV_PATH, nanValues: ["NaN"], sep: ";")
     }
 }

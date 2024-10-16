@@ -58,7 +58,7 @@ class Underdog {
 
     @NamedVariant
     static DataFrame read_csv(
-            @NamedParam(required = true) String path,
+            String path,
             @NamedParam(required = false) String sep,
             @NamedParam(required = false) int skipRows,
             @NamedParam(required = false) int skipFooter,
@@ -67,8 +67,11 @@ class Underdog {
             @NamedParam(required = false) String dateFormat,
             @NamedParam(required = false) String dateTimeFormat,
             @NamedParam(required = false) int maxCharsPerColumn,
-            @NamedParam(required = false) int maxNumberOfColumns){
+            @NamedParam(required = false) int maxNumberOfColumns,
+            @NamedParam(required = false) boolean header = true){
         TSCsvReaderOptions.Builder builder = TSCsvReaderOptions.builder(new File(path))
+
+        builder.header(header)
 
         if (maxCharsPerColumn) {
             builder.maxCharsPerColumn(maxCharsPerColumn)
