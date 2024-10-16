@@ -7,14 +7,14 @@ import spock.lang.Specification
 class BaseSpec extends Specification {
     DataFrame loadFoodDataFrame() {
         return Underdog
-                .read_csv(path: "src/test/resources/data/food.csv", sep: ";")
+                .read_csv("src/test/resources/data/food.csv", sep: ";")
                 .dropna()
     }
 
     Tuple4<double[][], double[][], int[], int[]> binaryClassificationTrainTestSplit(List<Integer> classes = [1, -1]) {
         def (on, off) = classes
         def df = Underdog
-            .read_csv(path: "src/test/resources/data/food.csv", sep: ";")
+            .read_csv("src/test/resources/data/food.csv", sep: ";")
             .dropna()
 
         df['y'] = df['TRAFFICLIGHT VALUE'](Integer, Integer){it == 3 ? on : off }
@@ -27,7 +27,7 @@ class BaseSpec extends Specification {
 
     Tuple4<double[][], double[][], int[], int[]> multiClassificationTrainTestSplit() {
         def df = Underdog
-                .read_csv(path: "src/test/resources/data/food.csv", sep: ";")
+                .read_csv("src/test/resources/data/food.csv", sep: ";")
                 .dropna()
 
         df['y'] = df['TRAFFICLIGHT VALUE']
