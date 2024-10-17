@@ -43,6 +43,11 @@ class GraphBuilder<V, G extends Graph<V, RelationshipEdge>> {
             V target,
             @NamedParam(required = false) String relation = null,
             @NamedParam(required = false) double weight = 0.0) {
+        // adds vertices in case the haven't added already
+        [source, target]
+            .findAll { !this.graph.containsVertex(it) }
+            .each(this.graph::addVertex)
+
         def edge = new RelationshipEdge(relation)
         if (this.graph.addEdge(source, target, edge)) {
             this.graph.setEdgeWeight(edge, weight)
