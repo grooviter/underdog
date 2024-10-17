@@ -94,7 +94,7 @@ class BipartiteExtensions {
                         .combinations()
                         .<List<V>, Set<V>> collect { List<V> xs -> xs.toSet() }
                         .findAll { Set<V> xs -> xs.size() > 1 }
-                        .<Set<V>> each {
+                        .each {
                             if (agg[it] == null) {
                                 agg[it] = 1d
                             } else {
