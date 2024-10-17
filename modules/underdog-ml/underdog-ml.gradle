@@ -4,15 +4,19 @@ plugins {
 }
 
 dependencies {
-    api project(":underdog-core")
+    api project(":underdog-dataframe")
 
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
     api "org.apache.groovy:groovy-json:$groovy"
     api "org.apache.groovy:groovy-templates:$groovy"
     api "org.apache.groovy:groovy-dateutil:$groovy"
-    api "org.jgrapht:jgrapht-core:1.5.2"
-    api "org.jgrapht:jgrapht-io:1.5.2"
+
+    api "com.github.haifengl:smile-core:3.1.1"
+    api "com.github.haifengl:smile-nlp:3.1.1"
+
+//    implementation "tech.tablesaw:tablesaw-core:$tablesaw"
+    implementation "org.apache.groovy:groovy-macro:$groovy"
 
     testImplementation "org.spockframework:spock-core:$spock"
 }

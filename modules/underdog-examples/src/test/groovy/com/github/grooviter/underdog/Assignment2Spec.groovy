@@ -8,7 +8,7 @@ class Assignment2Spec extends Specification {
 
     def getCsvDataframe() {
         return ud.read_csv(
-            path: CSV_OLIMPICS,
+            CSV_OLIMPICS,
             skipRows: 1,
             allowedDuplicatedNames: true
         )

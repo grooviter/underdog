@@ -40,7 +40,7 @@ class Assignment3Spec extends Specification{
     }
 
     DataFrame loadWorldBank() {
-        def worldBank = ud.read_csv(path: CSV_WORLD_BANK, skipRows: 4)
+        def worldBank = ud.read_csv(CSV_WORLD_BANK, skipRows: 4)
 
         worldBank["Country Name"] = worldBank["Country Name"](String) {
             it.replace(

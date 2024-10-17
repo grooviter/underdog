@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
-    api project(":underdog-core")
-    api project(":underdog-smile")
-    api project(":underdog-jgrapht")
+    api project(":underdog-dataframe")
+    api project(":underdog-ml")
+    api project(":underdog-graphs")
 
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
