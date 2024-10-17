@@ -75,6 +75,9 @@ class GraphBuilder<V, G extends Graph<V, RelationshipEdge>> {
     GraphBuilder<V, G> edges(V... vertices) {
         assert vertices.length % 2 == 0, "edges are not even number ${vertices.size()}"
 
+        // adds vertices in case the haven't added already
+        vertices.findAll { !this.graph.containsVertex(it) }.each(this.graph::addVertex)
+
         def nPartitions = (vertices.length / 2).toInteger()
         def partitions = (0..<nPartitions).collect { 2 } as int[]
 

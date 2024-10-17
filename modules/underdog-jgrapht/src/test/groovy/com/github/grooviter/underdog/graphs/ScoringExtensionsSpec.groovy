@@ -9,34 +9,56 @@ class ScoringExtensionsSpec extends BaseSpec {
         graph.vertexSet().collect { graph.clusteringOf(it) }.sum() == 4.0
     }
 
-    def "clustering coefficient reference"() {
+    def "clustering coefficient for node #node(#range)"() {
         setup:
-        def graph = Graphs.graph(String) {
-            ('A'..'K').each(delegate::vertex)
-            edge('A', 'K')
-            edge('A', 'B')
-            edge('A', 'C')
-            edge('B', 'C')
-            edge('B', 'K')
-            edge('C', 'E')
-            edge('C', 'F')
-            edge('D', 'E')
-            edge('E', 'F')
-            edge('E', 'H')
-            edge('F', 'G')
-            edge('I', 'J')
-        }
+        def graph = Graphs
+            .graph(String)
+            .fromEdges(fromEdgesSource())
 
         expect:
-        (0.33..0.34).containsWithinBounds(graph.clusteringOf('F'))
+        range.containsWithinBounds(graph.clusteringOf(node))
 
-        and:
-        (0.66..0.67).containsWithinBounds(graph.clusteringOf('A'))
+        where:
+        node | range
+        'F'  | 0.33..0.34
+        'A'  | 0.66..0.67
+        'J'  | 0.0..0.0
+    }
 
-        and:
-        graph.clusteringOf('J') == 0
+    def "average clustering"() {
+        setup:
+        def graph = Graphs
+            .graph(String)
+            .fromEdges(fromEdgesSource())
 
-        and:
+        expect:
         (0.28..0.29).containsWithinBounds(graph.clusteringAvg())
+    }
+
+    def "global clustering"() {
+        setup:
+        def graph = Graphs
+                .graph(String)
+                .fromEdges(fromEdgesSource())
+
+        expect:
+        (0.40..0.41).containsWithinBounds(graph.clusteringGlobal())
+    }
+
+    private static List fromEdgesSource() {
+        return [
+            ['A', 'K'],
+            ['A', 'B'],
+            ['A', 'C'],
+            ['B', 'C'],
+            ['B', 'K'],
+            ['C', 'E'],
+            ['C', 'F'],
+            ['D', 'E'],
+            ['E', 'F'],
+            ['E', 'H'],
+            ['F', 'G'],
+            ['I', 'J']
+        ]
     }
 }

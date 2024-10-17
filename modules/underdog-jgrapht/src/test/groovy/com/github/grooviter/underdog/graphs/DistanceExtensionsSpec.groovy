@@ -6,7 +6,6 @@ class DistanceExtensionsSpec extends Specification {
     def 'shortest path'() {
         setup:
         def graph = Graphs.graph(String) {
-            ('A'..'K').each(delegate::vertex)
             edges(
                 'A', 'K',
                 'A', 'B',
