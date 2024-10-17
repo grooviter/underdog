@@ -55,14 +55,25 @@ class MoviesEmployeesSpec extends Specification {
         true
     }
 
-    def "Question Three"() {
-        setup:
-        def graph = answerOne()
-
+    def "Question Three: #node_1 - #node_2 (#weight)"() {
         when:
-        def edges = answerOne().weightedProjectedGraph(EMPLOYEES)
+        def graph = answerOne().weightedProjectedGraph(EMPLOYEES)
 
         then:
-        edges
+        graph.getEdge(node_1, node_2).weight == weight
+
+        where:
+        node_1    | node_2   | weight
+        'Claude'  | 'Andy'   | 1.0d
+        'Georgia' | 'Andy'   | 1.0d
+        'Georgia' | 'Claude' | 3.0d
+        'Joan'    | 'Andy'   | 1.0d
+        'Lee'     | 'Andy'   | 1.0d
+        'Lee'     | 'Joan'   | 3.0d
+        'Frida'   | 'Andy'   | 1.0d
+        'Pablo'   | 'Andy'   | 1.0d
+        'Pablo'   | 'Frida'  | 2.0d
+        'Vincent' | 'Frida'  | 2.0d
+        'Vincent' | 'Pablo'  | 1.0d
     }
 }
