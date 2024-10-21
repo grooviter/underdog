@@ -1,0 +1,3 @@
+moduleName=undercore-finance-extensions
+moduleVersion=1.0.0-SNAPSHOT
+extensionClasses=com.github.grooviter.underdog.finance.technical.strategies.StrategiesExtensions

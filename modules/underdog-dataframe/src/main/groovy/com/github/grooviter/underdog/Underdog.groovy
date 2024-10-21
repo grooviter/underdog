@@ -56,6 +56,10 @@ class Underdog {
         return new TSDataFrame(new TSExcelReader().read(options.build()))
     }
 
+    static DataFrame read_csv(String path) {
+        return read_csv([:], path)
+    }
+
     @NamedVariant
     static DataFrame read_csv(
             String path,

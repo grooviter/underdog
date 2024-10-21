@@ -12,6 +12,7 @@ buildscript {
         classpath "org.ajoberstar:gradle-git-publish:$ajoberstar"
     }
 }
+
 apply plugin: 'org.kordamp.gradle.settings'
 
 projects {
