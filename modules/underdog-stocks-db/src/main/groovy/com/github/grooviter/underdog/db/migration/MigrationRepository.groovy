@@ -15,6 +15,17 @@ class MigrationRepository extends AbstractRepository<Migration, String> {
         this.sql.execute(migration.sql)
     }
 
+    boolean hasSignatureChanged(Migration migration) {
+        Migration found = this.findById(migration.name)
+
+        if (!found) {
+            log.warn("No migration ${found.name} found in database, skipping signature check")
+            return false
+        }
+
+        return migration.sha256 != found.sha256
+    }
+
     void createTableIfNotExists() {
         try {
             this.sql.execute("CREATE TABLE $tableName (name varchar(100) PRIMARY KEY, sql TEXT, sha256 varchar(256));".toString())

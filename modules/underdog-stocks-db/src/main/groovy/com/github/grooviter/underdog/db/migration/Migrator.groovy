@@ -1,6 +1,5 @@
 package com.github.grooviter.underdog.db.migration
 
-import com.github.grooviter.underdog.db.Pagination
 import groovy.transform.TupleConstructor
 
 import javax.sql.DataSource
@@ -10,21 +9,17 @@ class Migrator {
     DataSource dataSource
 
     void execute() {
-        // 0. repository
         MigrationRepository migrationRepository = new MigrationRepository(dataSource)
-
-        // 1. createTableIfNotExists()
         migrationRepository.createTableIfNotExists()
 
-        // 2. parseMigrationFiles()
-        List<Migration> applied = migrationRepository.list(new Pagination(0, 1000)).data()
+        List<Migration> applied = migrationRepository.list().data()
         List<Migration> missing = parseMigrationFiles() - applied
 
-        // 3. checkIntegrity()
-        // TODO
-
-        // 4. apply(Migration)
         missing.each {migration ->
+            if (migrationRepository.hasSignatureChanged(migration)) {
+                throw new RuntimeException("signature of migration ${migration.name} has changed!")
+            }
+
             migrationRepository.withTransaction {
                 migrationRepository.applyMigration(migration)
                 migrationRepository.save(migration)
@@ -32,7 +27,7 @@ class Migrator {
         }
     }
 
-    List<Migration> parseMigrationFiles() {
+    private List<Migration> parseMigrationFiles() {
         URL url = this.class.classLoader.getResource("underdog/migrations")
         return new File(url.file)
             .listFiles()

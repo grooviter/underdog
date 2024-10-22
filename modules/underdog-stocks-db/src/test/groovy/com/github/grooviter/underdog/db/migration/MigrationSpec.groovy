@@ -5,7 +5,6 @@ import com.github.grooviter.underdog.db.Pagination
 import com.github.grooviter.underdog.stocks.db.Stock
 import com.github.grooviter.underdog.stocks.db.StockRepository
 import org.testcontainers.spock.Testcontainers
-import spock.lang.Specification
 
 import javax.sql.DataSource
 

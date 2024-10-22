@@ -8,6 +8,7 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FromString
 
 import javax.sql.DataSource
+import java.lang.annotation.Annotation
 import java.lang.reflect.Field
 import java.sql.Timestamp
 import java.time.LocalDate
@@ -22,6 +23,10 @@ abstract class AbstractRepository<T, ID> {
         this.dataSource = ds
         this.entityClass = clazz
         this.sql = new Sql(ds)
+    }
+
+    PaginationResult<T> list() {
+        return this.list(new Pagination(0, 100))
     }
 
     PaginationResult<T> list(Pagination pagination) {
@@ -86,6 +91,12 @@ abstract class AbstractRepository<T, ID> {
     }
 
     protected String getTableName() {
+        Annotation annotation = this.entityClass.annotations.find { it instanceof Table }
+
+        if (annotation && annotation instanceof Table) {
+            return annotation.value()
+        }
+
         return this.entityClass.simpleName.uncapitalize()
     }
 
