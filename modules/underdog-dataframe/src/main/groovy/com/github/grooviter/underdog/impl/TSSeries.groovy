@@ -14,6 +14,7 @@ import org.apache.commons.math3.stat.correlation.SpearmansCorrelation
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import tech.tablesaw.api.BooleanColumn
 import tech.tablesaw.api.ColumnType
+import tech.tablesaw.api.DateColumn
 import tech.tablesaw.api.DoubleColumn
 import tech.tablesaw.api.IntColumn
 import tech.tablesaw.api.NumericColumn
@@ -21,10 +22,13 @@ import tech.tablesaw.api.Row
 import tech.tablesaw.api.StringColumn
 import tech.tablesaw.columns.Column
 import tech.tablesaw.columns.numbers.DoubleColumnType
+import tech.tablesaw.selection.BitmapBackedSelection
+import tech.tablesaw.selection.Selection
 
 import java.math.MathContext
 import java.math.RoundingMode
 import java.util.function.Function
+import java.util.function.Predicate
 
 import static com.github.grooviter.underdog.Series.TypeCorrelation.KENDALL
 import static com.github.grooviter.underdog.Series.TypeCorrelation.PEARSON
@@ -68,12 +72,25 @@ class TSSeries implements Series {
         ColumnType newColType = switch(output) {
             case BigInteger -> ColumnType.LONG
             case BigDecimal -> ColumnType.DOUBLE
+            case Date       -> ColumnType.LOCAL_DATE
             default -> ColumnType.valueOf(output.simpleName.toUpperCase())
         }
         Column newCol = newColType.create("random")
         (0..<this.size()).each { newCol.appendMissing() }
         Function<P, O> fn = i -> func(i)
         return new TSSeries(this.column.mapInto(fn, newCol))
+    }
+
+    @Override
+    <P, O> Series call(Class<P> clazz, Class<O> output, Function<P, O> converter) {
+        ColumnType newColType = switch(output) {
+            case BigInteger -> ColumnType.LONG
+            case BigDecimal -> ColumnType.DOUBLE
+            default -> ColumnType.valueOf(output.simpleName.toUpperCase())
+        }
+        Column newCol = newColType.create("random")
+        (0..<this.size()).each { newCol.appendMissing() }
+        return new TSSeries(this.column.mapInto(converter, newCol))
     }
 
     @Override
@@ -179,15 +196,15 @@ class TSSeries implements Series {
     }
 
     @Override
-    Criteria isGreaterThan(Number value) {
+    Criteria isGreaterThan(Number number) {
         assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric column"
-        return new TSCriteria(column.isGreaterThan(value.toDouble()))
+        return new TSCriteria(column.isGreaterThan(number.toDouble()))
     }
 
     @Override
-    Criteria isLessThan(Number value) {
+    Criteria isLessThan(Number number) {
         assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric column"
-        return new TSCriteria(column.isLessThan(value.toDouble()))
+        return new TSCriteria(column.isLessThan(number.toDouble()))
     }
 
     @Override
@@ -236,10 +253,12 @@ class TSSeries implements Series {
             return new TSSeries(left.subtract(right))
         }
 
-        if (left instanceof StringColumn && right instanceof StringColumn) {
-            int col1Size = left.size();
-            int col2Size = right.size();
+        if (left instanceof DateColumn && right instanceof DateColumn) {
+            return new TSSeries(left.daysUntil(right))
+        }
 
+        if (left instanceof StringColumn && right instanceof StringColumn) {
+            int col1Size = left.size()
             for (int r = 0; r < col1Size; ++r) {
                 left.set(r, left.getString(r) - right.getString(r))
             }
@@ -310,6 +329,25 @@ class TSSeries implements Series {
     @Override
     Series dropna() {
         return new TSSeries(column.removeMissing())
+    }
+
+    @Override
+    Criteria inList(List options) {
+        Selection selection = new BitmapBackedSelection();
+        Predicate predicate = { it in options }
+
+        for(int idx = 0; idx < this.size(); ++idx) {
+            if (predicate.test(this.column.get(idx))) {
+                selection.add(new int[]{idx})
+            }
+        }
+
+        return new TSCriteria(selection)
+    }
+
+    @Override
+    Series lag(int index) {
+        return new TSSeries(this.column.lag(index))
     }
 
     @NamedVariant

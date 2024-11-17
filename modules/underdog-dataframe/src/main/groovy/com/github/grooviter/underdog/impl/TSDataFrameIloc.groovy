@@ -2,6 +2,7 @@ package com.github.grooviter.underdog.impl
 
 import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.DataFrameIloc
+import com.github.grooviter.underdog.Series
 import com.github.grooviter.underdog.Wildcard
 import groovy.transform.TupleConstructor
 import tech.tablesaw.api.Table
@@ -45,6 +46,11 @@ class TSDataFrameIloc implements DataFrameIloc {
             default             -> this.table.selectColumns(rowIndexes)
         }
         return new TSDataFrame(table)
+    }
+
+    @Override
+    Series getAt(Wildcard wildcard, Integer col) {
+        return new TSSeries(this.table.column(col))
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.github.grooviter.underdog.DataFrameAggregation
 import com.github.grooviter.underdog.DataFrameIloc
 import com.github.grooviter.underdog.DataFrameLoc
 import com.github.grooviter.underdog.Series
+import com.github.grooviter.underdog.Shape
 import com.github.grooviter.underdog.TypeApplyByRow
 import com.github.grooviter.underdog.TypeApplyResult
 import com.github.grooviter.underdog.TypeAxis
@@ -16,6 +17,7 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FromString
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import tech.tablesaw.aggregate.AggregateFunctions
+import tech.tablesaw.aggregate.CrossTab
 import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.DoubleColumn
 import tech.tablesaw.api.Row
@@ -137,6 +139,26 @@ class TSDataFrame implements DataFrame {
     @Override
     Long size() {
         return this.table.rowCount()
+    }
+
+    @Override
+    DataFrame first() {
+        return new TSDataFrame(this.table.first(1))
+    }
+
+    @Override
+    DataFrame first(int rows) {
+        return new TSDataFrame(this.table.first(rows))
+    }
+
+    @Override
+    DataFrame last() {
+        return new TSDataFrame(this.table.last(1))
+    }
+
+    @Override
+    DataFrame last(int rows) {
+        return new TSDataFrame(this.table.last(rows))
     }
 
     @Override
@@ -362,6 +384,10 @@ class TSDataFrame implements DataFrame {
         return new TSDataFrame(this.table.dropRowsWithMissingValues())
     }
 
+    String getName() {
+        return this.table.name()
+    }
+
     @Override
     @NamedVariant
     DataFrame mean(
@@ -474,6 +500,11 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    DataFrame minus(Series series) {
+        return new TSDataFrame(this.table.removeColumns(series.implementation as Column))
+    }
+
+    @Override
     @NamedVariant
     Series max(TypeAxis axisType) {
         return null
@@ -567,12 +598,36 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    Shape shape() {
+        return new Shape(this.table.rowCount(), this.table.columnCount())
+    }
+
+    @Override
     DataFrameAggregation agg(Map<String, ?> aggFn) {
         List<DataFrameAggregation.SeriesInfo> seriesInfoList = aggFn.collect { String colName, Object func ->
-            new DataFrameAggregation.SeriesInfo(colName, [func.toString()])
+            if (func instanceof List) {
+                return new DataFrameAggregation.SeriesInfo(colName, func)
+            }
+            return new DataFrameAggregation.SeriesInfo(colName, [func.toString()])
         }
 
         return  new TSDataFrameAggregation(new DataFrameAggregation.AggregationInfo(seriesInfoList), this.table)
+    }
+
+    @Override
+    DataFrame setName(String name) {
+        return new TSDataFrame(this.table.setName(name))
+    }
+
+    @Override
+    DataFrame schema() {
+        return new TSDataFrame(this.table.structure())
+    }
+
+    @Override
+    @NamedVariant
+    DataFrame xTabCounts(@NamedParam String labels, @NamedParam String values) {
+        return new TSDataFrame(this.table.xTabCounts(labels, values))
     }
 
     private static Column fromSeries(Series value) {

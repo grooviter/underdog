@@ -5,6 +5,8 @@ import groovy.transform.NamedVariant
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FirstParam
 
+import java.util.function.Function
+
 /**
  * @since 0.1.0
  */
@@ -17,6 +19,8 @@ interface Series extends Columnar {
     <P> Series call(Class<P> clazz, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func)
 
     <P,O> Series call(Class<P> clazz, Class<O> output, @ClosureParams(value = FirstParam.FirstGenericType, options='P') Closure func)
+
+    <P, O> Series call(Class<P> clazz, Class<O> output, Function<P, O> converter)
 
     Series categorize()
     /**
@@ -49,6 +53,12 @@ interface Series extends Columnar {
      * @since 0.1.0
      */
     Series dropna()
+
+
+    Criteria inList(List options)
+
+
+    Series lag(int index)
 
     /**
      * @since 0.1.0

@@ -39,6 +39,12 @@ class UnderscoreTransformer extends ConditionalExpressionTransformer {
             }
         }
 
+        if (expr instanceof VariableExpression) {
+            if (expr.text == "__") {
+                return propX(classX(Wildcard), constX('ALL'))
+            }
+        }
+
         return expr.transformExpression(this)
     }
 
@@ -55,7 +61,7 @@ class UnderscoreTransformer extends ConditionalExpressionTransformer {
                 return rightX instanceof ListExpression &&
                     rightX.expressions.size() > 1 &&
                     rightX.expressions[0] instanceof VariableExpression &&
-                    rightX.expressions[0].name == '__'
+                    rightX.expressions[0].text == '__'
             }
         }
 

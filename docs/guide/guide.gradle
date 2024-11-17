@@ -1,0 +1,30 @@
+plugins {
+    id('org.kordamp.gradle.guide')
+    id('org.ajoberstar.git-publish')
+}
+
+tasks.register("setAuthentication") {
+    doLast {
+        System.setProperty("org.ajoberstar.grgit.auth.username", findProperty('PUBLISH_GH_TOKEN').toString())
+    }
+}
+
+gitPublishPush {
+    dependsOn 'setAuthentication'
+}
+
+asciidoctor {
+    baseDirFollowsSourceDir()
+    attributes(
+        'underdog': version,
+        'github': '.',
+        'toc': 'left',
+        'toclevels'          : 4,
+        'source-highlighter': 'rouge')
+}
+
+asciidoctorj {
+    modules {
+        diagram.version '2.1.0'
+    }
+}

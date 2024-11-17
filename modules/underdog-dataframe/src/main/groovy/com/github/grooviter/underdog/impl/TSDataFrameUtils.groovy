@@ -7,6 +7,7 @@ class TSDataFrameUtils {
     static AggregateFunction resolveFnByName(String name) {
         return switch(name){
             case "mean"   -> AggregateFunctions.mean
+            case "median" -> AggregateFunctions.median
             case "max"    -> AggregateFunctions.max
             case "min"    -> AggregateFunctions.min
             case "last"   -> AggregateFunctions.last

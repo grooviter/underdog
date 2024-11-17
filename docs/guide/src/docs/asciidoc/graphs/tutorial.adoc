@@ -1,0 +1,7 @@
+=== Tutorial
+:sources: ../../../../../../modules/underdog-graphs/src/test/groovy
+
+[source, groovy]
+----
+include::{sources}/com/github/grooviter/underdog/graphs/guide/TutorialSpec.groovy[tag=create,indent=0]
+----

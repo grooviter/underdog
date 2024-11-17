@@ -15,6 +15,7 @@ interface DataFrameIloc {
      */
     DataFrame getAt(Integer[] indexes)
 
+
     DataFrame getAt(Integer index, List<Integer> indexes)
 
     /**
@@ -26,6 +27,8 @@ interface DataFrameIloc {
      * @since 0.1.0
      */
     DataFrame getAt(Wildcard wildcard, IntRange colIndex)
+
+    Series getAt(Wildcard wildcard, Integer col)
 
     /**
      * @since 0.1.0

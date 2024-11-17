@@ -33,7 +33,13 @@ class TSCriteria implements Criteria {
 
     @Override
     Criteria and(Criteria criteria) {
-        TSCriteria crit = criteria as TSCriteria
-        return new TSCriteria(this.selection & crit.selection)
+        TSCriteria criteriaImplementation = criteria as TSCriteria
+        return new TSCriteria(this.selection & criteriaImplementation.selection)
+    }
+
+    @Override
+    Criteria or(Criteria criteria) {
+        TSCriteria criteriaImplementation = criteria as TSCriteria
+        return new TSCriteria(this.selection | criteriaImplementation.selection)
     }
 }

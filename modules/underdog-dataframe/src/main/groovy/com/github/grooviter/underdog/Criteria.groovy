@@ -5,4 +5,5 @@ interface Criteria {
     DataFrame apply(DataFrame dataFrame)
     DataFrame apply(DataFrameLoc dataFrame)
     Criteria and(Criteria criteria)
+    Criteria or(Criteria criteria)
 }

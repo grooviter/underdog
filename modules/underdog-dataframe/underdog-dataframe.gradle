@@ -11,8 +11,11 @@ dependencies {
 
     api "org.apache.groovy:groovy-dateutil:$groovy"
     api "org.apache.groovy:groovy-macro:$groovy"
-    api "tech.tablesaw:tablesaw-core:$tablesaw"
-    api "tech.tablesaw:tablesaw-excel:$tablesaw"
+    api "com.github.grooviter:tablesaw-core:$tablesaw"
+    api "com.github.grooviter:tablesaw-excel:$tablesaw"
+
+    implementation 'org.apache.poi:poi-ooxml:5.2.5' // this has to be added as api in tablesaw
+    implementation 'com.univocity:univocity-parsers:2.9.1' // this has to be added as api in tablesaw
 
     testImplementation "org.spockframework:spock-core:$spock"
 }

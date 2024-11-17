@@ -73,6 +73,14 @@ interface DataFrame extends Columnar {
      */
     Long size()
 
+    DataFrame first()
+
+    DataFrame first(int rows)
+
+    DataFrame last()
+
+    DataFrame last(int rows)
+
     /**
      * @since 0.1.0
      */
@@ -277,6 +285,8 @@ interface DataFrame extends Columnar {
 
     DataFrame dropna()
 
+    String getName()
+
     @NamedVariant
     DataFrame mean(
         @NamedParam(required = true) TypeAxis axis,
@@ -305,6 +315,8 @@ interface DataFrame extends Columnar {
      */
     @NamedVariant
     Series min(TypeAxis axisType)
+
+    DataFrame minus(Series series)
 
     /**
      * @since 0.1.0
@@ -358,8 +370,17 @@ interface DataFrame extends Columnar {
      */
     void putAt(String colName, Series value)
 
+    Shape shape()
+
     /**
      * @since 0.1.0
      */
     DataFrameAggregation agg(Map<String, ?> aggFn)
+
+    DataFrame setName(String name)
+
+    DataFrame schema()
+
+    @NamedVariant
+    DataFrame xTabCounts(String labels, String values)
 }
