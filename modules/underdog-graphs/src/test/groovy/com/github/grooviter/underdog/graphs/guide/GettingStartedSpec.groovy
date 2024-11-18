@@ -29,7 +29,7 @@ class GettingStartedSpec extends Specification {
         }
 
         // tell me the sortest path between node A and node H
-        def shortestPath = graph.shortestPath('A', 'H')
+        def shortestPath = graph.shortestPathVertices('A', 'H')
         // end::getting_started_simple[]
         expect:
         shortestPath == ['A', 'B', 'C', 'E', 'H']

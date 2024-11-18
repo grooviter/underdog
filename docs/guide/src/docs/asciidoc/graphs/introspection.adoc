@@ -1,0 +1,33 @@
+=== Introspection
+:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
+
+You can ask the tree for different attributes such as the degrees:
+
+[source, groovy]
+----
+include::{sources}/IntrospectionSpec.groovy[tag=max_degree, indent=0]
+----
+
+Imagine a more complex example where our nodes are beans. In the following example we are repeating the graph but with people:
+
+[source, groovy]
+.Person
+----
+include::{sources}/IntrospectionSpec.groovy[tag=person, indent=0]
+----
+
+We create the graph:
+
+[source, groovy]
+.Graph using complex objects
+----
+include::{sources}/IntrospectionSpec.groovy[tag=person_graph, indent=0]
+----
+
+Then look for the person with more relationship and extract that person name and age:
+
+[source, groovy]
+.Person with more relationships
+----
+include::{sources}/IntrospectionSpec.groovy[tag=person_max_degree, indent=0]
+----

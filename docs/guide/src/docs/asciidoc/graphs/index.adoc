@@ -2,3 +2,13 @@
 == Graphs
 
 include::./tutorial.adoc[]
+
+include::traversal.adoc[]
+
+include::introspection.adoc[]
+
+include::distances.adoc[]
+
+include::operators.adoc[]
+
+include::scoring.adoc[]

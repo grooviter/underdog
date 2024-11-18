@@ -23,6 +23,6 @@ class DistanceExtensionsSpec extends Specification {
         }
 
         expect:
-        graph.shortestPath('A', 'H') == ['A', 'B', 'C', 'E', 'H']
+        graph.shortestPathVertices('A', 'H') == ['A', 'B', 'C', 'E', 'H']
     }
 }

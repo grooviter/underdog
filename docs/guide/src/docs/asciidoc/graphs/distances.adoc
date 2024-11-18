@@ -1,0 +1,62 @@
+=== Distances
+:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
+
+Sometimes comes handy to know what is the shortest path from one node to another. It could be anything:
+
+- how many people do I have to meet to meet a specific person
+- how many cities do I have to visit before getting to a specific location
+- etc.
+
+Here's a very naive example with cities. The following graph contains cities and the edges represent how many kilometers there are between them. We'd like to use the graph as a route planner to get from point A to B. First we need to create our graph:
+
+[source, groovy]
+.cities distances graph
+----
+include::{sources}/DistancesSpec.groovy[tag=shortest_path_graph,indent=0]
+----
+
+See how the weight of the edges represent the km between then. Then I'd like to know how many kilometers I'm going to drive if I'd like to go from Teruel to Madrid:
+
+[source, groovy]
+.kms
+----
+include::{sources}/DistancesSpec.groovy[tag=shortest_path_edges,indent=0]
+----
+
+I've taken the edges and I've added up all weights to get the whole trip in kms:
+
+[source, shell]
+.output
+----
+761.4
+----
+
+To get the city names I'm asking for the shortest path getting the vertices this time:
+
+[source, groovy]
+.cities visited
+----
+include::{sources}/DistancesSpec.groovy[tag=shortest_path_vertices,indent=0]
+----
+
+[source, shell]
+.output
+----
+["Teruel", "Cuenca", "Zaragoza", "Guadalajara", "Madrid"]
+----
+
+If you are not sure whether you are interested in vertices or edges, or maybe you are interested in both, just use `shortestPath`:
+
+[source, groovy]
+.shortestPath
+----
+include::{sources}/DistancesSpec.groovy[tag=shortest_path,indent=0]
+----
+
+And access the resulting object:
+
+[source, groovy]
+.shortestPath attributes
+----
+include::{sources}/DistancesSpec.groovy[tag=shortest_path_attributes,indent=0]
+----
