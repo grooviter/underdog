@@ -4,9 +4,11 @@
 
 ### Overview
 
-Underdog is a series of Groovy libraries for data analysis
+Underdog is a set of Groovy libraries for data analysis
 
 ### Dependencies
+
+Depending on your needs you can import one or more dependencies. Here you have the coordinates both in Gradle and Maven:
 
 Gradle
 

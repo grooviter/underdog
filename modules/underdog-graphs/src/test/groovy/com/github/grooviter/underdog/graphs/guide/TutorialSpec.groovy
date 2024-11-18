@@ -15,6 +15,8 @@ class TutorialSpec extends Specification {
             edge("A", "B")
             edge("A", "C")
         }
+
+
         // end::create[]
         expect:
         true

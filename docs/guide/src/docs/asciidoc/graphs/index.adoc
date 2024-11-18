@@ -1,3 +1,4 @@
+[#_graphs]
 == Graphs
 
 include::./tutorial.adoc[]
