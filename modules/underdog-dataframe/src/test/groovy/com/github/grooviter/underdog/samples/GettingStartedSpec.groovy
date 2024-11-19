@@ -14,10 +14,12 @@ class GettingStartedSpec extends Specification {
         // reading data from CSV file
         def df = Underdog.read_csv(csvFilePath)
 
+        df["year"] = df["date"](Date, Integer) { it.format("yyyy").toInteger() }
+
         // how many tornadoes hit Texas in 2012
         def result = df[df["State"] == "TX" & df["year"] == 2012].size()
         // end::getting_started_simple[]
         then:
-        result == 23
+        result == 115
     }
 }

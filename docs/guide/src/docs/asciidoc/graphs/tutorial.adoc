@@ -1,7 +1,151 @@
 === Tutorial
-:sources: ../../../../../../modules/underdog-graphs/src/test/groovy
+:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
+
+==== Creating a graph
+
+Creating an empty graph without vertices and edges:
 
 [source, groovy]
+.create a graph
 ----
-include::{sources}/com/github/grooviter/underdog/graphs/guide/TutorialSpec.groovy[tag=create,indent=0]
+include::{sources}/TutorialSpec.groovy[tag=import,indent=0]
+
+include::{sources}/TutorialSpec.groovy[tag=create,indent=0]
 ----
+
+==== Vertices / Nodes
+
+There are a couple of ways of adding more vertices to a graph. One is when creating the graph:
+
+[source, groovy]
+.adding vertices at creation time
+----
+include::{sources}/TutorialSpec.groovy[tag=add_vertices_at_creation_time,indent=0]
+----
+
+You can also add more vertices after the graph has been created:
+
+[source, groovy]
+.adding vertices after creation
+----
+include::{sources}/TutorialSpec.groovy[tag=add_vertices_after_creation,indent=0]
+----
+
+You can add simple type vertices but you can also add more complex objects. Imagine we can add the relationships between employees in a given company. First lets define the `Employee` class:
+
+[source, groovy]
+.Employee
+----
+include::{sources}/TutorialSpec.groovy[tag=employee,indent=0]
+----
+
+<1> `@Canonical` implements very useful methods, the most important are equals and hashcode. These methods will help the graph to id each node in the graph.
+
+Now we can create a Graph and add relationships between employees:
+
+[source, groovy]
+.Adding employees
+----
+include::{sources}/TutorialSpec.groovy[tag=add_employees,indent=0]
+----
+
+==== Edges
+
+We can add vertices at creation time:
+
+[source, groovy]
+.Adding edges at creation time
+----
+include::{sources}/TutorialSpec.groovy[tag=adding_edges_at_creation,indent=0]
+----
+
+You can also add several edges at once using `edges(...)` :
+
+[source, groovy]
+.Adding several edges at once
+----
+include::{sources}/TutorialSpec.groovy[tag=adding_several_at_once,indent=0]
+----
+
+But it is also possible to add edges after the graph has been created:
+
+[source, groovy]
+.Adding edges after creation time
+----
+include::{sources}/TutorialSpec.groovy[tag=adding_edges_after_creation,indent=0]
+----
+
+We can at any point ask about how many vertices and edges there are in the graph:
+
+[source, groovy]
+.shape
+----
+include::{sources}/TutorialSpec.groovy[tag=shape,indent=0]
+----
+
+which prints:
+
+[source, shell]
+.output
+----
+4 vertices X 3 edges
+----
+
+==== Elements of a graph
+
+- vertices
+- edges
+- adjacent
+- degree
+
+Lets create a graph first and then ask for its elements:
+
+[source, groovy]
+.graph
+----
+include::{sources}/TutorialSpec.groovy[tag=elements_graph,indent=0]
+----
+
+The lets ask for its vertices, edges, neighbors.
+
+[source, groovy]
+.graph elements
+----
+include::{sources}/TutorialSpec.groovy[tag=elements,indent=0]
+----
+
+<1> getting graph vertices
+<2> getting graph edges
+<3> getting neighbors of a specific vertex
+
+==== Removing elements
+
+Here there are some example on how to remove vertices and edges from a given graph. When using
+the operator minus (`-`) the result return the graph minus the element removed whereas the `removeXXX(,,,)` functions only return a boolean value: true if the element was successfully removed, or false
+if it couldn't be removed from graph.
+
+[source, groovy]
+.removing elements
+----
+include::{sources}/TutorialSpec.groovy[tag=removing_elements,indent=0]
+----
+
+==== Graph types
+
+You can create different types of graphs. There are a couple of methods you can use:
+
+[source, groovy]
+.graph types
+----
+include::{sources}/TutorialSpec.groovy[tag=graph_types,indent=0]
+----
+
+NOTE: Because graphs in underdog are using JGraphT underneath you can always create an instance of any type of graph directly using JGraphT api.
+
+==== What to use as vertices
+
+You can use almost anything as a vertex. The only mandatory condition is that the graph must be able to distinguish between vertices. For that your vertex should implement both equals and hashcode methods. In Groovy you can use the `@Canonical` annotation to get that.
+
+==== Analyzing graphs
+
+TODO

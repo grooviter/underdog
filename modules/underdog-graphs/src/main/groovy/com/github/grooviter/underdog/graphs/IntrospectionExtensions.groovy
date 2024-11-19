@@ -1,5 +1,6 @@
 package com.github.grooviter.underdog.graphs
 
+import com.github.grooviter.underdog.graphs.graphs.Shape
 import org.jgrapht.Graph
 
 /**
@@ -44,5 +45,72 @@ class IntrospectionExtensions {
      */
     static <V, E, G extends Graph<V,E>> List<V> verticesOf(G graph, E edge) {
         return [graph.getEdgeSource(edge), graph.getEdgeTarget(edge)]
+    }
+
+    /**
+     * Gets a set of vertices from graph
+     *
+     * @param graph the graph where to get the vertices from
+     * @return a set of vertices
+     * @since 0.1.0
+     */
+    static <V, E, G extends Graph<V,E>> Set<V> getVertices(G graph) {
+        return graph.vertexSet()
+    }
+
+    /**
+     * Gets a set of edges from graph
+     *
+     * @param graph the graph where to get the edges from
+     * @return a set of edges
+     * @since 0.1.0
+     */
+    static <V, E, G extends Graph<V,E>> Set<E> getEdges(G graph) {
+        return graph.edgeSet()
+    }
+
+    /**
+     * Returns the number of vertices in the graph
+     *
+     * @param graph the graph to get the metric from
+     * @return the number of vertices in graph
+     * @since 0.1.0
+     */
+    static int verticesCount(Graph graph) {
+        return graph.vertexSet().size()
+    }
+
+    /**
+     * Returns the number of edges in the graph
+     *
+     * @param graph the graph to get the metric from
+     * @return the number of edges in graph
+     * @since 0.1.0
+     */
+    static int edgesCount(Graph graph) {
+        return graph.edgeSet().size()
+    }
+
+    /**
+     * Returns the {@link Shape} of the graph (vertices, edges)
+     *
+     * @param graph the graph to get the metric from
+     * @return the {@link Shape} of the graph
+     * @since 0.1.0
+     */
+    static Shape shape(Graph graph) {
+        return new Shape(graph.verticesCount(), graph.edgesCount())
+    }
+
+    /**
+     * Returns a list of vertices that are neighbors of the vertex passed as parameter
+     *
+     * @param graph the graph the vertices are in
+     * @param vertex the vertex we want the neighbors from
+     * @return a list of vertices that are neighbors of the vertex passed as parameter
+     * @since 0.1.0
+     */
+    static <V, E, G extends Graph<V,E>> List<V> neighborsOf(G graph, V vertex) {
+        return graph.edgesOf(vertex).collectMany(edge -> graph.verticesOf(edge)) - vertex
     }
 }
