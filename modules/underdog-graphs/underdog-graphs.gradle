@@ -4,8 +4,6 @@ plugins {
 }
 
 dependencies {
-    api project(":underdog-dataframe")
-
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
     api "org.apache.groovy:groovy-json:$groovy"

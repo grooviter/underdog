@@ -4,8 +4,6 @@ plugins {
 }
 
 dependencies {
-    api project(":underdog-dataframe")
-
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
     api "org.apache.groovy:groovy-json:$groovy"
@@ -15,9 +13,8 @@ dependencies {
     api "com.github.haifengl:smile-core:3.1.1"
     api "com.github.haifengl:smile-nlp:3.1.1"
 
-//    implementation "tech.tablesaw:tablesaw-core:$tablesaw"
     implementation "org.apache.groovy:groovy-macro:$groovy"
-
+    testImplementation project(":underdog-dataframe")
     testImplementation "org.spockframework:spock-core:$spock"
 }
 
