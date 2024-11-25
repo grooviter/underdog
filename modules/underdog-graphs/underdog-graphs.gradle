@@ -9,8 +9,8 @@ dependencies {
     api "org.apache.groovy:groovy-json:$groovy"
     api "org.apache.groovy:groovy-templates:$groovy"
     api "org.apache.groovy:groovy-dateutil:$groovy"
-    api "org.jgrapht:jgrapht-core:1.5.2"
-    api "org.jgrapht:jgrapht-io:1.5.2"
+    api "org.jgrapht:jgrapht-core:$jgrapht"
+    api "org.jgrapht:jgrapht-io:$jgrapht"
 
     testImplementation "org.spockframework:spock-core:$spock"
 }

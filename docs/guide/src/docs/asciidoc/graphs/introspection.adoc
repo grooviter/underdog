@@ -16,6 +16,8 @@ Imagine a more complex example where our nodes are beans. In the following examp
 include::{sources}/IntrospectionSpec.groovy[tag=person, indent=0]
 ----
 
+NOTE: You can learn more about Groovy destructuring in the link:https://docs.groovy-lang.org/latest/html/documentation/#_object_destructuring_with_multiple_assignment[Groovy documentation]
+
 We create the graph:
 
 [source, groovy]
@@ -31,3 +33,5 @@ Then look for the person with more relationship and extract that person name and
 ----
 include::{sources}/IntrospectionSpec.groovy[tag=person_max_degree, indent=0]
 ----
+
+Do you remember we implemented destructuring for the Person class ? Here the `maxDegree()` function returns an instance of type Person, therefore we can access the properties name and age using destructuring knowing that the property in index 0 is the name and the property in index 1 is age.

@@ -155,14 +155,9 @@ class TutorialSpec extends Specification {
 
         then:
         // tag::elements[]
-        // <1> getting vertices
-        graph.vertices.containsAll(1..10)
-
-        // <2> getting edges
-        graph.edges.size() == 3
-
-        // <3> getting neighbors of vertex 1
-        graph.neighborsOf(1) == [2, 3]
+        graph.vertices.containsAll(1..10) // <1>
+        graph.edges.size() == 3 // <2>
+        graph.neighborsOf(1) == [2, 3] // <3>
         // end::elements[]
     }
 
@@ -228,30 +223,48 @@ class TutorialSpec extends Specification {
         when:
         // tag::analyzing_graph[]
         def graph = Graphs.graph(String) {
-            ('a'..'z').each(delegate::vertex)
+            ('a'..'f').each(delegate::vertex)
 
             edges(
                 'a', 'b',
+                    'a', 'c',
                     'a', 'd',
-                    'a', 'z'
+                    'b', 'e',
             )
         }
-
-        // getting shape
-        def (nVertices, nEdges) = graph.shape()
-
-        // degrees
-        Map<String, Integer> degrees = graph.degrees()
-        degrees['a'] == 3
-        degrees['j'] == 0
-
-        // max degree
-        String maxDegreeVertex = graph.maxDegree()
-        maxDegreeVertex == 'a'
         // end::analyzing_graph[]
+
+        // tag::analyzing_graph_shape[]
+        def (nVertices, nEdges) = graph.shape()
+        // end::analyzing_graph_shape[]
+
+        // tag::analyzing_graph_max_degree[]
+        String maxDegreeVertex = graph.maxDegree()
+        // end::analyzing_graph_max_degree[]
+
+        // tag::analyzing_graph_sort_by_degree[]
+        def sortedVertices = graph.vertices.sort { -graph.degreeOf(it) }
+        // end::analyzing_graph_sort_by_degree[]
+
+        // tag::analyzing_graph_clustering_global[]
+        def graphClustering = graph.clusteringGlobal()
+        // end::analyzing_graph_clustering_global[]
+
+        // tag::analyzing_graph_clustering_avg[]
+        def graphAvg = graph.clusteringAvg()
+        // end::analyzing_graph_clustering_avg[]
+
+        // tag::analyzing_graph_clustering_vertex[]
+        def vertexClustering = graph.clusteringOf('a')
+        // end::analyzing_graph_clustering_vertex[]
+
         then:
-        nVertices == 26
-        nEdges == 3
+        sortedVertices == ['a', 'b', 'c', 'd', 'e', 'f']
+        nVertices == 6
+        nEdges == 4
         maxDegreeVertex == 'a'
+        graphClustering == 0
+        graphAvg == 0
+        vertexClustering == 0
     }
 }

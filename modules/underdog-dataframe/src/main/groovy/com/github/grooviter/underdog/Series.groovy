@@ -85,6 +85,8 @@ interface Series extends Columnar {
      */
     Object getAt(Integer index)
 
+    String getName()
+
     /**
      * @since 0.1.0
      */

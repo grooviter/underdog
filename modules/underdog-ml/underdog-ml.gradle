@@ -3,6 +3,10 @@ plugins {
     id 'java-library'
 }
 
+repositories {
+    mavenLocal()
+}
+
 dependencies {
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
@@ -15,7 +19,10 @@ dependencies {
 
     implementation "org.apache.groovy:groovy-macro:$groovy"
     testImplementation project(":underdog-dataframe")
+    testImplementation "com.github.grooviter:tablesaw-jsplot:$tablesaw"
     testImplementation "org.spockframework:spock-core:$spock"
+    testImplementation(project(":underdog-plots"))
+
 }
 
 test {

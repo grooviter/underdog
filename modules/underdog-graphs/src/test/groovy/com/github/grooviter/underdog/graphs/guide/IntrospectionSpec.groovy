@@ -1,7 +1,6 @@
 package com.github.grooviter.underdog.graphs.guide
 
 import com.github.grooviter.underdog.graphs.Graphs
-import groovy.transform.Canonical
 import spock.lang.Specification
 
 class IntrospectionSpec extends Specification {
@@ -24,13 +23,17 @@ class IntrospectionSpec extends Specification {
     }
 
     // tag::person[]
-    static class Person {
+    class Person {
         String name
         Integer age
 
-        // this is used for destructuring
+        // this is used for destructuring eg:
+        // def (name, age) = somePerson
+        //       ^     ^
+        //       |     |
+        //       0     1
         Object getAt(Integer index) {
-            return this.properties.values().indexed()[index]
+            return [name, age][index]
         }
     }
     // end::person[]

@@ -1,6 +1,5 @@
 package com.github.grooviter.underdog.smile
 
-
 import smile.math.kernel.GaussianKernel
 import smile.math.kernel.HyperbolicTangentKernel
 import smile.math.kernel.LinearKernel

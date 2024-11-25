@@ -113,7 +113,6 @@ The lets ask for its vertices, edges, neighbors.
 ----
 include::{sources}/TutorialSpec.groovy[tag=elements,indent=0]
 ----
-
 <1> getting graph vertices
 <2> getting graph edges
 <3> getting neighbors of a specific vertex
@@ -148,4 +147,58 @@ You can use almost anything as a vertex. The only mandatory condition is that th
 
 ==== Analyzing graphs
 
-TODO
+The structure of the graph can be analyzed by using various functions.
+
+[source, groovy]
+.graph
+----
+include::{sources}/TutorialSpec.groovy[tag=analyzing_graph,indent=0]
+----
+
+What is the shape of the graph ?
+
+[source, groovy]
+.shape
+----
+include::{sources}/TutorialSpec.groovy[tag=analyzing_graph_shape,indent=0]
+----
+
+What is the clustering of the graph ?
+
+[source, groovy]
+.clustering of the graph
+----
+include::{sources}/TutorialSpec.groovy[tag=analyzing_graph_clustering_global,indent=0]
+----
+
+What is the clustering avg ?
+
+[source, groovy]
+.clustering average
+----
+include::{sources}/TutorialSpec.groovy[tag=analyzing_graph_clustering_avg,indent=0]
+----
+
+And what about the clustering of a given vertex ?
+
+[source, groovy]
+.clustering of a vertex
+----
+include::{sources}/TutorialSpec.groovy[tag=analyzing_graph_clustering_vertex,indent=0]
+----
+
+What is the vertex with max degree ?
+
+[source, groovy]
+.max degree
+----
+include::{sources}/TutorialSpec.groovy[tag=analyzing_graph_max_degree,indent=0]
+----
+
+Lets say we want to sort vertices by degree in descending order:
+
+[source, groovy]
+.sort vertices by degree (desc)
+----
+include::{sources}/TutorialSpec.groovy[tag=analyzing_graph_sort_by_degree,indent=0]
+----

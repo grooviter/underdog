@@ -1,4 +1,6 @@
-== Underdog
+= Underdog
+:revnumber: {underdog}
+:numbered:
 :sources_df: ../../../../../modules/underdog-dataframe/src/test/groovy
 :sources_gr: ../../../../../modules/underdog-graphs/src/test/groovy
 :sources_ml: ../../../../../modules/underdog-ml/src/test/groovy

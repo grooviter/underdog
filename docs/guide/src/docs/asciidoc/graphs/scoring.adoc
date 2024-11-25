@@ -1,4 +1,0 @@
-=== Scoring
-:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
-
-TODO

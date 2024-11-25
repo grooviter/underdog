@@ -1,3 +1,32 @@
 === Traversal
+:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
 
-TODO
+To traverse the grpah you can directly access the vertices or edges sets and use normal Groovy/Java mechanisms. In the following example we are looking in all vertices to find all vertices having the number two as a neighbor
+
+[source, groovy]
+.collections (vertices)
+----
+include::{sources}/TraversalSpec.groovy[tag=collections_vertices, indent=0]
+----
+
+[source, shell]
+.output
+----
+1
+----
+
+Now in the next example we are exploring boss-employee relationships and we'd like to find all the bosses names:
+
+[source, groovy]
+.collections (edges)
+----
+include::{sources}/TraversalSpec.groovy[tag=collections_edges, indent=0]
+----
+
+Sometimes the graph could be bigger and more complex and we could benefit from using breadthFirst (\*) or depthFirst (**) algorithms:
+
+[source, groovy]
+.depthFirst
+----
+include::{sources}/TraversalSpec.groovy[tag=depth_first, indent=0]
+----
