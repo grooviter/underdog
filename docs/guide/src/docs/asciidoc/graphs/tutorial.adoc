@@ -15,6 +15,10 @@ include::{sources}/TutorialSpec.groovy[tag=create,indent=0]
 
 ==== Vertices / Nodes
 
+Lets create a graph with two nodes without any edge between them:
+
+image::graphs/tutorial_adding_vertices.png[align=center]
+
 There are a couple of ways of adding more vertices to a graph. One is when creating the graph:
 
 [source, groovy]
@@ -51,6 +55,10 @@ include::{sources}/TutorialSpec.groovy[tag=add_employees,indent=0]
 
 ==== Edges
 
+Graphs normally are not very useful without setting edges between nodes. Lets add an edge between two nodes:
+
+image::graphs/tutorial_adding_edges.png[align=center]
+
 We can add vertices at creation time:
 
 [source, groovy]
@@ -59,10 +67,12 @@ We can add vertices at creation time:
 include::{sources}/TutorialSpec.groovy[tag=adding_edges_at_creation,indent=0]
 ----
 
-You can also add several edges at once using `edges(...)` :
+You can also add several edges at once using `edges(...)`
+
+image::graphs/tutorial_adding_edges_II.png[align=center]
 
 [source, groovy]
-.Adding several edges at once
+.adding several edges
 ----
 include::{sources}/TutorialSpec.groovy[tag=adding_several_at_once,indent=0]
 ----

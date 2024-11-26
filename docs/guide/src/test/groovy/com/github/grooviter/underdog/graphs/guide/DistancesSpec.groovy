@@ -1,6 +1,7 @@
 package com.github.grooviter.underdog.graphs.guide
 
 import com.github.grooviter.underdog.graphs.Graphs
+import memento.plots.Plots
 import spock.lang.Specification
 
 class DistancesSpec extends Specification {
@@ -32,6 +33,8 @@ class DistancesSpec extends Specification {
         // tag::shortest_path[]
         def shortestPath = distances.shortestPath("Teruel", "Madrid")
         // end::shortest_path[]
+
+        Plots.plots().graph(distances).show()
 
         then:
         // tag::shortest_path_attributes[]

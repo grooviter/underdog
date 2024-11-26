@@ -4,6 +4,7 @@ package com.github.grooviter.underdog.graphs.guide
 // importing graphs
 import com.github.grooviter.underdog.graphs.Graphs
 // end::getting_started_simple_imports[]
+import memento.plots.Plots
 import spock.lang.Specification
 
 class GettingStartedSpec extends Specification {
@@ -20,18 +21,17 @@ class GettingStartedSpec extends Specification {
                     'C', 'E',
                     'D', 'E',
                     'E', 'I',
-                    'I', 'J',
-                    'E', 'H',
-                    'E', 'F',
-                    'C', 'F',
-                    'F', 'G'
+                    'I', 'J'
             )
         }
 
         // tell me the sortest path between node A and node H
-        def shortestPath = graph.shortestPathVertices('A', 'H')
+        def shortestPath = graph.shortestPathVertices('A', 'J')
         // end::getting_started_simple[]
+
+        Plots.plots().graph(graph, title: 'Nodes & Edges', subtitle: 'Creating graphs with Underdog').show()
+
         expect:
-        shortestPath == ['A', 'B', 'C', 'E', 'H']
+        shortestPath == ['A', 'B', 'C', 'E', 'I', 'J']
     }
 }

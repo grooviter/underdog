@@ -28,9 +28,10 @@ class Scatter extends Chart {
         @NamedParam(required = false) List<Number> group = [],
         @NamedParam(required = false) String xLabel = 'X',
         @NamedParam(required = false) String yLabel = 'Y',
-        @NamedParam(required = false, value='title') String chartTitle = '') {
+        @NamedParam(required = false, value='title') String chartTitle = '',
+        @NamedParam(required = false, value='subtitle') String chartSubtitle = '') {
         Options baseOptions =
-            createGridOptions(chartTitle) +
+            createGridOptions(chartTitle, chartSubtitle) +
             createXAxisOptions(xLabel) +
             createYAxisOptions(yLabel)
 
@@ -81,13 +82,15 @@ class Scatter extends Chart {
         Series xs,
         Series ys,
         @NamedParam(required = false) Series group,
-        @NamedParam(required = false, value='title') String chartTitle = '') {
+        @NamedParam(required = false, value='title') String chartTitle = '',
+        @NamedParam(required = false, value='subtitle') String chartSubtitle = '') {
         return scatter(
             xs as List<Number>,
             ys as List<Number>,
             xLabel: xs.name,
             yLabel: ys.name,
             title: chartTitle,
+            subtitle: chartSubtitle,
             group: group as List<Number>)
     }
 }

@@ -5,29 +5,35 @@
 :sources_gr: ../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
 :sources_ml: ../../../src/test/groovy/com/github/grooviter/underdog/smile/guide
 
+== About
+
 Underdog is a set of Groovy libraries for data analysis. It contains the following subprojects:
 
 - **underdog-dataframe**: combines tools for working with dataframes and series.
 
 [source, groovy]
-.Dataframe
+.Dataframe example
 ----
 include::{sources_df}/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
 
 include::{sources_df}/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
 ----
 
+image::intro_dataframe.png[align=center, width="60%"]
+
 More information on the link:#_dataframe[Dataframe section]
 
 - **underdog-graphs**: library of graph theory data structures and algorithms
 
 [source, groovy]
-.Graphs
+.Graphs example
 ----
 include::{sources_gr}/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
 
 include::{sources_gr}/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
 ----
+
+image::intro_graphs.png[align=center, width="60%"]
 
 More information in the link:#_graphs[Graphs section]
 
@@ -41,10 +47,26 @@ include::{sources_ml}/GettingStartedSpec.groovy[tag=getting_started_simple_impor
 include::{sources_ml}/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
 ----
 
+image::intro_ml.png[align=center, width="60%"]
+
 More information in the link:#_ml[ML section]
+
+- **underdog-plots**: creates different types of charts using the https://echarts.apache.org[Apache Echart] library underneath
+
+[source, groovy]
+.bar chart
+----
+include::{sources_df}/GettingStartedSpec.groovy[tag=show_plot, indent=0]
+----
+
+image::intro_dataframe.png[align=center, width="60%"]
+
+More information in the link:#_plots[Plots section]
 
 include::dataframe/index.adoc[]
 
 include::graphs/index.adoc[]
 
 include::ml/index.adoc[]
+
+include::plots/index.adoc[]

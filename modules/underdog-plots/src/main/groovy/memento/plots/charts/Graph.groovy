@@ -38,29 +38,45 @@ class Graph extends Chart {
 
     @NamedVariant
     Options graph(
-        org.jgrapht.Graph<ToMapAware, RelationshipEdge> graph,
+        org.jgrapht.Graph<?, RelationshipEdge> graph,
+        @NamedParam(required = false, value='showEdgeLabel') boolean showEdgeLabel = false,
         @NamedParam(required = false, value='title') String chartTitle = '',
-        @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-        @NamedParam(required = false) boolean isDirected = false) {
+        @NamedParam(required = false, value='subtitle') String chartSubtitle = '') {
         return this.graph(
             graph.vertices.collect(Graph::toChartNode) as List<Node>,
-            graph.edges.collect { toChartEdge(graph, it) } as List<Edge>,
+            graph.edges.collect { toChartEdge(graph, it, showEdgeLabel) } as List<Edge>,
             chartTitle,
             chartSubtitle,
-            isDirected)
+            graph.type.directed)
     }
 
-    private static Node toChartNode(ToMapAware node) {
-        return node.toMap().subMap('id', 'name', 'symbolSize', 'x', 'y', 'category') as Node
+    private static Node toChartNode(Object node) {
+        if (node instanceof ToMapAware) {
+            return node.toMap().subMap('id', 'name', 'symbolSize', 'x', 'y', 'category') as Node
+        }
+        return new Node(name: node.toString())
     }
 
-    private static Edge toChartEdge(org.jgrapht.Graph<ToMapAware,RelationshipEdge> graph, RelationshipEdge edge) {
-        def target = graph.getEdgeTarget(edge).toMap()
-        def source = graph.getEdgeSource(edge).toMap()
+    private static boolean isToMapAware(Class... classes) {
+        return classes.every { it instanceof ToMapAware }
+    }
+
+    private static Edge toChartEdge(org.jgrapht.Graph graph, RelationshipEdge edge, boolean showLabel) {
+        def target = graph.getEdgeTarget(edge)
+        def source = graph.getEdgeSource(edge)
+
+        if (isToMapAware(target.class, source.class)) {
+            return [
+                source: source.id ?: source.name,
+                target: target.id ?: target.name,
+                value: showLabel ? (edge.relation ?: edge.weight) : ""
+            ]
+        }
+
         return [
-            source: source.id ?: source.name,
-            target: target.id ?: target.name,
-            value: edge.relation
+            source: source.toString(),
+            target: target.toString(),
+            value: showLabel ? (edge.relation ?: edge.weight) : ""
         ]
     }
 
@@ -97,7 +113,8 @@ class Graph extends Chart {
         @NamedParam(required = false, value='title') String chartTitle = '',
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
         @NamedParam(required = false) boolean isDirected = false) {
-        return this.graph(toMapArray(nodes), toMapArray(edges), chartTitle, chartSubtitle, isDirected)
+        return createGridOptions(chartTitle, chartSubtitle) +
+                this.graph(toMapArray(nodes), toMapArray(edges), chartTitle, chartSubtitle, isDirected)
     }
 
     private static Map[] toMapArray(ToMapAware[] toMapAwareList) {

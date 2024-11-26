@@ -1,13 +1,13 @@
 === Distances
 :sources: ../../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
 
-Sometimes comes handy to know what is the shortest path from one node to another. It could be anything:
+Sometimes comes handy to know what is the shortest path from one node to another. It could be anything: How many people do I have to meet to meet a specific person ? How many cities do I have to visit before getting to a specific location ? ...etc
 
-- how many people do I have to meet to meet a specific person
-- how many cities do I have to visit before getting to a specific location
-- etc.
+Here's a very naive example with cities. The following graph contains cities and the edges represent how many kilometers there are between them.
 
-Here's a very naive example with cities. The following graph contains cities and the edges represent how many kilometers there are between them. We'd like to use the graph as a route planner to get from point A to B. First we need to create our graph:
+image::graphs/distances_cities.png[align=center]
+
+We'd like to use the graph as a route planner to get from point A to B. First we need to create our graph:
 
 [source, groovy]
 .cities distances graph

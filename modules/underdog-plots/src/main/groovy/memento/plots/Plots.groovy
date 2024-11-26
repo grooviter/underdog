@@ -3,6 +3,7 @@ package memento.plots
 import com.github.grooviter.underdog.plots.Options
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import memento.plots.charts.Bar
 import memento.plots.charts.Graph
 import memento.plots.charts.Histogram
 import memento.plots.charts.Line
@@ -13,6 +14,7 @@ class Plots {
     @Delegate Scatter scatter = new Scatter()
     @Delegate Histogram histogram = new Histogram()
     @Delegate Graph graphDelegate = new Graph()
+    @Delegate Bar barDelegate = new Bar()
 
     @NamedVariant
     Options plot(

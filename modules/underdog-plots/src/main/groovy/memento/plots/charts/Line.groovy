@@ -20,11 +20,13 @@ class Line extends Chart {
     Options lines(
         List<Number> xs,
         Map<String, List<Number>> ys,
-        @NamedParam(required = false) String chartTitle = "",
-        @NamedParam(required = false) boolean chartSmooth = false) {
+        @NamedParam(required = false) String xLabel = 'X',
+        @NamedParam(required = false) String yLabel = 'Y',
+        @NamedParam(required = false, value='title') String chartTitle = "",
+        @NamedParam(required = false, value='smooth') boolean chartSmooth = false) {
         return createGridOptions(chartTitle) +
-            createXAxisOptions("X", xs) +
-            createYAxisOptions("Y") +
+            createXAxisOptions(xLabel, xs) +
+            createYAxisOptions(yLabel) +
             Options.create {
                 ys.each { next ->
                     println next
@@ -50,11 +52,13 @@ class Line extends Chart {
     Options line(
         List<Number> xs,
         List<Number> ys,
-        @NamedParam(required = false) String chartTitle = "",
+        @NamedParam(required = false) String xLabel = 'X',
+        @NamedParam(required = false) String yLabel = 'Y',
+        @NamedParam(required = false, value='title') String chartTitle = "",
         @NamedParam(required = false, value='smooth') boolean chartSmooth = false) {
         return createGridOptions(chartTitle) +
-            createXAxisOptions("X", xs) +
-            createYAxisOptions("Y") +
+            createXAxisOptions(xLabel, xs) +
+            createYAxisOptions(yLabel) +
             Options.create {
                 series {
                     type("line")

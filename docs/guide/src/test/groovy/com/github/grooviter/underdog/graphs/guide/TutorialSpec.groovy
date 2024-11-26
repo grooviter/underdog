@@ -1,6 +1,7 @@
 package com.github.grooviter.underdog.graphs.guide
 
 import com.github.grooviter.underdog.graphs.Graphs
+import memento.plots.Plots
 
 // tag::import[]
 
@@ -28,6 +29,10 @@ class TutorialSpec extends Specification {
             vertex("B")
         }
         // end::add_vertices_at_creation_time[]
+        Plots.plots()
+            .graph(graph, title: "add vertices")
+            .show()
+
         then:
         graph.vertexSet().size() == 2
     }
@@ -80,6 +85,11 @@ class TutorialSpec extends Specification {
             edge('A', 'B')
         }
         // end::adding_edges_at_creation[]
+
+        Plots.plots()
+            .graph(graph, title:"adding edges")
+            .show()
+
         then:
         graph.edgeSet().size() == 1
     }
@@ -99,6 +109,11 @@ class TutorialSpec extends Specification {
             )
         }
         // end::adding_several_at_once[]
+
+        Plots.plots()
+            .graph(graph, title:"adding edges")
+            .show()
+
         then:
         graph.edgeSet().size() == 3
     }

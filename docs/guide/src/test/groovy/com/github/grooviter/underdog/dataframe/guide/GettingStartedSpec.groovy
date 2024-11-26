@@ -4,6 +4,7 @@ package com.github.grooviter.underdog.dataframe.guide
 // importing Underdog
 import com.github.grooviter.underdog.Underdog
 // end::getting_started_simple_imports[]
+import memento.plots.Plots
 import spock.lang.Specification
 
 class GettingStartedSpec extends Specification {
@@ -14,12 +15,31 @@ class GettingStartedSpec extends Specification {
         // reading data from CSV file
         def df = Underdog.read_csv(csvFilePath)
 
+        // creating new series
         df["year"] = df["date"](Date, Integer) { it.format("yyyy").toInteger() }
+        df["month"] = df["date"](Date, Integer) { it.format("MM").toInteger() }
 
         // how many tornadoes hit Texas in 2012
-        def result = df[df["State"] == "TX" & df["year"] == 2012].size()
+        def tornadoesInTxIn2012 = df[df["State"] == "TX" & df['year'] == 2012]
+
+        // only interested in month and scale series
+        def monthsAndScale = tornadoesInTxIn2012.loc[__, ["month", "Scale"]]
+
+        // max scale by month
+        def maxScaleByYear = monthsAndScale.agg(Scale: "max").by('month')
         // end::getting_started_simple[]
+
+        // tag::show_plot[]
+        Plots.plots()
+            .bar(
+                maxScaleByYear['month'] as List<Integer>,
+                maxScaleByYear['Max [Scale]'] as List<Integer>,
+                xLabel: 'Months',
+                yLabel: 'Scale',
+                title: 'Tornadoes in Texas in 2012',
+                subtitle: 'Maximum tornadoes scale reached by month').show()
+        // end::show_plot[]
         then:
-        result == 115
+        tornadoesInTxIn2012.size() == 115
     }
 }
