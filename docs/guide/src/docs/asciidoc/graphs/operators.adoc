@@ -1,5 +1,5 @@
 === Operators
-:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
+:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
 
 You can apply arithmetic operations over graphs. Here for example you can apply a union operation over two graphs using the `+` operator:
 

@@ -4,12 +4,6 @@ import com.github.grooviter.underdog.Underdog
 import com.github.grooviter.underdog.smile.Smile
 import memento.plots.Plots
 import spock.lang.Specification
-import tech.tablesaw.plotly.Plot
-import tech.tablesaw.plotly.api.ScatterPlot
-import tech.tablesaw.plotly.components.Figure
-import tech.tablesaw.plotly.components.Layout
-import tech.tablesaw.plotly.traces.ScatterTrace
-import tech.tablesaw.plotly.traces.Trace
 
 class TutorialSpec extends Specification {
 
@@ -41,7 +35,7 @@ class TutorialSpec extends Specification {
         figure.show()
         // end::show_playoffs[]
         then:
-        !figure
+        figure
     }
 
     def "show difference"() {

@@ -1,8 +1,7 @@
-package com.github.grooviter.underdog.samples
+package com.github.grooviter.underdog.dataframe.guide
 
-import com.github.grooviter.underdog.DataFrame
+
 import com.github.grooviter.underdog.Underdog
-import spock.lang.Shared
 import spock.lang.Specification
 
 import java.time.LocalDate
@@ -11,7 +10,7 @@ class TornadosSpec extends Specification {
     def "metadata"() {
         setup:
         // tag::read_csv[]
-        def tornadoes = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def tornadoes = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
         // end::read_csv[]
 
         // tag::shape[]
@@ -42,7 +41,7 @@ class TornadosSpec extends Specification {
 
     def "schema"() {
         setup:
-        def tornadoes = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def tornadoes = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
 
         // tag::schema[]
         // getting tornadoes schema
@@ -67,7 +66,7 @@ class TornadosSpec extends Specification {
 
     def "mapping"() {
         setup:
-        def tornadoes = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def tornadoes = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
 
         // tag::mapping[]
         def monthSeries = tornadoes["Date"](LocalDate, String) {
@@ -92,7 +91,7 @@ class TornadosSpec extends Specification {
 
     def "sorting"() {
         when:
-        def tornadoes = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def tornadoes = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
 
         // tag::sorting_1[]
         def df1 = tornadoes.sort_values(by: 'Fatalities')
@@ -124,7 +123,7 @@ class TornadosSpec extends Specification {
 
     def "column describe"() {
         when:
-        def tornadoes = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def tornadoes = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
         // tag::column_describe[]
         def columnStats = tornadoes["Fatalities"].describe()
 
@@ -139,7 +138,7 @@ class TornadosSpec extends Specification {
         // tag::filtering[]
 
         // reading tornadoes
-        def ts = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def ts = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
 
         // adding a new series to dataframe with the name of the month
         ts['month'] = ts["Date"](LocalDate, String) { it.format("MMMM") }
@@ -161,7 +160,7 @@ class TornadosSpec extends Specification {
     def "summarizing"() {
         when:
         // tag::summarizing[]
-        def tornadoes = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def tornadoes = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
 
         def injuriesByScale = tornadoes
             .agg(Injuries: "median")
@@ -177,7 +176,7 @@ class TornadosSpec extends Specification {
 
     def "crosstabs"() {
         when:
-        def tornadoes = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def tornadoes = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
         // tag::crosstabs[]
         def crossTab = tornadoes.xTabCounts(labels: 'State', values: 'Scale')
 
@@ -190,7 +189,7 @@ class TornadosSpec extends Specification {
     def "getting only those tornadoes that occurred in the summer."() {
         when:
         // tag::summer[]
-        def ts = Underdog.read_csv(this.class.getResource("tornadoes_1950-2014.csv").file)
+        def ts = Underdog.read_csv(this.class.getResource("/data/tornadoes_1950-2014.csv").file)
 
         // adding some series to the dataframe to make filtering easier
         ts['month']      = ts['Date'](Date, String) { it.format("MMMM") }

@@ -1,12 +1,12 @@
 package com.github.grooviter.underdog.graphs.guide
 
-// tag::import[]
 import com.github.grooviter.underdog.graphs.Graphs
-import com.github.grooviter.underdog.graphs.edges.RelationshipEdge
-import groovy.transform.ToString
+
+// tag::import[]
+
+import spock.lang.Specification
 
 // end::import[]
-import spock.lang.Specification
 
 class TutorialSpec extends Specification {
     def "creation"() {

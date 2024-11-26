@@ -1,5 +1,5 @@
 === Distances
-:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
+:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
 
 Sometimes comes handy to know what is the shortest path from one node to another. It could be anything:
 

@@ -1,5 +1,9 @@
 package memento.plots
 
+import com.github.grooviter.underdog.graphs.Graphs
+import groovy.transform.TupleConstructor
+import memento.plots.charts.Graph
+import memento.plots.charts.ToMapAware
 import spock.lang.Specification
 import memento.plots.Plots as plt
 
@@ -36,5 +40,44 @@ class PlotsSpec extends Specification {
 
         then:
         plt.plots().plot(xs, ys, title: "tech tickers").show()
+    }
+
+    @TupleConstructor
+    static class Person implements ToMapAware {
+        String name
+    }
+
+    void "graph"() {
+        setup:
+        def brenda = new Person("Brenda")
+        def brandon = new Person("Brandon")
+        def dylan = new Person("Dylan")
+        def kelly = new Person("Kelly")
+        def steve = new Person("Steve")
+        def andrea = new Person("Andrea")
+        def david = new Person("David")
+        def donna = new Person("Donna")
+
+        def friends = Graphs.digraph(Person) {
+            [brenda, dylan, brandon, kelly, steve, andrea, david, donna].each(delegate::vertex)
+            edge(brandon, brenda, "brother")
+            edge(brandon, steve, "friends")
+            edge(brandon, dylan, "friends")
+            edge(dylan, brenda, "boyfriend")
+            edge(david, donna, "boyfriend")
+            edge(andrea, brandon, 'workmate')
+            edge(steve, david, "friend")
+            edge(kelly, steve, "girlfriend")
+        }
+
+        expect:
+        Plots
+            .plots()
+            .graph(
+                friends,
+                title: "Beverly Hills,90210",
+                subtitle: "some of the characters of the tv show",
+                isDirected: true
+            ).show()
     }
 }

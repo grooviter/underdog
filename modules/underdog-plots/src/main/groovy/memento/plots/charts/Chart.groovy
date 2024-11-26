@@ -4,7 +4,7 @@ import com.github.grooviter.underdog.plots.Options
 
 class Chart {
 
-    Options createGridOptions(String chartTitle) {
+    Options createGridOptions(String chartTitle, String chartSubtitle = '') {
         return Options.create {
             grid {
                 width("70%")
@@ -16,6 +16,7 @@ class Chart {
             }
             title {
                 text chartTitle
+                subtext(chartSubtitle)
                 top("3%")
                 left("center")
             }

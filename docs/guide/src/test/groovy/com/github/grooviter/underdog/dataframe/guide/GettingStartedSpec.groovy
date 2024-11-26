@@ -1,4 +1,4 @@
-package com.github.grooviter.underdog.samples
+package com.github.grooviter.underdog.dataframe.guide
 
 // tag::getting_started_simple_imports[]
 // importing Underdog
@@ -9,7 +9,7 @@ import spock.lang.Specification
 class GettingStartedSpec extends Specification {
     def "initial example"() {
         when:
-        def csvFilePath = this.class.getResource("tornadoes_1950-2014.csv").file
+        def csvFilePath = this.class.getResource("/data/tornadoes_1950-2014.csv").file
         // tag::getting_started_simple[]
         // reading data from CSV file
         def df = Underdog.read_csv(csvFilePath)

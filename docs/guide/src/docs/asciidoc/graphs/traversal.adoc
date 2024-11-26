@@ -1,5 +1,5 @@
 === Traversal
-:sources: ../../../../../../modules/underdog-graphs/src/test/groovy/com/github/grooviter/underdog/graphs/guide
+:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
 
 To traverse the grpah you can directly access the vertices or edges sets and use normal Groovy/Java mechanisms. In the following example we are looking in all vertices to find all vertices having the number two as a neighbor
 

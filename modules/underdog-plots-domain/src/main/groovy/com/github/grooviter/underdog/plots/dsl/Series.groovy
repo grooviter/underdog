@@ -13,4 +13,11 @@ class Series {
     String barWidth
 
     Label label
+
+    // Graph
+    List links
+    String layout
+    Number symbolSize
+    Force force
+    List edgeSymbol
 }

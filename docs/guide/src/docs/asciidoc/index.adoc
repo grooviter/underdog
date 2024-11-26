@@ -1,9 +1,9 @@
 = Underdog
 :revnumber: {underdog}
 :numbered:
-:sources_df: ../../../../../modules/underdog-dataframe/src/test/groovy
-:sources_gr: ../../../../../modules/underdog-graphs/src/test/groovy
-:sources_ml: ../../../../../modules/underdog-ml/src/test/groovy
+:sources_df: ../../../src/test/groovy/com/github/grooviter/underdog/dataframe/guide
+:sources_gr: ../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
+:sources_ml: ../../../src/test/groovy/com/github/grooviter/underdog/smile/guide
 
 Underdog is a set of Groovy libraries for data analysis. It contains the following subprojects:
 
@@ -12,9 +12,9 @@ Underdog is a set of Groovy libraries for data analysis. It contains the followi
 [source, groovy]
 .Dataframe
 ----
-include::{sources_df}/com/github/grooviter/underdog/samples/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
+include::{sources_df}/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
 
-include::{sources_df}/com/github/grooviter/underdog/samples/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
+include::{sources_df}/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
 ----
 
 More information on the link:#_dataframe[Dataframe section]
@@ -24,9 +24,9 @@ More information on the link:#_dataframe[Dataframe section]
 [source, groovy]
 .Graphs
 ----
-include::{sources_gr}/com/github/grooviter/underdog/graphs/guide/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
+include::{sources_gr}/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
 
-include::{sources_gr}/com/github/grooviter/underdog/graphs/guide/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
+include::{sources_gr}/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
 ----
 
 More information in the link:#_graphs[Graphs section]
@@ -36,9 +36,9 @@ More information in the link:#_graphs[Graphs section]
 [source, groovy]
 .ML
 ----
-include::{sources_ml}/com/github/grooviter/underdog/smile/guide/GettingStartedSpec.groovy[tag=getting_started_simple_import, indent=0]
+include::{sources_ml}/GettingStartedSpec.groovy[tag=getting_started_simple_import, indent=0]
 
-include::{sources_ml}/com/github/grooviter/underdog/smile/guide/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
+include::{sources_ml}/GettingStartedSpec.groovy[tag=getting_started_simple, indent=0]
 ----
 
 More information in the link:#_ml[ML section]

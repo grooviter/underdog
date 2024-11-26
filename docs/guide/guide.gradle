@@ -1,6 +1,19 @@
 plugins {
+    id('groovy')
     id('org.kordamp.gradle.guide')
     id('org.ajoberstar.git-publish')
+}
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    testImplementation project(":underdog-dataframe")
+    testImplementation project(":underdog-graphs")
+    testImplementation project(":underdog-ml")
+    testImplementation project(":underdog-plots")
+    testImplementation "org.spockframework:spock-core:$spock"
 }
 
 tasks.register("setAuthentication") {
@@ -27,4 +40,8 @@ asciidoctorj {
     modules {
         diagram.version '2.1.0'
     }
+}
+
+test {
+    useJUnitPlatform()
 }

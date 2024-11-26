@@ -1,5 +1,5 @@
 === Tutorial
-:sources: ../../../../../../modules/underdog-dataframe/src/test/groovy
+:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/dataframe/guide
 
 ==== Read a csv file
 
@@ -8,7 +8,7 @@ Here we read a csv file of tornado data. Underdog infers the column types by sam
 [source, groovy]
 .reading csv
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=read_csv,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=read_csv,indent=0]
 ----
 
 Note: that the file is addressed relative to the current working directory. You may have to change it for your code.
@@ -20,7 +20,7 @@ Often, the best way to start is to print the column names for reference:
 [source, groovy]
 .list dataframe column names
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=columns,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=columns,indent=0]
 ----
 
 [source, shell]
@@ -34,13 +34,13 @@ The shape() method displays the row and column counts:
 [source, groovy]
 .shape of the dataframe
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=shape,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=shape,indent=0]
 ----
 
 [source, groovy]
 .shape of the dataframe
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=shape2,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=shape2,indent=0]
 ----
 
 [source]
@@ -54,7 +54,7 @@ structure() shows the index, name and type of each column
 [source, groovy]
 .tornadoes schemas
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=schema,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=schema,indent=0]
 ----
 
 [source, shell]
@@ -88,7 +88,7 @@ You can also perform other table operations on it. For example, the code below r
 [source, groovy]
 .using schema to change dataframe structure
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=schema_tune,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=schema_tune,indent=0]
 ----
 
 [source, groovy]
@@ -111,7 +111,7 @@ The first(n) method returns a new table containing the first n rows.
 [source, groovy]
 .getting first 3 lines
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=first,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=first,indent=0]
 ----
 
 [source, shell]
@@ -132,7 +132,7 @@ Mapping operations in Tablesaw take one or more columns as inputs and produce a 
 [source, groovy]
 .creating a new series to dataframe
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=mapping,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=mapping,indent=0]
 ----
 
 Now that you have a new column, you can add it to the table:
@@ -140,7 +140,7 @@ Now that you have a new column, you can add it to the table:
 [source, groovy]
 .adding month series to tornadoes dataframe
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=add_series,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=add_series,indent=0]
 ----
 
 Of course nothing prevents you from doing everything altogether.
@@ -150,7 +150,7 @@ You can remove columns from tables to save memory or reduce clutter:
 [source, groovy]
 .remove series from dataframe
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=remove_series,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=remove_series,indent=0]
 ----
 
 ==== Sorting
@@ -160,7 +160,7 @@ Now lets sort the table in reverse order by the id column. The negative sign bef
 [source, groovy]
 .sort asc
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=sorting_1,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=sorting_1,indent=0]
 ----
 
 You can also sort in descending order:
@@ -168,7 +168,7 @@ You can also sort in descending order:
 [source, groovy]
 .sort desc
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=sorting_2,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=sorting_2,indent=0]
 ----
 
 and even sorting by more than one field:
@@ -176,7 +176,7 @@ and even sorting by more than one field:
 [source, groovy]
 .sort by n-fields
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=sorting_3,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=sorting_3,indent=0]
 ----
 
 ==== Descriptive statistics
@@ -186,7 +186,7 @@ Descriptive statistics are calculated using the summary() method:
 [source, groovy]
 .printing column insights
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=column_describe,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=column_describe,indent=0]
 ----
 
 Showing the following output:
@@ -214,7 +214,7 @@ You can write your own methods to filter rows, but it’s easier to use the buil
 [source, groovy]
 .filtering dataframe by column expressions
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=filtering,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=filtering,indent=0]
 ----
 
 [source, shell]
@@ -237,7 +237,7 @@ You can apply those methods to a table, calculating results on one column, group
 
 [source, groovy]
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=summarizing,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=summarizing,indent=0]
 ----
 
 This produces the following table, in which Group represents the Tornado Scale and Median the median injures for that group:
@@ -263,7 +263,7 @@ Tablesaw lets you easily produce two-dimensional cross-tabulations (“cross tab
 [source, groovy]
 .crosstabs (count)
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=crosstabs,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=crosstabs,indent=0]
 ----
 
 [source, shell]
@@ -291,7 +291,7 @@ Let’s start by getting only those tornadoes that occurred in the summer.
 [source, groovy]
 .tornadoes in the summer
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=summer,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=summer,indent=0]
 ----
 
 To get the frequency, we calculate the difference in days between successive tornadoes. The lag() method creates a column where every value equals the previous value (the prior row) of the source column. Then we can simply get the difference in days between the two dates. DateColumn has a method daysUntil() that does this. It returns a NumberColumn that we’ll call “delta”.
@@ -299,7 +299,7 @@ To get the frequency, we calculate the difference in days between successive tor
 [source, groovy]
 .lag and delta dates
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=summer_lag,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=summer_lag,indent=0]
 ----
 
 Now we simply calculate the mean of the delta column. Splitting on year keeps us from inadvertently including the time between the last tornado of one summer and the first tornado of the next.
@@ -307,7 +307,7 @@ Now we simply calculate the mean of the delta column. Splitting on year keeps us
 [source, groovy]
 .create summary
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=summary,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=summary,indent=0]
 ----
 
 Printing summary gives us the answer by year.
@@ -330,7 +330,7 @@ To get a DOUBLE for the entire period, we can take the average of the annual mea
 
 [source, groovy]
 ----
-include::{sources}/com/github/grooviter/underdog/samples/TornadosSpec.groovy[tag=mean_of_series,indent=0]
+include::{sources}/TornadosSpec.groovy[tag=mean_of_series,indent=0]
 ----
 
 [source, shell]

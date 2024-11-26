@@ -10,7 +10,7 @@ import spock.lang.Specification
 class GettingStartedSpec extends Specification {
     def "initial example"() {
         when:
-        def baseballFilePath = "src/test/resources/com/github/grooviter/underdog/smile/guide/baseball.csv"
+        def baseballFilePath = "src/test/resources/data/baseball.csv"
         // tag::getting_started_simple[]
         // loading data
         def df = Underdog.read_csv(baseballFilePath)
