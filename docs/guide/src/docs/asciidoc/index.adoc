@@ -7,7 +7,7 @@
 
 == About
 
-Underdog is a set of Groovy libraries for data analysis. It contains the following subprojects:
+**Underdog** is a set of Groovy libraries for data analysis. It contains the following subprojects:
 
 - **underdog-dataframe**: combines tools for working with dataframes and series.
 

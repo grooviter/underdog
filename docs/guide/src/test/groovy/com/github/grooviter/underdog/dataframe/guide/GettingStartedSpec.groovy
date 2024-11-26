@@ -32,12 +32,12 @@ class GettingStartedSpec extends Specification {
         // tag::show_plot[]
         Plots.plots()
             .bar(
-                maxScaleByYear['month'] as List<Integer>,
-                maxScaleByYear['Max [Scale]'] as List<Integer>,
+                maxScaleByYear['month'],
+                maxScaleByYear['Max [Scale]'],
                 xLabel: 'Months',
                 yLabel: 'Scale',
                 title: 'Tornadoes in Texas in 2012',
-                subtitle: 'Maximum tornadoes scale reached by month').show()
+                subtitle: 'Maximum tornadoes scale reached by month')
         // end::show_plot[]
         then:
         tornadoesInTxIn2012.size() == 115

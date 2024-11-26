@@ -4,7 +4,7 @@ import com.github.grooviter.underdog.plots.Options
 
 class Chart {
 
-    Options createGridOptions(String chartTitle, String chartSubtitle = '') {
+    static Options createGridOptions(String chartTitle, String chartSubtitle = '') {
         return Options.create {
             grid {
                 width("70%")
@@ -23,7 +23,7 @@ class Chart {
         }
     }
 
-    Options createXAxisOptions(String xLabel, List<Number> xs = []) {
+    static Options createXAxisOptions(String xLabel, List<Number> xs = []) {
         return Options.create {
             xAxis {
                 scale(true)
@@ -39,7 +39,7 @@ class Chart {
         }
     }
 
-    Options createYAxisOptions(String yLabel) {
+    static Options createYAxisOptions(String yLabel) {
         return Options.create {
             yAxis {
                 scale(true)
