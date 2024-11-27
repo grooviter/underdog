@@ -9,6 +9,7 @@ import groovy.transform.NamedVariant
  * A graph is made up of vertices (also called nodes or points) which are connected by edges
  * (also called arcs, links or lines)
  *
+ * @link https://en.wikipedia.org/wiki/Graph_theory
  * @since 0.1.0
  */
 class Graph extends Chart {
@@ -71,27 +72,6 @@ class Graph extends Chart {
      * Renders a graph
      *
      * @param graph an instanceof of {@link Graph}
-     * @param closure extra options for customizing the chart
-     * @param chartTitle title of the chart
-     * @param chartSubtitle subtitle of the chart
-     * @param showEdgeLabel whether or not showing edge labels
-     * @return an instance of {@link Options}
-     * @since 0.1.0
-     */
-    @NamedVariant
-    Options graph(
-        org.jgrapht.Graph<?, RelationshipEdge> graph,
-        @DelegatesTo(Options) Closure closure,
-        @NamedParam(required = false, value='title') String chartTitle = '',
-        @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-        @NamedParam(required = false, value='showEdgeLabel') boolean showEdgeLabel = false) {
-        return Options.create(closure) + this.graph(graph, chartTitle, chartSubtitle, showEdgeLabel)
-    }
-
-    /**
-     * Renders a graph
-     *
-     * @param graph an instanceof of {@link Graph}
      * @param chartTitle title of the chart
      * @param chartSubtitle subtitle of the chart
      * @param showEdgeLabel whether or not showing edge labels
@@ -117,29 +97,6 @@ class Graph extends Chart {
      *
      * @param nodes list of {@link Node}
      * @param edges list of {@link Edge}
-     * @param closure extra options for customizing the chart
-     * @param chartTitle title of the chart
-     * @param chartSubtitle subtitle of the chart
-     * @param isDirected whether to show the graph with directed edges or not
-     * @return an instance of {@link Options}
-     * @since 0.1.0
-     */
-    @NamedVariant
-    Options graph(
-            List<Node> nodes,
-            List<Edge> edges,
-            @DelegatesTo(Options) Closure closure,
-            @NamedParam(required = false, value='title') String chartTitle = '',
-            @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-            @NamedParam(required = false) boolean isDirected = false) {
-        return Options.create(closure) + this.graph(nodes, edges, chartTitle, chartSubtitle, isDirected)
-    }
-
-    /**
-     * Renders a graph
-     *
-     * @param nodes list of {@link Node}
-     * @param edges list of {@link Edge}
      * @param chartTitle title of the chart
      * @param chartSubtitle subtitle of the chart
      * @param isDirected whether to show the graph with directed edges or not
@@ -154,29 +111,6 @@ class Graph extends Chart {
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
         @NamedParam(required = false) boolean isDirected = false) {
         return this.graph(toMapArray(nodes), toMapArray(edges), chartTitle, chartSubtitle, isDirected)
-    }
-
-    /**
-     * Renders a graph
-     *
-     * @param nodes list of {@link Map} properties matching the {@link Node} properties
-     * @param edges list of {@link Map} properties matching the {@link Edge} properties
-     * @param closure extra options for customizing the chart
-     * @param chartTitle title of the chart
-     * @param chartSubtitle subtitle of the chart
-     * @param isDirected whether to show the graph with directed edges or not
-     * @return an instance of {@link Options}
-     * @since 0.1.0
-     */
-    @NamedVariant
-    Options graph(
-        Map[] nodes,
-        Map[] edges,
-        @DelegatesTo(Options) Closure closure,
-        @NamedParam(required = false, value='title') String chartTitle = '',
-        @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-        @NamedParam(required = false) boolean isDirected = false) {
-        return Options.create(closure) + this.graph(nodes, edges, chartTitle, chartSubtitle, isDirected)
     }
 
     /**

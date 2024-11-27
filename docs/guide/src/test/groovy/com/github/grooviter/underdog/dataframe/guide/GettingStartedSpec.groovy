@@ -3,6 +3,8 @@ package com.github.grooviter.underdog.dataframe.guide
 // tag::getting_started_simple_imports[]
 // importing Underdog
 import com.github.grooviter.underdog.Underdog
+import com.github.grooviter.underdog.plots.Options
+
 // end::getting_started_simple_imports[]
 import memento.plots.Plots
 import spock.lang.Specification
@@ -30,14 +32,16 @@ class GettingStartedSpec extends Specification {
         // end::getting_started_simple[]
 
         // tag::show_plot[]
-        Plots.plots()
+        def plot = Plots.plots()
             .bar(
                 maxScaleByYear['month'],
                 maxScaleByYear['Max [Scale]'],
-                xLabel: 'Months',
-                yLabel: 'Scale',
                 title: 'Tornadoes in Texas in 2012',
-                subtitle: 'Maximum tornadoes scale reached by month')
+                subtitle: 'Maximum tornadoes scale reached by month',
+                showLabels: true
+            )
+
+        plot.show()
         // end::show_plot[]
         then:
         tornadoesInTxIn2012.size() == 115

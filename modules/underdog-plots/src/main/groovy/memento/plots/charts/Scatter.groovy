@@ -6,19 +6,55 @@ import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 
 /**
+ * A scatter plot, also called a scatterplot, scatter graph, scatter chart, scattergram, or scatter diagram, is a type
+ * of plot or mathematical diagram using Cartesian coordinates to display values for typically two variables for a
+ * set of data
  *
+ * @link https://en.wikipedia.org/wiki/Scatter_plot
  * @since 0.1.0
  */
 class Scatter extends Chart {
 
     /**
-     * @param xs
-     * @param ys
-     * @param group
-     * @param xLabel
-     * @param yLabel
-     * @param chartTitle
-     * @return
+     * Renders a scatter chart
+     *
+     * @param xs the x coordinate data as {@link Series} of numbers
+     * @param ys a {@link Series} of numbers
+     * @param group an optional data {@link Series} for highlighting certain points
+     * @param xLabel label for the X axis
+     * @param yLabel label for the Y axis
+     * @param chartTitle title of the chart
+     * @param chartSubtitle subtitle of the chart
+     * @since 0.1.0
+     */
+    @NamedVariant
+    Options scatter(
+        Series xs,
+        Series ys,
+        @NamedParam(required = false) Series group,
+        @NamedParam(required = false, value='title') String chartTitle = '',
+        @NamedParam(required = false, value='subtitle') String chartSubtitle = '') {
+        return scatter(
+            xs as List<Number>,
+            ys as List<Number>,
+            group as List<Number>,
+            xs.name,
+            ys.name,
+            chartTitle,
+            chartSubtitle)
+    }
+
+    /**
+     * Renders a scatter chart
+     *
+     * @param xs the x coordinate data as {@link List} of numbers
+     * @param ys a {@link List} of numbers
+     * @param group an optional data {@link List} for highlighting certain points
+     * @param xLabel label for the X axis
+     * @param yLabel label for the Y axis
+     * @param chartTitle title of the chart
+     * @param chartSubtitle subtitle of the chart
+     * @return an instance of {@link Options}
      * @since 0.1.0
      */
     @NamedVariant
@@ -31,9 +67,9 @@ class Scatter extends Chart {
         @NamedParam(required = false, value='title') String chartTitle = '',
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '') {
         Options baseOptions =
-            createGridOptions(chartTitle, chartSubtitle) +
-            createXAxisOptions(xLabel) +
-            createYAxisOptions(yLabel)
+                createGridOptions(chartTitle, chartSubtitle) +
+                createXAxisOptions(xLabel) +
+                createYAxisOptions(yLabel)
 
         if (group) {
             return baseOptions + groupOptions(xs, ys, group)
@@ -67,30 +103,5 @@ class Scatter extends Chart {
                 }
             }
         }
-    }
-
-    /**
-     * @param xs
-     * @param ys
-     * @param group
-     * @param chartTitle
-     * @return
-     * @since 0.1.0
-     */
-    @NamedVariant
-    Options scatter(
-        Series xs,
-        Series ys,
-        @NamedParam(required = false) Series group,
-        @NamedParam(required = false, value='title') String chartTitle = '',
-        @NamedParam(required = false, value='subtitle') String chartSubtitle = '') {
-        return scatter(
-            xs as List<Number>,
-            ys as List<Number>,
-            xLabel: xs.name,
-            yLabel: ys.name,
-            title: chartTitle,
-            subtitle: chartSubtitle,
-            group: group as List<Number>)
     }
 }
