@@ -30,7 +30,7 @@
             <div id="display-container"></div>
         </div>
         <script type="text/javascript">
-            var chart = echarts.init(document.getElementById("display-container"));
+            var chart = echarts.init(document.getElementById("display-container"), ${meta.theme});
             var option = ${option}
             chart.setOption(option);
         </script>

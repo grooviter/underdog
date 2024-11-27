@@ -2,8 +2,12 @@ package memento.plots.charts
 
 import com.github.grooviter.underdog.graphs.edges.RelationshipEdge
 import com.github.grooviter.underdog.plots.Options
+import groovy.transform.Canonical
+import groovy.transform.EqualsAndHashCode
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import groovy.transform.ToString
+import org.jgrapht.GraphPath
 
 /**
  * A graph is made up of vertices (also called nodes or points) which are connected by edges
@@ -14,11 +18,27 @@ import groovy.transform.NamedVariant
  */
 class Graph extends Chart {
 
+    private static final List<String> EDGE_COLORS = [
+        '#c23531',
+        '#2f4554',
+        '#61a0a8',
+        '#d48265',
+        '#91c7ae',
+        '#749f83',
+        '#ca8622',
+        '#bda29a',
+        '#6e7074',
+        '#546570',
+        '#c4ccd3'
+    ]
+
     /**
      * Node information
      *
      * @since 0.1.0
      */
+    @ToString(includes=['id', 'name'])
+    @EqualsAndHashCode(includes=['id', 'name'])
     static class Node implements ToMapAware {
 
         /**
@@ -52,8 +72,9 @@ class Graph extends Chart {
      *
      * @since 0.1.0
      */
+    @ToString(includes=['source', 'target'])
+    @EqualsAndHashCode(includes = ['source', 'target'])
     static class Edge implements ToMapAware {
-
         /**
          * Source node name or id
          */
@@ -66,6 +87,38 @@ class Graph extends Chart {
          * Value of the edge label
          */
         String value
+        /**
+         * Color string in case we want to highlight some path
+         */
+        String color
+        /**
+         * Width of the edge line
+         */
+        String width
+    }
+
+    /**
+     * Path information
+     *
+     * @since 0.1.0
+     */
+    static class Path implements ToMapAware {
+        /**
+         * Edges which belong to the path
+         */
+        List<Edge> edges
+        /**
+         * Name of the path
+         */
+        String name
+        /**
+         * Color of the path
+         */
+        String color
+        /**
+         * Width of the path
+         */
+        String width
     }
 
     /**
@@ -83,13 +136,15 @@ class Graph extends Chart {
         org.jgrapht.Graph<?, RelationshipEdge> graph,
         @NamedParam(required = false, value='title') String chartTitle = '',
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-        @NamedParam(required = false, value='showEdgeLabel') boolean showEdgeLabel = false) {
+        @NamedParam(required = false, value='showEdgeLabel') boolean showEdgeLabel = false,
+        @NamedParam(required = false) List<GraphPath> paths = []) {
         return this.graph(
-            graph.vertices.collect(Graph::toChartNode) as List<Node>,
-            graph.edges.collect { toChartEdge(graph, it, showEdgeLabel) } as List<Edge>,
-            title: chartTitle,
-            subtitle: chartSubtitle,
-            isDirected: graph.type.directed)
+            graph.vertices.collect { toChartNode(it) },
+            graph.edges.collect { toChartEdge(graph, it, showEdgeLabel) },
+            chartTitle,
+            chartSubtitle,
+            graph.type.directed,
+            toPaths(graph, paths, showEdgeLabel))
     }
 
     /**
@@ -109,57 +164,85 @@ class Graph extends Chart {
         List<Edge> edges,
         @NamedParam(required = false, value='title') String chartTitle = '',
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-        @NamedParam(required = false) boolean isDirected = false) {
-        return this.graph(toMapArray(nodes), toMapArray(edges), chartTitle, chartSubtitle, isDirected)
-    }
-
-    /**
-     * Renders a graph
-     *
-     * @param nodes list of {@link Map} properties matching the {@link Node} properties
-     * @param edges list of {@link Map} properties matching the {@link Edge} properties
-     * @param chartTitle title of the chart
-     * @param chartSubtitle subtitle of the chart
-     * @param isDirected whether to show the graph with directed edges or not
-     * @return an instance of {@link Options}
-     * @since 0.1.0
-     */
-    @NamedVariant
-    Options graph(
-        Map[] nodes,
-        Map[] edges,
-        @NamedParam(required = false, value='title') String chartTitle = '',
-        @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-        @NamedParam(required = false) boolean isDirected = false) {
-        return createGridOptions(chartTitle, chartSubtitle) + Options.create {
-            series {
-                type("graph")
-                layout('force')
-                symbolSize(50)
-                force {
-                    repulsion(1000)
-                    edgeLength(100)
+        @NamedParam(required = false) boolean isDirected = false,
+        @NamedParam(required = false) List<Path> paths = []) {
+        List<Map> nodeList = nodes.collect { it.toMap() }
+        List<Map> edgeList = edges
+            .collect { applyPathListToEdgeMap(paths, it) }
+            .collect { it.toMap() }
+            .collect { setChartEdgeValueAndLineStyle(it) }
+        return createGridOptions(chartTitle, chartSubtitle) +
+            Options.create {
+                series {
+                    type("graph")
+                    layout('force')
+                    symbolSize(50)
+                    force {
+                        repulsion(1000)
+                        edgeLength(100)
+                    }
+                    label {
+                        show(true)
+                    }
+                    if (isDirected) {
+                        edgeSymbol(['circle', 'arrow'])
+                    }
+                    data(nodeList)
+                    links(edgeList)
                 }
-                label {
-                    show(true)
-                }
-                if (isDirected) {
-                    edgeSymbol(['circle', 'arrow'])
-                }
-                data(nodes.toList())
-                links(edges.collect(Graph::convertEdgeValue))
             }
+    }
+
+    private static Edge applyPathListToEdgeMap(List<Path> pathList, Edge edge) {
+        Path path = pathList.find { edge in it.edges }
+
+        if (!path) {
+            return edge
+        }
+
+        return edge.tap {
+            it.color = path.color
+            it.width = path.width
         }
     }
 
-    private static Map[] toMapArray(List<ToMapAware> toMapAwareList) {
-        return toMapAwareList.collect { it.toMap() } as Map[]
+    private static List<Path> toPaths(
+        org.jgrapht.Graph<?, RelationshipEdge> graph,
+        List<GraphPath> paths,
+        boolean showEdgeLabel) {
+        int i = 0;
+        return paths.collect {graphPath ->
+            def path = new Path(
+                name: "path-$i",
+                color: EDGE_COLORS[i] ?: '#000000',
+                width: 5,
+                edges: graphPath.edgeList.collect {
+                    toChartEdge(graph, it as RelationshipEdge, showEdgeLabel)
+                })
+            i++
+            return path
+        }
     }
 
-    private static Map convertEdgeValue(Map edge) {
+    private static Map setChartEdgeValueAndLineStyle(Map edge) {
         if (edge.value) {
-            edge += [label: [formatter: edge.value, show: true ]]
+            edge += [
+                label: [
+                    formatter: "${edge.value}",
+                    show: true
+                ],
+            ]
         }
+
+        if (edge.color) {
+            edge += [
+                lineStyle: [
+                    color: edge.color,
+                    width: edge.width
+                ]
+            ]
+        }
+
         return edge
     }
 
@@ -171,26 +254,26 @@ class Graph extends Chart {
         return new Node(name: node.toString())
     }
 
-    private static boolean isToMapAware(Class... classes) {
-        return classes.every { it instanceof ToMapAware }
-    }
-
     private static Edge toChartEdge(org.jgrapht.Graph graph, RelationshipEdge edge, boolean showLabel) {
         def target = graph.getEdgeTarget(edge)
         def source = graph.getEdgeSource(edge)
 
         if (isToMapAware(target.class, source.class)) {
             return [
-                    source: source.id ?: source.name,
-                    target: target.id ?: target.name,
-                    value: showLabel ? (edge.relation ?: edge.weight) : ""
+                source: source.id ?: source.name,
+                target: target.id ?: target.name,
+                value: showLabel ? (edge.relation ?: edge.weight) : ""
             ]
         }
 
         return [
-                source: source.toString(),
-                target: target.toString(),
-                value: showLabel ? (edge.relation ?: edge.weight) : ""
+            source: source.toString(),
+            target: target.toString(),
+            value: showLabel ? (edge.relation ?: edge.weight) : ""
         ]
+    }
+
+    private static boolean isToMapAware(Class... classes) {
+        return classes.every { it instanceof ToMapAware }
     }
 }

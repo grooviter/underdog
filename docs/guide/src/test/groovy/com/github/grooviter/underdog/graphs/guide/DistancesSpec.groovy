@@ -10,7 +10,6 @@ class DistancesSpec extends Specification {
         // tag::shortest_path_graph[]
         def distances = Graphs.graph(String) {
             ["Madrid", "Guadalajara", "Cuenca", "Zaragoza", "Teruel", "Castellon"].each(delegate::vertex)
-
             edge("Madrid", "Guadalajara", weight: 66.4)
             edge("Madrid", "Salamanca", weight: 210)
             edge("Guadalajara", "Zaragoza", weight: 256.9)
@@ -34,7 +33,13 @@ class DistancesSpec extends Specification {
         def shortestPath = distances.shortestPath("Teruel", "Madrid")
         // end::shortest_path[]
 
-        Plots.plots().graph(distances).show()
+        Plots.plots()
+            .graph(
+                distances,
+                title: "Path from Madrid to Teruel",
+                subtitle: "Calculating shortest path from two vertices",
+                paths: [shortestPath],
+                showEdgeLabel: true).show()
 
         then:
         // tag::shortest_path_attributes[]
