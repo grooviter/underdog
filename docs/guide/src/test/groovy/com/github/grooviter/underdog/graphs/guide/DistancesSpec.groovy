@@ -39,6 +39,7 @@ class DistancesSpec extends Specification {
                 title: "Path from Madrid to Teruel",
                 subtitle: "Calculating shortest path from two vertices",
                 paths: [shortestPath],
+                symbolSize: 75,
                 showEdgeLabel: true).show()
 
         then:
