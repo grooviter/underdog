@@ -1,0 +1,27 @@
+=== Scatter
+:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/plots/guide
+
+==== Simple
+
+[source, groovy]
+.simple line
+----
+include::{sources}/ScatterSpec.groovy[tag=simple, indent=0]
+----
+
+<1> You can use a **range or a list** for X axis
+<2> You can use a **range or a list** for the Y axis
+<3> Optional attributes
+
+image::plots/scatter_simple.png[width="75%", align=center]
+
+Here's the same example but using Underdog's series for X and Y axes. Given the dataframe instance `df` and series `xs` and `ys`:
+
+[source, groovy]
+.simple line
+----
+include::{sources}/ScatterSpec.groovy[tag=simple_series, indent=0]
+----
+
+<1> using a series for x axis and renaming it to X
+<2> using another series for y axis and renaming it to Y

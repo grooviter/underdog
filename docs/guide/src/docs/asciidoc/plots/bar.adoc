@@ -1,0 +1,22 @@
+=== Bar
+:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/plots/guide
+
+==== Simple
+
+[source, groovy]
+.simple bar
+----
+include::{sources}/BarSpec.groovy[tag=simple, indent=0]
+----
+
+image::plots/bar_simple.png[width="75%", align=center]
+
+==== Histogram
+
+[source, groovy]
+.simple histogram
+----
+include::{sources}/BarSpec.groovy[tag=histogram_simple, indent=0]
+----
+
+image::plots/histogram_simple.png[width="75%", align=center]

@@ -3,8 +3,21 @@
 
 The Underdog plots module renders different types of charts in order to visualize the data analysis done with the rest of Underdog's modules.
 
+.Underdog plots
+[cols="1a,1a,1a,1a", frame="none"]
+|===
+| image::plots/line_n_lines_share_x.png[align=center]
+| image::plots/scatter_simple.png[align=center]
+| image::plots/graphs_paths.png[align=center]
+| image::plots/bar_simple.png[align=center]
+|===
+
 include::guidelines.adoc[]
 
 include::line.adoc[]
+
+include::bar.adoc[]
+
+include::scatter.adoc[]
 
 include::graphs.adoc[]
