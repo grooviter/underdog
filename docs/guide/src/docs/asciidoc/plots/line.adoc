@@ -1,0 +1,45 @@
+=== Line
+:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/plots/guide
+
+==== Simple
+
+image::plots/line_simple.png[width="50%", align=center]
+
+[source, groovy]
+.simple line
+----
+include::{sources}/LineSpec.groovy[tag=simple, indent=0]
+----
+
+==== N-Lines (sharing X)
+
+image::plots/line_lines.png[width="50%", align=center]
+
+[source, groovy]
+.lines sharing X
+----
+include::{sources}/LineSpec.groovy[tag=several_lines_sharing_xs, indent=0]
+----
+
+==== Using Series
+
+image::plots/line_series.png[width="50%", align=center]
+
+[source, groovy]
+.Series
+----
+include::{sources}/LineSpec.groovy[tag=line_from_series, indent=0]
+----
+
+<1> using **year** series for X axis
+<2> renaming series to **Wins X Years** and using it for Y axis
+
+==== Customize
+
+image::plots/line_customize.png[width="50%", align=center]
+
+[source, groovy]
+.Customize
+----
+include::{sources}/LineSpec.groovy[tag=customize, indent=0]
+----

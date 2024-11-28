@@ -87,6 +87,8 @@ interface Series extends Columnar {
 
     String getName()
 
+    Series rename(String newName)
+
     /**
      * @since 0.1.0
      */

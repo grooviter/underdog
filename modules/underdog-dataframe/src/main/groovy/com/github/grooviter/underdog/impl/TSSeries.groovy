@@ -58,6 +58,11 @@ class TSSeries implements Series {
     }
 
     @Override
+    Series rename(String newName) {
+        return new TSSeries(this.column.setName(newName))
+    }
+
+    @Override
     Series getAt(IntRange indexRange) {
         return new TSSeries(this.column.subset(indexRange as int[]))
     }
