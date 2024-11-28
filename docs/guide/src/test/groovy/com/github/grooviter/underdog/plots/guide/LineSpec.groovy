@@ -65,8 +65,7 @@ class LineSpec extends Specification {
             .line(
                 df['year'], // <1>
                 df['Sum [W]'].rename('Wins X Years'), // <2>
-                title: "Wins of 'BOS' team over time",
-                smooth: true).show()
+                title: "Wins of 'BOS' team over time").show()
         // end::line_from_series[]
         then:
         df
@@ -106,10 +105,13 @@ class LineSpec extends Specification {
                 df['year'].unique() as List<Number>,
                 teamWins,
                 title: "Team comparison (BOS, ATL, CIN)",
-                subtitle: "Years 2000-2004"
+                subtitle: "Years 2000-2004",
+                xLabel: "Years",
+                yLabel: "Wins"
             ).customize {
                 legend {
-                    top('5%')
+                    top("10%")
+                    right('15%')
                     show(true)
                 }
             }.show()

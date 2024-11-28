@@ -3,7 +3,7 @@
 
 ==== Simple
 
-image::plots/line_simple.png[width="50%", align=center]
+Here is a simple line chart:
 
 [source, groovy]
 .simple line
@@ -11,9 +11,24 @@ image::plots/line_simple.png[width="50%", align=center]
 include::{sources}/LineSpec.groovy[tag=simple, indent=0]
 ----
 
+<1> You can use a **range or a list** for X axis
+<2> You can use a **range or a list** for the Y axis
+<3> Optional attributes
+
+image::plots/line_simple.png[width="75%", align=center]
+
+==== N-lines
+
+TODO
+
 ==== N-Lines (sharing X)
 
-image::plots/line_lines.png[width="50%", align=center]
+If your data shares the same X axis points you can use this variant of the `line()` method which takes:
+
+- One range or collection for the X axis
+- A map containing different ranges or lists for the Y axis
+
+The name of each line series will be taken from the map entry keys.
 
 [source, groovy]
 .lines sharing X
@@ -21,9 +36,11 @@ image::plots/line_lines.png[width="50%", align=center]
 include::{sources}/LineSpec.groovy[tag=several_lines_sharing_xs, indent=0]
 ----
 
+image::plots/line_n_lines_share_x.png[width="75%", align=center]
+
 ==== Using Series
 
-image::plots/line_series.png[width="50%", align=center]
+There are methods adapted for using Underdog's Series objects:
 
 [source, groovy]
 .Series
@@ -34,12 +51,20 @@ include::{sources}/LineSpec.groovy[tag=line_from_series, indent=0]
 <1> using **year** series for X axis
 <2> renaming series to **Wins X Years** and using it for Y axis
 
+image::plots/line_series.png[width="75%", align=center]
+
+In any method using Underdog's Series there is no attribute for changing the xLabel or the yLabel as it takes the Series' name. To change the label you can rename the Series' name as mentioned in the example.
+
 ==== Customize
 
-image::plots/line_customize.png[width="50%", align=center]
+As in any chart once we've created our Options object and before calling `show()` we can use the `Options#customize()` method to customize the chart using Groovy's Echart DSL.
 
 [source, groovy]
 .Customize
 ----
 include::{sources}/LineSpec.groovy[tag=customize, indent=0]
 ----
+
+In this occasion we are adding the chart legend and positioning it to the top-right side of the chart.
+
+image::plots/line_customize.png[width="75%", align=center]
