@@ -32,7 +32,7 @@ class TSCsvReaderOptions extends ReadOptions {
     }
 
     @Override
-    public boolean equals(Object o) {
+    boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TSCsvReaderOptions that = (TSCsvReaderOptions) o;
@@ -48,7 +48,7 @@ class TSCsvReaderOptions extends ReadOptions {
     }
 
     @Override
-    public int hashCode() {
+    int hashCode() {
         return Objects.hash(
                 separator,
                 quoteChar,
@@ -61,31 +61,31 @@ class TSCsvReaderOptions extends ReadOptions {
                 sampleSize);
     }
 
-    public static Builder builder(Source source) {
+    static Builder builder(Source source) {
         return new Builder(source);
     }
 
-    public static Builder builder(File file) {
+    static Builder builder(File file) {
         return new Builder(file).tableName(file.getName());
     }
 
-    public static Builder builder(String fileName) {
+    static Builder builder(String fileName) {
         return new Builder(new File(fileName));
     }
 
-    public static Builder builder(URL url) throws IOException {
+    static Builder builder(URL url) throws IOException {
         return new Builder(url);
     }
 
-    public static Builder builderFromFile(String fileName) {
+    static Builder builderFromFile(String fileName) {
         return new Builder(new File(fileName));
     }
 
-    public static Builder builderFromString(String contents) {
+    static Builder builderFromString(String contents) {
         return new Builder(new StringReader(contents));
     }
 
-    public static Builder builderFromUrl(String url) throws IOException {
+    static Builder builderFromUrl(String url) throws IOException {
         return new Builder(new URL(url));
     }
 
@@ -96,7 +96,7 @@ class TSCsvReaderOptions extends ReadOptions {
      * taking a File instead of a stream, or 2. Provide the array of column types as an option. If you
      * provide the columnType array, we skip type detection and can avoid reading the entire file
      */
-    public static Builder builder(InputStream stream) {
+    static Builder builder(InputStream stream) {
         return new Builder(stream);
     }
 
@@ -107,7 +107,7 @@ class TSCsvReaderOptions extends ReadOptions {
      * taking a File instead of a reader, or 2. Provide the array of column types as an option. If you
      * provide the columnType array, we skip type detection and can avoid reading the entire file
      */
-    public static Builder builder(Reader reader) {
+    static Builder builder(Reader reader) {
         return new Builder(reader);
     }
 
@@ -118,55 +118,55 @@ class TSCsvReaderOptions extends ReadOptions {
      * taking a File instead of a reader, or 2. Provide the array of column types as an option. If you
      * provide the columnType array, we skip type detection and can avoid reading the entire file
      */
-    public static Builder builder(InputStreamReader reader) {
+    static Builder builder(InputStreamReader reader) {
         return new Builder(reader);
     }
 
-    public ColumnType[] columnTypes() {
+    ColumnType[] columnTypes() {
         return columnTypeReadOptions.columnTypes();
     }
 
-    public Character separator() {
+    Character separator() {
         return separator;
     }
 
-    public Character quoteChar() {
+    Character quoteChar() {
         return quoteChar;
     }
 
-    public Character escapeChar() {
+    Character escapeChar() {
         return escapeChar;
     }
 
-    public String lineEnding() {
+    String lineEnding() {
         return lineEnding;
     }
 
-    public int skipRows() {
+    int skipRows() {
         return skipRows
     }
 
-    public boolean lineSeparatorDetectionEnabled() {
+    boolean lineSeparatorDetectionEnabled() {
         return lineSeparatorDetectionEnabled;
     }
 
-    public Integer maxNumberOfColumns() {
+    Integer maxNumberOfColumns() {
         return maxNumberOfColumns;
     }
 
-    public Character commentPrefix() {
+    Character commentPrefix() {
         return commentPrefix;
     }
 
-    public int maxCharsPerColumn() {
+    int maxCharsPerColumn() {
         return maxCharsPerColumn;
     }
 
-    public int sampleSize() {
+    int sampleSize() {
         return sampleSize;
     }
 
-    public static class Builder extends ReadOptions.Builder {
+    static class Builder extends ReadOptions.Builder {
 
         private Character separator;
         private Character quoteChar;
@@ -203,51 +203,51 @@ class TSCsvReaderOptions extends ReadOptions {
         }
 
         @Override
-        public Builder columnTypes(ColumnType[] columnTypes) {
+        Builder columnTypes(ColumnType[] columnTypes) {
             super.columnTypes(columnTypes);
             return this;
         }
 
         @Override
-        public Builder columnTypes(Function<String, ColumnType> columnTypeFunction) {
+        Builder columnTypes(Function<String, ColumnType> columnTypeFunction) {
             super.columnTypes(columnTypeFunction);
             return this;
         }
 
         @Override
-        public Builder columnTypesPartial(Function<String, Optional<ColumnType>> columnTypeFunction) {
+        Builder columnTypesPartial(Function<String, Optional<ColumnType>> columnTypeFunction) {
             super.columnTypesPartial(columnTypeFunction);
             return this;
         }
 
         @Override
-        public Builder columnTypesPartial(Map<String, ColumnType> columnTypeByName) {
+        Builder columnTypesPartial(Map<String, ColumnType> columnTypeByName) {
             super.columnTypesPartial(columnTypeByName);
             return this;
         }
 
-        public Builder separator(Character separator) {
+        Builder separator(Character separator) {
             this.separator = separator;
             return this;
         }
 
-        public Builder quoteChar(Character quoteChar) {
+        Builder quoteChar(Character quoteChar) {
             this.quoteChar = quoteChar;
             return this;
         }
 
-        public Builder escapeChar(Character escapeChar) {
+        Builder escapeChar(Character escapeChar) {
             this.escapeChar = escapeChar;
             return this;
         }
 
-        public Builder lineEnding(String lineEnding) {
+        Builder lineEnding(String lineEnding) {
             this.lineEnding = lineEnding;
             this.lineSeparatorDetectionEnabled = false;
             return this;
         }
 
-        public Builder skipRows(int skipRows){
+        Builder skipRows(int skipRows){
             this.skipRows = skipRows
             return this
         }
@@ -257,12 +257,12 @@ class TSCsvReaderOptions extends ReadOptions {
          *
          * @param maxNumberOfColumns - must be positive integer. Default is 10,000
          */
-        public Builder maxNumberOfColumns(Integer maxNumberOfColumns) {
+        Builder maxNumberOfColumns(Integer maxNumberOfColumns) {
             this.maxNumberOfColumns = maxNumberOfColumns;
             return this;
         }
 
-        public Builder commentPrefix(Character commentPrefix) {
+        Builder commentPrefix(Character commentPrefix) {
             this.commentPrefix = commentPrefix;
             return this;
         }
@@ -275,20 +275,20 @@ class TSCsvReaderOptions extends ReadOptions {
          * 'numSamples' is greater than 'n', then only 'n' samples are returned (no oversampling is
          * performed to increase the data to match 'numSamples').
          */
-        public Builder sampleSize(int numSamples) {
+        Builder sampleSize(int numSamples) {
             this.sampleSize = numSamples;
             return this;
         }
 
         @Override
-        public TSCsvReaderOptions build() {
+        TSCsvReaderOptions build() {
             return new TSCsvReaderOptions(this);
         }
 
         // Override super-class setters to return an instance of this class
 
         @Override
-        public Builder header(boolean header = false) {
+        Builder header(boolean header = false) {
             super.header(header);
             return this;
         }
@@ -300,79 +300,79 @@ class TSCsvReaderOptions extends ReadOptions {
          * @param allow if true, duplicate names will be allowed
          */
         @Override
-        public Builder allowDuplicateColumnNames(Boolean allow) {
+        Builder allowDuplicateColumnNames(Boolean allow) {
             super.allowDuplicateColumnNames(allow);
             return this;
         }
 
         @Override
-        public Builder columnTypesToDetect(List<ColumnType> columnTypesToDetect) {
+        Builder columnTypesToDetect(List<ColumnType> columnTypesToDetect) {
             super.columnTypesToDetect(columnTypesToDetect);
             return this;
         }
 
         @Override
-        public Builder tableName(String tableName) {
+        Builder tableName(String tableName) {
             super.tableName(tableName);
             return this;
         }
 
         @Override
-        public Builder sample(boolean sample) {
+        Builder sample(boolean sample) {
             super.sample(sample);
             return this;
         }
 
         @Override
-        public Builder dateFormat(DateTimeFormatter dateFormat) {
+        Builder dateFormat(DateTimeFormatter dateFormat) {
             super.dateFormat(dateFormat);
             return this;
         }
 
         @Override
-        public Builder timeFormat(DateTimeFormatter timeFormat) {
+        Builder timeFormat(DateTimeFormatter timeFormat) {
             super.timeFormat(timeFormat);
             return this;
         }
 
         @Override
-        public Builder dateTimeFormat(DateTimeFormatter dateTimeFormat) {
+        Builder dateTimeFormat(DateTimeFormatter dateTimeFormat) {
             super.dateTimeFormat(dateTimeFormat);
             return this;
         }
 
         @Override
-        public Builder maxCharsPerColumn(int maxCharsPerColumn) {
+        Builder maxCharsPerColumn(int maxCharsPerColumn) {
             super.maxCharsPerColumn(maxCharsPerColumn);
             return this;
         }
 
         @Override
-        public Builder locale(Locale locale) {
+        Builder locale(Locale locale) {
             super.locale(locale);
             return this;
         }
 
         @Override
-        public Builder missingValueIndicator(String... missingValueIndicators) {
+        Builder missingValueIndicator(String... missingValueIndicators) {
             super.missingValueIndicator(missingValueIndicators);
             return this;
         }
 
         @Override
-        public Builder minimizeColumnSizes() {
+        Builder minimizeColumnSizes() {
             super.minimizeColumnSizes();
             return this;
         }
 
         @Override
-        public Builder ignoreZeroDecimal(boolean ignoreZeroDecimal) {
+        Builder ignoreZeroDecimal(boolean ignoreZeroDecimal) {
             super.ignoreZeroDecimal(ignoreZeroDecimal);
             return this;
         }
 
         @Override
-        public Builder skipRowsWithInvalidColumnCount(boolean skipRowsWithInvalidColumnCount) {
+        Builder skipRowsWithInvalidColumnCount(boolean skipRowsWithInvalidColumnCount) {
             super.skipRowsWithInvalidColumnCount(skipRowsWithInvalidColumnCount);
             return this;
         }

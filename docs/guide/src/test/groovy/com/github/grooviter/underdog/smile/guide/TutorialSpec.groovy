@@ -9,7 +9,7 @@ class TutorialSpec extends Specification {
 
     def gettingData() {
         // tag::loading_data[]
-        def data = Underdog.read_csv("src/test/resources/data/baseball.csv")
+        def data = Underdog.df().read_csv("src/test/resources/data/baseball.csv")
         // end::loading_data[]
 
         // tag::only_before_2002[]

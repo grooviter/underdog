@@ -1,19 +1,33 @@
 package com.github.grooviter.underdog.impl
 
+import tech.tablesaw.api.ColumnType
+import tech.tablesaw.columns.Column
+
 class CollectionTypeDetector {
-    Class[] detectFromMapOfLists(Map<String, List<?>> map) {
+    ColumnType[] detectFromMapOfLists(Map<String, Iterable<?>> map) {
         return map.collect { k, v ->
             typeFromList(v, 0.25)
         }
     }
 
-    Class[] detectFromMapOfValues(Map<String,?> map) {
+    ColumnType[] detectFromMapOfValues(Map<String,?> map) {
         return map.collect { k, v ->
             typeFromList([v], 0.25)
         }
     }
 
-    private Class typeFromList(List<?> list, double percentageToScan) {
+    private ColumnType typeFromList(Iterable<?> list, double percentageToScan) {
+        if (list instanceof TSSeries) {
+            Object implementation = list.implementation
+            if (implementation instanceof Column) {
+                return implementation.type()
+            }
+        }
+
+        if (list instanceof Column) {
+            return list.type()
+        }
+
         int size = list.size()
         int howFarWeGo = size >= 10 ? (size * percentageToScan).toInteger() : size
 
@@ -23,13 +37,30 @@ class CollectionTypeDetector {
                 .unique()
 
         if (classes.size() > 1 && classes.every{ Number.isAssignableFrom(it)}){
-            return BigDecimal
+            return resolveFrom(BigDecimal.simpleName)
         }
 
         if (classes.size() != 1) {
-            return String
+            return resolveFrom(String.simpleName)
         }
 
-        return classes.find()
+        return resolveFrom(classes.find().simpleName)
+    }
+
+    private static ColumnType resolveFrom(String clazzName) {
+        return switch(clazzName.toUpperCase()) {
+            case 'SHORT'                  -> ColumnType.SHORT
+            case 'INTEGER'                -> ColumnType.INTEGER
+            case ['LONG', 'BIGINTEGER']   -> ColumnType.LONG
+            case 'FLOAT'                  -> ColumnType.FLOAT
+            case 'BOOLEAN'                -> ColumnType.BOOLEAN
+            case 'STRING'                 -> ColumnType.STRING
+            case ['DOUBLE', 'BIGDECIMAL'] -> ColumnType.DOUBLE
+            case 'LOCALDATE'              -> ColumnType.LOCAL_DATE
+            case 'LOCALTIME'              -> ColumnType.LOCAL_TIME
+            case 'LOCALDATETIME'          -> ColumnType.LOCAL_DATE_TIME
+            case 'INSTANT'                -> ColumnType.INSTANT
+            default                       -> ColumnType.STRING
+        }
     }
 }

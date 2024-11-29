@@ -6,6 +6,7 @@ import com.github.grooviter.underdog.plots.dsl.Grid
 import com.github.grooviter.underdog.plots.dsl.Legend
 import com.github.grooviter.underdog.plots.dsl.Series
 import com.github.grooviter.underdog.plots.dsl.Title
+import com.github.grooviter.underdog.plots.dsl.Tooltip
 import com.github.grooviter.underdog.plots.dsl.XAxis
 import com.github.grooviter.underdog.plots.dsl.YAxis
 import groovy.json.JsonOutput
@@ -14,6 +15,7 @@ import groovy.transform.CompileDynamic
 @Node
 class Options {
     Title title
+    Tooltip tooltip
 
     @RepeatableField Legend legend
     @RepeatableField Grid grid

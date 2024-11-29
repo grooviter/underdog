@@ -17,29 +17,6 @@ include::{sources}/LineSpec.groovy[tag=simple, indent=0]
 
 image::plots/line_simple.png[width="75%", align=center]
 
-==== N-lines
-
-TODO
-
-==== N-Lines (sharing X)
-
-If your data shares the same X axis points you can use this variant of the `line()` method which takes:
-
-- One range or collection for the X axis
-- A map containing different ranges or lists for the Y axis
-
-The name of each line series will be taken from the map entry keys.
-
-[source, groovy]
-.lines sharing X
-----
-include::{sources}/LineSpec.groovy[tag=several_lines_sharing_xs, indent=0]
-----
-
-image::plots/line_n_lines_share_x.png[width="75%", align=center]
-
-==== Using Series
-
 There are methods adapted for using Underdog's Series objects:
 
 [source, groovy]
@@ -55,6 +32,19 @@ image::plots/line_series.png[width="75%", align=center]
 
 In any method using Underdog's Series there is no attribute for changing the xLabel or the yLabel as it takes the Series' name. To change the label you can rename the Series' name as mentioned in the example.
 
+==== N-lines
+
+[source, groovy]
+.lines using collections
+----
+include::{sources}/LineSpec.groovy[tag=n_lines, indent=0]
+----
+
+<1> A list of lists of 2 elements `\[[x1, y1], [x2, y2],..., [xn, yn]]`
+<2> Using `[listX, listY]transpose()` == `\[[x1, y1], [x2, y2],..., [xn, yn]]`
+
+image::plots/line_n_lines.png[width="75%", align=center]
+
 ==== Customize
 
 As in any chart once we've created our Options object and before calling `show()` we can use the `Options#customize()` method to customize the chart using Groovy's Echart DSL.
@@ -64,6 +54,9 @@ As in any chart once we've created our Options object and before calling `show()
 ----
 include::{sources}/LineSpec.groovy[tag=customize, indent=0]
 ----
+
+<1> Adding legend in the top right corner
+<2> Adding tooltip of type `axis`
 
 In this occasion we are adding the chart legend and positioning it to the top-right side of the chart.
 

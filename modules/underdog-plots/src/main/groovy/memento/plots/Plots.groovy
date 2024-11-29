@@ -22,22 +22,14 @@ class Plots {
         List<Number> y,
         @NamedParam(required = false, value='title') String chartTitle = "",
         @NamedParam(required = false) boolean smooth = false) {
-        return line(x, y, chartTitle: chartTitle, smooth: smooth)
+        return line.line(x, y, title: chartTitle, smooth: smooth)
     }
 
     @NamedVariant
     Options plot(
-        List<Number> xs,
-        Map<String, List<Number>> ys,
+        Map<String, List<Number>> data,
         @NamedParam(required = false, value='title') String chartTitle = "") {
-        return lines(xs, ys, chartTitle: chartTitle)
-    }
-
-    Options plot(
-        List<Number> x,
-        List<Number> y,
-        @DelegatesTo(Options) Closure options){
-        return line(x, y, options)
+        return line.lines(data, title: chartTitle)
     }
 
     String show(Options options) {

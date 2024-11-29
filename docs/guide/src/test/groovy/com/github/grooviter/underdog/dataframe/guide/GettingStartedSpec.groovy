@@ -15,7 +15,7 @@ class GettingStartedSpec extends Specification {
         def csvFilePath = this.class.getResource("/data/tornadoes_1950-2014.csv").file
         // tag::getting_started_simple[]
         // reading data from CSV file
-        def df = Underdog.read_csv(csvFilePath)
+        def df = Underdog.df().read_csv(csvFilePath)
 
         // creating new series
         df["year"] = df["date"](Date, Integer) { it.format("yyyy").toInteger() }

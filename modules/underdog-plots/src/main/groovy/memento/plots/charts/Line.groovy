@@ -1,5 +1,6 @@
 package memento.plots.charts
 
+import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.Series
 import com.github.grooviter.underdog.plots.Options
 import groovy.transform.NamedParam
@@ -14,14 +15,51 @@ import groovy.transform.NamedVariant
  */
 class Line extends Chart {
 
+    @NamedVariant
+    Options lines(
+        DataFrame dataFrame,
+        @NamedParam(required = false) String xLabel = 'X',
+        @NamedParam(required = false) String yLabel = 'Y',
+        @NamedParam(required = false, value='title') String chartTitle = "",
+        @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
+        @NamedParam(required = false, value='smooth') boolean chartSmooth = false
+    ){
+        String xsName = dataFrame.columns.find { it.toLowerCase() == 'x' }
+        List xs = dataFrame[xsName] as List
+        return createGridOptions(chartTitle, chartSubtitle) +
+                createXAxisOptions(xLabel, xs) +
+                createYAxisOptions(yLabel) +
+                Options.create {
+                    dataFrame.columns
+                        .findAll { it != xsName }
+                        .each { next ->
+                            series {
+                                type("line")
+                                name(next)
+                                data(dataFrame[next] as List)
+                                smooth(chartSmooth)
+                            }
+                        }
+                }
+    }
+
     /**
-     * Renders a line chart with several lines.
+     * Renders several lines. It receives a Map. Each entry key is the name of the series and the entry
+     * value is a list with the series data. For example:
+     *
+     * <code>
+     * def series = [
+     *    series_1: [[10, 20], [20, 10]],
+     *    series_2: [[10, 30], [20, 70]]
+     * ]
+     * </code>
+     *
+     * Each series has a list of type [[x, y], [x, y],...]
      *
      * All lines share the same x coordinates. Every line is represented in an entry of the xs Map. The
      * entry key is the name of the series and the value is the series dataset.
      *
-     * @param xs the x coordinate data as {@link List} of numbers
-     * @param ys several ys {@link List} of numbers to represent different lines
+     * @param series data series as {@link List} of {@link List} of numbers
      * @param xLabel label for the X axis
      * @param yLabel label for the Y axis
      * @param chartTitle title of the chart
@@ -32,27 +70,26 @@ class Line extends Chart {
      */
     @NamedVariant
     Options lines(
-        List<Number> xs,
-        Map<String, List<Number>> ys,
+        Map<String, List<List<Number>>> seriesData,
         @NamedParam(required = false) String xLabel = 'X',
         @NamedParam(required = false) String yLabel = 'Y',
         @NamedParam(required = false, value='title') String chartTitle = "",
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
-        @NamedParam(required = false, value='smooth') boolean chartSmooth = false) {
+        @NamedParam(required = false, value='smooth') boolean chartSmooth = false
+    ){
         return createGridOptions(chartTitle, chartSubtitle) +
-            createXAxisOptions(xLabel, xs) +
-            createYAxisOptions(yLabel) +
-            Options.create {
-                ys.each { next ->
-                    println next
-                    series {
-                        type("line")
-                        name(next.key)
-                        data(next.value)
-                        smooth(chartSmooth)
-                    }
+        createXAxisOptions(xLabel) +
+        createYAxisOptions(yLabel) +
+        Options.create {
+            seriesData.each { next ->
+                series {
+                    type("line")
+                    name(next.key)
+                    data(next.value)
+                    smooth(chartSmooth)
                 }
             }
+        }
     }
 
     /**

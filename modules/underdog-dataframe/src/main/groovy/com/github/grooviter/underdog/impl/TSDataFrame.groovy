@@ -41,9 +41,7 @@ class TSDataFrame implements DataFrame {
     static DataFrame from(String dataFrameName, Collection<Map<String, ?>> collection) {
         Map<String,?> sample = collection.find()
         List<String> colNames = sample.keySet().toList()
-        ColumnType[] colTypes = new CollectionTypeDetector()
-                .detectFromMapOfValues(sample)
-                .<Class, ColumnType>collect((Class clazz) -> resolveFrom(clazz.simpleName))
+        ColumnType[] colTypes = new CollectionTypeDetector().detectFromMapOfValues(sample)
 
         List<Column> columns = [colNames, colTypes].transpose()
                 .collect { String name, ColumnType type -> type.create(name) }
@@ -59,36 +57,19 @@ class TSDataFrame implements DataFrame {
         return new TSDataFrame(Table.create(dataFrameName, columns))
     }
 
-    static DataFrame from(String dataFrameName, Map<String,List> fromMap) {
+    static DataFrame from(String dataFrameName, Map<String,Iterable> fromMap) {
         List<String> columnNames = fromMap.keySet().toList()
-        ColumnType[] columnTypes = new CollectionTypeDetector()
-            .detectFromMapOfLists(fromMap)
-            .<Class, ColumnType>collect((Class clazz) -> resolveFrom(clazz.simpleName))
+        ColumnType[] columnTypes = new CollectionTypeDetector().detectFromMapOfLists(fromMap)
 
         List<Column> columns = [columnNames, columnTypes].transpose()
                 .collect { String name, ColumnType type -> type
                     .create(name)
-                    .tap { Column column -> fromMap[name].each { column.append(it) } }
+                    .tap { Column column ->
+                        fromMap[name].each { column.append(it) }
+                    }
                 }
 
         return new TSDataFrame(Table.create(dataFrameName, columns))
-    }
-
-    private static ColumnType resolveFrom(String clazzName) {
-        return switch(clazzName.toUpperCase()) {
-            case 'SHORT'                  -> ColumnType.SHORT
-            case 'INTEGER'                -> ColumnType.INTEGER
-            case ['LONG', 'BIGINTEGER']   -> ColumnType.LONG
-            case 'FLOAT'                  -> ColumnType.FLOAT
-            case 'BOOLEAN'                -> ColumnType.BOOLEAN
-            case 'STRING'                 -> ColumnType.STRING
-            case ['DOUBLE', 'BIGDECIMAL'] -> ColumnType.DOUBLE
-            case 'LOCALDATE'              -> ColumnType.LOCAL_DATE
-            case 'LOCALTIME'              -> ColumnType.LOCAL_TIME
-            case 'LOCALDATETIME'          -> ColumnType.LOCAL_DATE_TIME
-            case 'INSTANT'                -> ColumnType.INSTANT
-            default                       -> ColumnType.STRING
-        }
     }
 
     @Override

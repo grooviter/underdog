@@ -6,14 +6,14 @@ import spock.lang.Specification
 
 class BaseSpec extends Specification {
     DataFrame loadFoodDataFrame() {
-        return Underdog
+        return Underdog.df()
                 .read_csv("src/test/resources/data/food.csv", sep: ";")
                 .dropna()
     }
 
     Tuple4<double[][], double[][], int[], int[]> binaryClassificationTrainTestSplit(List<Integer> classes = [1, -1]) {
         def (on, off) = classes
-        def df = Underdog
+        def df = Underdog.df()
             .read_csv("src/test/resources/data/food.csv", sep: ";")
             .dropna()
 
@@ -26,7 +26,7 @@ class BaseSpec extends Specification {
     }
 
     Tuple4<double[][], double[][], int[], int[]> multiClassificationTrainTestSplit() {
-        def df = Underdog
+        def df = Underdog.df()
                 .read_csv("src/test/resources/data/food.csv", sep: ";")
                 .dropna()
 

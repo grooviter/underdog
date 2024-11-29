@@ -370,4 +370,9 @@ class TSSeries implements Series {
 
         return new TSSeries(this.column)
     }
+
+    @Override
+    Iterator iterator() {
+        return this.column.iterator()
+    }
 }

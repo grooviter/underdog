@@ -1,5 +1,6 @@
 package com.github.grooviter.underdog.plots.guide
 
+import com.github.grooviter.underdog.DataFrame
 import com.github.grooviter.underdog.Underdog
 import memento.plots.Plots
 import spock.lang.Specification
@@ -21,25 +22,25 @@ class LineSpec extends Specification {
         // end::simple[]
     }
 
-    def "n-lines sharing xs"() {
+    def "n-lines"() {
         expect:
-        // tag::several_lines_sharing_xs[]
-        Map<String, List<Number>> ys = [
-            A: [1, 3, 5, 7, 10, 6, 7, 2, 7, 10],
-            B: 5..15,
-            C: 3..13
+        // tag::n_lines[]
+        def x = 2000..2010
+        Map<String, List<Number>> data = [
+            A: [[2000, 13],[2001, 5], [2002, 7], [2003, 10], [2004,6]], // <1>
+            B: [[2000, 5], [2001, 6], [2002, 7], [2003, 8], [2004, 9]],
+            C: [2000..2004, 3..7].transpose() // <2>
         ]
 
         Plots.plots()
             .lines(
-                2000..2010,
-                ys,
+                data,
                 title: "Progress of Teams A, B, C",
                 subtitle: "Between years 2000 - 2010",
                 xLabel: "Years",
                 yLabel: "Wins"
             ).show()
-        // end::several_lines_sharing_xs[]
+        // end::n_lines[]
     }
 
     def "line with series"() {
@@ -52,7 +53,7 @@ class LineSpec extends Specification {
         // tag::line_from_series[]
 
         // load data
-        def df = Underdog.read_csv(baseballPath)
+        def df = Underdog.df().read_csv(baseballPath)
 
         // filter & aggregate & sort
         df = df[df['Team'] == 'BOS']
@@ -79,7 +80,7 @@ class LineSpec extends Specification {
 
         and:
         // loading
-        def df = Underdog.read_csv(baseballPath)
+        def df = Underdog.df().read_csv(baseballPath)
 
         // filtering
         df = df[
@@ -93,26 +94,29 @@ class LineSpec extends Specification {
             .sort_values(by: 'year')
             .rename(mapper: [('Sum [W]'): 'W'])
 
-        def teamWins = [
-            BOS: df[df['Team'] == 'BOS']['W'] as List<Number>,
-            ATL: df[df['Team'] == 'ATL']['W'] as List<Number>,
-            CIN: df[df['Team'] == 'CIN']['W'] as List<Number>
-        ]
+        def dataFrame = Underdog.df().from(
+                X: df['year'].unique().sort(),
+                BOS: df[df['Team'] == 'BOS']['W'],
+                ATL: df[df['Team'] == 'ATL']['W'],
+                CIN: df[df['Team'] == 'CIN']['W'],
+        "dataset")
 
         // tag::customize[]
         Plots.plots()
             .lines(
-                df['year'].unique() as List<Number>,
-                teamWins,
+                dataFrame,
                 title: "Team comparison (BOS, ATL, CIN)",
                 subtitle: "Years 2000-2004",
                 xLabel: "Years",
                 yLabel: "Wins"
             ).customize {
-                legend {
+                legend { // <1>
                     top("10%")
                     right('15%')
                     show(true)
+                }
+                tooltip { // <2>
+                    trigger('axis')
                 }
             }.show()
         // end::customize[]

@@ -1,4 +1,4 @@
 moduleName=Underdog Core Extensions
 moduleVersion=1.0.0-SNAPSHOT
 extensionClasses=com.github.grooviter.underdog.impl.extensions.CollectionsExtensions
-# staticExtensionClasses=com.github.grooviter.underdog.tablesaw.DataFrameReaderExtensions
+staticExtensionClasses=com.github.grooviter.underdog.impl.extensions.UnderdogExtensions

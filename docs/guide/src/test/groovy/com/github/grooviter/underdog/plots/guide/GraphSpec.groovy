@@ -75,7 +75,7 @@ class GraphSpec extends Specification {
         expect:
         // tag::graph_domain[]
         List<Graph.Node> nodes = [
-            new Graph.Node(id: "robert", name: "Robert", symbolSize: 75, color: "orange"),
+            new Graph.Node(id: "robert", name: "Robert", symbolSize: 75),
             new Graph.Node(id: "thelma", name: "Thelma", symbolSize: 40),
             new Graph.Node(id: "troy", name: "Troy", symbolSize: 40)
         ]

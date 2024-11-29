@@ -15,7 +15,7 @@ class GettingStartedSpec extends Specification {
         def baseballFilePath = "src/test/resources/data/baseball.csv"
         // tag::getting_started_simple[]
         // loading data
-        def df = Underdog.read_csv(baseballFilePath)
+        def df = Underdog.df().read_csv(baseballFilePath)
 
         // transform dataframe
         df["RD"] = df["RS"] - df["RA"]

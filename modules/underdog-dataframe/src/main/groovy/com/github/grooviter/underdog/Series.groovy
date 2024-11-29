@@ -10,7 +10,7 @@ import java.util.function.Function
 /**
  * @since 0.1.0
  */
-interface Series extends Columnar {
+interface Series extends Columnar, Iterable {
 
     static enum TypeCorrelation {
         PEARSON, KENDALL, SPEARMAN
