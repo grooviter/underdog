@@ -1,13 +1,13 @@
 package com.github.grooviter.underdog.graphs.guide
 
-import com.github.grooviter.underdog.graphs.Graphs
+import com.github.grooviter.underdog.Underdog
 import spock.lang.Specification
 
 class IntrospectionSpec extends Specification {
     def "maxDegree()"() {
         when:
         // tag::max_degree[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             ('A'..'C').each {
                 vertex(it)
             }
@@ -44,7 +44,7 @@ class IntrospectionSpec extends Specification {
         def elsa = new Person (name: "Elsa", age: 32)
         def raul = new Person(name: "Raul", age: 28)
 
-        def graph = Graphs.digraph(Person) {
+        def graph = Underdog.graphs().digraph(Person) {
             vertex(john)
             vertex(elsa)
             vertex(raul)

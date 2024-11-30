@@ -1,5 +1,6 @@
 package com.github.grooviter.underdog.graphs.guide
 
+import com.github.grooviter.underdog.Underdog
 import com.github.grooviter.underdog.graphs.Graphs
 import groovy.transform.Canonical
 import spock.lang.Specification
@@ -15,7 +16,7 @@ class TraversalSpec extends Specification {
     def "iterators: collections vertices"() {
         setup:
         // tag::collections_vertices[]
-        def graph = Graphs.graph(Integer) {
+        def graph = Underdog.graphs().graph(Integer) {
             (1..10).each(delegate::vertex)
             edges(
                 1, 3,
@@ -44,7 +45,7 @@ class TraversalSpec extends Specification {
         def paul = new Person("Paul", 30)
         def john = new Person("John", 28)
 
-        def employees = Graphs.graph(Person) {
+        def employees = Underdog.graphs().graph(Person) {
             // adding people
             [anna, chris, paul, john].each(delegate::vertex)
             edge(chris, paul, "boss")
@@ -69,7 +70,7 @@ class TraversalSpec extends Specification {
         def paul = new Person("Paul", 30)
         def john = new Person("John", 28)
 
-        def dates = Graphs.graph(Person){
+        def dates = Underdog.graphs().graph(Person){
             // adding people
             [anna, chris, paul, john].each(delegate::vertex)
 

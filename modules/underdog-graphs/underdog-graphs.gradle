@@ -4,11 +4,8 @@ plugins {
 }
 
 dependencies {
-    api "org.apache.groovy:groovy:$groovy"
-    api "org.apache.groovy:groovy-datetime:$groovy"
-    api "org.apache.groovy:groovy-json:$groovy"
-    api "org.apache.groovy:groovy-templates:$groovy"
-    api "org.apache.groovy:groovy-dateutil:$groovy"
+    api project(":underdog-dataframe")
+
     api "org.jgrapht:jgrapht-core:$jgrapht"
     api "org.jgrapht:jgrapht-io:$jgrapht"
 

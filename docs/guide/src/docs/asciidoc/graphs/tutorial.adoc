@@ -5,6 +5,7 @@
 
 Creating an empty graph without vertices and edges:
 
+
 [source, groovy]
 .create a graph
 ----

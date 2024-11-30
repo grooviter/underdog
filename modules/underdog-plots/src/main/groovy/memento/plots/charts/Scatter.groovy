@@ -31,7 +31,7 @@ class Scatter extends Chart {
     Options scatter(
         Series xs,
         Series ys,
-        @NamedParam(required = false) Series group,
+        @NamedParam(required = false) Series group = null,
         @NamedParam(required = false, value='title') String chartTitle = '',
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '') {
         return scatter(

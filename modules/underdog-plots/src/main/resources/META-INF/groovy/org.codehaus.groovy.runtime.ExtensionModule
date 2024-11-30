@@ -1,3 +1,4 @@
 moduleName=Underdog Plot Core Extensions
 moduleVersion=1.0.0
 extensionClasses=memento.plots.extensions.OptionsExtensions,memento.plots.extensions.DataFrameExtensions
+staticExtensionClasses=memento.plots.extensions.UnderdogExtensions

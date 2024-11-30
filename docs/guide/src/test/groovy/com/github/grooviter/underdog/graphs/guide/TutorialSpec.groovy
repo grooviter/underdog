@@ -2,18 +2,17 @@ package com.github.grooviter.underdog.graphs.guide
 
 import com.github.grooviter.underdog.graphs.Graphs
 import memento.plots.Plots
-
-// tag::import[]
-
 import spock.lang.Specification
 
+// tag::import[]
+import com.github.grooviter.underdog.Underdog
 // end::import[]
 
 class TutorialSpec extends Specification {
     def "creation"() {
         setup:
         // tag::create[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             // vertices and edges here
         }
         // end::create[]
@@ -24,7 +23,7 @@ class TutorialSpec extends Specification {
     def "add vertices at creation time"() {
         when:
         // tag::add_vertices_at_creation_time[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             vertex("A")
             vertex("B")
         }
@@ -40,7 +39,7 @@ class TutorialSpec extends Specification {
     def "add vertices after creation"() {
         when:
         // tag::add_vertices_after_creation[]
-        def graph = Graphs.graph(String) {}
+        def graph = Underdog.graphs().graph(String) {}
 
         graph.addVertex("A")
         graph.addVertex("B")
@@ -63,7 +62,7 @@ class TutorialSpec extends Specification {
         def peter = new Employee("Peter", "Engineering")
         def lisa = new Employee("Lisa", "Engineering")
 
-        def graph = Graphs.graph(Employee) {
+        def graph = Underdog.graphs().graph(Employee) {
             vertex(john)
             vertex(peter)
             vertex(lisa)
@@ -76,7 +75,7 @@ class TutorialSpec extends Specification {
     def "adding edges at creation time"() {
         when:
         // tag::adding_edges_at_creation[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             // adding vertices first
             vertex('A')
             vertex('B')
@@ -97,7 +96,7 @@ class TutorialSpec extends Specification {
     def "adding edges at creation time (II)"() {
         when:
         // tag::adding_several_at_once[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             // adding vertices first
             ('A'..'D').each(delegate::vertex)
 
@@ -121,7 +120,7 @@ class TutorialSpec extends Specification {
     def "adding edges after creation time"() {
         when:
         // tag::adding_edges_after_creation[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             // adding vertices 'A', 'B', 'C', 'D'
             ('A'..'D').each(delegate::vertex)
         }
@@ -137,7 +136,7 @@ class TutorialSpec extends Specification {
     def "adding vertices and edges and get shape"() {
         when:
         // tag::shape[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             ('A'..'D').each(delegate::vertex)
             edge('A', 'B')
             edge('B', 'C')
@@ -158,7 +157,7 @@ class TutorialSpec extends Specification {
     def "elements of a graph"() {
         when:
         // tag::elements_graph[]
-        def graph = Graphs.graph(Integer) {
+        def graph = Underdog.graphs().graph(Integer) {
             (1..10).each(delegate::vertex)
             edges(
                 1, 2,
@@ -179,7 +178,7 @@ class TutorialSpec extends Specification {
     def "removing elements"() {
         when:
         // tag::removing_elements[]
-        def graph = Graphs.graph(Integer) {
+        def graph = Underdog.graphs().graph(Integer) {
             (1..14).each(delegate::vertex)
             edges(
                 3, 5,
@@ -215,17 +214,20 @@ class TutorialSpec extends Specification {
     def "graph types"() {
         when:
         // tag::graph_types[]
+        // graphs
+        def g = Underdog.graphs()
+
         // undirected weighted
-        def graph1 = Graphs.graph(String)
+        def graph1 = g.graph(String)
 
         // directed weighted
-        def graph2 = Graphs.digraph(String)
+        def graph2 = g.digraph(String)
 
         // directed weighted pseudo graph
-        def graph3 = Graphs.multidigraph(String)
+        def graph3 = g.multidigraph(String)
 
         // weighted pseudo graph
-        def graph4 = Graphs.multigraph(String)
+        def graph4 = g.multigraph(String)
         // end::graph_types[]
         then:
         graph1
@@ -237,7 +239,7 @@ class TutorialSpec extends Specification {
     def "analyzing graph"() {
         when:
         // tag::analyzing_graph[]
-        def graph = Graphs.graph(String) {
+        def graph = Underdog.graphs().graph(String) {
             ('a'..'f').each(delegate::vertex)
 
             edges(

@@ -1,5 +1,6 @@
 package com.github.grooviter.underdog.graphs.guide
 
+import com.github.grooviter.underdog.Underdog
 import com.github.grooviter.underdog.graphs.Graphs
 import spock.lang.Specification
 
@@ -7,11 +8,11 @@ class OperatorsSpec extends Specification {
     def "merging graphs"() {
         when:
         // tag::operators_plus[]
-        def names1 = Graphs.graph(String) {
+        def names1 = Underdog.graphs().graph(String) {
             ["John", "Lisa", "Robert"].each(delegate::vertex)
         }
 
-        def names2 = Graphs.graph(String) {
+        def names2 = Underdog.graphs().graph(String) {
             ["Anna", "Vesper", "Tania"].each(delegate::vertex)
         }
 

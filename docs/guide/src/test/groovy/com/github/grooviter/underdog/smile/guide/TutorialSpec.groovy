@@ -49,7 +49,7 @@ class TutorialSpec extends Specification {
 
         and:
         // tag::show_correlation[]
-        def figure = Plots
+        def figure = Underdog
             .plots()
             .scatter(
                 data['RD'],
@@ -76,10 +76,10 @@ class TutorialSpec extends Specification {
         def y = data['W'] as double[]
 
         // splitting between train and test datasets to avoid over fitting
-        def (xTrain, xTest, yTrain, yTest) = Smile.utils.trainTestSplit(X, y)
+        def (xTrain, xTest, yTrain, yTest) = Underdog.ml().utils.trainTestSplit(X, y)
 
         // training the model
-        def winsModel = Smile.regression.ols(xTrain, yTrain)
+        def winsModel = Underdog.ml().regression.ols(xTrain, yTrain)
         // end::ols[]
 
         println winsModel
@@ -93,7 +93,7 @@ class TutorialSpec extends Specification {
         def predictions = winsModel.predict(xTest)
 
         // comparing predictions with the actual truth for those features
-        def r2score = Smile.metrics.r2Score(yTest, predictions)
+        def r2score = Underdog.ml().metrics.r2Score(yTest, predictions)
         // end::score[]
 
         then:
@@ -109,8 +109,9 @@ class TutorialSpec extends Specification {
         def X = data['OBP', 'SLG'] as double[][]
         def y = data['RS'] as double[]
 
-        def (xTrain, xTest, yTrain, yTest) = Smile.utils.trainTestSplit(X, y)
-        def runsScored = Smile.regression.ols(xTrain, yTrain)
+        def ml = Underdog.ml()
+        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
+        def runsScored = ml.regression.ols(xTrain, yTrain)
 
         // end::runs_scored_model[]
         println runsScored
@@ -151,10 +152,10 @@ class TutorialSpec extends Specification {
         def X = data['OOBP', 'OSLG'].dropna() as double[][]
         def y = data['RA'] as double[]
 
-        def (xTrain, xTest, yTrain, yTest) = Smile.utils.trainTestSplit(X, y)
-        def runsAllowed = Smile.regression.ols(xTrain, yTrain)
+        def ml = Underdog.ml()
+        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
+        def runsAllowed = ml.regression.ols(xTrain, yTrain)
         // end::modeling_runs_allowed_model[]
-        println runsAllowed
         then:
         true
     }
@@ -168,8 +169,9 @@ class TutorialSpec extends Specification {
         def X = data["OOBP", "OBP", "OSLG", "SLG"].dropna() as double[][]
         def y = data['W'] as double[]
 
-        def (xTrain, xTest, yTrain, yTest) = Smile.utils.trainTestSplit(X, y)
-        def winsFinal = Smile.regression.ols(xTrain, yTrain)
+        def ml = Underdog.ml()
+        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
+        def winsFinal = ml.regression.ols(xTrain, yTrain)
         // end::offensive_plus_defensive_model[]
 
         and:

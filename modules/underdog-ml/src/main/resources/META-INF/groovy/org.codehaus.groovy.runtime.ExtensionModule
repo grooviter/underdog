@@ -1,4 +1,4 @@
 moduleName=Underdog Smile Extensions
 moduleVersion=1.0.1-SNAPSHOT
 extensionClasses=com.github.grooviter.underdog.smile.RegressionExtensions,com.github.grooviter.underdog.smile.ClassificationExtensions,com.github.grooviter.underdog.smile.FeaturesExtensions,com.github.grooviter.underdog.smile.MetricsExtensions,com.github.grooviter.underdog.smile.NLPExtensions
-# staticExtensionClasses=com.github.grooviter.underdog.tablesaw.DataFrameReaderExtensions
+staticExtensionClasses=com.github.grooviter.underdog.smile.extensions.UnderdogExtensions

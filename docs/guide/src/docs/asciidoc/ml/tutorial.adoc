@@ -19,6 +19,17 @@ Specifically, they wanted to know how to spend their salary dollars to produce t
 
 To connect player stats to making the playoffs, they systematically decomposed their high-level goal. They started by asking how many wins they’d need to make the playoffs. They decided that 95 wins would give them a strong chance. Here’s how we might check that assumption using Underdog.
 
+==== Underdog modules
+
+The modules required to follow this tutorial are the `ml` and `plots` modules:
+
+[source, groovy]
+.gradle
+----
+implementation 'com.github.grooviter:underdog-ml:VERSION'
+implementation 'com.github.grooviter:underdog-plots:VERSION'
+----
+
 ==== Analyzing data
 
 To connect player stats to making the playoffs, they systematically decomposed their high-level goal. They started by asking how many wins they’d need to make the playoffs. They decided that 95 wins would give them a strong chance. Here’s how we might check that assumption using Underdog. First lets load the data:

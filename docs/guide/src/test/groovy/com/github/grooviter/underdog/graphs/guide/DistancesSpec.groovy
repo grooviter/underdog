@@ -1,14 +1,13 @@
 package com.github.grooviter.underdog.graphs.guide
 
-import com.github.grooviter.underdog.graphs.Graphs
-import memento.plots.Plots
+import com.github.grooviter.underdog.Underdog
 import spock.lang.Specification
 
 class DistancesSpec extends Specification {
     def "shortest path"() {
         when:
         // tag::shortest_path_graph[]
-        def distances = Graphs.graph(String) {
+        def distances = Underdog.graphs().graph(String) {
             ["Madrid", "Guadalajara", "Cuenca", "Zaragoza", "Teruel", "Castellon"].each(delegate::vertex)
             edge("Madrid", "Guadalajara", weight: 66.4)
             edge("Madrid", "Salamanca", weight: 210)
@@ -33,7 +32,7 @@ class DistancesSpec extends Specification {
         def shortestPath = distances.shortestPath("Teruel", "Madrid")
         // end::shortest_path[]
 
-        Plots.plots()
+        Underdog.plots()
             .graph(
                 distances,
                 title: "Path from Madrid to Teruel",

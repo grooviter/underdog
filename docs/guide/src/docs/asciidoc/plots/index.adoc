@@ -21,3 +21,5 @@ include::bar.adoc[]
 include::scatter.adoc[]
 
 include::graphs.adoc[]
+
+include::extensions.adoc[]

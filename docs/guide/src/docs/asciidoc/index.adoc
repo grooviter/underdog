@@ -5,14 +5,31 @@
 :sources_gr: ../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
 :sources_ml: ../../../src/test/groovy/com/github/grooviter/underdog/smile/guide
 
+.What is an Underdog ?
+****
+"An underdog is a person or group in a competition, usually in sports and creative works, who is largely expected to lose."
+****
+
 == About
 
-**Underdog** is a set of Groovy libraries for data analysis. It contains the following subprojects:
+**Underdog** is a set of Groovy libraries for data analysis.
+
+It doesn't expect to be the best data analysis tool, but it combines Groovy's expressiveness, and some of the best Java data analysis libraries to at least, make data analysis fun.
+
+=== Modules
+
+Underdog project covers several data analysis fields with the following subprojects:
 
 - **underdog-dataframe**: combines tools for working with dataframes and series.
 
 [source, groovy]
-.Dataframe example
+.gradle
+----
+implementation "com.github.grooviter:underdog-dataframe:VERSION"
+----
+
+[source, groovy]
+.example
 ----
 include::{sources_df}/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
 
@@ -26,7 +43,13 @@ More information on the link:#_dataframe[Dataframe section]
 - **underdog-graphs**: library of graph theory data structures and algorithms
 
 [source, groovy]
-.Graphs example
+.gradle
+----
+implementation "com.github.grooviter:underdog-graphs:VERSION"
+----
+
+[source, groovy]
+.example
 ----
 include::{sources_gr}/GettingStartedSpec.groovy[tag=getting_started_simple_imports, indent=0]
 
@@ -40,7 +63,13 @@ More information in the link:#_graphs[Graphs section]
 - **underdog-ml**: contains machine learning algorithms and evaluation mechanisms
 
 [source, groovy]
-.ML
+.gradle
+----
+implementation "com.github.grooviter:underdog-ml:VERSION"
+----
+
+[source, groovy]
+.example
 ----
 include::{sources_ml}/GettingStartedSpec.groovy[tag=getting_started_simple_import, indent=0]
 
@@ -54,7 +83,13 @@ More information in the link:#_ml[ML section]
 - **underdog-plots**: creates different types of charts using the https://echarts.apache.org[Apache Echart] library underneath
 
 [source, groovy]
-.bar chart
+.gradle
+----
+implementation "com.github.grooviter:underdog-plots:VERSION"
+----
+
+[source, groovy]
+.example
 ----
 include::{sources_df}/GettingStartedSpec.groovy[tag=show_plot, indent=0]
 ----

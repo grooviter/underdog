@@ -25,7 +25,6 @@ class LineSpec extends Specification {
     def "n-lines"() {
         expect:
         // tag::n_lines[]
-        def x = 2000..2010
         Map<String, List<Number>> data = [
             A: [[2000, 13],[2001, 5], [2002, 7], [2003, 10], [2004,6]], // <1>
             B: [[2000, 5], [2001, 6], [2002, 7], [2003, 8], [2004, 9]],
