@@ -1,6 +1,6 @@
 package underdog.guide.plots
 
-import com.github.grooviter.underdog.Underdog
+import underdog.Underdog
 import spock.lang.Specification
 
 class ExtensionsSpec extends Specification {

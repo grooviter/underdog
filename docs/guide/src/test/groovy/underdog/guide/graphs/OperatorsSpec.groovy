@@ -1,7 +1,6 @@
 package underdog.guide.graphs
 
-import com.github.grooviter.underdog.Underdog
-import com.github.grooviter.underdog.graphs.Graphs
+import underdog.Underdog
 import spock.lang.Specification
 
 class OperatorsSpec extends Specification {

@@ -1,4 +1,4 @@
 moduleName=Underdog Plot Core Extensions
-moduleVersion=1.0.0
+moduleVersion=0.1.0
 extensionClasses=underdog.plots.extensions.OptionsExtensions,underdog.plots.extensions.DataFrameExtensions
 staticExtensionClasses=underdog.plots.extensions.UnderdogExtensions

@@ -1,6 +1,6 @@
 package underdog.guide.graphs
 
-import com.github.grooviter.underdog.Underdog
+import underdog.Underdog
 import spock.lang.Specification
 
 class DistancesSpec extends Specification {

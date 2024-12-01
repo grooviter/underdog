@@ -1,7 +1,7 @@
 package underdog.guide.dataframe
 
 
-import com.github.grooviter.underdog.Underdog
+import underdog.Underdog
 import spock.lang.Specification
 
 import java.time.LocalDate

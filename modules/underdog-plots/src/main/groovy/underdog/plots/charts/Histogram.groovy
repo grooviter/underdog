@@ -1,7 +1,7 @@
 package underdog.plots.charts
 
-import com.github.grooviter.underdog.Series
-import com.github.grooviter.underdog.plots.Options
+import underdog.Series
+import underdog.plots.Options
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 

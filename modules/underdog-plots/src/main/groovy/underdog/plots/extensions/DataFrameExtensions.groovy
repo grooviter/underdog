@@ -1,8 +1,8 @@
 package underdog.plots.extensions
 
-import com.github.grooviter.underdog.DataFrame
-import com.github.grooviter.underdog.Series
-import com.github.grooviter.underdog.plots.Options
+import underdog.DataFrame
+import underdog.Series
+import underdog.plots.Options
 import underdog.plots.Plots
 
 /**

@@ -1,6 +1,6 @@
 package underdog.guide.plots
 
-import com.github.grooviter.underdog.graphs.Graphs
+import underdog.graphs.Graphs
 import underdog.plots.Plots
 import underdog.plots.charts.Graph
 import spock.lang.Specification

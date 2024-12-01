@@ -5,7 +5,7 @@ import underdog.plots.Plots
 import spock.lang.Specification
 
 // tag::import[]
-import com.github.grooviter.underdog.Underdog
+import underdog.Underdog
 // end::import[]
 
 class TutorialSpec extends Specification {

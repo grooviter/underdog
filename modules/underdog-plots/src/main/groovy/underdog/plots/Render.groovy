@@ -1,12 +1,11 @@
 package underdog.plots
 
-import com.github.grooviter.underdog.plots.Options
 import groovy.text.StreamingTemplateEngine
 import groovy.util.logging.Slf4j
 import java.nio.file.Files
 
-import static com.github.grooviter.underdog.plots.dsl.NodeMap.FUNCTION_ENDS
-import static com.github.grooviter.underdog.plots.dsl.NodeMap.FUNCTION_START
+import static underdog.plots.dsl.NodeMap.FUNCTION_ENDS
+import static underdog.plots.dsl.NodeMap.FUNCTION_START
 import static java.awt.Desktop.desktop
 import static java.awt.Desktop.desktopSupported
 

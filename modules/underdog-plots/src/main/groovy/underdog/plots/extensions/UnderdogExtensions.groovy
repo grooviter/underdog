@@ -1,6 +1,6 @@
 package underdog.plots.extensions
 
-import com.github.grooviter.underdog.Underdog
+import underdog.Underdog
 import underdog.plots.Plots
 
 class UnderdogExtensions {

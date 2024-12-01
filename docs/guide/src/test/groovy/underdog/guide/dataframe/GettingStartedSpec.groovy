@@ -2,7 +2,7 @@ package underdog.guide.dataframe
 
 // tag::getting_started_simple_imports[]
 // importing Underdog
-import com.github.grooviter.underdog.Underdog
+import underdog.Underdog
 // end::getting_started_simple_imports[]
 
 import spock.lang.Specification

@@ -2,7 +2,7 @@ package underdog.guide.graphs
 
 // tag::getting_started_simple_imports[]
 // importing graphs
-import com.github.grooviter.underdog.Underdog
+import underdog.Underdog
 // end::getting_started_simple_imports[]
 import underdog.plots.Plots
 import spock.lang.Specification

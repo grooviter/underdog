@@ -1,6 +1,6 @@
 package underdog.plots.extensions
 
-import com.github.grooviter.underdog.plots.Options
+import underdog.plots.Options
 import groovy.json.JsonOutput
 import underdog.plots.Plots
 

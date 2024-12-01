@@ -1,7 +1,7 @@
 package underdog.plots.charts
 
-import com.github.grooviter.underdog.graphs.edges.RelationshipEdge
-import com.github.grooviter.underdog.plots.Options
+import underdog.graphs.edges.RelationshipEdge
+import underdog.plots.Options
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant

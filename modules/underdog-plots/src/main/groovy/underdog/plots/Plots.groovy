@@ -1,6 +1,5 @@
 package underdog.plots
 
-import com.github.grooviter.underdog.plots.Options
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import underdog.plots.charts.Bar

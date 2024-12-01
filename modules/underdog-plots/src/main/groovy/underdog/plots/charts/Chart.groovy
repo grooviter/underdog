@@ -1,6 +1,6 @@
 package underdog.plots.charts
 
-import com.github.grooviter.underdog.plots.Options
+import underdog.plots.Options
 
 class Chart {
 

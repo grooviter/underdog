@@ -1,6 +1,6 @@
 package memento.plots
 
-import com.github.grooviter.underdog.graphs.Graphs
+import underdog.graphs.Graphs
 import groovy.transform.TupleConstructor
 import underdog.plots.Plots
 import underdog.plots.charts.ToMapAware
