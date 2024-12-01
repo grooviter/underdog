@@ -1,5 +1,5 @@
 === Tutorial
-:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
+:sources: ../../../../src/test/groovy/underdog/guide/graphs
 
 ==== Creating a graph
 

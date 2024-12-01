@@ -2,10 +2,10 @@ package memento.plots
 
 import com.github.grooviter.underdog.graphs.Graphs
 import groovy.transform.TupleConstructor
-import memento.plots.charts.Graph
-import memento.plots.charts.ToMapAware
+import underdog.plots.Plots
+import underdog.plots.charts.ToMapAware
 import spock.lang.Specification
-import memento.plots.Plots as plt
+import underdog.plots.Plots as plt
 
 class PlotsSpec extends Specification {
     void 'dsl works'() {

@@ -1,5 +1,5 @@
 === Distances
-:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
+:sources: ../../../../src/test/groovy/underdog/guide/graphs
 
 Sometimes comes handy to know what is the shortest path from one node to another. It could be anything: How many people do I have to meet to meet a specific person ? How many cities do I have to visit before getting to a specific location ? ...etc
 

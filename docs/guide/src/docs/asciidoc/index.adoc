@@ -1,9 +1,9 @@
 = Underdog
 :revnumber: {underdog}
 :numbered:
-:sources_df: ../../../src/test/groovy/com/github/grooviter/underdog/dataframe/guide
-:sources_gr: ../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
-:sources_ml: ../../../src/test/groovy/com/github/grooviter/underdog/smile/guide
+:sources_df: ../../../src/test/groovy/underdog/guide/dataframe
+:sources_gr: ../../../src/test/groovy/underdog/guide/graphs
+:sources_ml: ../../../src/test/groovy/underdog/guide/ml
 
 .What is an Underdog ?
 ****

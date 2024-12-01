@@ -1,5 +1,5 @@
 === Bar
-:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/plots/guide
+:sources: ../../../../src/test/groovy/underdog/guide/plots
 
 ==== Simple
 

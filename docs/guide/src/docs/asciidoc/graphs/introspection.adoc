@@ -1,5 +1,5 @@
 === Introspection
-:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/graphs/guide
+:sources: ../../../../src/test/groovy/underdog/guide/graphs
 
 You can ask the tree for different attributes such as the degrees:
 

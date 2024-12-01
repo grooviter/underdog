@@ -1,5 +1,5 @@
 === Tutorial
-:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/dataframe/guide
+:sources: ../../../../src/test/groovy/underdog/guide/dataframe
 
 ==== Read a csv file
 

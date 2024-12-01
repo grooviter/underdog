@@ -1,5 +1,5 @@
 === Tutorial
-:sources: ../../../../src/test/groovy/com/github/grooviter/underdog/smile/guide
+:sources: ../../../../src/test/groovy/underdog/guide/ml
 
 The typical phases in machine learning flows are:
 
