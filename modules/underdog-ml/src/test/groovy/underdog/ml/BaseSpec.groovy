@@ -1,7 +1,7 @@
 package underdog.ml
 
-import com.github.grooviter.underdog.DataFrame
-import com.github.grooviter.underdog.Underdog
+import underdog.DataFrame
+import underdog.Underdog
 import spock.lang.Specification
 
 class BaseSpec extends Specification {
