@@ -2,3 +2,5 @@
 == ML
 
 include::tutorial.adoc[]
+
+include::extensions.adoc[]

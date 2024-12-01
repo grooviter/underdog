@@ -9,7 +9,7 @@ class DataFrameSpec extends BaseSpec {
         carbs.columns == ["ID", "CARBS"]
 
         and:
-        carbs.size() == BaseSpec.CSV_TOTAL_SIZE
+        carbs.size() == CSV_TOTAL_SIZE
     }
 
     def "[DataFrame/Indexing/loc]: all rows | many columns -> df.loc['col1','coln']"() {
@@ -20,7 +20,7 @@ class DataFrameSpec extends BaseSpec {
         carbs.columns == ["ID", "CARBS"]
 
         and:
-        carbs.size() == BaseSpec.CSV_TOTAL_SIZE
+        carbs.size() == CSV_TOTAL_SIZE
     }
 
     def "[DataFrame/Selecting/loc]: single selection | all columns -> df.loc[df[colName] > val]"() {
@@ -115,7 +115,7 @@ class DataFrameSpec extends BaseSpec {
         def carbs = df.loc["CARBS"]
 
         then:
-        carbs.size() == BaseSpec.CSV_TOTAL_SIZE
+        carbs.size() == CSV_TOTAL_SIZE
     }
 
     def "[DataFrame/Series]: extract series -> df['column']"() {
@@ -123,7 +123,7 @@ class DataFrameSpec extends BaseSpec {
         def carbs = df["CARBS"]
 
         then:
-        carbs.size() == BaseSpec.CSV_TOTAL_SIZE
+        carbs.size() == CSV_TOTAL_SIZE
     }
 
     def "[DataFrame/Series]: modify series values -> df['column'] = df['other_column'] * 2"() {

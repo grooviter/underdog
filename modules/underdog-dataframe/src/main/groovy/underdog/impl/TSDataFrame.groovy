@@ -17,7 +17,6 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FromString
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import tech.tablesaw.aggregate.AggregateFunctions
-import tech.tablesaw.aggregate.CrossTab
 import tech.tablesaw.api.ColumnType
 import tech.tablesaw.api.DoubleColumn
 import tech.tablesaw.api.Row
@@ -576,6 +575,18 @@ class TSDataFrame implements DataFrame {
 
             this.table.addColumns(newColumn.append(assigned))
         }
+    }
+
+    @Override
+    void putAt(String colName, List values) {
+        if (values.size() <= 0) {
+            return
+        }
+
+        ColumnType columnType = ColumnType.valueOf(values.find().class.simpleName.toUpperCase())
+        Column column = columnType.create(colName)
+        values.each(column::append)
+        putAt(colName, new TSSeries(column))
     }
 
     @Override

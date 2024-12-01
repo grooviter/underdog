@@ -15,21 +15,25 @@ interface DataFrame extends Columnar {
     /**
      * The transpose of the DataFrame.
      *
+     * @return
      * @since 0.1.0
      */
     DataFrame getT()
 
     /**
+     * @return
      * @since 0.1.0
      */
     Object getImplementation()
 
     /**
+     * @return
      * @since 0.1.0
      */
     DataFrameLoc getLoc()
 
     /**
+     * @return
      * @since 0.1.0
      */
     DataFrameIloc getIloc()
@@ -37,24 +41,27 @@ interface DataFrame extends Columnar {
     /**
      * The column labels of the DataFrame.
      *
+     * @return
      * @since 0.1.0
      */
     List<String> getColumns()
 
     /**
-     *
+     * @return
      * @since 0.1.0
      */
     DataFrame head()
 
     /**
      *
+     * @param rows
      * @since 0.1.0
      */
-    DataFrame head(int firstNRows)
+    DataFrame head(int rows)
 
     /**
      *
+     * @return
      * @since 0.1.0
      */
     DataFrame describe()
@@ -62,6 +69,7 @@ interface DataFrame extends Columnar {
     /**
      * Indicator whether Series/DataFrame is empty.
      *
+     * @return
      * @since 0.1.0
      */
     Boolean isEmpty()
@@ -69,16 +77,29 @@ interface DataFrame extends Columnar {
     /**
      * Return an int representing the number of elements in this object.
      *
+     * @return
      * @since 0.1.0
      */
     Long size()
 
+    /**
+     * @since 0.1.0
+     */
     DataFrame first()
 
+    /**
+     * @since 0.1.0
+     */
     DataFrame first(int rows)
 
+    /**
+     * @since 0.1.0
+     */
     DataFrame last()
 
+    /**
+     * @since 0.1.0
+     */
     DataFrame last(int rows)
 
     /**
@@ -277,16 +298,25 @@ interface DataFrame extends Columnar {
      */
     DataFrame drop(String... labels)
 
+    /**
+     * @since 0.1.0
+     */
     @NamedVariant
-    DataFrame dropna(
-            @NamedParam(required = false) String by,
-            @NamedParam(required = false) List<String> byColumns)
+    DataFrame dropna(@NamedParam(required = false) String by, @NamedParam(required = false) List<String> byColumns)
 
-
+    /**
+     * @since 0.1.0
+     */
     DataFrame dropna()
 
+    /**
+     * @since 0.1.0
+     */
     String getName()
 
+    /**
+     * @since 0.1.0
+     */
     @NamedVariant
     DataFrame mean(
         @NamedParam(required = true) TypeAxis axis,
@@ -316,6 +346,9 @@ interface DataFrame extends Columnar {
     @NamedVariant
     Series min(TypeAxis axisType)
 
+    /**
+     * @since 0.1.0
+     */
     DataFrame minus(Series series)
 
     /**
@@ -349,6 +382,9 @@ interface DataFrame extends Columnar {
     @NamedVariant
     DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
 
+    /**
+     * @since 0.1.0
+     */
     DataFrame rename(@ClosureParams(value = FromString, options = ['java.lang.Integer,java.lang.String']) Closure<String> function)
 
     /**
@@ -366,21 +402,51 @@ interface DataFrame extends Columnar {
     }
 
     /**
+     * @param colName
+     * @param value
      * @since 0.1.0
      */
     void putAt(String colName, Series value)
 
+    /**
+     * @param colName
+     * @param values
+     * @since 0.1.0
+     */
+    void putAt(String colName, List values)
+
+    /**
+     * @return
+     * @since 0.1.0
+     */
     Shape shape()
 
     /**
+     * @param aggFn
+     * @return
      * @since 0.1.0
      */
     DataFrameAggregation agg(Map<String, ?> aggFn)
 
+    /**
+     * @param name
+     * @return
+     * @since 0.1.0
+     */
     DataFrame setName(String name)
 
+    /**
+     * @return
+     * @since 0.1.0
+     */
     DataFrame schema()
 
+    /**
+     * @param labels
+     * @param values
+     * @return
+     * @since 0.1.0
+     */
     @NamedVariant
     DataFrame xTabCounts(String labels, String values)
 }

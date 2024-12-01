@@ -1,4 +1,4 @@
 moduleName=Underdog Smile Extensions
 moduleVersion=0.1.0
-extensionClasses=underdog.ml.RegressionExtensions,underdog.ml.ClassificationExtensions,underdog.ml.FeaturesExtensions,underdog.ml.MetricsExtensions,underdog.ml.NLPExtensions
+extensionClasses=underdog.ml.RegressionExtensions,underdog.ml.ClassificationExtensions,underdog.ml.FeaturesExtensions,underdog.ml.MetricsExtensions,underdog.ml.NLPExtensions,underdog.ml.extensions.DataFrameExtensions
 staticExtensionClasses=underdog.ml.extensions.UnderdogExtensions

@@ -60,7 +60,9 @@ class OptionsExtensions {
      * @return the sum of the instance to customize and the customizations
      * @since 0.1.0
      */
-    static Options customize(Options options, @DelegatesTo(value=Options, strategy = Closure.DELEGATE_FIRST) Closure dsl) {
+    static Options customize(
+        Options options,
+        @DelegatesTo(value=Options, strategy = Closure.DELEGATE_FIRST) Closure dsl) {
         return options + Options.create(dsl)
     }
 }
