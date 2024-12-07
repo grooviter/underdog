@@ -337,6 +337,7 @@ interface DataFrame extends Columnar {
         @NamedParam boolean right_index,
         @NamedParam boolean sort,
         @NamedParam List<String> suffixes,
+        @NamedParam boolean allowDuplicateColumns,
         @NamedParam boolean copy
     )
 

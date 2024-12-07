@@ -26,6 +26,7 @@ import tech.tablesaw.selection.Selection
 
 import java.math.MathContext
 import java.math.RoundingMode
+import java.time.LocalDate
 import java.util.function.Function
 import java.util.function.Predicate
 
@@ -211,9 +212,21 @@ class TSSeries implements Series {
     }
 
     @Override
+    Criteria isGreaterThan(LocalDate date) {
+        assert column instanceof DateColumn, "Can't compare value ${date} against a non date column"
+        return new TSCriteria(column.isAfter(date))
+    }
+
+    @Override
     Criteria isLessThan(Number number) {
         assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric column"
         return new TSCriteria(column.isLessThan(number.toDouble()))
+    }
+
+    @Override
+    Criteria isLessThan(LocalDate date) {
+        assert column instanceof DateColumn, "Can't compare value ${date} against a non date column"
+        return new TSCriteria(column.isBefore(date))
     }
 
     @Override

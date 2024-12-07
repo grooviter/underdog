@@ -5,6 +5,7 @@ import groovy.transform.NamedVariant
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.FirstParam
 
+import java.time.LocalDate
 import java.util.function.Function
 
 /**
@@ -191,15 +192,37 @@ interface Series extends Columnar, Iterable {
     Series div(Series series)
 
     /**
-     * @param value
-     * @return
+     * Finds all values of a {@link Series} greater than the value passed as parameter
+     *
+     * @param value all values should be greater than this value
+     * @return a {@link Criteria instance}
      * @since 0.1.0
      */
     Criteria isGreaterThan(Number value)
 
     /**
-     * @param value
-     * @return
+     * Finds all values of a {@link Series} greater than the value passed as parameter
+     *
+     * @param value all values should be greater than this value
+     * @return a {@link Criteria instance}
+     * @since 0.1.0
+     */
+    Criteria isGreaterThan(LocalDate value)
+
+    /**
+     * Finds all values of a {@link Series} less than the value passed as parameter
+     *
+     * @param value all values should be less than this value
+     * @return a {@link Criteria instance}
+     * @since 0.1.0
+     */
+    Criteria isLessThan(LocalDate value)
+
+    /**
+     * Finds all values of a {@link Series} less than the value passed as parameter
+     *
+     * @param value all values should be less than this value
+     * @return a {@link Criteria instance}
      * @since 0.1.0
      */
     Criteria isLessThan(Number value)

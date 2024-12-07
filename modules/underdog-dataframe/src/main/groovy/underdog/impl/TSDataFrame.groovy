@@ -432,6 +432,7 @@ class TSDataFrame implements DataFrame {
             @NamedParam boolean right_index,
             @NamedParam boolean sort,
             @NamedParam List<String> suffixes,
+            @NamedParam boolean allowDuplicateColumns,
             @NamedParam boolean copy) {
 
         TSDataFrameJoinInfo joinInfo = TSDataFrameJoinInfo.builder()
@@ -441,6 +442,7 @@ class TSDataFrame implements DataFrame {
             .rightOn(right_on)
             .on(on)
             .how(how)
+            .allowDuplicateColumns(allowDuplicateColumns)
             .build()
 
         return join(joinInfo)
@@ -451,21 +453,21 @@ class TSDataFrame implements DataFrame {
 
         Table merged = switch(info.how){
             case TypeJoin.OUTER -> joiner
-                    .fullOuter(info.rightTable(), false, false, info.rightKeys())
+                    .fullOuter(info.rightTable(), info.allowDuplicateColumns, false, info.rightKeys())
 
             case [TypeJoin.INNER, TypeJoin.LEFT_INNER] -> joiner
-                    .inner(info.rightTable(), info.rightKeys())
+                    .inner(info.rightTable(), info.allowDuplicateColumns, false, info.rightKeys())
 
             case TypeJoin.RIGHT_INNER -> info
                     .rightTable()
                     .joinOn(info.rightKeys())
-                    .inner(info.leftTable(), info.leftKeys())
+                    .inner(info.leftTable(), info.allowDuplicateColumns, false, info.leftKeys())
 
             case TypeJoin.LEFT_OUTER -> joiner
-                    .leftOuter(info.rightTable(), info.rightKeys())
+                    .leftOuter(info.rightTable(), info.allowDuplicateColumns, false, info.rightKeys())
 
             case TypeJoin.RIGHT_OUTER -> joiner
-                    .rightOuter(info.rightTable(), info.rightKeys())
+                    .rightOuter(info.rightTable(), info.allowDuplicateColumns, false, info.rightKeys())
 
             default -> joiner.inner(info.rightTable(), info.rightKeys())
         }

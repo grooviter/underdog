@@ -10,6 +10,7 @@ class TSDataFrameJoinInfo {
     List<String> on
     List<String> leftOn
     List<String> rightOn
+    boolean allowDuplicateColumns
     TypeJoin how
     DataFrame left
     DataFrame right
