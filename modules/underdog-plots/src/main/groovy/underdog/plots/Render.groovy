@@ -1,6 +1,7 @@
 package underdog.plots
 
 import groovy.text.StreamingTemplateEngine
+import groovy.transform.builder.Builder
 import groovy.util.logging.Slf4j
 import java.nio.file.Files
 
@@ -14,8 +15,14 @@ class Render {
     private static final String TEMPLATE_PATH = '/templates/index.html'
     private static final String EMPTY_CONTENT = ''
 
-    String render(Options options, String path = temporalFile, String height = "100%", String width = "100%") {
-        String html = compileTemplate(TEMPLATE_PATH, options, height, width)
+    @Builder()
+    static class Meta {
+        String path, height, width, theme
+    }
+
+    String render(Options options, Meta meta = defaultMeta) {
+        String html = compileTemplate(TEMPLATE_PATH, options, meta)
+        String path = meta.path ?: temporalFilePath
         if (desktopSupported) {
             writeHtml(html, path)
             desktop.browse(new File(path).toURI())
@@ -23,7 +30,11 @@ class Render {
         return html
     }
 
-    private static String getTemporalFile() {
+    private static Meta getDefaultMeta() {
+        return Meta.builder().height("100%").width("100%").build()
+    }
+
+    private static String getTemporalFilePath() {
         return Files.createTempFile("underdog-plot-", ".html").toAbsolutePath()
     }
 
@@ -46,14 +57,21 @@ class Render {
      *
      * @param templateName name of the template selected
      * @param option the option used to init the chart
-     * @param height the height of the chart, ends with "px" or "%"
-     * @param width the width of the chart, ends with "px" or "%"
+     * @param meta
      * @return HTML in String. Empty string when an exception is occurred.
      */
-    private static String compileTemplate(String templateName, Options options, String height, String width) {
+    private static String compileTemplate(String templateName, Options options, Meta meta) {
         try {
+            Map templateParams = [
+                meta: [
+                    height: meta.height,
+                    width: meta.width,
+                    theme: "'${meta.theme}'"
+                ],
+                option: options.toJson(true)
+            ]
+
             URL templateURL = Render.getResource(templateName)
-            Map templateParams = [meta: [height: height, width: width], option: options.toJson(true)]
             String templateOutput = new StreamingTemplateEngine().createTemplate(templateURL).make(templateParams)
 
             return templateOutput

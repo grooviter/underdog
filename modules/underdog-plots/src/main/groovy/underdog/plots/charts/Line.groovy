@@ -1,5 +1,6 @@
 package underdog.plots.charts
 
+import groovy.transform.InheritConstructors
 import underdog.DataFrame
 import underdog.Series
 import underdog.plots.Options
@@ -13,10 +14,107 @@ import groovy.transform.NamedVariant
  * @link https://en.wikipedia.org/wiki/Line_chart
  * @since 0.1.0
  */
+@InheritConstructors
 class Line extends Chart {
 
     @NamedVariant
-    Options lines(
+    Line addAnnotation(
+        Object x,
+        Object y,
+        @NamedParam(required = false) String text = '',
+        @NamedParam(required = false) String color = '',
+        @NamedParam(required = false) String seriesName = "+INFO"
+    ) {
+        def markSeries = findExtraInfoMap(seriesName)
+
+        def markPoint = [
+            [*: markAreaColor(color),value: text, xAxis: x, yAxis: y, color: color]
+        ]
+
+        if (!markSeries['markPoint']) {
+            markSeries['markPoint'] = [data: markPoint]
+            return this
+        }
+
+        markSeries['markPoint']['data'] += markPoint
+        return this
+    }
+
+    @NamedVariant
+    Line addMarkAreaInX(
+        Object fromX,
+        Object toX,
+        @NamedParam(required = false) String title = "",
+        @NamedParam(required = false) String color = "",
+        @NamedParam(required = false) String seriesName = "+INFO") {
+        def markSeries = findExtraInfoMap(seriesName)
+
+        def markData = [
+            [
+                [*: markAreaColor(color), name: title, xAxis: fromX.toString()],
+                [xAxis: toX.toString()]
+            ]
+        ]
+
+        if (!markSeries['markArea']) {
+            markSeries['markArea'] = [data: markData]
+            return this
+        }
+
+        markSeries['markArea']['data'] += markData
+        return this
+    }
+
+    @NamedVariant
+    Line addMarkAreaInY(
+            Object fromY,
+            Object toY,
+            @NamedParam(required = false) String title = "",
+            @NamedParam(required = false) String color = "",
+            @NamedParam(required = false) String seriesName = "+INFO") {
+        def markSeries = findExtraInfoMap(seriesName)
+
+        def markData = [
+            [
+                [*: markAreaColor(color), name: title, yAxis: fromY.toString()],
+                [yAxis: toY.toString()]
+            ]
+        ]
+
+        if (!markSeries['markArea']) {
+            markSeries['markArea'] = [data: markData]
+            return this
+        }
+
+        markSeries['markArea']['data'] += markData
+        return this
+    }
+
+    private Map findExtraInfoMap(String seriesName) {
+        if (!map.series) {
+            this.map.series = [[name: seriesName, type: "line"]]
+        }
+
+        if (map.series instanceof Map){
+            map.series = [map.series]
+        }
+
+        if (!map.series?.find { it['name'] == seriesName }) {
+            this.map.series += [name: seriesName, type: "line"]
+        }
+
+        return map.series?.find { it['name'] == seriesName } as Map
+    }
+
+    private static Map markAreaColor(String color) {
+        if (color) {
+            return [itemStyle: [color: color]]
+        }
+        return [:]
+    }
+
+    @NamedVariant
+    Line lines(
         DataFrame dataFrame,
         @NamedParam(required = false) String xLabel = 'X',
         @NamedParam(required = false) String yLabel = 'Y',
@@ -25,11 +123,16 @@ class Line extends Chart {
         @NamedParam(required = false, value='smooth') boolean chartSmooth = false
     ){
         String xsName = dataFrame.columns.find { it.toLowerCase() == 'x' }
+
+        if (!xsName) {
+            throw new RuntimeException("No X series found in dataframe")
+        }
+
         List xs = dataFrame[xsName] as List
-        return createGridOptions(chartTitle, chartSubtitle) +
+        Options options = createGridOptions(chartTitle, chartSubtitle) +
                 createXAxisOptions(xLabel, xs) +
                 createYAxisOptions(yLabel) +
-                Options.create {
+                create {
                     dataFrame.columns
                         .findAll { it != xsName }
                         .each { next ->
@@ -41,6 +144,7 @@ class Line extends Chart {
                             }
                         }
                 }
+        return new Line(options)
     }
 
     /**
@@ -69,7 +173,7 @@ class Line extends Chart {
      * @since 0.1.0
      */
     @NamedVariant
-    Options lines(
+    Line lines(
         Map<String, List<List<Number>>> seriesData,
         @NamedParam(required = false) String xLabel = 'X',
         @NamedParam(required = false) String yLabel = 'Y',
@@ -77,10 +181,10 @@ class Line extends Chart {
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
         @NamedParam(required = false, value='smooth') boolean chartSmooth = false
     ){
-        return createGridOptions(chartTitle, chartSubtitle) +
+        Options options = createGridOptions(chartTitle, chartSubtitle) +
         createXAxisOptions(xLabel) +
         createYAxisOptions(yLabel) +
-        Options.create {
+        create {
             seriesData.each { next ->
                 series {
                     type("line")
@@ -90,6 +194,7 @@ class Line extends Chart {
                 }
             }
         }
+        return new Line(options)
     }
 
     /**
@@ -106,7 +211,7 @@ class Line extends Chart {
      * @since 0.1.0
      */
     @NamedVariant
-    Options line(
+    Line line(
         Series xs,
         Series ys,
         @NamedParam(required = false, value='title') String chartTitle = "",
@@ -129,7 +234,7 @@ class Line extends Chart {
      * @since 0.1.0
      */
     @NamedVariant
-    Options line(
+    Line line(
         List<Number> xs,
         List<Number> ys,
         @NamedParam(required = false) String xLabel = 'X',
@@ -137,15 +242,16 @@ class Line extends Chart {
         @NamedParam(required = false, value='title') String chartTitle = "",
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
         @NamedParam(required = false, value='smooth') boolean chartSmooth = false) {
-        return createGridOptions(chartTitle, chartSubtitle) +
+        Options options = createGridOptions(chartTitle, chartSubtitle) +
             createXAxisOptions(xLabel, xs) +
             createYAxisOptions(yLabel) +
-            Options.create {
+            create {
                 series {
                     type("line")
                     smooth(chartSmooth)
                     data(ys)
                 }
             }
+        return new Line(options)
     }
 }

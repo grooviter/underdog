@@ -1,5 +1,6 @@
 package underdog.plots.charts
 
+import groovy.transform.InheritConstructors
 import underdog.Series
 import underdog.plots.Options
 import groovy.transform.NamedParam
@@ -13,6 +14,7 @@ import groovy.transform.NamedVariant
  * @link https://en.wikipedia.org/wiki/Scatter_plot
  * @since 0.1.0
  */
+@InheritConstructors
 class Scatter extends Chart {
 
     /**

@@ -1,5 +1,6 @@
 package underdog.plots.charts
 
+import groovy.transform.InheritConstructors
 import underdog.graphs.edges.RelationshipEdge
 import underdog.plots.Options
 import groovy.transform.EqualsAndHashCode
@@ -15,6 +16,7 @@ import org.jgrapht.GraphPath
  * @link https://en.wikipedia.org/wiki/Graph_theory
  * @since 0.1.0
  */
+@InheritConstructors
 class Graph extends Chart {
 
     private static final List<String> EDGE_COLORS = [

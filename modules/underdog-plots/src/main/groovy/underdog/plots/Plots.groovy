@@ -31,8 +31,18 @@ class Plots {
         return line.lines(data, title: chartTitle)
     }
 
-    String show(Options options) {
-        return new Render().render(options)
+    @NamedVariant
+    static String show(
+        Options options,
+        @NamedParam(required = false) String width,
+        @NamedParam(required = false) String height,
+        @NamedParam(required = false) String theme
+    ) {
+        return new Render().render(options, Render.Meta.builder().width(width).height(height).theme(theme).build())
+    }
+
+    String show(Options options, Render.Meta meta = null) {
+        return new Render().render(options, meta)
     }
 
     static Plots plots() {

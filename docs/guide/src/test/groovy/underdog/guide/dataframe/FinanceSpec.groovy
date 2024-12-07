@@ -20,23 +20,31 @@ class FinanceSpec extends Specification {
             it.format('dd/MM/yyyy')
         }
 
-        expect:
+        when:
         // showing
-        Underdog
+        def options = Underdog
             .plots()
             .lines(
                 normalized,
                 xLabel: 'Date',
                 yLabel: 'Closing Price (Normalized)',
                 title: "Comparing Tickers",
-                subtitle: "Tickers: NVDA, INTC, AAPL", smooth: true)
+                subtitle: "Tickers: NVDA, INTC, AAPL",
+                smooth: true)
+            .addMarkAreaInX("15/08/2024", "30/08/2024", title: "Pandemic")
+            .addMarkAreaInX("03/06/2024", "26/06/2024", title: "USA Elections")
             .customize {
                 tooltip {
                     trigger('axis')
                 }
                 legend {
                     show(true)
+                    bottom("5%")
+                    right("10%")
                 }
-            }.show()
+            }
+
+        then:
+        options.show()
     }
 }

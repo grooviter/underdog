@@ -2,10 +2,17 @@ package underdog.plots.charts
 
 import underdog.plots.Options
 
-class Chart {
+class Chart extends Options {
+    Chart() {
+        super()
+    }
+
+    Chart(Options options) {
+        this.map = options.map
+    }
 
     static Options createGridOptions(String chartTitle, String chartSubtitle = '') {
-        return Options.create {
+        return create {
             grid {
                 width("70%")
                 left("15%")
@@ -24,7 +31,7 @@ class Chart {
     }
 
     static Options createXAxisOptions(String xLabel, List<Number> xs = []) {
-        return Options.create {
+        return create {
             xAxis {
                 scale(true)
                 name(xLabel)

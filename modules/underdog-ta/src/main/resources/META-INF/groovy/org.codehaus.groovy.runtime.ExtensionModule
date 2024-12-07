@@ -1,0 +1,4 @@
+moduleName=Underdog TA Extensions
+moduleVersion=0.1.0
+extensionClasses=underdog.ta.extensions.DataframeExtensions,underdog.ta.extensions.StrategiesExtensions
+#staticExtensionClasses=underdog.ml.extensions.UnderdogExtensions

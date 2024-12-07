@@ -1,5 +1,6 @@
 package underdog.plots.charts
 
+import groovy.transform.InheritConstructors
 import underdog.Series
 import underdog.plots.Options
 import groovy.transform.NamedParam
@@ -15,6 +16,7 @@ import groovy.transform.NamedVariant
  * @link https://en.wikipedia.org/wiki/Histogram
  * @since 0.1.0
  */
+@InheritConstructors
 class Histogram extends Chart {
 
     /**

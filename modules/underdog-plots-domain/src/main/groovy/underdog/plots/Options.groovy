@@ -2,6 +2,7 @@ package underdog.plots
 
 import underdog.plots.ast.Node
 import underdog.plots.ast.RepeatableField
+import underdog.plots.dsl.AxisPointer
 import underdog.plots.dsl.Grid
 import underdog.plots.dsl.Legend
 import underdog.plots.dsl.Series
@@ -14,6 +15,7 @@ import underdog.plots.dsl.YAxis
 class Options {
     Title title
     Tooltip tooltip
+    AxisPointer axisPointer
 
     @RepeatableField Legend legend
     @RepeatableField Grid grid

@@ -13,14 +13,15 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
+                background-color: ${meta.theme == "'dark'" ? '#100c2a' : ''}
             }
             #container {
-               width: 800px;
-               height: 600px;
+               width: ${meta.width};
+               height: ${meta.height};
             }
             #display-container {
-                width: ${meta.width};
-                height: ${meta.height};
+                width: 100%;
+                height: 100%;
                 border: 1px solid black;
             }
         </style>

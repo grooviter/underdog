@@ -8,6 +8,8 @@ class Series {
     String name
     List data
     ItemStyle itemStyle
+    Number yAxisIndex
+    Number xAxisIndex
 
     Boolean smooth
     String barWidth
