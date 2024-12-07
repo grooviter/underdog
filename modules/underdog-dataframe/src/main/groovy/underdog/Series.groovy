@@ -309,4 +309,6 @@ interface Series extends Columnar, Iterable {
      * @since 0.1.0
      */
     Series sort()
+
+    <U> List<U> toList()
 }

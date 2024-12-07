@@ -2,7 +2,6 @@ package underdog.ta.extensions
 
 import org.ta4j.core.BarSeries
 import org.ta4j.core.indicators.helpers.ClosePriceIndicator
-import spock.lang.Specification
 import underdog.Underdog
 import underdog.ta.BaseSpec
 
@@ -38,9 +37,9 @@ class DataframeExtensionsSpec extends BaseSpec {
 
         and: "preparing data to visualize"
         def plotDataFrame = [
-            middle: middle.toSeries(),
-            lower: lower.toSeries(),
-            upper: upper.toSeries(),
+            middle: middle.toUnderdogSeries(),
+            lower: lower.toUnderdogSeries(),
+            upper: upper.toUnderdogSeries(),
             X: tickers['Date'](LocalDateTime, String, dateFormat('dd/MM/yyyy'))
         ].toDataFrame("plot dataframe")
 

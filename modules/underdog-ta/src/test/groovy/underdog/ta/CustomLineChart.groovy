@@ -67,7 +67,7 @@ class CustomLineChart extends Line {
                 top("70%")
             }
             xAxis {
-                data(xSeries as List)
+                data(xSeries.toList())
                 axisLabel {
                     show(false)
                 }
@@ -82,7 +82,7 @@ class CustomLineChart extends Line {
                 }
             }
             xAxis {
-                data(xSeries as List)
+                data(xSeries.toList())
                 gridIndex(1)
                 nameLocation("center")
                 nameTextStyle {

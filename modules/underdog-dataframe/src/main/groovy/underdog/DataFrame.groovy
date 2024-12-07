@@ -443,6 +443,15 @@ interface DataFrame extends Columnar {
     DataFrame schema()
 
     /**
+     * Converts the current {@link DataFrame} in a {@link List} of {@link List}
+     *
+     * @return an instance of a {@link List}
+     * @type <U> any type you want to cast to under your own risk
+     * @since 0.1.0
+     */
+    <U> List<U> toList()
+
+    /**
      * @param labels
      * @param values
      * @return

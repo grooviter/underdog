@@ -312,11 +312,7 @@ class TSDataFrame implements DataFrame {
             }
         }
 
-        List list = table.collect { Row row ->
-            row.columnNames().collect{ String colName ->
-                table.column(colName).get(row.rowNumber)
-            }
-        }
+        List list = this.toList()
 
         if (this.size() == 1) {
             return DefaultGroovyMethods.asType(list.find(), clazz)
@@ -616,6 +612,15 @@ class TSDataFrame implements DataFrame {
     @Override
     DataFrame schema() {
         return new TSDataFrame(this.table.structure())
+    }
+
+    @Override
+    <U> List<U> toList() {
+        return table.collect { Row row ->
+            row.columnNames().collect { String colName ->
+                table.column(colName).get(row.rowNumber)
+            }
+        } as List<U>
     }
 
     @Override

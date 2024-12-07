@@ -335,18 +335,12 @@ class TSSeries implements Series {
         }
 
         if (clazz.isArray() || List.isAssignableFrom(clazz)) {
-            return DefaultGroovyMethods.asType(convertToListWithNulls(column), clazz as Class<Object>)
+            return DefaultGroovyMethods.asType(toList(), clazz as Class<Object>)
         }
 
         return DefaultGroovyMethods.asType(column, clazz as Class<Object>)
     }
 
-    private static List convertToListWithNulls(Column column) {
-        return column
-            .toList()
-            .indexed()
-            .collect { Integer index, Object v -> column.isMissing(index) ? null : v }
-    }
 
     @Override
     Series dropna() {
@@ -386,5 +380,13 @@ class TSSeries implements Series {
     @Override
     Iterator iterator() {
         return this.column.iterator()
+    }
+
+    @Override
+    <U> List<U> toList() {
+        return column
+            .toList()
+            .indexed()
+            .collect { Integer index, Object v -> column.isMissing(index) ? null : v } as List<U>
     }
 }

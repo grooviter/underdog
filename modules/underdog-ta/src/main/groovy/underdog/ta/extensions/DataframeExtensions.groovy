@@ -9,7 +9,6 @@ import underdog.DataFrame
 import underdog.DataFrames
 import underdog.Series
 
-import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -24,7 +23,7 @@ class DataframeExtensions {
 
     private static final List<String> SERIES_MANDATORY_FIELDS = ['DATE', 'OPEN', 'HIGH', 'LOW', 'CLOSE']
     private static final String SERIES_OPTIONAL_FIELD = 'VOLUME'
-    private static final List<String> SERIES_FIELDS = SERIES_MANDATORY_FIELDS + [SERIES_OPTIONAL_FIELD]
+    private static final List<String> SERIES_ALL_FIELDS = SERIES_MANDATORY_FIELDS + [SERIES_OPTIONAL_FIELD]
     /**
      * Converts from an Underdog's {@link DataFrame} to a Ta4j {@link BarSeries}. It requires the dataframe
      * having the series:
@@ -41,7 +40,7 @@ class DataframeExtensions {
      * @since 0.1.0
      */
     static BarSeries toBarSeries(DataFrame dataFrame, ZoneId zoneId = ZoneId.systemDefault()) {
-        def df = dataFrame.rename(fn: String.&toUpperCase)
+        DataFrame df = dataFrame.rename(fn: String.&toUpperCase)
 
         if (!SERIES_MANDATORY_FIELDS.every { it in df.columns}) {
             throw new RuntimeException("missing required series: $SERIES_MANDATORY_FIELDS")
@@ -49,12 +48,10 @@ class DataframeExtensions {
 
         BarSeries series = new BaseBarSeriesBuilder().withName(df.name).build()
 
-
         if (SERIES_OPTIONAL_FIELD !in df.columns*.toUpperCase()){
-            List<?> dataFrameAsList = df[SERIES_MANDATORY_FIELDS] as List
+            List<?> dataFrameAsList = df[SERIES_MANDATORY_FIELDS].toList()
             dataFrameAsList.<List>each{ LocalDate date, Number open, Number high, Number low, Number close ->
                 ZonedDateTime zonedDateTime = date.atStartOfDay().atZone(zoneId)
-
                 if ([open, high, low, close].every()) {
                     series.addBar(zonedDateTime ,open, high, low, close)
                 } else {
@@ -62,10 +59,9 @@ class DataframeExtensions {
                 }
             }
         } else {
-            List<?> dataFrameAsList = df[SERIES_MANDATORY_FIELDS + [SERIES_OPTIONAL_FIELD]] as List
+            List<?> dataFrameAsList = df[SERIES_ALL_FIELDS].toList()
             dataFrameAsList.<List>each{ LocalDate date, Number open, Number high, Number low, Number close, Number volume ->
                 ZonedDateTime zonedDateTime = date.atStartOfDay().atZone(zoneId)
-
                 if ([open, high, low, close].every()) {
                     series.addBar(zonedDateTime ,open, high, low, close, volume ?: 0)
                 } else {
@@ -84,7 +80,7 @@ class DataframeExtensions {
      * @return an instance of {@link Series}
      * @since 0.1.0
      */
-    static Series toSeries(AbstractIndicator<Num> indicator) {
+    static Series toUnderdogSeries(AbstractIndicator<Num> indicator) {
         def list = []
         indicator.barSeries.barCount.times {
             list << indicator.getValue(it).doubleValue()
