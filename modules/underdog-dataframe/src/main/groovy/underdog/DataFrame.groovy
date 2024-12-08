@@ -381,12 +381,12 @@ interface DataFrame extends Columnar {
      * @since 0.1.0
      */
     @NamedVariant
-    DataFrame rename(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
+    DataFrame renameSeries(Map<String, String> mapper, Function<String, String> fn, List<String> columns, boolean copy)
 
     /**
      * @since 0.1.0
      */
-    DataFrame rename(@ClosureParams(value = FromString, options = ['java.lang.Integer,java.lang.String']) Closure<String> function)
+    DataFrame renameSeries(@ClosureParams(value = FromString, options = ['java.lang.Integer,java.lang.String']) Closure<String> function)
 
     /**
      * @since 0.1.0
@@ -434,7 +434,7 @@ interface DataFrame extends Columnar {
      * @return
      * @since 0.1.0
      */
-    DataFrame setName(String name)
+    DataFrame rename(String name)
 
     /**
      * @return

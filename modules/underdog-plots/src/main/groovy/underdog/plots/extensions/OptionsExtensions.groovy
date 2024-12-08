@@ -4,6 +4,7 @@ import underdog.plots.Options
 import groovy.json.JsonOutput
 import underdog.plots.Plots
 import underdog.plots.Render
+import underdog.plots.Render.Meta
 
 /**
  * This class adds custom methods to the {@link Options} instance. Many of those methods couldn't be added in
@@ -49,7 +50,19 @@ class OptionsExtensions {
      * @return the {@link String} representation of the rendering
      * @since 0.1.0
      */
-    static String show(Options options, Render.Meta meta = null) {
+    static String show(Options options) {
+        return Plots.plots().show(options)
+    }
+
+    /**
+     * Renders the current {@link Options} instance
+     *
+     * @param options the {@link Options} to render
+     * @param meta
+     * @return the {@link String} representation of the rendering
+     * @since 0.1.0
+     */
+    static String show(Options options, Meta meta) {
         return Plots.plots().show(options, meta)
     }
 

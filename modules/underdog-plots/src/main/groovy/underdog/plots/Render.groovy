@@ -31,7 +31,7 @@ class Render {
     }
 
     private static Meta getDefaultMeta() {
-        return Meta.builder().height("100%").width("100%").build()
+        return Meta.builder().height("600px").width("800px").build()
     }
 
     private static String getTemporalFilePath() {

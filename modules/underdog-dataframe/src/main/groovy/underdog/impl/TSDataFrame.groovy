@@ -1,5 +1,6 @@
 package underdog.impl
 
+import tech.tablesaw.api.NumericColumn
 import underdog.Columnar
 import underdog.DataFrame
 import underdog.DataFrameAggregation
@@ -73,8 +74,7 @@ class TSDataFrame implements DataFrame {
 
     @Override
     DataFrame getT() {
-        this.table = this.table.transpose()
-        return this
+        return new TSDataFrame(this.table.transpose())
     }
 
     @Override
@@ -158,7 +158,11 @@ class TSDataFrame implements DataFrame {
 
     @Override
     DataFrame abs() {
-        return null
+        assert this.table.columns().every { it instanceof NumericColumn }, "abs() can't only be applied to numeric series"
+        this.columns.each {
+            this[it] = this[it](Number, Number){ it.abs() }
+        }
+        return this
     }
 
     @Override
@@ -351,8 +355,7 @@ class TSDataFrame implements DataFrame {
 
     @Override
     DataFrame drop(String... labels) {
-        this.table = this.table.removeColumns(labels)
-        return this
+        return new TSDataFrame(this.table.removeColumns(labels))
     }
 
     @Override
@@ -475,7 +478,7 @@ class TSDataFrame implements DataFrame {
     @NamedVariant
     Series min(TypeAxis axisType) {
         return null
-    }
+min    }
 
     @Override
     DataFrame minus(Series series) {
@@ -501,7 +504,7 @@ class TSDataFrame implements DataFrame {
 
     @Override
     @NamedVariant
-    DataFrame rename(
+    DataFrame renameSeries(
             @NamedParam(required = false) Map<String, String> mapper,
             @NamedParam(required = false) Function<String, String> fn,
             @NamedParam(required = false) List<String> columns,
@@ -523,7 +526,10 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
-    DataFrame rename(@ClosureParams(value = FromString, options = ['java.lang.Integer,java.lang.String']) Closure<String> function) {
+    DataFrame renameSeries(
+        @ClosureParams(
+            value = FromString,
+            options = ['java.lang.Integer,java.lang.String']) Closure<String> function) {
         this.table.columns().eachWithIndex { col, ix ->
             col.setName(function(ix, col.name()))
         }
@@ -605,7 +611,7 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
-    DataFrame setName(String name) {
+    DataFrame rename(String name) {
         return new TSDataFrame(this.table.setName(name))
     }
 
@@ -652,6 +658,6 @@ class TSDataFrame implements DataFrame {
             this.table = this.table.sortOn(by)
         }
 
-        return this
+        return new TSDataFrame(this.table)
     }
 }

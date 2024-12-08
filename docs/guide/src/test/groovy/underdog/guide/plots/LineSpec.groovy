@@ -91,7 +91,7 @@ class LineSpec extends Specification {
         df = df.agg(W: 'sum')
             .by('year', 'Team')
             .sort_values(by: 'year')
-            .rename(mapper: [('Sum [W]'): 'W'])
+            .renameSeries(mapper: [('Sum [W]'): 'W'])
 
         def dataFrame = Underdog.df().from(
                 X: df['year'].unique().sort(),

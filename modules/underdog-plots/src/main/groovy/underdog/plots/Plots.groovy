@@ -2,6 +2,7 @@ package underdog.plots
 
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import underdog.plots.Render.Meta
 import underdog.plots.charts.Bar
 import underdog.plots.charts.Graph
 import underdog.plots.charts.Histogram
@@ -41,7 +42,11 @@ class Plots {
         return new Render().render(options, Render.Meta.builder().width(width).height(height).theme(theme).build())
     }
 
-    String show(Options options, Render.Meta meta = null) {
+    String show(Options options) {
+        return new Render().render(options)
+    }
+
+    String show(Options options, Meta meta) {
         return new Render().render(options, meta)
     }
 

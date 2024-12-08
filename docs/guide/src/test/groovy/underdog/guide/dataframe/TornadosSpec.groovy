@@ -163,11 +163,10 @@ class TornadosSpec extends Specification {
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
 
         def injuriesByScale = tornadoes
+            .rename("Median Injuries by Tornado Scale")
             .agg(Injuries: "median")
             .by("Scale")
             .sort_values(by: "Scale")
-
-        injuriesByScale.name = "Median Injuries by Tornado Scale"
         // end::summarizing[]
 
         then:

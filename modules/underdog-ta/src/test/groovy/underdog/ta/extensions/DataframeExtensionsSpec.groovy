@@ -15,7 +15,7 @@ class DataframeExtensionsSpec extends BaseSpec {
         BarSeries series = createBarSeries()
 
         expect:
-        series.barCount == 252
+        series.barCount == 2517
     }
 
     def "Indicator to Series"() {

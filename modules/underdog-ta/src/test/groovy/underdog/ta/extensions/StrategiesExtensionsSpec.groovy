@@ -50,7 +50,7 @@ class StrategiesExtensionsSpec extends BaseSpec {
         when:
         def df = createDataFrame()
             .loc[__, ['Date', 'Close']]
-            .rename(mapper: [Date: 'X'])
+            .renameSeries(mapper: [Date: 'X'])
 
         df['X'] = df['X'](LocalDate, String) { it.format("dd/MM/yyyy") }
 
@@ -83,8 +83,8 @@ class StrategiesExtensionsSpec extends BaseSpec {
         setup: "building data"
         def sp500 = SP500Data
             .loc[__, ['Close/Last', 'Date']]
-            .rename(mapper: ['Close/Last': 'Close'])
-            .rename(fn: String.&toUpperCase)
+            .renameSeries(mapper: ['Close/Last': 'Close'])
+            .renameSeries(fn: String.&toUpperCase)
 
         def merged = sp500
             .merge(vixData, on: ['DATE'], allowDuplicateColumns: true)
@@ -108,7 +108,6 @@ class StrategiesExtensionsSpec extends BaseSpec {
     def "trading the vix: market is down and waiting to enter"() {
         setup:
         BarSeries vixSeries = vixData.sort_values(by: ['DATE']).toBarSeries(ZoneId.of("US/Eastern"))
-        BarSeries nvidaSeries = createDataFrame().rename(fn: String.&toUpperCase).toBarSeries()
 
         and: "running vix strategy"
         def vixPriceIndicator = new ClosePriceIndicator(vixSeries)
@@ -127,7 +126,7 @@ class StrategiesExtensionsSpec extends BaseSpec {
         when: "comparing the vix with the strategy"
         def df = vixData
             .sort_values(by: ['DATE']).loc[__, ['DATE', 'CLOSE']]
-            .rename(mapper: [DATE: 'X', CLOSE: 'VIX'])
+            .renameSeries(mapper: [DATE: 'X', CLOSE: 'VIX'])
 
         and: "showing just 2020-2024"
         df = df[
@@ -168,7 +167,7 @@ class StrategiesExtensionsSpec extends BaseSpec {
         def sellRule = vixIndicator.roc(7).xDown(5) & duringWeekdays
 
         and:
-        def nvda = createDataFrame().rename(fn: String.&toUpperCase)
+        def nvda = createDataFrame().renameSeries(fn: String.&toUpperCase)
         def nvdaSeries = nvda.toBarSeries()
         def strategy = new BaseStrategy(buyRule, sellRule)
         def tradingRecord = new BarSeriesManager(nvdaSeries, new TradeOnCurrentCloseModel()).run(strategy)

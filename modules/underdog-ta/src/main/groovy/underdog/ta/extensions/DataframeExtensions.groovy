@@ -40,7 +40,7 @@ class DataframeExtensions {
      * @since 0.1.0
      */
     static BarSeries toBarSeries(DataFrame dataFrame, ZoneId zoneId = ZoneId.systemDefault()) {
-        DataFrame df = dataFrame.rename(fn: String.&toUpperCase)
+        DataFrame df = dataFrame.renameSeries(fn: String.&toUpperCase)
 
         if (!SERIES_MANDATORY_FIELDS.every { it in df.columns}) {
             throw new RuntimeException("missing required series: $SERIES_MANDATORY_FIELDS")
