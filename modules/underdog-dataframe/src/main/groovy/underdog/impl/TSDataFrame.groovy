@@ -1,6 +1,7 @@
 package underdog.impl
 
 import tech.tablesaw.api.NumericColumn
+import tech.tablesaw.columns.strings.StringColumnType
 import underdog.Columnar
 import underdog.DataFrame
 import underdog.DataFrameAggregation
@@ -36,6 +37,10 @@ class TSDataFrame implements DataFrame {
 
     TSDataFrame(Table table){
         this.table = table
+    }
+
+    static DataFrame from(String name){
+        return new TSDataFrame(Table.create(name))
     }
 
     static DataFrame from(String dataFrameName, Collection<Map<String, ?>> collection) {
@@ -590,6 +595,23 @@ min    }
         ColumnType columnType = ColumnType.valueOf(values.find().class.simpleName.toUpperCase())
         Column column = columnType.create(colName)
         values.each(column::append)
+        putAt(colName, new TSSeries(column))
+    }
+
+    @Override
+    void putAt(String colName, Object object) {
+        ColumnType columnType = object
+            ? ColumnType.valueOf(object?.class?.simpleName?.toUpperCase())
+            : ColumnType.valueOf('STRING')
+
+        Column column = columnType.create(colName)
+        this.size().times {
+            if (object) {
+                column.append(object)
+            } else {
+                column.appendMissing()
+            }
+        }
         putAt(colName, new TSSeries(column))
     }
 

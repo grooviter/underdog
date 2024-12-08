@@ -16,7 +16,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.ZoneId
 
-class StrategiesExtensionsSpec extends BaseSpec {
+class IndicatorExtensionsSpec extends BaseSpec {
     def "create strategy with extensions"() {
         setup:
         def series = createBarSeries()

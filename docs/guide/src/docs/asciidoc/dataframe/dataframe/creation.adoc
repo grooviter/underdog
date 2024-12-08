@@ -1,0 +1,64 @@
+==== Creation
+:sources: ../../../../../src/test/groovy/underdog/guide/dataframe
+
+The easiest way to create a Dataframe is using the Underdog extension method `Underdog.df()`. Here we're creating an empty DataFrame:
+
+[source, groovy]
+.empty dataframe
+----
+include::{sources}/CreationSpec.groovy[tag=empty,indent=0]
+----
+
+We can create a dataframe with a series of map entries representing series. In this case the key entry is the name of the series and the value is a collection which will become the content of the series.
+
+[source, groovy]
+.dataframe from a map
+----
+include::{sources}/CreationSpec.groovy[tag=from_map,indent=0]
+----
+
+[source, shell]
+.output
+----
+  people-dataframe
+  name   |  age  |
+------------------
+   John  |   22  |
+  Laura  |   34  |
+ Ursula  |   83  |
+----
+
+Underdog dataframe library adds additional methods to collection types so that you can convert from collections to Dataframes. And example is invoking the `toDataFrame(...)` method from the map directly:
+
+[source, groovy]
+.map extension
+----
+include::{sources}/CreationSpec.groovy[tag=map_extension,indent=0]
+----
+
+You can also pass a list of maps to the `Underdog.df().from(col, name)` method:
+
+[source, groovy]
+.collection of maps
+----
+include::{sources}/CreationSpec.groovy[tag=collectionsOfMaps,indent=0]
+----
+
+[source, groovy]
+.output
+----
+ people-dataframe
+  name   |  age  |
+------------------
+   John  |   22  |
+  Laura  |   34  |
+ Ursula  |   83  |
+----
+
+Here there is also an extension method for collections so that, **IF** your list complies to this structure you can call to the method `toDataFrame(name)` and create a DataFrame from that collection.
+
+[source, groovy]
+.collection extension
+----
+include::{sources}/CreationSpec.groovy[tag=collectionsOfMaps_extension,indent=0]
+----

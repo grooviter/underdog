@@ -1,7 +1,12 @@
 package underdog.impl.extensions
 
+import tech.tablesaw.api.ColumnType
+import tech.tablesaw.columns.Column
 import underdog.DataFrame
+import underdog.Series
+import underdog.impl.CollectionTypeDetector
 import underdog.impl.TSDataFrame
+import underdog.impl.TSSeries
 
 /**
  * Utils methods when working with arrays and collections
@@ -63,6 +68,26 @@ class CollectionsExtensions {
      */
     static DataFrame toDataFrame(Map<String,List<?>> map, String dataFrameName) {
         return TSDataFrame.from(dataFrameName, map)
+    }
+
+    /**
+     * Converts a given iterable to a given {@link Series} instance. It will scan 20% of the
+     * iterable to figure out its type
+     *
+     * @param iterable any iterable
+     * @param seriesName name of the {@link Series} default is ''
+     * @since 0.1.0
+     */
+    static Series toSeries(Iterable<?> iterable, String seriesName = "") {
+        Column column = CollectionTypeDetector.typeFromList(iterable).create(seriesName)
+        iterable.each {
+            if (it) {
+                column.append(it)
+            } else {
+                column.appendMissing()
+            }
+        }
+        return new TSSeries(column)
     }
 
     /**

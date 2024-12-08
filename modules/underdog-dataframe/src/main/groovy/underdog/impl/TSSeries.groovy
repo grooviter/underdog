@@ -125,16 +125,11 @@ class TSSeries implements Series {
     }
 
     @Override
-    float corr(Series other) {
-        return this.corr(other, null, null)
-    }
-
-    @Override
     @NamedVariant
     float corr(
         @NamedParam(required = true) Series other,
         @NamedParam(required = false) TypeCorrelation method = PEARSON,
-        @NamedParam(required = false) Integer observations) {
+        @NamedParam(required = false) Integer observations = 0) {
 
         def (alignedX, alignedY) = [this as Double[], other as Double[]]
             .transpose()
@@ -184,72 +179,69 @@ class TSSeries implements Series {
 
     @Override
     @NamedVariant
-    Double mean(@NamedParam(required = false) boolean skipNa, @NamedParam(required = false) int precision) {
+    Double mean(
+        @NamedParam(required = false) boolean skipNa = false,
+        @NamedParam(required = false) int precision = 7) {
         assert column instanceof DoubleColumn, "Can't calculate the mean of a Series of type ${column.type()}"
         NumericColumn meanCol = skipNa ? column.removeMissing() : column
         return new BigDecimal(meanCol.mean(), new MathContext(precision ?: 7, RoundingMode.HALF_EVEN))
     }
 
     @Override
-    Double mean() {
-        return this.mean(skipNa:  false)
-    }
-
-    @Override
     Series div(Series series) {
         Column seriesColumn = series.implementation as Column
 
-        assert column instanceof NumericColumn, "Can't divide a non numeric column"
-        assert seriesColumn instanceof NumericColumn, "Can't divide a numeric column by a non numeric column"
+        assert column instanceof NumericColumn, "Can't divide a non numeric series"
+        assert seriesColumn instanceof NumericColumn, "Can't divide a numeric series by a non numeric series"
 
         return new TSSeries(column.divide(seriesColumn))
     }
 
     @Override
     Criteria isGreaterThan(Number number) {
-        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric column"
+        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric series"
         return new TSCriteria(column.isGreaterThan(number.toDouble()))
     }
 
     @Override
     Criteria isGreaterThan(LocalDate date) {
-        assert column instanceof DateColumn, "Can't compare value ${date} against a non date column"
+        assert column instanceof DateColumn, "Can't compare value ${date} against a non date series"
         return new TSCriteria(column.isAfter(date))
     }
 
     @Override
     Criteria isLessThan(Number number) {
-        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric column"
+        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric series"
         return new TSCriteria(column.isLessThan(number.toDouble()))
     }
 
     @Override
     Criteria isLessThan(LocalDate date) {
-        assert column instanceof DateColumn, "Can't compare value ${date} against a non date column"
+        assert column instanceof DateColumn, "Can't compare value ${date} against a non date series"
         return new TSCriteria(column.isBefore(date))
     }
 
     @Override
     Criteria isEqualTo(Number number) {
-        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric column"
+        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric series"
         return new TSCriteria(column.isEqualTo(number.toDouble()))
     }
 
     @Override
     Criteria isEqualTo(String value) {
-        assert column instanceof StringColumn, "Can't compare a string ${value} against a non string column"
+        assert column instanceof StringColumn, "Can't compare a string ${value} against a non string series"
         return new TSCriteria(column.isEqualTo(value))
     }
 
     @Override
     Criteria isNotEqualTo(String value) {
-        assert column instanceof StringColumn, ""
+        assert column instanceof StringColumn, "Can't compare a string ${value} against a non string series"
         return new TSCriteria(column.isNotEqualTo(value))
     }
 
     @Override
     Criteria isNotEqualTo(Number value) {
-        assert column instanceof NumericColumn, ""
+        assert column instanceof NumericColumn, "Can't compare a number ${value} against a non numeric series"
         return new TSCriteria(column.isNotEqualTo(value.toDouble()))
     }
 

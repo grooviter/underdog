@@ -1,0 +1,3 @@
+=== Series
+
+include::creation.adoc[]

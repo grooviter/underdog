@@ -37,9 +37,9 @@ class DataframeExtensionsSpec extends BaseSpec {
 
         and: "preparing data to visualize"
         def plotDataFrame = [
-            middle: middle.toUnderdogSeries(),
-            lower: lower.toUnderdogSeries(),
-            upper: upper.toUnderdogSeries(),
+            middle: middle.toSeries(),
+            lower: lower.toSeries(),
+            upper: upper.toSeries(),
             X: tickers['Date'](LocalDateTime, String, dateFormat('dd/MM/yyyy'))
         ].toDataFrame("plot dataframe")
 

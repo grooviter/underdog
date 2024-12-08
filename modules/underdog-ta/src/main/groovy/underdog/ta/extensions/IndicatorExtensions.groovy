@@ -17,7 +17,7 @@ import org.ta4j.core.rules.StopGainRule
 import org.ta4j.core.rules.StopLossRule
 import org.ta4j.core.rules.UnderIndicatorRule
 
-class StrategiesExtensions {
+class IndicatorExtensions {
 
     static CrossedUpIndicatorRule xUp(Indicator left, Indicator right) {
         return new CrossedUpIndicatorRule(left, right)

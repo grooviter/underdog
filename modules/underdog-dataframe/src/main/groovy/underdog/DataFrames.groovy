@@ -13,6 +13,10 @@ import java.time.format.DateTimeFormatter
 
 class DataFrames {
 
+    DataFrame empty(String name = "") {
+        return TSDataFrame.from(name)
+    }
+
     DataFrame from(Map<String,?> from, String name) {
         return TSDataFrame.from(name, from)
     }

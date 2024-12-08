@@ -47,26 +47,21 @@ class DataframeExtensions {
         }
 
         BarSeries series = new BaseBarSeriesBuilder().withName(df.name).build()
+        boolean isAllFields = SERIES_ALL_FIELDS.every { it in df.columns }
+        List<?> dataFrameAsList = df[isAllFields ? SERIES_ALL_FIELDS : SERIES_MANDATORY_FIELDS].toList()
 
-        if (SERIES_OPTIONAL_FIELD !in df.columns*.toUpperCase()){
-            List<?> dataFrameAsList = df[SERIES_MANDATORY_FIELDS].toList()
-            dataFrameAsList.<List>each{ LocalDate date, Number open, Number high, Number low, Number close ->
-                ZonedDateTime zonedDateTime = date.atStartOfDay().atZone(zoneId)
-                if ([open, high, low, close].every()) {
-                    series.addBar(zonedDateTime ,open, high, low, close)
-                } else {
-                    log.warn("Missing data at ${zonedDateTime.format("dd/MM/yyyy")}")
-                }
-            }
-        } else {
-            List<?> dataFrameAsList = df[SERIES_ALL_FIELDS].toList()
-            dataFrameAsList.<List>each{ LocalDate date, Number open, Number high, Number low, Number close, Number volume ->
-                ZonedDateTime zonedDateTime = date.atStartOfDay().atZone(zoneId)
-                if ([open, high, low, close].every()) {
-                    series.addBar(zonedDateTime ,open, high, low, close, volume ?: 0)
-                } else {
-                    log.warn("Missing data at ${zonedDateTime.format("dd/MM/yyyy")}")
-                }
+        dataFrameAsList.<List>each {
+            LocalDate date,
+            Number open,
+            Number high,
+            Number low,
+            Number close,
+            Number volume = 0 ->
+            ZonedDateTime zonedDateTime = date.atStartOfDay().atZone(zoneId)
+            if ([open, high, low, close].every()) {
+                series.addBar(zonedDateTime ,open, high, low, close, volume)
+            } else {
+                log.warn("Missing data at ${zonedDateTime.format("dd/MM/yyyy")}")
             }
         }
 
@@ -80,11 +75,11 @@ class DataframeExtensions {
      * @return an instance of {@link Series}
      * @since 0.1.0
      */
-    static Series toUnderdogSeries(AbstractIndicator<Num> indicator) {
+    static Series toSeries(AbstractIndicator<Num> indicator) {
         def list = []
         indicator.barSeries.barCount.times {
             list << indicator.getValue(it).doubleValue()
         }
-        return new DataFrames().from([A: list], "")['A']
+        return new DataFrames().from([A: list], 'useless')['A']
     }
 }

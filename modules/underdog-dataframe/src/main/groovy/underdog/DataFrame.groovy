@@ -416,6 +416,8 @@ interface DataFrame extends Columnar {
      */
     void putAt(String colName, List values)
 
+    void putAt(String colName, Object object)
+
     /**
      * @return
      * @since 0.1.0

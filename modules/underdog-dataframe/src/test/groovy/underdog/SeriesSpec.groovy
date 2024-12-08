@@ -159,4 +159,32 @@ class SeriesSpec extends BaseSpec {
         expect:
         df1['x'].corr(other: df2['y'], observations: 3) * 100 == 100
     }
+
+    def "[Series/creation]: iterable.toSeries()"() {
+        setup:
+        def seriesFromList = (1..20).toList().toSeries()
+
+        when:
+        def seriesByTwo = seriesFromList * 2
+
+        then:
+        seriesByTwo.toList() == (1..20).collect { it * 2 }
+    }
+
+    def "[Series/creation]: iterableWithNulls.toSeries()"() {
+        setup:
+        def seriesFromList = [1, 2, null, 3, 4].toSeries()
+
+        when:
+        def seriesByTwo = seriesFromList * 2
+
+        then:
+        seriesByTwo.toList() == [2, 4, null, 6, 8]*.toDouble()
+
+        and:
+        seriesByTwo.size() == 5
+
+        and:
+        seriesByTwo.dropna().size() == 4
+    }
 }

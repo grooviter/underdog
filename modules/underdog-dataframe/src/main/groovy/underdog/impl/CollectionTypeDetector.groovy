@@ -4,19 +4,19 @@ import tech.tablesaw.api.ColumnType
 import tech.tablesaw.columns.Column
 
 class CollectionTypeDetector {
-    ColumnType[] detectFromMapOfLists(Map<String, Iterable<?>> map) {
+    static ColumnType[] detectFromMapOfLists(Map<String, Iterable<?>> map) {
         return map.collect { k, v ->
             typeFromList(v, 0.25)
         }
     }
 
-    ColumnType[] detectFromMapOfValues(Map<String,?> map) {
+    static ColumnType[] detectFromMapOfValues(Map<String,?> map) {
         return map.collect { k, v ->
             typeFromList([v], 0.25)
         }
     }
 
-    private ColumnType typeFromList(Iterable<?> list, double percentageToScan) {
+    static ColumnType typeFromList(Iterable<?> list, double percentageToScan = 0.2) {
         if (list instanceof TSSeries) {
             Object implementation = list.implementation
             if (implementation instanceof Column) {
