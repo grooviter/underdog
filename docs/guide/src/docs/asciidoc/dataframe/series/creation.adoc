@@ -1,5 +1,5 @@
 ==== Creation
-:sources: ../../../../../src/test/groovy/underdog/guide/dataframe
+:sources: ../../../../../src/test/groovy/underdog/guide/dataframe/series
 
 Series are meant to be created from collections or as a transformation from another Series.
 
