@@ -52,7 +52,8 @@ public class TSCsvReader extends FileReader implements DataReader<TSCsvReaderOpt
                 // create a new reader since we just exhausted the existing one
                 reader = source.createReader(bytesCache);
             }
-            ColumnType[] detectedColumnTypes = detectColumnTypes(reader, options);
+            ColumnType[] detectedColumnTypes = detectColumnTypes(reader, options)
+
             // If no columns where returned from detectColumnTypes leave initial options (that's the case
             // for only header present)
             if (detectedColumnTypes.length > 0) {

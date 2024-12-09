@@ -1,0 +1,212 @@
+===== CSV
+:sources: ../../../../../src/test/groovy/underdog/guide/dataframe/dataframe
+:resources: ../../../../../src/test/resources
+
+====== Reading
+
+You can read csv files via `Underdog.df().read_csv(...)` method. Here we are importing a csv files containing tornado
+incidents in USA:
+
+[source, groovy]
+.import csv
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=simple_read_csv,indent=0]
+----
+
+[source, shell]
+.output
+----
+                               tornadoes_1950-2014.csv
+    Date     |    Time    |  State  |  State No  |  Scale  |  Injuries  |  ... |
+--------------------------------------------------------------------------------
+ 1950-01-03  |  11:00:00  |     MO  |         1  |      3  |         3  |  ... |
+ 1950-01-03  |  11:00:00  |     MO  |         1  |      3  |         3  |      |
+ 1950-01-03  |  11:10:00  |     IL  |         1  |      3  |         0  |      |
+ 1950-01-03  |  11:55:00  |     IL  |         2  |      3  |         3  |      |
+ 1950-01-03  |  16:00:00  |     OH  |         1  |      1  |         1  |      |
+ 1950-01-13  |  05:25:00  |     AR  |         1  |      3  |         1  |      |
+ 1950-01-25  |  19:30:00  |     MO  |         2  |      2  |         5  |      |
+ 1950-01-25  |  21:00:00  |     IL  |         3  |      2  |         0  |      |
+ 1950-01-26  |  18:00:00  |     TX  |         1  |      2  |         2  |      |
+ 1950-02-11  |  13:10:00  |     TX  |         2  |      2  |         0  |      |
+        ...  |       ...  |    ...  |       ...  |    ...  |       ...  |  ... |
+----
+
+====== Separator
+
+By default the csv reader assumes the csv file is using comma (,) as the separator character, but you can provide a custom
+separator. For example the following csv file content:
+
+[source, shell]
+.csv file
+----
+include::{resources}/data/dataframe/io_custom_separator.csv[indent=0]
+----
+
+Can be read by using the **sep** argument:
+
+[source, groovy]
+.custom separator
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=custom_separator,indent=0]
+----
+
+====== Duplicated names
+
+Sometimes you can find a csv where columns are repeated, by default if you don't specify you allow repeated columns
+the import process will fail. Imagine we've got the following csv:
+
+[source, shell]
+.csv with repeated cols
+----
+include::{resources}/data/dataframe/io_repeated_cols.csv[indent=0]
+----
+
+To allow repeated columns you should set the `allowDuplicatedNames` flag to **true**.
+
+[source, groovy]
+.allow repeated cols
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=allow_repeated_cols,indent=0]
+----
+
+Then all repeated names will be prefixed in order with a number to avoid collisions:
+
+[source, shell]
+.output
+----
+                                        io_repeated_cols.csv
+ bronze |  silver |  gold |  summer_total |  bronze-2  |  silver-2  |  gold-2  |  winter_total|
+-----------------------------------------------------------------------------------------------
+      1 |       2 |     1 |             4 |         1  |         1  |       1  |           3  |
+----
+
+====== Missing values
+
+If a csv file contains values which should be considered as well as missing values, we can pass this information before
+reading the csv file.
+
+[source, text]
+.csv file with missing data
+----
+include::{resources}/data/dataframe/io_custom_missing_data.csv[indent=0]
+----
+
+Here we're considering missing data the values **N/C** and **NONE**:
+
+[source, groovy]
+.considering missing data
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=custom_missing_data,indent=0]
+----
+
+That will inform the reader to consider cells containing that value as missing values:
+
+[source, text]
+.output
+----
+ io_custom_missing_data.csv
+  from   |    to    |  id   |
+-----------------------------
+         |  Madrid  |  123  |
+ Madrid  |   Paris  |  124  |
+  Paris  |  London  |  125  |
+ London  |          |  126  |
+----
+
+====== Date format
+
+If your csv files have a custom date format you can provide the date pattern as a parameter. Here we have a file
+with a custom format:
+
+[source, text]
+.custom date format
+----
+include::{resources}/data/dataframe/io_custom_date_format.csv[indent=0]
+----
+
+Passing the pattern as parameter:
+
+[source, groovy]
+.custom date format
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=custom_date_format,indent=0]
+----
+
+Gives the following output:
+
+[source, text]
+.output
+----
+      io_custom_date_format.csv
+    Date     |        Close         |
+-------------------------------------
+ 2014-12-05  |  0.5267500281333923  |
+ 2014-12-08  |  0.5199999809265137  |
+ 2014-12-09  |  0.5182499885559082  |
+----
+
+====== Skip rows/footer
+
+If you're sure that there is data you'd like to avoid parsing, like nonsense data, you can skip parsing those rows. Check the following example:
+
+[%linenums,shell]
+.csv file with comments
+----
+include::{resources}/data/dataframe/io_skipping_rows.csv[indent=0]
+----
+
+There are lines we don't want to consider when creating our dataframe:
+
+- comments in the beginning of the file
+- comments in the end of the file
+- rows we don't want to parse because they don't add any meaningful information
+
+To avoid parsing any of these lines we can instruct the csv reader to skip lines in the header and/or in the
+footer of the file:
+
+[source, groovy]
+.skipping rows
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=skipping_rows,indent=0]
+----
+
+<1> no using first row as header
+<2> skipping rows at the beginning of the file
+<3> skipping rows at the end of the file
+<4> renaming series names with the list passed as parameter
+
+[source, shell]
+.output
+----
+io_skipping_rows.csv
+  city   |  id  |
+-----------------
+ Madrid  |   1  |
+  Paris  |   2  |
+----
+
+====== Max chars x col
+
+You can instruct the csv reader to avoid parsing columns with more than a number of characters.
+
+[source, groovy]
+.limiting col chars
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=col_char_limit,indent=0]
+----
+
+NOTE: If a column exceeds the number of characters the process will throw an exception
+
+====== Max cols
+
+You can instruct the csv reader to avoid parsing more than a given number of columns.
+
+[source, groovy]
+.limiting number of cols
+----
+include::{sources}/CsvImportExportSpec.groovy[tag=col_limit,indent=0]
+----
+
+NOTE: If the number of columns exceeds the number specified the process will throw an exception
+
