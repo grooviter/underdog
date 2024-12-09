@@ -158,9 +158,9 @@ include::{resources}/data/dataframe/io_skipping_rows.csv[indent=0]
 
 There are lines we don't want to consider when creating our dataframe:
 
-- comments in the beginning of the file
-- comments in the end of the file
-- rows we don't want to parse because they don't add any meaningful information
+- comments in the beginning of the file (lines 1-3)
+- comments in the end of the file (line 15)
+- rows we don't want to parse because they don't add any meaningful information (4-8 and 11-14)
 
 To avoid parsing any of these lines we can instruct the csv reader to skip lines in the header and/or in the
 footer of the file:

@@ -3,3 +3,5 @@
 include::intro.adoc[]
 
 include::creation.adoc[]
+
+include::statistics.adoc[]

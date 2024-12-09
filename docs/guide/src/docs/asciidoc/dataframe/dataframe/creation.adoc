@@ -1,4 +1,4 @@
-==== Creation
+==== Creating
 :sources: ../../../../../src/test/groovy/underdog/guide/dataframe/dataframe
 
 The easiest way to create a Dataframe is using the Underdog extension method `Underdog.df()`. Here we're creating an empty DataFrame:
