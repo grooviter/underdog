@@ -1,8 +1,9 @@
 package underdog.impl
 
 import spock.lang.Specification
+import tech.tablesaw.api.NumericColumn
 
-class ListExtensionSpec extends Specification {
+class CollectionsExtensionSpec extends Specification {
     def "[DataFrame/Create]: create DataFrame from a Map"() {
         when:
         def newDf = [
@@ -31,5 +32,15 @@ class ListExtensionSpec extends Specification {
 
         and:
         newDf.columns == ["ID", "CARBS", "FAT"]
+    }
+
+    def "[Series/Create]: create a numeric series with missing values"() {
+        when:
+        def series = [1, 2, null, 3, 4].toSeries()
+
+        then:
+        series.implementation instanceof NumericColumn
+        series.size() == 5
+        series.dropna().size() == 4
     }
 }

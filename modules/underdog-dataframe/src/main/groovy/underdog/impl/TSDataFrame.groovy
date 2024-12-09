@@ -1,7 +1,6 @@
 package underdog.impl
 
 import tech.tablesaw.api.NumericColumn
-import tech.tablesaw.columns.strings.StringColumnType
 import underdog.Columnar
 import underdog.DataFrame
 import underdog.DataFrameAggregation

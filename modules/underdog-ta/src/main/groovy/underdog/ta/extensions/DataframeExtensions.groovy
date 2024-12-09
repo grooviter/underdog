@@ -6,7 +6,6 @@ import org.ta4j.core.BaseBarSeriesBuilder
 import org.ta4j.core.indicators.AbstractIndicator
 import org.ta4j.core.num.Num
 import underdog.DataFrame
-import underdog.DataFrames
 import underdog.Series
 
 import java.time.LocalDate
@@ -80,6 +79,6 @@ class DataframeExtensions {
         indicator.barSeries.barCount.times {
             list << indicator.getValue(it).doubleValue()
         }
-        return new DataFrames().from([A: list], 'useless')['A']
+        return list.toSeries()
     }
 }

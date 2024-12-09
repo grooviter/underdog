@@ -1,4 +1,4 @@
 moduleName=Underdog Core Extensions
 moduleVersion=0.1.0
-extensionClasses=underdog.impl.extensions.CollectionsExtensions
+extensionClasses=underdog.impl.extensions.CollectionsExtensions,underdog.impl.extensions.SeriesOperatorsExtensions
 staticExtensionClasses=underdog.impl.extensions.UnderdogExtensions

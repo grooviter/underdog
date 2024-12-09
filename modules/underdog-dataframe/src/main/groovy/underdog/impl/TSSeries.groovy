@@ -1,6 +1,5 @@
 package underdog.impl
 
-import underdog.Criteria
 import underdog.DataFrame
 import underdog.Series
 import groovy.transform.NamedParam
@@ -14,21 +13,16 @@ import org.apache.commons.math3.stat.correlation.SpearmansCorrelation
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 import tech.tablesaw.api.BooleanColumn
 import tech.tablesaw.api.ColumnType
-import tech.tablesaw.api.DateColumn
 import tech.tablesaw.api.DoubleColumn
 import tech.tablesaw.api.IntColumn
 import tech.tablesaw.api.NumericColumn
 import tech.tablesaw.api.StringColumn
 import tech.tablesaw.columns.Column
 import tech.tablesaw.columns.numbers.DoubleColumnType
-import tech.tablesaw.selection.BitmapBackedSelection
-import tech.tablesaw.selection.Selection
 
 import java.math.MathContext
 import java.math.RoundingMode
-import java.time.LocalDate
 import java.util.function.Function
-import java.util.function.Predicate
 
 import static underdog.Series.TypeCorrelation.KENDALL
 import static underdog.Series.TypeCorrelation.PEARSON
@@ -152,22 +146,6 @@ class TSSeries implements Series {
     }
 
     @Override
-    Series plus(Number o) {
-        return new TSSeries(this.column.map(n -> n + o))
-    }
-
-    @Override
-    Series plus(String st) {
-        return new TSSeries(this.column.map(n -> n + st))
-    }
-
-    @Override
-    @NullCheck
-    Series plus(Series series) {
-        return new TSSeries(this.column.append(series.implementation as Column))
-    }
-
-    @Override
     Long size() {
         return this.column.size()
     }
@@ -179,111 +157,13 @@ class TSSeries implements Series {
 
     @Override
     @NamedVariant
-    Double mean(
-        @NamedParam(required = false) boolean skipNa = false,
-        @NamedParam(required = false) int precision = 7) {
-        assert column instanceof DoubleColumn, "Can't calculate the mean of a Series of type ${column.type()}"
-        NumericColumn meanCol = skipNa ? column.removeMissing() : column
-        return new BigDecimal(meanCol.mean(), new MathContext(precision ?: 7, RoundingMode.HALF_EVEN))
+    Double mean(@NamedParam(required = false) int precision = 7) {
+        assert column instanceof NumericColumn, "Can't calculate the mean of a non numeric Series"
+        return usePrecision(column.mean(), precision)
     }
 
-    @Override
-    Series div(Series series) {
-        Column seriesColumn = series.implementation as Column
-
-        assert column instanceof NumericColumn, "Can't divide a non numeric series"
-        assert seriesColumn instanceof NumericColumn, "Can't divide a numeric series by a non numeric series"
-
-        return new TSSeries(column.divide(seriesColumn))
-    }
-
-    @Override
-    Criteria isGreaterThan(Number number) {
-        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric series"
-        return new TSCriteria(column.isGreaterThan(number.toDouble()))
-    }
-
-    @Override
-    Criteria isGreaterThan(LocalDate date) {
-        assert column instanceof DateColumn, "Can't compare value ${date} against a non date series"
-        return new TSCriteria(column.isAfter(date))
-    }
-
-    @Override
-    Criteria isLessThan(Number number) {
-        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric series"
-        return new TSCriteria(column.isLessThan(number.toDouble()))
-    }
-
-    @Override
-    Criteria isLessThan(LocalDate date) {
-        assert column instanceof DateColumn, "Can't compare value ${date} against a non date series"
-        return new TSCriteria(column.isBefore(date))
-    }
-
-    @Override
-    Criteria isEqualTo(Number number) {
-        assert column instanceof NumericColumn, "Can't compare value ${number} against a non numeric series"
-        return new TSCriteria(column.isEqualTo(number.toDouble()))
-    }
-
-    @Override
-    Criteria isEqualTo(String value) {
-        assert column instanceof StringColumn, "Can't compare a string ${value} against a non string series"
-        return new TSCriteria(column.isEqualTo(value))
-    }
-
-    @Override
-    Criteria isNotEqualTo(String value) {
-        assert column instanceof StringColumn, "Can't compare a string ${value} against a non string series"
-        return new TSCriteria(column.isNotEqualTo(value))
-    }
-
-    @Override
-    Criteria isNotEqualTo(Number value) {
-        assert column instanceof NumericColumn, "Can't compare a number ${value} against a non numeric series"
-        return new TSCriteria(column.isNotEqualTo(value.toDouble()))
-    }
-
-    @Override
-    Series multiply(Number number) {
-        if (column instanceof NumericColumn){
-            return new TSSeries(column * number)
-        }
-
-        if (column instanceof StringColumn) {
-            return new TSSeries(column.map(st -> st * number.toInteger()))
-        }
-
-        throw new RuntimeException("can't multiply ${number} by a series of type ${column.type()}")
-    }
-
-    @Override
-    Series minus(Series series) {
-        Column left = this.implementation as Column
-        Column right = series.implementation as Column
-
-        if (left instanceof NumericColumn && right instanceof NumericColumn) {
-            return new TSSeries(left.subtract(right))
-        }
-
-        if (left instanceof DateColumn && right instanceof DateColumn) {
-            return new TSSeries(left.daysUntil(right))
-        }
-
-        if (left instanceof StringColumn && right instanceof StringColumn) {
-            int col1Size = left.size()
-            for (int r = 0; r < col1Size; ++r) {
-                left.set(r, left.getString(r) - right.getString(r))
-            }
-        }
-
-        return new TSSeries(left)
-    }
-
-    @Override
-    Series minus(Object value) {
-        return new TSSeries(column.map(val -> val - value))
+    private static Double usePrecision(double number, int precision = 7) {
+        return new BigDecimal(number, new MathContext(precision, RoundingMode.HALF_EVEN))
     }
 
     @Override
@@ -337,20 +217,6 @@ class TSSeries implements Series {
     @Override
     Series dropna() {
         return new TSSeries(column.removeMissing())
-    }
-
-    @Override
-    Criteria inList(List options) {
-        Selection selection = new BitmapBackedSelection();
-        Predicate predicate = { it in options }
-
-        for(int idx = 0; idx < this.size(); ++idx) {
-            if (predicate.test(this.column.get(idx))) {
-                selection.add(new int[]{idx})
-            }
-        }
-
-        return new TSCriteria(selection)
     }
 
     @Override

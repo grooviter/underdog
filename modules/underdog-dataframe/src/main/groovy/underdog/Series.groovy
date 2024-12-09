@@ -85,38 +85,11 @@ interface Series extends Columnar, Iterable {
     Series dropna()
 
     /**
-     * @return
-     * @since 0.1.0
-     */
-    Criteria inList(List options)
-
-    /**
      * @param index
      * @return
      * @since 0.1.0
      */
     Series lag(int index)
-
-    /**
-     * @param o
-     * @return
-     * @since 0.1.0
-     */
-    Series plus(Number o)
-
-    /**
-     * @param st
-     * @return
-     * @since 0.1.0
-     */
-    Series plus(String st)
-
-    /**
-     * @param series
-     * @return
-     * @since 0.1.0
-     */
-    Series plus(Series series)
 
     /**
      * @return
@@ -170,111 +143,18 @@ interface Series extends Columnar, Iterable {
     Series unique()
 
     /**
-     * @param skipNa
      * @param precision
      * @return
      * @since 0.1.0
      */
     @NamedVariant
-    Double mean(boolean skipNa, int precision)
+    Double mean(int precision)
 
     /**
      * @return
      * @since 0.1.0
      */
     Double mean()
-
-    /**
-     * @param series
-     * @return
-     * @since 0.1.0
-     */
-    Series div(Series series)
-
-    /**
-     * Finds all values of a {@link Series} greater than the value passed as parameter
-     *
-     * @param value all values should be greater than this value
-     * @return a {@link Criteria instance}
-     * @since 0.1.0
-     */
-    Criteria isGreaterThan(Number value)
-
-    /**
-     * Finds all values of a {@link Series} greater than the value passed as parameter
-     *
-     * @param value all values should be greater than this value
-     * @return a {@link Criteria instance}
-     * @since 0.1.0
-     */
-    Criteria isGreaterThan(LocalDate value)
-
-    /**
-     * Finds all values of a {@link Series} less than the value passed as parameter
-     *
-     * @param value all values should be less than this value
-     * @return a {@link Criteria instance}
-     * @since 0.1.0
-     */
-    Criteria isLessThan(LocalDate value)
-
-    /**
-     * Finds all values of a {@link Series} less than the value passed as parameter
-     *
-     * @param value all values should be less than this value
-     * @return a {@link Criteria instance}
-     * @since 0.1.0
-     */
-    Criteria isLessThan(Number value)
-
-    /**
-     * @param value
-     * @return
-     * @since 0.1.0
-     */
-    Criteria isEqualTo(Number value)
-
-    /**
-     * @param value
-     * @return
-     * @since 0.1.0
-     */
-    Criteria isEqualTo(String value)
-
-    /**
-     * @param value
-     * @return
-     * @since 0.1.0
-     */
-    Criteria isNotEqualTo(String value)
-
-    /**
-     * @param value
-     * @return
-     * @since 0.1.0
-     */
-    Criteria isNotEqualTo(Number value)
-
-    /**
-     * @param number
-     * @return
-     * @since 0.1.0
-     */
-    Series multiply(Number number)
-
-    /**
-     * @param value
-     * @return
-     * @since 0.1.0
-     */
-    Series minus(Object value)
-
-    /**
-     * @param series
-     * @return
-     * @since 0.1.0
-     */
-    Series minus(Series series)
 
     /**
      * @param errors

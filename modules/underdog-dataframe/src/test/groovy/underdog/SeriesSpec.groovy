@@ -93,15 +93,15 @@ class SeriesSpec extends BaseSpec {
 
     def "[Series/utils/mean]: mean series values -> df['col'].mean(...)"() {
         when:
-        def mean = df.loc['FAT'].mean(skipNa: skipNa, precision: precision)
+        def mean = df.loc['FAT'].mean(precision: precision)
 
         then:
         mean == expectedValue
 
         where:
-        skipNa | precision | expectedValue
-        true   | 2         | 12
-        false  | 1         | 10
+        precision | expectedValue
+        2         | 12
+        1         | 10
     }
 
     def "[Series/utils/corr]: default corr -> df['col'].corr(df['other'])"() {
