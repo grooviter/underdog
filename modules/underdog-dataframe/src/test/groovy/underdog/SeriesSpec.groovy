@@ -85,15 +85,15 @@ class SeriesSpec extends BaseSpec {
 
     def "[Series/utils/mean]: mean series values -> df['col'].mean()"() {
         when:
-        def mean = df.loc['FAT'].mean()
+        def mean = df.loc['FAT'].dropna().mean()
 
         then:
-        mean == 11.9281
+        mean == 11.92809544740972
     }
 
     def "[Series/utils/mean]: mean series values -> df['col'].mean(...)"() {
         when:
-        def mean = df.loc['FAT'].mean(precision: precision)
+        def mean = df.loc['FAT'].dropna().mean(precision)
 
         then:
         mean == expectedValue

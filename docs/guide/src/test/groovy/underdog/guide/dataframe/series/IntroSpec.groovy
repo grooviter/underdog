@@ -16,18 +16,19 @@ class IntroSpec extends Specification {
         def doubleSeries = numbers * 2 // <1>
         def rowProduct = numbers * stuff.dropna() // <2>
         def halves = stuff / 2 // <3>
-        def custom = letters(String, String) { "letter-$it" } // <4>
+        def custom = letters(String, String) { "letter-$it".toString() } // <4>
         // end::operations[]
 
         and:
         // tag::statistics[]
-        def mean = doubleSeries // <1>
-        def max = doubleSeries.max() // <2>
+        def mean = doubleSeries.mean()
+        def max = doubleSeries.max()
         def min = doubleSeries.min()
-        def avg = doubleSeries.average()
+        def avg = doubleSeries.avg()
         // end::statistics[]
 
         then:
-        custom.toList() == ['leter-A', 'letter-B', 'letter-C']
+        custom.toList() == ['letter-A', 'letter-B', 'letter-C']
+        doubleSeries.avg() == 5.0
     }
 }

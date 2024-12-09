@@ -13,6 +13,8 @@ include::{sources}/IntroSpec.groovy[tag=create_series,indent=0]
 <2> from a range of letters
 <3> from a list
 
+You can use operator symbols to apply simple operations over the Series object:
+
 [source, groovy]
 .operations
 ----
@@ -23,11 +25,12 @@ include::{sources}/IntroSpec.groovy[tag=operations,indent=0]
 <2> multiplying a series by another series
 <3> transforming a series into another series
 
+Sometimes you may want to analyze a given Series object by using statistical methods:
+
 [source, groovy]
 .statistics
 ----
 include::{sources}/IntroSpec.groovy[tag=statistics,indent=0]
 ----
 
-<1> Series implementation statistics
-<2> Groovy collection statistics
+You can find all statistical available methods in the `SeriesStatsExtensions` class.

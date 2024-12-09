@@ -19,7 +19,7 @@ import java.util.function.Predicate
  *
  * @since 0.1.0
  */
-class SeriesOperatorsExtensions {
+class SeriesOperatorsExtensions extends SeriesExtensionsBase {
 
     static Series plus(Series source, Series other) {
         return new TSSeries(getAsColumn(source).append(getAsColumn(other)))
@@ -167,37 +167,5 @@ class SeriesOperatorsExtensions {
         }
 
         return new TSCriteria(selection)
-    }
-
-    private static Column getAsColumn(Series series) {
-        return series.implementation as Column
-    }
-
-    private static NumericColumn getAsNumericColumn(Series series) {
-        return series.implementation as NumericColumn
-    }
-
-    private static DateColumn getAsDateColumn(Series series) {
-        return series.implementation as DateColumn
-    }
-
-    private static StringColumn getAsStringColumn(Series series) {
-        return series.implementation as StringColumn
-    }
-
-    private static boolean isNumericColumn(Series source){
-        return source.implementation instanceof NumericColumn
-    }
-
-    private static boolean isStringColumn(Series source) {
-        return source.implementation instanceof StringColumn
-    }
-
-    private static boolean isDateColumn(Series source) {
-        return source.implementation instanceof DateColumn
-    }
-
-    private static boolean areNumericColumns(Series left, Series right) {
-        return [left, right].every { it.implementation instanceof NumericColumn }
     }
 }

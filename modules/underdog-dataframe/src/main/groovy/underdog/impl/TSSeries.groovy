@@ -20,8 +20,6 @@ import tech.tablesaw.api.StringColumn
 import tech.tablesaw.columns.Column
 import tech.tablesaw.columns.numbers.DoubleColumnType
 
-import java.math.MathContext
-import java.math.RoundingMode
 import java.util.function.Function
 
 import static underdog.Series.TypeCorrelation.KENDALL
@@ -153,17 +151,6 @@ class TSSeries implements Series {
     @Override
     Series unique() {
         return new TSSeries(this.column.unique())
-    }
-
-    @Override
-    @NamedVariant
-    Double mean(@NamedParam(required = false) int precision = 7) {
-        assert column instanceof NumericColumn, "Can't calculate the mean of a non numeric Series"
-        return usePrecision(column.mean(), precision)
-    }
-
-    private static Double usePrecision(double number, int precision = 7) {
-        return new BigDecimal(number, new MathContext(precision, RoundingMode.HALF_EVEN))
     }
 
     @Override

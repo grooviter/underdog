@@ -143,20 +143,6 @@ interface Series extends Columnar, Iterable {
     Series unique()
 
     /**
-     * @param precision
-     * @return
-     * @since 0.1.0
-     */
-    @NamedVariant
-    Double mean(int precision)
-
-    /**
-     * @return
-     * @since 0.1.0
-     */
-    Double mean()
-
-    /**
      * @param errors
      * @return
      * @since 0.1.0
