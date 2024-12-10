@@ -185,7 +185,6 @@ class Graph extends Chart {
         return createGridOptions(chartTitle, chartSubtitle) +
             create {
                 series(GraphSeries) {
-                    type("graph")
                     layout('force')
                     symbolSize(chartSymbolSize)
                     force {

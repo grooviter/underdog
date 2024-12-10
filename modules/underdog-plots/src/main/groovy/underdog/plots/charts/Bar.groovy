@@ -80,7 +80,6 @@ class Bar extends Chart {
                 }
                 series(BarSeries) {
                     name 'Direct'
-                    type 'bar'
                     data([xs, ys].transpose())
                     label {
                         show(showLabels)

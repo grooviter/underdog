@@ -247,7 +247,6 @@ class Line extends Chart {
             createYAxisOptions(yLabel) +
             create {
                 series(LineSeries) {
-                    type("line")
                     smooth(chartSmooth)
                     data(ys)
                 }

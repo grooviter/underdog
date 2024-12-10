@@ -95,7 +95,6 @@ class Histogram extends Chart {
             }
             series(BarSeries) {
                 name 'Direct'
-                type 'bar'
                 barWidth '100%'
                 data(dataset)
                 label {

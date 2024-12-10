@@ -96,7 +96,6 @@ class Scatter extends Chart {
             uniqueGroups.eachWithIndex {value, index ->
                 def sortedData = [xs, ys, group].transpose().findAll { x, y, z -> z == value }.sort { it[0] }
                 series(ScatterSeries) {
-                    type "scatter"
                     name("$index")
                     data(sortedData)
                     itemStyle {
