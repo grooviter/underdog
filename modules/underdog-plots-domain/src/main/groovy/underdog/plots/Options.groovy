@@ -1,5 +1,6 @@
 package underdog.plots
 
+import underdog.plots.ast.AllowInheritance
 import underdog.plots.ast.Node
 import underdog.plots.ast.RepeatableField
 import underdog.plots.dsl.AxisPointer
@@ -21,7 +22,10 @@ class Options {
     @RepeatableField Grid grid
     @RepeatableField XAxis xAxis
     @RepeatableField YAxis yAxis
-    @RepeatableField Series series
+
+    @RepeatableField
+    @AllowInheritance(Series)
+    Series series
 
     static Options create(@DelegatesTo(value=Options, strategy = Closure.DELEGATE_FIRST) Closure dsl) {
         return new Options().tap(dsl)

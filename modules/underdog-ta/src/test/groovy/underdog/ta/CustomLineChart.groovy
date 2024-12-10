@@ -5,6 +5,7 @@ import groovy.transform.NamedVariant
 import underdog.Series
 import underdog.plots.Options
 import underdog.plots.charts.Line
+import underdog.plots.dsl.series.LineSeries
 
 class CustomLineChart extends Line {
     @NamedVariant
@@ -95,14 +96,12 @@ class CustomLineChart extends Line {
                     }
                 }
             }
-            series {
-                type("line")
+            series(LineSeries) {
                 name("INDEX")
                 data(indexSeries as List)
             }
-            series {
+            series(LineSeries) {
                 name("VIX")
-                type("line")
                 data(vixSeries as List)
                 yAxisIndex(1)
                 xAxisIndex(1)

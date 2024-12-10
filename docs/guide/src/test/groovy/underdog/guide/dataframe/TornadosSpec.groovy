@@ -170,7 +170,7 @@ class TornadosSpec extends Specification {
         // end::summarizing[]
 
         then:
-        injuriesByScale.name == "Median Injuries by Tornado Scale"
+        injuriesByScale.name == "Median Injuries by Tornado Scale summary"
     }
 
     def "crosstabs"() {

@@ -5,6 +5,7 @@ import underdog.Series
 import underdog.plots.Options
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import underdog.plots.dsl.series.BarSeries
 
 /**
  * A bar chart or bar graph is a chart or graph that presents categorical data with rectangular bars with heights or
@@ -60,7 +61,7 @@ class Bar extends Chart {
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
         @NamedParam(required = false) boolean showLabels = false) {
         return createGridOptions(chartTitle, chartSubtitle) +
-            Options.create {
+            create {
                 xAxis {
                     type 'value'
                     name(xLabel)
@@ -77,7 +78,7 @@ class Bar extends Chart {
                         padding(30)
                     }
                 }
-                series {
+                series(BarSeries) {
                     name 'Direct'
                     type 'bar'
                     data([xs, ys].transpose())

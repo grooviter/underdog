@@ -3,6 +3,8 @@ package underdog.plots.ast
 import groovy.transform.InheritConstructors
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.Parameter
+import org.codehaus.groovy.ast.expr.ConstantExpression
+import org.codehaus.groovy.ast.expr.Expression
 import org.codehaus.groovy.ast.stmt.BlockStatement
 
 import static org.codehaus.groovy.ast.tools.GeneralUtils.*
@@ -11,33 +13,31 @@ import static org.codehaus.groovy.ast.tools.GeneralUtils.*
 class RepeatableFieldTransformer extends ComplexFieldTransformer {
     @Override
     MethodNode toMethod() {
-        Parameter methodParam = param(closureClassNode, fieldNode.name)
-        methodParam.addAnnotation(createDelegatesTo(fieldNode.type))
+        Parameter[] methodParams = resolveParams()
+        Expression executionMap = resolveExecutionMap(methodParams)
+        ConstantExpression fieldNodeNameX = constX(fieldNode.name)
 
         // map[fieldNodeName] = getMapX()
         BlockStatement mapPutAtFieldValue = macro {
-            def currentNodeValue = map[$v{constX(fieldNode.name)}]
-
+            def currentNodeValue = map[$v{fieldNodeNameX}]
             // no items use it as object
             if (!currentNodeValue) {
-                map[$v{constX(fieldNode.name)}] = $v{delegatedExecutionMap}
+                map[$v{fieldNodeNameX}] = $v{executionMap}
                 return
             }
-
             // there are some items in the list
             if (currentNodeValue instanceof java.util.List) {
-                map[$v{constX(fieldNode.name)}] = currentNodeValue + [$v{delegatedExecutionMap}]
+                map[$v{fieldNodeNameX}] = currentNodeValue + [$v{executionMap}]
                 return
             }
-
             // just one item -> then create a list
-            map[$v{constX(fieldNode.name)}] = [currentNodeValue, $v{delegatedExecutionMap}]
+            map[$v{fieldNodeNameX}] = [currentNodeValue, $v{executionMap}]
             return
         }
 
-        return createPublicVoidMethod(mapPutAtFieldValue, methodParam)
-                .with(this.&markMethodAsGenerated)
-                .with(this.&markMethodAsCompileDynamic) as MethodNode
+        return createPublicVoidMethod(mapPutAtFieldValue, methodParams)
+            .with(this.&markMethodAsGenerated)
+            .with(this.&markMethodAsCompileDynamic) as MethodNode
     }
 
     @Override

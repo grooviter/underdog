@@ -2,6 +2,7 @@ package underdog.guide.dataframe.series
 
 import spock.lang.Specification
 import underdog.Series
+import underdog.Underdog
 
 class CreationSpec extends Specification {
     def "series from collection"() {

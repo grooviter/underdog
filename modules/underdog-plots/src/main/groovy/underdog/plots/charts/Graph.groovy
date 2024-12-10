@@ -8,6 +8,7 @@ import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import groovy.transform.ToString
 import org.jgrapht.GraphPath
+import underdog.plots.dsl.series.GraphSeries
 
 /**
  * A graph is made up of vertices (also called nodes or points) which are connected by edges
@@ -182,8 +183,8 @@ class Graph extends Chart {
             .collect { it.toMap() }
             .collect { setChartEdgeValueAndLineStyle(it, showEdgeLabel) }
         return createGridOptions(chartTitle, chartSubtitle) +
-            Options.create {
-                series {
+            create {
+                series(GraphSeries) {
                     type("graph")
                     layout('force')
                     symbolSize(chartSymbolSize)

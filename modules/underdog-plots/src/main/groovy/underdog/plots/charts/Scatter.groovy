@@ -5,6 +5,7 @@ import underdog.Series
 import underdog.plots.Options
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import underdog.plots.dsl.series.ScatterSeries
 
 /**
  * A scatter plot, also called a scatterplot, scatter graph, scatter chart, scattergram, or scatter diagram, is a type
@@ -77,8 +78,8 @@ class Scatter extends Chart {
             return baseOptions + groupOptions(xs, ys, group)
         }
 
-        return baseOptions + Options.create {
-            series {
+        return baseOptions + create {
+            series(ScatterSeries) {
                 type "scatter"
                 data([xs, ys].transpose().sort { it.find() })
             }
@@ -87,14 +88,14 @@ class Scatter extends Chart {
 
     private static Options groupOptions(List<Number> xs, List<Number> ys, List<Number> group) {
         List<Number> uniqueGroups = group.unique(false)
-        return Options.create {
+        return create {
             legend {
                 data(uniqueGroups)
                 top("8%")
             }
             uniqueGroups.eachWithIndex {value, index ->
                 def sortedData = [xs, ys, group].transpose().findAll { x, y, z -> z == value }.sort { it[0] }
-                series {
+                series(ScatterSeries) {
                     type "scatter"
                     name("$index")
                     data(sortedData)

@@ -6,6 +6,7 @@ import underdog.Series
 import underdog.plots.Options
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import underdog.plots.dsl.series.LineSeries
 
 /**
  * A line chart or line graph, also known as curve chart, is a type of chart that displays information as a series
@@ -136,8 +137,7 @@ class Line extends Chart {
                     dataFrame.columns
                         .findAll { it != xsName }
                         .each { next ->
-                            series {
-                                type("line")
+                            series(LineSeries) {
                                 name(next)
                                 data(dataFrame[next] as List)
                                 smooth(chartSmooth)
@@ -186,7 +186,7 @@ class Line extends Chart {
         createYAxisOptions(yLabel) +
         create {
             seriesData.each { next ->
-                series {
+                series(LineSeries) {
                     type("line")
                     name(next.key)
                     data(next.value)
@@ -246,7 +246,7 @@ class Line extends Chart {
             createXAxisOptions(xLabel, xs) +
             createYAxisOptions(yLabel) +
             create {
-                series {
+                series(LineSeries) {
                     type("line")
                     smooth(chartSmooth)
                     data(ys)

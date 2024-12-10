@@ -5,6 +5,7 @@ import underdog.Series
 import underdog.plots.Options
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import underdog.plots.dsl.series.BarSeries
 
 /**
  * A histogram is a visual representation of the distribution of quantitative data. To construct a histogram,
@@ -85,14 +86,14 @@ class Histogram extends Chart {
         return createGridOptions(chartTitle, chartSubtitle) +
             createXAxisOptions(xLabel) +
             createYAxisOptions(yLabel) +
-            Options.create {
+            create {
             xAxis {
                 type 'value'
             }
             yAxis {
                 type 'value'
             }
-            series {
+            series(BarSeries) {
                 name 'Direct'
                 type 'bar'
                 barWidth '100%'
