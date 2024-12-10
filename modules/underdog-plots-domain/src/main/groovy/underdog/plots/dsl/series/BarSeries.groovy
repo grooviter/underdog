@@ -6,4 +6,5 @@ import underdog.plots.dsl.Series
 @Node
 class BarSeries extends Series {
     String type = 'bar'
+    String barWidth
 }

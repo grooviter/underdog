@@ -1,4 +1,4 @@
-package underdog.plots.dsl
+package underdog.plots.dsl.series.graph
 
 import underdog.plots.ast.Node
 
