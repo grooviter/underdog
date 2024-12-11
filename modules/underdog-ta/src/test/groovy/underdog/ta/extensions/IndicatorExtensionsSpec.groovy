@@ -110,18 +110,18 @@ class IndicatorExtensionsSpec extends BaseSpec {
         BarSeries vixSeries = vixData.sort_values(by: ['DATE']).toBarSeries(ZoneId.of("US/Eastern"))
 
         and: "running vix strategy"
-        def vixPriceIndicator = new ClosePriceIndicator(vixSeries)
-        def duringWeekdays = new DayOfWeekRule(new DateTimeIndicator(vixSeries), DayOfWeek.MONDAY..DayOfWeek.FRIDAY as DayOfWeek[])
+        def vix = vixSeries.closePriceIndicator
+        def weekdays = vixSeries.dayOfWeekRule(DayOfWeek.MONDAY..DayOfWeek.FRIDAY)
 
-        def buyRule = vixPriceIndicator
-            .roc(7)
-            .xUp(50) & duringWeekdays
-        def sellRule = vixPriceIndicator
-            .roc(7)
-            .xDown(10) & duringWeekdays
-        def strategy = new BaseStrategy(buyRule, sellRule)
+        def buyRule = vix.with {
+            roc(7).xUp(50) & weekdays
+        }
 
-        def tradingRecord = new BarSeriesManager(vixSeries, new TradeOnCurrentCloseModel()).run(strategy)
+        def sellRule = vix.with {
+            roc(7).xDown(10) & weekdays
+        }
+
+        def tradingRecord = vixSeries.run(buyRule, sellRule, new TradeOnCurrentCloseModel())
 
         when: "comparing the vix with the strategy"
         def df = vixData
@@ -161,16 +161,21 @@ class IndicatorExtensionsSpec extends BaseSpec {
         def vixSeries = vixDataFrame.toBarSeries(ZoneId.of("US/Eastern"))
 
         and: "vix"
-        def vixIndicator = new ClosePriceIndicator(vixSeries)
-        def duringWeekdays = new DayOfWeekRule(new DateTimeIndicator(vixSeries), DayOfWeek.MONDAY..DayOfWeek.FRIDAY as DayOfWeek[])
-        def buyRule = vixIndicator.roc(7).xUp(20) & duringWeekdays
-        def sellRule = vixIndicator.roc(7).xDown(5) & duringWeekdays
+        def vixIndicator = vixSeries.closePriceIndicator
+        def duringWeekdays = vixSeries.dayOfWeekRule(DayOfWeek.MONDAY..DayOfWeek.FRIDAY)
+
+        def buyRule = vixIndicator.with {
+            roc(7).xUp(20) & duringWeekdays
+        }
+
+        def sellRule = vixIndicator.with {
+            roc(7).xDown(5) & duringWeekdays
+        }
 
         and:
         def nvda = createDataFrame().renameSeries(fn: String.&toUpperCase)
         def nvdaSeries = nvda.toBarSeries()
-        def strategy = new BaseStrategy(buyRule, sellRule)
-        def tradingRecord = new BarSeriesManager(nvdaSeries, new TradeOnCurrentCloseModel()).run(strategy)
+        def tradingRecord = nvdaSeries.run(buyRule, sellRule, new TradeOnCurrentCloseModel())
 
         nvda = nvda[
             nvda['DATE'] > LocalDate.parse("01/07/2021", "dd/MM/yyyy") &
