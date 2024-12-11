@@ -105,3 +105,5 @@ include::graphs/index.adoc[]
 include::ml/index.adoc[]
 
 include::plots/index.adoc[]
+
+include::ta/index.adoc[]

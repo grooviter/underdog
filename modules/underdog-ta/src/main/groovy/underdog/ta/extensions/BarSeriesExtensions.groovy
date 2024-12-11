@@ -55,9 +55,11 @@ class BarSeriesExtensions {
      */
     static TradingRecord run(BarSeries source, Rule entryRule, Rule exitRule, TradeExecutionModel model = null) {
         Strategy strategy = new BaseStrategy(entryRule, exitRule)
-        if (model) {
+
+        if (!model) {
             return new BarSeriesManager(source).run(strategy)
         }
+
         return new BarSeriesManager(source, model).run(strategy)
     }
 }

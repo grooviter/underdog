@@ -13,6 +13,7 @@ dependencies {
     testImplementation project(":underdog-graphs")
     testImplementation project(":underdog-ml")
     testImplementation project(":underdog-plots")
+    testImplementation project(":underdog-ta")
     testImplementation "org.spockframework:spock-core:$spock"
 }
 
