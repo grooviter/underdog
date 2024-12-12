@@ -1,7 +1,21 @@
-=== Getting started
+=== Tutorial
 :sources: ../../../../src/test/groovy/underdog/guide/ta
 
-This getting started section mimics the getting started section steps from Ta4j wiki but using underdog-ta module. You can compare both entries to see the differences.
+.Note
+****
+This getting started section mimics the link:https://ta4j.github.io/ta4j-wiki/Getting-started.html[getting started] section steps from link:https://ta4j.github.io/ta4j-wiki/[Ta4j wiki] but using underdog-ta module. You can compare both entries to see the differences.
+****
+
+==== Modules
+
+To be able to follow the tutorial you should add the following modules to your gradle project:
+
+[source, groovy]
+.gradle
+----
+implementation 'com.github.grooviter:underdog-ta:VERSION'
+implementation 'com.github.grooviter:underdog-plots:VERSION'
+----
 
 ==== BarSeries vs DataFrame
 

@@ -12,7 +12,6 @@ import org.ta4j.core.criteria.ReturnOverMaxDrawdownCriterion
 import org.ta4j.core.criteria.VersusEnterAndHoldCriterion
 import org.ta4j.core.criteria.pnl.ReturnCriterion
 import org.ta4j.core.indicators.SMAIndicator
-import org.ta4j.core.num.Num
 import spock.lang.Specification
 import underdog.Underdog
 import underdog.plots.Plots
@@ -78,8 +77,9 @@ class GettingStartedSpec extends Specification {
         // tag::strategy_or[]
         buyingRule = shortSma.xUp(longSma)
             | closePrice.xDown(120)
-        sellingRule = (shortSma.xDown(longSma)
-            | closePrice.stopLoss(3))
+
+        sellingRule = shortSma.xDown(longSma)
+            | closePrice.stopLoss(3)
             | closePrice.stopGain(2)
         // end::strategy_or[]
 
