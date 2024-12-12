@@ -77,6 +77,7 @@ class Render {
             return templateOutput
                 .replaceAll("\"${FUNCTION_START}", EMPTY_CONTENT)
                 .replaceAll("${FUNCTION_ENDS}\"", EMPTY_CONTENT)
+                .replaceAll("\\\\\"", '"')
         } catch (IOException e) {
             log.error(e.message)
         }

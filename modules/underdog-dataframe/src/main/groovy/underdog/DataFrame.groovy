@@ -47,6 +47,14 @@ interface DataFrame extends Columnar {
     List<String> getColumns()
 
     /**
+     * Returns whether the series with the name passed as parameter exists
+     *
+     * @param name name of the series
+     * @since 0.1.0
+     */
+    boolean hasSeries(String name)
+
+    /**
      * @return
      * @since 0.1.0
      */

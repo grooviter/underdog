@@ -53,7 +53,7 @@ class Bar extends Chart {
      */
     @NamedVariant
     Options bar(
-        List<Number> xs,
+        List<?> xs,
         List<Number> ys,
         @NamedParam(required = false) String xLabel = 'X',
         @NamedParam(required = false) String yLabel = 'Y',

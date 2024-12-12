@@ -101,6 +101,11 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    boolean hasSeries(String name) {
+        return name in this.columns
+    }
+
+    @Override
     DataFrame head() {
         return this.head(10)
     }

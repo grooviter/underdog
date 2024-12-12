@@ -30,6 +30,19 @@ class OptionsExtensions {
     }
 
     /**
+     * Helper method inside an {@link Options} instance to convert some {@link Map}
+     * to JSON string. It could be useful to render some extra
+     *
+     * @param options current {@link Options} instance
+     * @param mapToJson {@link Map} we want to convert to JSON
+     * @return a string representation of the map passed as parameter
+     * @since 0.1.0
+     */
+    static String toJson(Options options, Map mapToJson) {
+        return JsonOutput.toJson(mapToJson)
+    }
+
+    /**
      * Adds up two {@link Options} instances
      *
      * @param options the base {@link Options}

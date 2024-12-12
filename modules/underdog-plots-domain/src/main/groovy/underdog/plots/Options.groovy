@@ -6,6 +6,7 @@ import underdog.plots.ast.RepeatableField
 import underdog.plots.dsl.AxisPointer
 import underdog.plots.dsl.Grid
 import underdog.plots.dsl.Legend
+import underdog.plots.dsl.Radar
 import underdog.plots.dsl.Series
 import underdog.plots.dsl.Title
 import underdog.plots.dsl.Tooltip
@@ -22,6 +23,8 @@ class Options {
     @RepeatableField Grid grid
     @RepeatableField XAxis xAxis
     @RepeatableField YAxis yAxis
+
+    Radar radar
 
     @RepeatableField
     @AllowInheritance(Series)

@@ -10,6 +10,11 @@ The Underdog plots module renders different types of charts in order to visualiz
 | image::plots/scatter_simple.png[align=center]
 | image::plots/graphs_paths.png[align=center]
 | image::plots/bar_simple.png[align=center]
+
+| image::plots/pie_simple.png[align=center]
+| image::plots/radar_simple.png[align=center]
+|
+|
 |===
 
 include::guidelines.adoc[]
@@ -21,5 +26,9 @@ include::bar.adoc[]
 include::scatter.adoc[]
 
 include::graphs.adoc[]
+
+include::pie.adoc[]
+
+include::radar.adoc[]
 
 include::extensions.adoc[]

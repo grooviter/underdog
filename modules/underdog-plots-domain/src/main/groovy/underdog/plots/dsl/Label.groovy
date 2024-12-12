@@ -6,4 +6,5 @@ import underdog.plots.ast.Node
 class Label {
     Boolean show
     String position
+    String formatter
 }

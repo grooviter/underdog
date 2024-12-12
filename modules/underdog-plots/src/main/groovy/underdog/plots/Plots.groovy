@@ -7,6 +7,8 @@ import underdog.plots.charts.Bar
 import underdog.plots.charts.Graph
 import underdog.plots.charts.Histogram
 import underdog.plots.charts.Line
+import underdog.plots.charts.Pie
+import underdog.plots.charts.Radar
 import underdog.plots.charts.Scatter
 
 class Plots {
@@ -15,6 +17,8 @@ class Plots {
     @Delegate Histogram histogram = new Histogram()
     @Delegate Graph graphDelegate = new Graph()
     @Delegate Bar barDelegate = new Bar()
+    @Delegate Pie pieDelegate = new Pie()
+    @Delegate Radar radarDelegate = new Radar()
 
     @NamedVariant
     Options plot(

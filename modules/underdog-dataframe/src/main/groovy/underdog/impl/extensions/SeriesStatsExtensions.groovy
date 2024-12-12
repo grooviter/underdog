@@ -40,9 +40,17 @@ class SeriesStatsExtensions extends SeriesExtensionsBase {
         return getStats(source).min()
     }
 
+    static <T> T min(Series source, Class<T> clazz) {
+        return getAsColumn(source).min().asType(clazz)
+    }
+
     static Double max(Series source){
         assert isNumericColumn(source), "Can't resolve stats from a non numeric column"
         return getStats(source).max()
+    }
+
+    static <T> T max(Series source, Class<T> clazz) {
+        return getAsColumn(source).max().asType(clazz)
     }
 
     static Double populationVariance(Series source){

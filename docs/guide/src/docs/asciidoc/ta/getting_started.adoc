@@ -136,6 +136,26 @@ For many scenarios we can run a base strategy backtesting by just executing the 
 include::{sources}/GettingStartedSpec.groovy[tag=backtesting_extension, indent=0]
 ----
 
+We can see this visually. Follow-up showing only trades from 2024-04-01:
+
+[source, groovy]
+.plotting trades
+----
+include::{sources}/GettingStartedSpec.groovy[tag=show_trades,indent=0]
+----
+
+image::ta/getting_started_trades.png[align=center]
+
+We can also visualize winning vs losing positions.
+
+[source, groovy]
+.winning vs losing
+----
+include::{sources}/GettingStartedSpec.groovy[tag=show_positions,indent=0]
+----
+
+image::ta/getting_started_winners.png[align=center]
+
 ==== Analyzing our results
 
 Here is how we can analyze the results of our backtest:
@@ -153,3 +173,15 @@ Winning positions ratio: 0.54385964912280701754385964912281
 Return over Max Drawdown: 3.4519153297405649777237484258582
 Our return vs buy-and-hold return: 0.0040904249296843023287166775087440
 ----
+
+Showing these metrics in a chart:
+
+[source, groovy]
+.radar
+----
+include::{sources}/GettingStartedSpec.groovy[tag=analysis_radar,indent=0]
+----
+
+Which displays:
+
+image::ta/getting_started_radar.png[align=center, width="60%"]
