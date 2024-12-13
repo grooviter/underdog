@@ -6,7 +6,7 @@ import spock.lang.Specification
 class DistancesSpec extends Specification {
     def "shortest path"() {
         when:
-        // tag::shortest_path_graph[]
+        // --8<-- [start:shortest_path_graph]
         def distances = Underdog.graphs().graph(String) {
             ["Madrid", "Guadalajara", "Cuenca", "Zaragoza", "Teruel", "Castellon"].each(delegate::vertex)
             edge("Madrid", "Guadalajara", weight: 66.4)
@@ -16,21 +16,21 @@ class DistancesSpec extends Specification {
             edge("Cuenca", "Teruel", weight: 147.9)
             edge("Teruel", "Castellon", weight: 144.2)
         }
-        // end::shortest_path_graph[]
+        // --8<-- [end:shortest_path_graph]
 
-        // tag::shortest_path_edges[]
+        // --8<-- [start:shortest_path_edges]
         def kmsDriven = distances
             .shortestPathEdges("Teruel", "Madrid")
             .sum { it.weight }
-        // end::shortest_path_edges[]
+        // --8<-- [end:shortest_path_edges]
 
-        // tag::shortest_path_vertices[]
+        // --8<-- [start:shortest_path_vertices]
         def citiesVisited = distances.shortestPathVertices("Teruel", "Madrid")
-        // end::shortest_path_vertices[]
+        // --8<-- [end:shortest_path_vertices]
 
-        // tag::shortest_path[]
+        // --8<-- [start:shortest_path]
         def shortestPath = distances.shortestPath("Teruel", "Madrid")
-        // end::shortest_path[]
+        // --8<-- [end:shortest_path]
 
         Underdog.plots()
             .graph(
@@ -42,11 +42,14 @@ class DistancesSpec extends Specification {
                 showEdgeLabel: true).show()
 
         then:
-        // tag::shortest_path_attributes[]
-        shortestPath.weight == 761.4 // kms
-        shortestPath.length == 4 // steps (edges)
+        // --8<-- [start:shortest_path_attributes]
+        // kms
+        shortestPath.weight == 761.4
+
+        // steps (edges)
+        shortestPath.length == 4
         shortestPath.vertexList == ["Teruel", "Cuenca", "Zaragoza", "Guadalajara", "Madrid"] // cities (vertices)
-        // end::shortest_path_attributes[]
+        // --8<-- [end:shortest_path_attributes]
         citiesVisited == ["Teruel", "Cuenca", "Zaragoza", "Guadalajara", "Madrid"]
         kmsDriven == 761.4
     }

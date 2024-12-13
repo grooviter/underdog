@@ -4,30 +4,30 @@ package underdog.guide.graphs
 import underdog.plots.Plots
 import spock.lang.Specification
 
-// tag::import[]
+// --8<-- [start:import]
 import underdog.Underdog
-// end::import[]
+// --8<-- [end:import]
 
 class TutorialSpec extends Specification {
     def "creation"() {
         setup:
-        // tag::create[]
+        // --8<-- [start:create]
         def graph = Underdog.graphs().graph(String) {
             // vertices and edges here
         }
-        // end::create[]
+        // --8<-- [end:create]
         expect:
         graph
     }
 
     def "add vertices at creation time"() {
         when:
-        // tag::add_vertices_at_creation_time[]
+        // --8<-- [start:add_vertices_at_creation_time]
         def graph = Underdog.graphs().graph(String) {
             vertex("A")
             vertex("B")
         }
-        // end::add_vertices_at_creation_time[]
+        // --8<-- [end:add_vertices_at_creation_time]
         Plots.plots()
             .graph(graph, title: "add vertices")
             .show()
@@ -38,26 +38,30 @@ class TutorialSpec extends Specification {
 
     def "add vertices after creation"() {
         when:
-        // tag::add_vertices_after_creation[]
+        // --8<-- [start:add_vertices_after_creation]
         def graph = Underdog.graphs().graph(String) {}
 
         graph.addVertex("A")
         graph.addVertex("B")
-        // end::add_vertices_after_creation[]
+        // --8<-- [end:add_vertices_after_creation]
         then:
         graph.vertexSet().size() == 2
     }
 
-    // tag::employee[]
-    @groovy.transform.Canonical // <1>
+    // --8<-- [start:employee]
+    /*
+     * @Canonical implements equals and hashcode among other things.
+     * These methods will help the graph to id each node in the graph.
+    */
+    @groovy.transform.Canonical
     static class Employee {
         String name, department
     }
-    // end::employee[]
+    // --8<-- [end:employee]
 
     def "adding complex types"() {
         when:
-        // tag::add_employees[]
+        // --8<-- [start:add_employees]
         def john = new Employee("John", "Engineering")
         def peter = new Employee("Peter", "Engineering")
         def lisa = new Employee("Lisa", "Engineering")
@@ -67,14 +71,14 @@ class TutorialSpec extends Specification {
             vertex(peter)
             vertex(lisa)
         }
-        // end::add_employees[]
+        // --8<-- [end:add_employees]
         then:
         graph
     }
 
     def "adding edges at creation time"() {
         when:
-        // tag::adding_edges_at_creation[]
+        // --8<-- [start:adding_edges_at_creation]
         def graph = Underdog.graphs().graph(String) {
             // adding vertices first
             vertex('A')
@@ -83,7 +87,7 @@ class TutorialSpec extends Specification {
             // then adding edges between vertices
             edge('A', 'B')
         }
-        // end::adding_edges_at_creation[]
+        // --8<-- [end:adding_edges_at_creation]
 
         Plots.plots()
             .graph(graph, title:"adding edges")
@@ -95,7 +99,7 @@ class TutorialSpec extends Specification {
 
     def "adding edges at creation time (II)"() {
         when:
-        // tag::adding_several_at_once[]
+        // --8<-- [start:adding_several_at_once]
         def graph = Underdog.graphs().graph(String) {
             // adding vertices first
             ('A'..'D').each(delegate::vertex)
@@ -107,7 +111,7 @@ class TutorialSpec extends Specification {
                 'C', 'D'
             )
         }
-        // end::adding_several_at_once[]
+        // --8<-- [end:adding_several_at_once]
 
         Plots.plots()
             .graph(graph, title:"adding edges")
@@ -119,7 +123,7 @@ class TutorialSpec extends Specification {
 
     def "adding edges after creation time"() {
         when:
-        // tag::adding_edges_after_creation[]
+        // --8<-- [start:adding_edges_after_creation]
         def graph = Underdog.graphs().graph(String) {
             // adding vertices 'A', 'B', 'C', 'D'
             ('A'..'D').each(delegate::vertex)
@@ -127,7 +131,7 @@ class TutorialSpec extends Specification {
 
         // adding edge between 'A' and 'B'
         graph.addEdge('A', 'B')
-        // end::adding_edges_after_creation[]
+        // --8<-- [end:adding_edges_after_creation]
         then:
         graph.verticesCount() == 4
         graph.edgesCount() == 1
@@ -135,7 +139,7 @@ class TutorialSpec extends Specification {
 
     def "adding vertices and edges and get shape"() {
         when:
-        // tag::shape[]
+        // --8<-- [start:shape]
         def graph = Underdog.graphs().graph(String) {
             ('A'..'D').each(delegate::vertex)
             edge('A', 'B')
@@ -148,7 +152,7 @@ class TutorialSpec extends Specification {
 
         // or just println shape
         println(graph.shape())
-        // end::shape[]
+        // --8<-- [end:shape]
         then:
         nVertices == 4
         nEdges == 3
@@ -156,7 +160,7 @@ class TutorialSpec extends Specification {
 
     def "elements of a graph"() {
         when:
-        // tag::elements_graph[]
+        // --8<-- [start:elements_graph]
         def graph = Underdog.graphs().graph(Integer) {
             (1..10).each(delegate::vertex)
             edges(
@@ -165,19 +169,24 @@ class TutorialSpec extends Specification {
                 3, 4
             )
         }
-        // end::elements_graph[]
+        // --8<-- [end:elements_graph]
 
         then:
-        // tag::elements[]
-        graph.vertices.containsAll(1..10) // <1>
-        graph.edges.size() == 3 // <2>
-        graph.neighborsOf(1) == [2, 3] // <3>
-        // end::elements[]
+        // --8<-- [start:elements]
+        //  getting graph vertices
+        graph.vertices.containsAll(1..10)
+
+        // getting graph edges
+        graph.edges.size() == 3
+
+        // getting neighbors of a specific vertex
+        graph.neighborsOf(1) == [2, 3]
+        // --8<-- [end:elements]
     }
 
     def "removing elements"() {
         when:
-        // tag::removing_elements[]
+        // --8<-- [start:removing_elements]
         def graph = Underdog.graphs().graph(Integer) {
             (1..14).each(delegate::vertex)
             edges(
@@ -206,14 +215,14 @@ class TutorialSpec extends Specification {
         // graph4.removeAllEdges(graph4.edgesOf(12)) <--- this fails: ConcurrentModificationException
         graph4.removeAllEdges(graph4.edgesOf(12).toList()) // <--- this works
 
-        // end::removing_elements[]
+        // --8<-- [end:removing_elements]
         then:
         graph4.vertices.containsAll([9, 11, 12, 13, 14])
     }
 
     def "graph types"() {
         when:
-        // tag::graph_types[]
+        // --8<-- [start:graph_types]
         // graphs
         def g = Underdog.graphs()
 
@@ -228,7 +237,7 @@ class TutorialSpec extends Specification {
 
         // weighted pseudo graph
         def graph4 = g.multigraph(String)
-        // end::graph_types[]
+        // --8<-- [end:graph_types]
         then:
         graph1
         graph2
@@ -238,42 +247,42 @@ class TutorialSpec extends Specification {
 
     def "analyzing graph"() {
         when:
-        // tag::analyzing_graph[]
+        // --8<-- [start:analyzing_graph]
         def graph = Underdog.graphs().graph(String) {
             ('a'..'f').each(delegate::vertex)
 
             edges(
                 'a', 'b',
-                    'a', 'c',
-                    'a', 'd',
-                    'b', 'e',
+                'a', 'c',
+                'a', 'd',
+                'b', 'e',
             )
         }
-        // end::analyzing_graph[]
+        // --8<-- [end:analyzing_graph]
 
-        // tag::analyzing_graph_shape[]
+        // --8<-- [start:analyzing_graph_shape]
         def (nVertices, nEdges) = graph.shape()
-        // end::analyzing_graph_shape[]
+        // --8<-- [end:analyzing_graph_shape]
 
-        // tag::analyzing_graph_max_degree[]
+        // --8<-- [start:analyzing_graph_max_degree]
         String maxDegreeVertex = graph.maxDegree()
-        // end::analyzing_graph_max_degree[]
+        // --8<-- [end:analyzing_graph_max_degree]
 
-        // tag::analyzing_graph_sort_by_degree[]
+        // --8<-- [start:analyzing_graph_sort_by_degree]
         def sortedVertices = graph.vertices.sort { -graph.degreeOf(it) }
-        // end::analyzing_graph_sort_by_degree[]
+        // --8<-- [end:analyzing_graph_sort_by_degree]
 
-        // tag::analyzing_graph_clustering_global[]
+        // --8<-- [start:analyzing_graph_clustering_global]
         def graphClustering = graph.clusteringGlobal()
-        // end::analyzing_graph_clustering_global[]
+        // --8<-- [end:analyzing_graph_clustering_global]
 
-        // tag::analyzing_graph_clustering_avg[]
+        // --8<-- [start:analyzing_graph_clustering_avg]
         def graphAvg = graph.clusteringAvg()
-        // end::analyzing_graph_clustering_avg[]
+        // --8<-- [end:analyzing_graph_clustering_avg]
 
-        // tag::analyzing_graph_clustering_vertex[]
+        // --8<-- [start:analyzing_graph_clustering_vertex]
         def vertexClustering = graph.clusteringOf('a')
-        // end::analyzing_graph_clustering_vertex[]
+        // --8<-- [end:analyzing_graph_clustering_vertex]
 
         then:
         sortedVertices == ['a', 'b', 'c', 'd', 'e', 'f']
