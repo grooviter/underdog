@@ -10,7 +10,7 @@ import spock.lang.Specification
 class GettingStartedSpec extends Specification {
     def "initial example"() {
         setup:
-        // tag::getting_started_simple[]
+        // --8<-- [start:getting_started_simple]
         // building a simple graph
         def graph = Underdog.graphs().graph(String) {
                 edges(
@@ -27,7 +27,7 @@ class GettingStartedSpec extends Specification {
 
         // tell me the sortest path between node A and node H
         def shortestPath = graph.shortestPathVertices('A', 'J')
-        // end::getting_started_simple[]
+        // --8<-- [end:getting_started_simple]
 
         Plots.plots().graph(graph, title: 'Nodes & Edges', subtitle: 'Creating graphs with Underdog').show()
 

@@ -7,21 +7,21 @@ import java.time.LocalDate
 class FilteringSpec extends Specification {
     def "filtering: numbers"() {
         setup:
-        // tag::numbers[]
+        // --8<-- [start:numbers]
         def df = [
             years: (1991..2000),
             population: (1..10).collect { 1000 * it }
         ].toDataFrame("population increase")
-        // end::numbers[]
+        // --8<-- [end:numbers]
 
         when:
-        // tag::greaterThanNumber[]
+        // --8<-- [start:greaterThanNumber]
         def last5Years = df[df['years'] > 1995]
-        // end::greaterThanNumber[]
+        // --8<-- [end:greaterThanNumber]
 
-        // tag::lessThanNumber[]
+        // --8<-- [start:lessThanNumber]
         def yearsWithLessThan = df[df['population'] < 4000]
-        // end::lessThanNumber[]
+        // --8<-- [end:lessThanNumber]
         println(yearsWithLessThan)
 
         then:
@@ -31,28 +31,28 @@ class FilteringSpec extends Specification {
 
     def "filtering: strings"() {
         setup:
-        // tag::string[]
+        // --8<-- [start:string]
         def df = [
             employees: ['Udo', 'John', 'Albert', 'Ronda'],
             department: ['sales', 'it', 'sales', 'it'],
             payroll: [10_000, 12_000, 11_000, 13_000]
         ].toDataFrame("employees")
-        // end::string[]
+        // --8<-- [end:string]
 
         when:
-        // tag::string_equals[]
+        // --8<-- [start:string_equals]
         def salesPeople = df[df['department'] == 'sales']
-        // end::string_equals[]
+        // --8<-- [end:string_equals]
         println(salesPeople)
 
-        // tag::string_in[]
+        // --8<-- [start:string_in]
         def employeesByName = df[df['employees'] in ['Ronda', 'Udo']]
-        // end::string_in[]
+        // --8<-- [end:string_in]
         println(employeesByName)
 
-        // tag::string_regex[]
+        // --8<-- [start:string_regex]
         def employeesWithAnO = df[df['employees'] ==~ /.*o.*/ ]
-        // end::string_regex[]
+        // --8<-- [end:string_regex]
         println(employeesWithAnO)
 
         then:
@@ -62,19 +62,21 @@ class FilteringSpec extends Specification {
 
     def "filtering: by dates"() {
         setup:
-        // tag::dates_df[]
-        def initialDate = LocalDate.parse('01/01/2000', 'dd/MM/yyyy') // <1>
+        // --8<-- [start:dates_df]
+        // Using a given date as the beginning of our df dates series
+        def initialDate = LocalDate.parse('01/01/2000', 'dd/MM/yyyy')
 
-        def df = [ // <2>
+        // a dataframe containing the simulation of bicycles rented through 2000
+        def df = [
             dates: (1..365).collect(initialDate::plusDays),
             rented: (1..365).collect { new Random().nextInt(200) }
         ].toDataFrame("rented bicycles 2000")
-        // end::dates_df[]
+        // --8<-- [end:dates_df]
         println(df)
         when:
-        // tag::dates_after[]
+        // --8<-- [start:dates_after]
         def lastMonth = df[df['dates'] >= LocalDate.parse('01/12/2000', 'dd/MM/yyyy')]
-        // end::dates_after[]
+        // --8<-- [end:dates_after]
         println(lastMonth)
         then:
         lastMonth.size() == 31

@@ -8,16 +8,16 @@ class CreationSpec extends Specification {
 
     def "Underdog.df().empty()"() {
         setup:
-        // tag::empty[]
+        // --8<-- [start:empty]
         DataFrame emptyDataFrame = Underdog.df().empty()
-        // end::empty[]
+        // --8<-- [end:empty]
         expect:
         emptyDataFrame.size() == 0
     }
 
     def "Underdog.df().from(name, map)"() {
         setup:
-        // tag::from_map[]
+        // --8<-- [start:from_map]
         // creating a map
         def map = [
             names: ["John", "Laura", "Ursula"],
@@ -26,7 +26,7 @@ class CreationSpec extends Specification {
 
         // creating a dataframe from the map
         DataFrame map2DataFrame = Underdog.df().from(map, "people-dataframe")
-        // end::from_map[]
+        // --8<-- [end:from_map]
         println map2DataFrame
         expect:
         map2DataFrame.size() == 3
@@ -34,7 +34,7 @@ class CreationSpec extends Specification {
 
     def "map.toDataFrame(name)"() {
         setup:
-        // tag::map_extension[]
+        // --8<-- [start:map_extension]
         // creating a map
         def map = [
             names: ["John", "Laura", "Ursula"],
@@ -43,14 +43,14 @@ class CreationSpec extends Specification {
 
         // creating a dataframe from a map
         DataFrame map2DataFrame = map.toDataFrame("people-dataframe")
-        // end::map_extension[]
+        // --8<-- [end:map_extension]
         expect:
         map2DataFrame.size() == 3
     }
 
     def "Underdog.df().from(colOfMaps, name)"() {
         setup:
-        // tag::collectionsOfMaps[]
+        // --8<-- [start:collectionsOfMaps]
         // creating a list of maps
         def list = [
             [name: "John", age: 22],
@@ -60,7 +60,7 @@ class CreationSpec extends Specification {
 
         // creating a dataframe from the list
         DataFrame colOfMaps2DataFrame = Underdog.df().from(list, "people-dataframe")
-        // end::collectionsOfMaps[]
+        // --8<-- [end:collectionsOfMaps]
         println colOfMaps2DataFrame
         expect:
         colOfMaps2DataFrame.columns == ['name', 'age']
@@ -69,7 +69,7 @@ class CreationSpec extends Specification {
 
     def "colOfMaps.toDataFrame()"() {
         setup:
-        // tag::collectionsOfMaps_extension[]
+        // --8<-- [start:collectionsOfMaps_extension]
         // creating a list of maps
         def list = [
             [name: "John", age: 22],
@@ -79,7 +79,7 @@ class CreationSpec extends Specification {
 
         // creating a dataframe from the list
         DataFrame colOfMaps2DataFrame = list.toDataFrame("people-dataframe")
-        // end::collectionsOfMaps_extension[]
+        // --8<-- [end:collectionsOfMaps_extension]
         println colOfMaps2DataFrame
 
         expect:

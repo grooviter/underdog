@@ -8,9 +8,9 @@ import underdog.Underdog
 class CsvImportExportSpec extends Specification {
     def "import csv"() {
         setup:
-        // tag::simple_read_csv[]
+        // --8<-- [start:simple_read_csv]
         DataFrame dataframe = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
-        // end::simple_read_csv[]
+        // --8<-- [end:simple_read_csv]
         println(dataframe)
 
         expect:
@@ -20,9 +20,9 @@ class CsvImportExportSpec extends Specification {
     def "import csv: custom separator"() {
         setup:
         def filePath = "src/test/resources/data/dataframe/io_custom_separator.csv"
-        // tag::custom_separator[]
+        // --8<-- [start:custom_separator]
         def dataframe = Underdog.df().read_csv(filePath, sep: ";")
-        // end::custom_separator[]
+        // --8<-- [end:custom_separator]
 
         expect:
         dataframe.columns == ['name', 'age']
@@ -32,9 +32,9 @@ class CsvImportExportSpec extends Specification {
     def "import csv: allow repeated cols"() {
         setup:
         def filePath = "src/test/resources/data/dataframe/io_repeated_cols.csv"
-        // tag::allow_repeated_cols[]
+        // --8<-- [start:allow_repeated_cols]
         def dataframe = Underdog.df().read_csv(filePath, allowedDuplicatedNames: true)
-        // end::allow_repeated_cols[]
+        // --8<-- [end:allow_repeated_cols]
         println(dataframe)
         expect:
         dataframe.columns.size() == 8
@@ -44,9 +44,9 @@ class CsvImportExportSpec extends Specification {
     def "import csv: custom missing data"() {
         setup:
         def filePath = "src/test/resources/data/dataframe/io_custom_missing_data.csv"
-        // tag::custom_missing_data[]
+        // --8<-- [start:custom_missing_data]
         def dataframe = Underdog.df().read_csv(filePath, nanValues: ['NONE', 'N/C'])
-        // end::custom_missing_data[]
+        // --8<-- [end:custom_missing_data]
         println(dataframe)
 
         expect:
@@ -57,9 +57,9 @@ class CsvImportExportSpec extends Specification {
     def "import csv: custom date format"() {
         setup:
         def filePath = "src/test/resources/data/dataframe/io_custom_date_format.csv"
-        // tag::custom_date_format[]
+        // --8<-- [start:custom_date_format]
         def dataframe = Underdog.df().read_csv(filePath, dateFormat: "yyyy-MM-dd HH:mm:ss+00:00")
-        // end::custom_date_format[]
+        // --8<-- [end:custom_date_format]
         println(dataframe)
 
         expect:
@@ -69,14 +69,14 @@ class CsvImportExportSpec extends Specification {
     def "import csv: skipping rows"() {
         setup:
         def filePath = "src/test/resources/data/dataframe/io_skipping_rows.csv"
-        // tag::skipping_rows[]
+        // --8<-- [start:skipping_rows]
         def dataframe = Underdog.df()
             .read_csv(filePath,
-                header: false, // <1>
-                skipRows: 8, // <2>
-                skipFooter: 4 // <3>
-            ).renameSeries(columns: ['city', 'id']) // <4>
-        // end::skipping_rows[]
+                header: false,    // not using first row as header
+                skipRows: 8,      // skipping rows at the beginning of the file
+                skipFooter: 4     // skipping rows at the end of the file
+            ).renameSeries(columns: ['city', 'id']) // renaming series names with the list passed as parameter
+        // --8<-- [end:skipping_rows]
         println(dataframe)
         expect:
         dataframe.size() == 2
@@ -85,9 +85,9 @@ class CsvImportExportSpec extends Specification {
     def "import csv: limiting col chars"() {
         when:
         def filePath = "src/test/resources/data/dataframe/io_limiting_chars.csv"
-        // tag::col_char_limit[]
+        // --8<-- [start:col_char_limit]
         def dataframe = Underdog.df().read_csv(filePath, maxCharsPerColumn: 20)
-        // end::col_char_limit[]
+        // --8<-- [end:col_char_limit]
 
         then:
         thrown(TextParsingException)
@@ -96,9 +96,9 @@ class CsvImportExportSpec extends Specification {
     def "import csv: limiting number of cols"() {
         when:
         def filePath = "src/test/resources/data/dataframe/io_limiting_cols.csv"
-        // tag::col_limit[]
+        // --8<-- [start:col_limit]
         def dataframe = Underdog.df().read_csv(filePath, maxNumberOfColumns: 2)
-        // end::col_limit[]
+        // --8<-- [end:col_limit]
         then:
         thrown(TextParsingException)
     }

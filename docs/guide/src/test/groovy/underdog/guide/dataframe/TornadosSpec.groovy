@@ -9,33 +9,33 @@ import java.time.LocalDate
 class TornadosSpec extends Specification {
     def "metadata"() {
         setup:
-        // tag::read_csv[]
+        // --8<-- [start:read_csv]
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
-        // end::read_csv[]
+        // --8<-- [end:read_csv]
 
-        // tag::shape[]
+        // --8<-- [start:shape]
         def (int rows, int cols) = tornadoes.shape()
-        // end::shape[]
+        // --8<-- [end:shape]
 
-        // tag::shape2[]
+        // --8<-- [start:shape2]
         println(tornadoes.shape())
-        // end::shape2[]
+        // --8<-- [end:shape2]
 
-        // tag::first[]
+        // --8<-- [start:first]
         tornadoes.head(3)
-        // end::first[]
+        // --8<-- [end:first]
 
         expect:
-        // tag::columns[]
+        // --8<-- [start:columns]n
         tornadoes.columns
-        // end::columns[]
+        // --8<-- [end:columns]
         rows == 59945
         cols == 11
 
         and:
-        // tag::describe[]
+        // --8<-- [start:describe]
         tornadoes.describe()
-        // end::describe[]
+        // --8<-- [end:describe]
         tornadoes.head(3).size() == 3
     }
 
@@ -43,14 +43,14 @@ class TornadosSpec extends Specification {
         setup:
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
 
-        // tag::schema[]
+        // --8<-- [start:schema]
         // getting tornadoes schema
         def schema = tornadoes.schema()
-        // end::schema[]
+        // --8<-- [end:schema]
 
-        // tag::schema_tune[]
+        // --8<-- [start:schema_tune]
         def customSchema = schema[schema['Column Type'] == 'DOUBLE']
-        // end::schema_tune[]
+        // --8<-- [end:schema_tune]
 
         // getting col names
         def colsOfInterest = customSchema.loc['Column Name'] as String[]
@@ -68,19 +68,19 @@ class TornadosSpec extends Specification {
         setup:
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
 
-        // tag::mapping[]
+        // --8<-- [start:mapping]
         def monthSeries = tornadoes["Date"](LocalDate, String) {
             it.format("MMMM")
         }
-        // end::mapping[]
+        // --8<-- [end:mapping]
 
-        // tag::add_series[]
+        // --8<-- [start:add_series]
         tornadoes['month'] = monthSeries
-        // end::add_series[]
+        // --8<-- [end:add_series]
 
-        // tag::remove_series[]
+        // --8<-- [start:remove_series]
         tornadoes = tornadoes - tornadoes['Date']
-        // end::remove_series[]
+        // --8<-- [end:remove_series]
 
         expect:
         "Date" !in tornadoes.columns
@@ -93,17 +93,17 @@ class TornadosSpec extends Specification {
         when:
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
 
-        // tag::sorting_1[]
+        // --8<-- [start:sorting_1]
         def df1 = tornadoes.sort_values(by: 'Fatalities')
-        // end::sorting_1[]
+        // --8<-- [end:sorting_1]
 
-        // tag::sorting_2[]
+        // --8<-- [start:sorting_2]
         def df2 = tornadoes.sort_values(by: '-Fatalities')
-        // end::sorting_2[]
+        // --8<-- [end:sorting_2]
 
-        // tag::sorting_3[]
+        // --8<-- [start:sorting_3]
         def df3 = tornadoes.sort_values(by: ['Fatalities', 'State'])
-        // end::sorting_3[]
+        // --8<-- [end:sorting_3]
 
         def (state) = tornadoes
             .sort_values(by: [sort_field, 'State'])
@@ -124,18 +124,18 @@ class TornadosSpec extends Specification {
     def "column describe"() {
         when:
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
-        // tag::column_describe[]
+        // --8<-- [start:column_describe]
         def columnStats = tornadoes["Fatalities"].describe()
 
         println(columnStats)
-        // end::column_describe[]
+        // --8<-- [end:column_describe]
         then:
         columnStats
     }
 
     def "filtering"() {
         when:
-        // tag::filtering[]
+        // --8<-- [start:filtering]
 
         // reading tornadoes
         def ts = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
@@ -152,14 +152,14 @@ class TornadosSpec extends Specification {
 
         // selecting only two columns
         def stateAndDate = result['State', 'Date']
-        // end::filtering[]
+        // --8<-- [end:filtering]
         then:
         stateAndDate.columns.size() == 2
     }
 
     def "summarizing"() {
         when:
-        // tag::summarizing[]
+        // --8<-- [start:summarizing]
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
 
         def injuriesByScale = tornadoes
@@ -167,7 +167,7 @@ class TornadosSpec extends Specification {
             .agg(Injuries: "median")
             .by("Scale")
             .sort_values(by: "Scale")
-        // end::summarizing[]
+        // --8<-- [end:summarizing]
 
         then:
         injuriesByScale.name == "Median Injuries by Tornado Scale summary"
@@ -176,18 +176,18 @@ class TornadosSpec extends Specification {
     def "crosstabs"() {
         when:
         def tornadoes = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
-        // tag::crosstabs[]
+        // --8<-- [start:crosstabs]
         def crossTab = tornadoes.xTabCounts(labels: 'State', values: 'Scale')
 
         crossTab.head()
-        // end::crosstabs[]
+        // --8<-- [end:crosstabs]
         then:
         crossTab
     }
 
     def "getting only those tornadoes that occurred in the summer."() {
         when:
-        // tag::summer[]
+        // --8<-- [start:summer]
         def ts = Underdog.df().read_csv("src/test/resources/data/tornadoes_1950-2014.csv")
 
         // adding some series to the dataframe to make filtering easier
@@ -200,9 +200,9 @@ class TornadosSpec extends Specification {
             (ts['month'] in ['July', 'August']) |                // in July or August or...
             (ts['month'] == 'September' & ts['dayOfMonth'] < 22) // before September the 22nd
         ]
-        // end::summer[]
+        // --8<-- [end:summer]
 
-        // tag::summer_lag[]
+        // --8<-- [start:summer_lag]
         // sorting by Date and Time series
         summer = summer.sort_values(by: ['Date', 'Time'])
 
@@ -211,9 +211,9 @@ class TornadosSpec extends Specification {
 
         // creating a series with delta days between lagged dates and summer dates
         summer['Delta'] = summer['Lagged'] - summer['Date']
-        // end::summer_lag[]
+        // --8<-- [end:summer_lag]
 
-        // tag::summary[]
+        // --8<-- [start:summary]
         // creating year series to be able to group by it
         summer['year'] = summer['Date'](Date, String) { it.format("YYYY") }
 
@@ -222,11 +222,11 @@ class TornadosSpec extends Specification {
 
         // print out summary
         println(summary)
-        // end::summary[]
+        // --8<-- [end:summary]
 
-        // tag::mean_of_series[]
+        // --8<-- [start:mean_of_series]
         def meanOfSeries = summary.iloc[__, 1].mean()
-        // end::mean_of_series[]
+        // --8<-- [end:mean_of_series]
 
         then: "getting the mean of the second column"
         (1.82..1.83).containsWithinBounds(meanOfSeries)

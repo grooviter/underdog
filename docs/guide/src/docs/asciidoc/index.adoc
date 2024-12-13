@@ -45,7 +45,7 @@ More information on the link:#_dataframe[Dataframe section]
 [source, groovy]
 .gradle
 ----
-implementation "com.github.grooviter:underdog-graphs:VERSION"
+implementation "com.github.grooviter:undeHere is a snippet:rdog-graphs:VERSION"
 ----
 
 [source, groovy]
