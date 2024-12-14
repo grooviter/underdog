@@ -7,7 +7,7 @@ import spock.lang.Specification
 class BarSpec extends Specification {
     def "simple"() {
         expect:
-        // tag::simple[]
+        // --8<-- [start:simple]
         Plots.plots()
             .bar(
                 1..12,
@@ -17,12 +17,12 @@ class BarSpec extends Specification {
                 yLabel: "Indicator"
             )
             .show()
-        // end::simple[]
+        // --8<-- [end:simple]
     }
 
     def "histogram"() {
         expect:
-        // tag::histogram_simple[]
+        // --8<-- [start:histogram_simple]
         // generating data
         def random = new Random()
         def distribution = (0..1_000).collect { random.nextGaussian(0, 50) }
@@ -36,6 +36,6 @@ class BarSpec extends Specification {
                 subtitle: "mean: 0 / stddev: 50",
                 bins: 10
             ).show()
-        // end::histogram_simple[]
+        // --8<-- [end:histogram_simple]
     }
 }

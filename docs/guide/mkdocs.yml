@@ -46,7 +46,11 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: ../guide
       dedent_subsections: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - attr_list
   - md_in_html
   - pymdownx.blocks.caption

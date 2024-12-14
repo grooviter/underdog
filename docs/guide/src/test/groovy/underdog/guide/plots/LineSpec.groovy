@@ -9,26 +9,31 @@ class LineSpec extends Specification {
 
     def "simple line"() {
         expect:
-        // tag::simple[]
+        // --8<-- [start:simple]
         Plots.plots()
             .line(
-                2000..2010, // <1>
-                [10, 15, 18, 3, 5, 9, 10, 11, 12, 10], // <2>
-                title: "Wins of Team A", // <3>
+                // You can use a **range or a list** for X axis
+                2000..2010,
+                // You can use a **range or a list** for the Y axis
+                [10, 15, 18, 3, 5, 9, 10, 11, 12, 10],
+                // Optional attributes
+                title: "Wins of Team A",
                 subtitle: "Between years 2000 - 2010",
                 xLabel: "Years",
                 yLabel: "Wins"
             ).show()
-        // end::simple[]
+        // --8<-- [end:simple]
     }
 
     def "n-lines"() {
         expect:
-        // tag::n_lines[]
+        // --8<-- [start:n_lines]
         Map<String, List<Number>> data = [
-            A: [[2000, 13],[2001, 5], [2002, 7], [2003, 10], [2004,6]], // <1>
+            // A list of lists of 2 elements [[x1, y1], [x2, y2],..., [xn, yn]]
+            A: [[2000, 13],[2001, 5], [2002, 7], [2003, 10], [2004,6]],
             B: [[2000, 5], [2001, 6], [2002, 7], [2003, 8], [2004, 9]],
-            C: [2000..2004, 3..7].transpose() // <2>
+            // Using [listX, listY]transpose()` == [[x1, y1], [x2, y2],..., [xn, yn]]
+            C: [2000..2004, 3..7].transpose()
         ]
 
         Plots.plots()
@@ -39,7 +44,7 @@ class LineSpec extends Specification {
                 xLabel: "Years",
                 yLabel: "Wins"
             ).show()
-        // end::n_lines[]
+        // --8<-- [end:n_lines]
     }
 
     def "line with series"() {
@@ -49,7 +54,7 @@ class LineSpec extends Specification {
             .file
 
         and:
-        // tag::line_from_series[]
+        // --8<-- [start:line_from_series]
 
         // load data
         def df = Underdog.df().read_csv(baseballPath)
@@ -63,10 +68,12 @@ class LineSpec extends Specification {
         // show
         Plots.plots()
             .line(
-                df['year'], // <1>
-                df['Sum [W]'].rename('Wins X Years'), // <2>
+                // using `year` series for X axis
+                df['year'],
+                // renaming series to `Wins X Years` and using it for Y axis
+                df['Sum [W]'].rename('Wins X Years'),
                 title: "Wins of 'BOS' team over time").show()
-        // end::line_from_series[]
+        // --8<-- [end:line_from_series]
         then:
         df
     }
@@ -100,7 +107,7 @@ class LineSpec extends Specification {
                 CIN: df[df['Team'] == 'CIN']['W'],
         "dataset")
 
-        // tag::customize[]
+        // --8<-- [start:customize]
         Plots.plots()
             .lines(
                 dataFrame,
@@ -109,16 +116,18 @@ class LineSpec extends Specification {
                 xLabel: "Years",
                 yLabel: "Wins"
             ).customize {
-                legend { // <1>
+                // Adding legend in the top right corner
+                legend {
                     top("10%")
                     right('15%')
                     show(true)
                 }
-                tooltip { // <2>
+                // Adding tooltip of type `axis`
+                tooltip {
                     trigger('axis')
                 }
             }.show()
-        // end::customize[]
+        // --8<-- [end:customize]
         then:
         df
     }

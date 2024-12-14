@@ -6,21 +6,23 @@ import spock.lang.Specification
 class ScatterSpec extends Specification {
     def "simple"() {
         expect:
-        // tag::simple[]
+        // --8<-- [start:simple]
         // numbers from 0 to 99
-        def xs = 0..<100 // <1>
+        // You can use a "range or a list" for X axis
+        def xs = 0..<100
 
         // 100 random numbers
-        def ys = (0..<100).collect { new Random().nextInt(100) } // <2>
+        // You can use a "range or a list" for the Y axis
+        def ys = (0..<100).collect { new Random().nextInt(100) }
 
         // plot
         Plots.plots()
             .scatter(
                 xs,
                 ys,
-                title: "Random Numbers") // <3>
+                title: "Random Numbers") // Optional attributes
             .show()
-        // end::simple[]
+        // --8<-- [end:simple]
     }
 
     def "simple series"() {
@@ -30,13 +32,15 @@ class ScatterSpec extends Specification {
             ys: (0..<100).collect { new Random().nextInt(100) }
         ].toDF("numbers")
         expect:
-        // tag::simple_series[]
+        // --8<-- [start:simple_series]
         Plots.plots()
                 .scatter(
-                    df['xs'].rename('X'), // <1>
-                    df['ys'].rename('Y'), // <2>
+                    // using a series for x axis and renaming it to X
+                    df['xs'].rename('X'),
+                    // using another series for y axis and renaming it to Y
+                    df['ys'].rename('Y'),
                     title: "Random Numbers")
                 .show()
-        // end::simple_series[]
+        // --8<-- [end:simple_series]
     }
 }

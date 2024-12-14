@@ -6,14 +6,14 @@ import underdog.Underdog
 class RadarSpec extends Specification {
     def "radar: simple"() {
         expect:
-        // tag::simple[]
+        // --8<-- [start:simple]
         Underdog
             .plots()
             .radar(
-                ["power", "consumption", "price"], // <1>
-                [200, 10, 100000],                 // <2>
-                [150, 5, 54_350]                   // <3>
+                ["power", "consumption", "price"], // Name of the categories
+                [200, 10, 100000],                 // Maximum values for each category
+                [150, 5, 54_350]                   // Actual value for each category
             ).show()
-        // end::simple[]
+        // --8<-- [end:simple]
     }
 }

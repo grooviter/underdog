@@ -21,26 +21,29 @@ import java.time.LocalDate
 class GettingStartedSpec extends Specification {
     def "getting started"() {
         setup:
-        // tag::loading_data[]
-        def filePath = "src/test/resources/data/ta/stock_quotes_10_years.csv" // <1>
-        def dateFormat = "yyyy-MM-dd HH:mm:ss+00:00" // <2>
+        // --8<-- [start:loading_data]
+        // The file path where the csv file can be found
+        def filePath = "src/test/resources/data/ta/stock_quotes_10_years.csv"
+
+        // The format of the dates included in the file
+        def dateFormat = "yyyy-MM-dd HH:mm:ss+00:00"
 
         def quotes = Underdog.df().read_csv(filePath, dateFormat: dateFormat)
-        // end::loading_data[]
+        // --8<-- [end:loading_data]
         println(quotes)
 
-        // tag::renaming_cols[]
+        // --8<-- [start:renaming_cols]
         quotes = quotes
-            .drop("Adj Close") // <1>
-            .renameSeries(fn: String::toUpperCase) // <2>
-        // end::renaming_cols[]
+            .drop("Adj Close") // Removing the "Adj Close" series
+            .renameSeries(fn: String::toUpperCase) // Renaming all remaining columns to upper case to match
+        // --8<-- [end:renaming_cols]
 
-        // tag::convert_to_bar_series[]
+        // --8<-- [start:convert_to_bar_series]
         def quotesBarSeries = quotes.toBarSeries()
-        // end::convert_to_bar_series[]
+        // --8<-- [end:convert_to_bar_series]
 
 
-        // tag::building_indicators[]
+        // --8<-- [start:building_indicators]
         // Using the close price indicator as root indicator...
         def closePrice = quotesBarSeries.closePriceIndicator
         // Getting the simple moving average (SMA) of the close price over the last 5 bars
@@ -51,9 +54,9 @@ class GettingStartedSpec extends Specification {
 
         // Getting a longer SMA (e.g. over the 30 last bars)
         SMAIndicator longSma = closePrice.sma(30)
-        // end::building_indicators[]
+        // --8<-- [end:building_indicators]
 
-        // tag::strategy_base[]
+        // --8<-- [start:strategy_base]
         // Buying rules
         // We want to buy:
         //  - if the 5-bars SMA crosses over 30-bars SMA
@@ -72,29 +75,29 @@ class GettingStartedSpec extends Specification {
 
         // Create the strategy
         Strategy strategy = new BaseStrategy(buyingRule, sellingRule)
-        // end::strategy_base[]
+        // --8<-- [end:strategy_base]
 
-        // tag::strategy_or[]
+        // --8<-- [start:strategy_or]
         buyingRule = shortSma.xUp(longSma)
             | closePrice.xDown(120)
 
         sellingRule = shortSma.xDown(longSma)
             | closePrice.stopLoss(3)
             | closePrice.stopGain(2)
-        // end::strategy_or[]
+        // --8<-- [end:strategy_or]
 
-        // tag::backtesting_base[]
+        // --8<-- [start:backtesting_base]
         // Running our juicy trading strategy...
         BarSeriesManager seriesManager = new BarSeriesManager(quotesBarSeries)
         TradingRecord tradingRecord = seriesManager.run(strategy)
         println("Number of positions (trades) for our strategy: " + tradingRecord.getPositionCount())
-        // end::backtesting_base[]
+        // --8<-- [end:backtesting_base]
 
-        // tag::backtesting_extension[]
+        // --8<-- [start:backtesting_extension]
         tradingRecord = quotesBarSeries.run(buyingRule, sellingRule)
-        // end::backtesting_extension[]
+        // --8<-- [end:backtesting_extension]
 
-        // tag::show_trades[]
+        // --8<-- [start:show_trades]
         // getting only stocks from 2024-04-01
         quotes = quotes[quotes['DATE'] >= LocalDate.parse('2024-04-01')]
 
@@ -103,7 +106,7 @@ class GettingStartedSpec extends Specification {
         def ys = quotes['CLOSE']
 
         // building a line plot
-        def plot = Plots.plots()
+        def plot = Underdog.plots()
             .line(
                 xs.rename("Dates"),
                 ys.rename("Closing Price"),
@@ -120,9 +123,9 @@ class GettingStartedSpec extends Specification {
 
         // showing the plot
         plot.show()
-        // end::show_trades[]
+        // --8<-- [end:show_trades]
 
-        // tag::show_positions[]
+        // --8<-- [start:show_positions]
         // creating a function to map every position to a map containing date and profit
         def positionToDataFrameEntry = { Position pos ->
             return [
@@ -151,7 +154,7 @@ class GettingStartedSpec extends Specification {
         def maxDate = wins['date'].max(LocalDate).format("dd/MM/yyyy")
 
         // building the plot
-        def piePlot = Plots
+        def piePlot = Underdog
             .plots()
             .pie(
                 byMonth['name'].toList(),
@@ -162,9 +165,9 @@ class GettingStartedSpec extends Specification {
 
         // showing the plot
         piePlot.show()
-        // end::show_positions[]
+        // --8<-- [end:show_positions]
 
-        // tag::analysis_base[]
+        // --8<-- [start:analysis_base]
         // Getting the winning positions ratio
         AnalysisCriterion winningPositionsRatio = new PositionsRatioCriterion(AnalysisCriterion.PositionFilter.PROFIT)
         double winningPositionRatioValue = winningPositionsRatio.calculate(quotesBarSeries, tradingRecord).doubleValue()
@@ -179,10 +182,10 @@ class GettingStartedSpec extends Specification {
         AnalysisCriterion vsBuyAndHold = new VersusEnterAndHoldCriterion(new ReturnCriterion())
         double vsBuyAndHoldValue = vsBuyAndHold.calculate(quotesBarSeries, tradingRecord).doubleValue()
         println("Our return vs buy-and-hold return: " + vsBuyAndHoldValue)
-        // end::analysis_base[]
+        // --8<-- [end:analysis_base]
 
-        // tag::analysis_radar[]
-        Plots.plots()
+        // --8<-- [start:analysis_radar]
+        Underdog.plots()
             .radar(
                 // names of metrics
                 ['winning ratio', 'return over drawdown', 'return vs buy-and-hold'],
@@ -193,7 +196,7 @@ class GettingStartedSpec extends Specification {
                 title: "Metrics comparison",
                 subtitle: "Winning Ratio / Risk Reward Ratio / Return vs Buy-And-Hold"
             ).show()
-        // end::analysis_radar[]
+        // --8<-- [end:analysis_radar]
 
         expect:
         (0.53..0.55).containsWithinBounds(winningPositionRatioValue)

@@ -6,20 +6,22 @@ import underdog.Underdog
 class PieSpec extends Specification {
     def "pie: simple"() {
         expect:
-        // tag::simple[]
+        // --8<-- [start:simple]
         Underdog
             .plots()
             .pie(
-                ('A'..'D'), // <1>
-                [9,5,6,4]   // <2>
+
+                ('A'..'D'), // slice labels
+                [9,5,6,4]   // slice values
             ).show()
-        // end::simple[]
+        // --8<-- [end:simple]
     }
 
     def "pie: color mapping"() {
         expect:
-        // tag::color_mapping[]
-        def COLORS = [ // <1>
+        // --8<-- [start:color_mapping]
+        // Colors matching the labels
+        def COLORS = [
             "Red Bull": "#101864",
             "Ferrari": "#b03641",
             "Mclaren": "#d26f30",
@@ -28,18 +30,21 @@ class PieSpec extends Specification {
 
         Underdog.plots()
             .pie(
-                ["Red Bull", "Ferrari", "Mclaren", "Mercedes"], // <2>
-                [9,5,6,4], // <3>
-                colorMap: COLORS, // <4>
+                // Labels
+                ["Red Bull", "Ferrari", "Mclaren", "Mercedes"],
+                // Values
+                [9,5,6,4],
+                // Passing color mappings
+                colorMap: COLORS,
                 title: "Top 4 Teams F1(tm) 2024 season",
                 subtitle: "Total number of driver victories per team"
             ).show()
-        // end::color_mapping[]
+        // --8<-- [end:color_mapping]
     }
 
     def "pie: dataframe"() {
         expect:
-        // tag::dataframe[]
+        // --8<-- [start:dataframe]
         // source map
         def df = [
             names: ('A'..'D'),
@@ -49,12 +54,12 @@ class PieSpec extends Specification {
 
         // passing dataframe to pie plot and show it
         Underdog.plots().pie(df).show()
-        // end::dataframe[]
+        // --8<-- [end:dataframe]
     }
 
     def "pie: series"() {
         expect:
-        // tag::series[]
+        // --8<-- [start:series]
         // given a dataframe
         def df = [
                 A: ('D'..'G'),
@@ -66,11 +71,14 @@ class PieSpec extends Specification {
         Underdog
             .plots()
             .pie(
-                df['A'].rename("names"),  // <1>
-                df['B'].rename("values"), // <2>
-                df['C'].rename("colors")  // <3>
+                // using series "A" and renaming it to "names"
+                df['A'].rename("names"),
+                // using series "B" and renaming it to "values"
+                df['B'].rename("values"),
+                // using series "C" and renaming it to "colors"
+                df['C'].rename("colors")
             )
             .show()
-        // end::series[]
+        // --8<-- [end:series]
     }
 }

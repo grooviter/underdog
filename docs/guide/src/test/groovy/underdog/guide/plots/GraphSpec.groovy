@@ -8,7 +8,7 @@ import spock.lang.Specification
 class GraphSpec extends Specification {
     def "create simple"() {
         expect:
-        // tag::simple[]
+        // --8<-- [start:simple]
         // create instance of Graph
         def friends = Graphs.graph(String) {
             edge('Robert', 'Thelma', relation: 'friend')
@@ -17,7 +17,7 @@ class GraphSpec extends Specification {
 
         // show plot
         Plots.plots().graph(friends).show()
-        // end::simple[]
+        // --8<-- [end:simple]
     }
 
     def "directed graph"() {
@@ -32,31 +32,31 @@ class GraphSpec extends Specification {
 
     def "directed graph"() {
         expect:
-        // tag::directed[]
+        // --8<-- [start:directed]
         def friends = Graphs.digraph(String) {
             edge('Robert', 'Thelma', relation: 'friend')
             edge('Robert', 'Troy', relation: 'friend')
         }
 
         Plots.plots().graph(friends).show()
-        // end::directed[]
+        // --8<-- [end:directed]
     }
 
     def "show edge labels"() {
         expect:
-        // tag::show_labels[]
+        // --8<-- [start:show_labels]
         def friends = Graphs.digraph(String) {
             edge('Robert', 'Thelma', relation: 'friend')
             edge('Robert', 'Troy', relation: 'friend')
         }
 
         Plots.plots().graph(friends, showEdgeLabel: true).show()
-        // end::show_labels[]
+        // --8<-- [end:show_labels]
     }
 
     def "show graph path"() {
         expect:
-        // tag::graph_path[]
+        // --8<-- [start:graph_path]
         def friends = Graphs.digraph(String) {
             edge('Robert', 'Thelma', relation: 'friend')
             edge('Robert', 'Troy', relation: 'friend')
@@ -68,12 +68,12 @@ class GraphSpec extends Specification {
             friends,
             paths: [friendship],
             showEdgeLabel: true).show()
-        // end::graph_path[]
+        // --8<-- [end:graph_path]
     }
 
     def "using Graph domain classes"() {
         expect:
-        // tag::graph_domain[]
+        // --8<-- [start:graph_domain]
         List<Graph.Node> nodes = [
             new Graph.Node(id: "robert", name: "Robert", symbolSize: 75),
             new Graph.Node(id: "thelma", name: "Thelma", symbolSize: 40),
@@ -99,12 +99,12 @@ class GraphSpec extends Specification {
             nodes,
             edges,
             showEdgeLabel: true).show()
-        // end::graph_domain[]
+        // --8<-- [end:graph_domain]
     }
 
     def "customizing Graph"() {
         expect:
-        // tag::customize[]
+        // --8<-- [start:customize]
         def friends = Graphs.digraph(String) {
             edge('Robert', 'Thelma', relation: 'friend')
             edge('Robert', 'Troy', relation: 'friend')
@@ -120,6 +120,6 @@ class GraphSpec extends Specification {
                     left("right")
                 }
             }.show()
-        // end::customize[]
+        // --8<-- [end:customize]
     }
 }
