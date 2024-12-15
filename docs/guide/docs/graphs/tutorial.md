@@ -1,5 +1,31 @@
 ## Tutorial
 
+### Prerequisites
+
+#### Dependencies
+
+The modules required to follow this tutorial are the `graphs` and `plots` modules:
+
+```groovy title="gradle"
+implementation 'com.github.grooviter:underdog-graphs:VERSION'
+implementation 'com.github.grooviter:underdog-plots:VERSION'
+```
+
+or if you're using Maven:
+
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-graphs</artifactId>
+    <version>VERSION</version>
+</dependency>
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-plots</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
 ### Creating a graph
 
 Creating an empty graph without vertices and edges:
@@ -10,11 +36,15 @@ Creating an empty graph without vertices and edges:
 --8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:create"
 ```
 
+The `graph(Class)` informs what is the type of the vertices this graph is going to have. This time vertices in this
+graph will be of type `String` but vertices could be potentially of any type.
+
 ### Vertices / Nodes
 
 Lets create a graph with two nodes without any edge between them:
 
-![adding vertices](images/tutorial_adding_vertices.png)
+![adding vertices](images/tutorial_adding_vertices.png#only-light){ width="40%" }
+![adding vertices](images/tutorial_adding_vertices_dark.png#only-dark){ width="40%" }
 
 There are a couple of ways of adding more vertices to a graph. One is when creating the graph:
 
@@ -28,7 +58,7 @@ You can also add more vertices after the graph has been created:
 --8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:add_vertices_after_creation"
 ```
 
-You can add simple type vertices but you can also add more complex objects. Imagine we can add the relationships between employees in a given company. First lets define the `Employee` class:
+You can add simple type vertices, but you can also add more complex objects. Imagine we can add the relationships between employees in a given company. First lets define the `Employee` class:
 
 ```groovy title="Employee"
 --8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:employee"
@@ -44,7 +74,8 @@ Now we can create a Graph and add relationships between employees:
 
 Graphs normally are not very useful without setting edges between nodes. Lets add an edge between two nodes:
 
-![adding vertices](images/tutorial_adding_edges.png)
+![adding edges](images/tutorial_adding_edges.png#only-light){ width="40%" }
+![adding edges](images/tutorial_adding_edges_dark.png#only-dark){ width="40%" }
 
 We can add vertices at creation time:
 
@@ -52,21 +83,28 @@ We can add vertices at creation time:
 --8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:adding_edges_at_creation"
 ```
 
-You can also add several edges at once using `edges(...)`
+You can omit adding vertices before adding edges if all vertices are going to be included in `edge(...)` method calls. The following example produces the same graph as the previous one:
 
-![adding vertices](images/tutorial_adding_edges_II.png)
-
-```groovy title="adding several edges"
---8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:adding_several_at_once"
+```groovy title="avoid using vertex(...)"
+--8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:adding_edges_no_need_for_vertices"
 ```
 
-But it is also possible to add edges after the graph has been created:
+It's also possible to add edges after the graph has been created:
 
 ```groovy title="Adding edges after creation time"
 --8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:adding_edges_after_creation"
 ```
 
-We can at any point ask about how many vertices and edges there are in the graph:
+You can also **add several edges at once** using `edges(...)`
+
+![adding edges](images/tutorial_adding_edges_II.png#only-light){ width="40%" }
+![adding edges](images/tutorial_adding_edges_II_dark.png#only-dark){ width="40%" }
+
+```groovy title="adding several edges"
+--8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:adding_several_at_once"
+```
+
+We can at any point ask about **how many vertices and edges there are** in the graph:
 
 ```groovy title="shape"
 --8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:shape"
@@ -115,11 +153,14 @@ You can create different types of graphs. There are a couple of methods you can 
 --8<-- "src/test/groovy/underdog/guide/graphs/TutorialSpec.groovy:graph_types"
 ```
 
-NOTE: Because graphs in underdog are using JGraphT underneath you can always create an instance of any type of graph directly using JGraphT api.
+!!! tip
+
+    Because graphs in underdog are using [JGraphT](https://github.com/jgrapht/jgrapht) underneath you can always create an instance of any type of graph 
+    directly using JGraphT api.
 
 ### What to use as vertices
 
-You can use almost anything as a vertex. The only mandatory condition is that the graph must be able to distinguish between vertices. For that your vertex should implement both equals and hashcode methods. In Groovy you can use the `@Canonical` annotation to get that.
+You can use almost anything as a vertex. The only mandatory condition is that **the graph must be able to distinguish between vertices**. For that your vertex should implement both equals and hashcode methods. In Groovy you can use the `@Canonical` annotation to get that.
 
 ### Analyzing graphs
 

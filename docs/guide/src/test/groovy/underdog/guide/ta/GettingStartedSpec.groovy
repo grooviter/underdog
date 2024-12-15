@@ -124,6 +124,7 @@ class GettingStartedSpec extends Specification {
         // showing the plot
         plot.show()
         // --8<-- [end:show_trades]
+        Plots.show(plot, theme: "dark")
 
         // --8<-- [start:show_positions]
         // creating a function to map every position to a map containing date and profit
@@ -166,6 +167,7 @@ class GettingStartedSpec extends Specification {
         // showing the plot
         piePlot.show()
         // --8<-- [end:show_positions]
+        Plots.show(piePlot, theme: "dark")
 
         // --8<-- [start:analysis_base]
         // Getting the winning positions ratio
@@ -185,7 +187,7 @@ class GettingStartedSpec extends Specification {
         // --8<-- [end:analysis_base]
 
         // --8<-- [start:analysis_radar]
-        Underdog.plots()
+        def winningRatioPlot = Underdog.plots()
             .radar(
                 // names of metrics
                 ['winning ratio', 'return over drawdown', 'return vs buy-and-hold'],
@@ -195,8 +197,10 @@ class GettingStartedSpec extends Specification {
                 [winningPositionRatioValue, nomadValue, vsBuyAndHoldValue],
                 title: "Metrics comparison",
                 subtitle: "Winning Ratio / Risk Reward Ratio / Return vs Buy-And-Hold"
-            ).show()
+            )
+        winningRatioPlot.show()
         // --8<-- [end:analysis_radar]
+        Plots.show(winningRatioPlot, theme: "dark")
 
         expect:
         (0.53..0.55).containsWithinBounds(winningPositionRatioValue)

@@ -5,6 +5,7 @@ package underdog.guide.ml
 import underdog.Underdog
 // end::getting_started_simple_import[]
 import spock.lang.Specification
+import underdog.plots.Plots
 
 class GettingStartedSpec extends Specification {
     def "initial example"() {
@@ -34,7 +35,7 @@ class GettingStartedSpec extends Specification {
 
         // end::getting_started_simple[]
 
-        Underdog.plots()
+        def plot = Underdog.plots()
             .scatter(
                 predictedWins.toList(),
                 yTest.toList(),
@@ -42,7 +43,10 @@ class GettingStartedSpec extends Specification {
                 yLabel: 'Wins',
                 title: "Run difference vs Wins",
                 subtitle: "Correlation between Wins and Run difference"
-            ).show()
+            )
+
+        plot.show()
+        Plots.show(plot, theme: "dark")
 
         then:
         (0.87..0.89).containsWithinBounds(Underdog.ml().metrics.r2Score(yTest, predictedWins))

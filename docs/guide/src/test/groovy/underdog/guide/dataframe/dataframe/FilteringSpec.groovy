@@ -81,4 +81,25 @@ class FilteringSpec extends Specification {
         then:
         lastMonth.size() == 31
     }
+
+    def "combine or and and"() {
+        setup:
+        def df = [
+            years: (1991..2000),
+            population: (1..10).collect { 1000 * it }
+        ].toDataFrame("population increase")
+
+        when:
+        // --8<-- [start:combine_and]
+        def result1 = df[df['years'] > 1995 & df['population'] <= 8000]
+        // --8<-- [end:combine_and]
+
+        // --8<-- [start:combine_or]
+        def result2 = df[df['years'] <= 1998 | df['population'] > 9000]
+        // --8<-- [end:combine_or]
+
+        then:
+        result1
+        result2
+    }
 }

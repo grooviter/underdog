@@ -10,7 +10,7 @@ class LineSpec extends Specification {
     def "simple line"() {
         expect:
         // --8<-- [start:simple]
-        Plots.plots()
+        def line = Plots.plots()
             .line(
                 // You can use a **range or a list** for X axis
                 2000..2010,
@@ -21,8 +21,11 @@ class LineSpec extends Specification {
                 subtitle: "Between years 2000 - 2010",
                 xLabel: "Years",
                 yLabel: "Wins"
-            ).show()
+            )
+
+        line.show()
         // --8<-- [end:simple]
+        Plots.show(line, theme: "dark")
     }
 
     def "n-lines"() {
@@ -36,15 +39,18 @@ class LineSpec extends Specification {
             C: [2000..2004, 3..7].transpose()
         ]
 
-        Plots.plots()
+        def plot = Underdog.plots()
             .lines(
                 data,
                 title: "Progress of Teams A, B, C",
                 subtitle: "Between years 2000 - 2010",
                 xLabel: "Years",
                 yLabel: "Wins"
-            ).show()
+            )
+
+        plot.show()
         // --8<-- [end:n_lines]
+        Plots.show(plot, theme: "dark")
     }
 
     def "line with series"() {
@@ -66,14 +72,17 @@ class LineSpec extends Specification {
             .sort_values(by: 'year')
 
         // show
-        Plots.plots()
+        def plot = Underdog.plots()
             .line(
                 // using `year` series for X axis
                 df['year'],
                 // renaming series to `Wins X Years` and using it for Y axis
                 df['Sum [W]'].rename('Wins X Years'),
-                title: "Wins of 'BOS' team over time").show()
+                title: "Wins of 'BOS' team over time")
+
+        plot.show()
         // --8<-- [end:line_from_series]
+        Plots.show(plot, theme: "dark")
         then:
         df
     }
@@ -108,7 +117,7 @@ class LineSpec extends Specification {
         "dataset")
 
         // --8<-- [start:customize]
-        Plots.plots()
+        def plot = Underdog.plots()
             .lines(
                 dataFrame,
                 title: "Team comparison (BOS, ATL, CIN)",
@@ -126,8 +135,11 @@ class LineSpec extends Specification {
                 tooltip {
                     trigger('axis')
                 }
-            }.show()
+            }
+
+        plot.show()
         // --8<-- [end:customize]
+        Plots.show(plot, theme: "dark")
         then:
         df
     }

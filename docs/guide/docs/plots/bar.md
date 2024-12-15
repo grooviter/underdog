@@ -6,7 +6,8 @@
 --8<-- "src/test/groovy/underdog/guide/plots/BarSpec.groovy:simple"
 ```
 
-![](images/bar_simple.png){ width="60%" }
+![](images/bar_simple.png#only-light){ width="60%" }
+![](images/bar_simple_dark.png#only-dark){ width="60%" }
 
 ### Histogram
 
@@ -14,4 +15,5 @@
 --8<-- "src/test/groovy/underdog/guide/plots/BarSpec.groovy:histogram_simple"
 ```
 
-![](images/histogram_simple.png){ width="60%" }
+![](images/histogram_simple.png#only-light){ width="60%" }
+![](images/histogram_simple_dark.png#only-dark){ width="60%" }

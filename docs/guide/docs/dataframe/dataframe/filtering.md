@@ -4,7 +4,7 @@ In a dataframe you can filter data by any of the Series the dataframe has.
 
 #### Numbers
 
-The following dataframe builds a theoretical increase of population in ten years:
+The following example creates a hypothetical population progression in ten years:
 
 ```groovy title="numbers"
 --8<-- "src/test/groovy/underdog/guide/dataframe/dataframe/FilteringSpec.groovy:numbers"
@@ -166,6 +166,19 @@ What if we'd like to get only those records of december 2000 ?
 2000-12-10  |     158  |
        ...  |     ...  |
 2000-12-31  |     150  |
+```
+#### & and |
+
+You can combine any predicate with the operators `&` and `|`. For example, lets filter by all years after 1995 **AND** entries with population less or equals 8000:
+
+```groovy title="AND"
+--8<-- "src/test/groovy/underdog/guide/dataframe/dataframe/FilteringSpec.groovy:combine_and"
+```
+
+Now filter by years less or equals to 1995 **OR** entries with population greater than 9000.
+
+```groovy title="OR"
+--8<-- "src/test/groovy/underdog/guide/dataframe/dataframe/FilteringSpec.groovy:combine_or"
 ```
 
 #### Summary

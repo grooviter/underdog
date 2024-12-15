@@ -18,4 +18,4 @@ Sometimes you may want to analyze a given Series object by using statistical met
 --8<-- "src/test/groovy/underdog/guide/dataframe/series/IntroSpec.groovy:statistics"
 ```
 
-You can find all statistical available methods in the `SeriesStatsExtensions` class.
+You can find all statistical available methods in the `underdog.impl.extensions.SeriesStatsExtensions` class.

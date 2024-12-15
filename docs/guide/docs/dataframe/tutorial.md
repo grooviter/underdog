@@ -1,19 +1,48 @@
 ## Tutorial
 
+### Prerequisites
+
+#### Dependencies
+
+To be able to follow the tutorial you need the `underdog-dataframe` module. If you're using Gradle in your project:
+
+```groovy title="gradle"
+implementation "com.github.grooviter:underdog-dataframe:VERSION"
+```
+
+Or Maven:
+
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-dataframe</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+Or if you're using a Groovy script:
+
+```groovy title="Grape"
+@Grab("com.github.grooviter:underdog-dataframe:VERSION")
+```
+
+#### Data
+
+The data we are using in the tutorial is 
+
 ### Loading data
 
-Here we read a csv file of tornado data. Underdog infers the column types by sampling the data.
+First of all we need to load the csv file with the data. Underdog infers the column types by sampling the data.
 
 ```groovy title="reading"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:read_csv"
 ```
 
-Note the file is addressed relative to the current working directory. You may have to change it for your code.
+Note the file, in this case, is addressed relative to the current working directory. In this case it must point to the csv file path whether it is a relative path of an absolute path.
 
 ### Metadata
 
 Often, the best way to start is to print the column names for reference:
-
 
 ```groovy title="list dataframe column names"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:columns"
@@ -60,13 +89,13 @@ structure() shows the index, name and type of each column
     10  |        Width  |      INTEGER  |
 ```
 
-Like many Tablesaw methods, structure() returns a table. You can then produce a string representation for display. For convenience, calling toString() on a table invokes print(), which produces a string representation of the table table. To display the table then, you can simply call.
+Like many DataFrame methods, schema() returns another DataFrame. You can then produce a string representation for display. To display the DataFrame then, you can simply call.
 
 ```groovy 
-println(tornadoes)
+println tornadoes
 ```
 
-You can also perform other table operations on it. For example, the code below removes all columns whose type isn’t DOUBLE:
+You can also perform other DataFrame operations on the schema. For example, the code below removes all columns whose type isn’t `DOUBLE`:
 
 ```groovy title="using schema to change dataframe structure"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:schema_tune"
@@ -81,11 +110,11 @@ You can also perform other table operations on it. For example, the code below r
      9  |       Length  |       DOUBLE  |
 ```
 
-Of course, that also returned a table. We’ll cover selecting rows in more detail later.
+Of course, that also returned another DataFrame. We’ll cover selecting rows in more detail later.
 
 ### Previewing
 
-The first(n) method returns a new table containing the first n rows.
+The first(n) method returns a new DataFrame containing the first n rows.
 
 ```groovy title="getting first 3 lines"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:first"
@@ -102,14 +131,14 @@ The first(n) method returns a new table containing the first n rows.
 
 ### Transforming
 
-Mapping operations take one or more columns as inputs and produce a new column as output. We can map arbitrary expressions onto the table, but many common operations are built in. You can, for example, calculate the difference in days, weeks, or years between the values in two date columns. The method below extracts the Month name from the date column into a new column.
+Mapping operations take one or more series (columns) as inputs and produce a new column as output. The method below extracts the Month name from the date column into a new column.
 
 
 ```groovy title="creating a new series to dataframe"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:mapping"
 ```
 
-Now that you have a new column, you can add it to the table:
+Now that you have a new column, you can add it to the DataFrame:
 
 ```groovy title="adding month series to tornadoes dataframe"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:add_series"
@@ -117,7 +146,7 @@ Now that you have a new column, you can add it to the table:
 
 Of course nothing prevents you from doing everything altogether.
 
-You can remove columns from tables to save memory or reduce clutter:
+You can remove columns from DataFrames to save memory or reduce clutter:
 
 ```groovy title="remove series from dataframe"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:remove_series"
@@ -125,7 +154,7 @@ You can remove columns from tables to save memory or reduce clutter:
 
 ### Sorting
 
-Now lets sort the table in reverse order by the id column. The negative sign before the name indicates a descending sort.
+Now lets sort the DataFrame in reverse order by the id column. The negative sign before the name indicates a descending sort.
 
 ```groovy title="sort asc"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:sorting_1"
@@ -169,7 +198,7 @@ Showing the following output:
 
 ### Filtering
 
-You can write your own methods to filter rows, but it’s easier to use the built-in filter classes as shown below:
+The preferred way of filtering DataFrames in Underdog is to use the **list notation**. Look at the following example:
 
 ```groovy title="filtering dataframe by column expressions"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:filtering"
@@ -184,18 +213,17 @@ You can write your own methods to filter rows, but it’s easier to use the buil
     OH  |  1950-01-03  |
 ```
 
-The last example above returns a table containing only the columns named in select() parameters,rather than all the columns in the original.
-Totals and sub-totals
+The last example filters the tornadoes DataFrame with predicates of type `dataFrame[seriesName] op (series | object)`. Where **op** can be a comparison operators such as `>=,<=,==` etc. Of course these expressions can be combined with `or` or `and` operators `|` and `&`. 
 
-Column metrics can be calculated using methods like sum(), product(), mean(), max(), etc.
+### Grouping
 
-You can apply those methods to a table, calculating results on one column, grouped by the values in another.
+Series metrics can be calculated using grouping methods like sum(), product(), mean(), max(), etc.  You can apply those methods to a DataFrame, calculating results on one column, grouped by the values in another.
 
 ```groovy 
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:summarizing"
 ```
 
-This produces the following table, in which Group represents the Tornado Scale and Median the median injures for that group:
+This produces the following DataFrame, in which Group represents the Tornado Scale and Median the median injures for that group:
 
 ```shell title="output"
 Median injuries by Tornado Scale
@@ -212,7 +240,7 @@ Median injuries by Tornado Scale
 
 ### Cross Tabs
 
-Tablesaw lets you easily produce two-dimensional cross-tabulations (“cross tabs”) of counts and proportions with row and column subtotals. Here’s a count example where we look at the interaction of tornado severity and US state:
+Underdog lets you easily produce two-dimensional cross-tabulations (“cross tabs”) of counts and proportions with row and column subtotals. Here’s a count example where we look at the interaction of tornado severity and US state:
 
 ```groovy title="crosstabs (count)"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:crosstabs"
@@ -244,7 +272,11 @@ Let’s start by getting only those tornadoes that occurred in the summer.
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:summer"
 ```
 
-To get the frequency, we calculate the difference in days between successive tornadoes. The lag() method creates a column where every value equals the previous value (the prior row) of the source column. Then we can simply get the difference in days between the two dates. DateColumn has a method daysUntil() that does this. It returns a NumberColumn that we’ll call “delta”.
+Then to get the frequency:
+
+- We calculate the difference in days between successive tornadoes. 
+- The lag() method creates a column where every value equals the previous value (the prior row) of the source column. 
+- Then we can simply get the difference in days between the two dates. DateColumn has a method daysUntil() that does this. It returns a NumberColumn that we’ll call “delta”.
 
 ```groovy title="lag and delta dates"
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:summer_lag"
@@ -281,7 +313,7 @@ To get a DOUBLE for the entire period, we can take the average of the annual mea
 
 ### Saving your data
 
-To save a table, you can write it as a CSV file:
+To save a DataFrame, you can write it as a CSV file:
 
 ```groovy title="saving csv file"
 tornadoes.write().csv("rev_tornadoes_1950-2014.csv");

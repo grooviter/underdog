@@ -6,11 +6,14 @@ You can ask the tree for different attributes such as the degrees:
 --8<-- "src/test/groovy/underdog/guide/graphs/IntrospectionSpec.groovy:max_degree"
 ```
 
-Imagine a more complex example where our nodes are beans. In the following example we are repeating the graph but with people:
+Imagine a more complex example where our nodes are beans. Here we have a class representing a person:
 
 ```groovy title="Person"
 --8<-- "src/test/groovy/underdog/guide/graphs/IntrospectionSpec.groovy:person"
 ```
+
+This class implements the method `getAt(int)` which allows to extract the object attribute values via 
+Groovy destructuring. That would become handy later on.
 
 !!! note
 

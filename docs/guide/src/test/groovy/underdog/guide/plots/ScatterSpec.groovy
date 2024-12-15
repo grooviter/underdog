@@ -1,5 +1,6 @@
 package underdog.guide.plots
 
+import underdog.Underdog
 import underdog.plots.Plots
 import spock.lang.Specification
 
@@ -16,13 +17,15 @@ class ScatterSpec extends Specification {
         def ys = (0..<100).collect { new Random().nextInt(100) }
 
         // plot
-        Plots.plots()
+        def plot = Underdog.plots()
             .scatter(
                 xs,
                 ys,
                 title: "Random Numbers") // Optional attributes
-            .show()
+
+        plot.show()
         // --8<-- [end:simple]
+        Plots.show(plot, theme: "dark")
     }
 
     def "simple series"() {

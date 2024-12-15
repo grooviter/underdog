@@ -1,5 +1,7 @@
 # Plots
 
+Underdog's Plots module renders different types of charts and adds integration with rest of Underdog's modules.
+
 --8<-- "docs/plots/introduction.md"
 
 --8<-- "docs/plots/line.md"

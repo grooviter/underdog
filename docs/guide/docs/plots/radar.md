@@ -8,4 +8,5 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Radar_chart) A radar char
 --8<-- "src/test/groovy/underdog/guide/plots/RadarSpec.groovy:simple"
 ```
 
-![](images/radar_simple.png){ width="50%" }
+![](images/radar_simple.png#only-light){ width="50%" }
+![](images/radar_simple_dark.png#only-dark){ width="50%" }

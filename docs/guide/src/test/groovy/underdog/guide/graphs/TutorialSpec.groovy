@@ -28,9 +28,11 @@ class TutorialSpec extends Specification {
             vertex("B")
         }
         // --8<-- [end:add_vertices_at_creation_time]
-        Plots.plots()
+        def plot = Underdog.plots()
             .graph(graph, title: "add vertices")
-            .show()
+
+        plot.show()
+        Plots.show(plot, theme: "dark")
 
         then:
         graph.vertexSet().size() == 2
@@ -89,12 +91,22 @@ class TutorialSpec extends Specification {
         }
         // --8<-- [end:adding_edges_at_creation]
 
-        Plots.plots()
+        // --8<-- [start:adding_edges_no_need_for_vertices]
+        def graph2 = Underdog.graphs().graph(String) {
+            edge('A', 'B')
+        }
+        // --8<-- [end:adding_edges_no_need_for_vertices]
+
+        def plot = Underdog.plots()
             .graph(graph, title:"adding edges")
-            .show()
+
+        plot.show()
+        Plots.show(plot, theme: "dark")
 
         then:
         graph.edgeSet().size() == 1
+        graph2.edgeSet().size() == 1
+        graph2.vertices.size() == 2
     }
 
     def "adding edges at creation time (II)"() {
@@ -113,9 +125,11 @@ class TutorialSpec extends Specification {
         }
         // --8<-- [end:adding_several_at_once]
 
-        Plots.plots()
+        def plot = Underdog.plots()
             .graph(graph, title:"adding edges")
-            .show()
+
+        plot.show()
+        Plots.show(plot, theme: "dark")
 
         then:
         graph.edgeSet().size() == 3

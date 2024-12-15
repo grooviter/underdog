@@ -18,7 +18,7 @@ class TornadosSpec extends Specification {
         // --8<-- [end:shape]
 
         // --8<-- [start:shape2]
-        println(tornadoes.shape())
+        println tornadoes.shape()
         // --8<-- [end:shape2]
 
         // --8<-- [start:first]
@@ -27,7 +27,7 @@ class TornadosSpec extends Specification {
 
         expect:
         // --8<-- [start:columns]n
-        tornadoes.columns
+        println tornadoes.columns
         // --8<-- [end:columns]
         rows == 59945
         cols == 11

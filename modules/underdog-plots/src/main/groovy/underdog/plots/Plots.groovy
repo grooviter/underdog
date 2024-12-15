@@ -39,15 +39,11 @@ class Plots {
     @NamedVariant
     static String show(
         Options options,
-        @NamedParam(required = false) String width,
-        @NamedParam(required = false) String height,
-        @NamedParam(required = false) String theme
+        @NamedParam(required = false) String width = "800px",
+        @NamedParam(required = false) String height = "600px",
+        @NamedParam(required = false) String theme = ""
     ) {
-        return new Render().render(options, Render.Meta.builder().width(width).height(height).theme(theme).build())
-    }
-
-    String show(Options options) {
-        return new Render().render(options)
+        return new Render().render(options, Meta.builder().width(width).height(height).theme(theme).build())
     }
 
     String show(Options options, Meta meta) {

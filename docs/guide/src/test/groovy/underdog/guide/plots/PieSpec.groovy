@@ -2,19 +2,22 @@ package underdog.guide.plots
 
 import spock.lang.Specification
 import underdog.Underdog
+import underdog.plots.Plots
 
 class PieSpec extends Specification {
     def "pie: simple"() {
         expect:
         // --8<-- [start:simple]
-        Underdog
+        def plot = Underdog
             .plots()
             .pie(
 
                 ('A'..'D'), // slice labels
                 [9,5,6,4]   // slice values
-            ).show()
+            )
+        plot.show()
         // --8<-- [end:simple]
+        Plots.show(plot, theme: "dark")
     }
 
     def "pie: color mapping"() {
@@ -28,7 +31,7 @@ class PieSpec extends Specification {
             "Mercedes": "#505c62"
         ]
 
-        Underdog.plots()
+        def plot = Underdog.plots()
             .pie(
                 // Labels
                 ["Red Bull", "Ferrari", "Mclaren", "Mercedes"],
@@ -38,8 +41,10 @@ class PieSpec extends Specification {
                 colorMap: COLORS,
                 title: "Top 4 Teams F1(tm) 2024 season",
                 subtitle: "Total number of driver victories per team"
-            ).show()
+            )
+        plot.show()
         // --8<-- [end:color_mapping]
+        Plots.show(plot, theme: "dark")
     }
 
     def "pie: dataframe"() {
@@ -53,8 +58,11 @@ class PieSpec extends Specification {
         ].toDataFrame("dataframe")
 
         // passing dataframe to pie plot and show it
-        Underdog.plots().pie(df).show()
+        def plot = Underdog.plots().pie(df)
+
+        plot.show()
         // --8<-- [end:dataframe]
+        Plots.show(plot, theme: "dark")
     }
 
     def "pie: series"() {
@@ -68,7 +76,7 @@ class PieSpec extends Specification {
         ].toDataFrame("dataframe")
 
         // we can pass series
-        Underdog
+        def plot = Underdog
             .plots()
             .pie(
                 // using series "A" and renaming it to "names"
@@ -78,7 +86,9 @@ class PieSpec extends Specification {
                 // using series "C" and renaming it to "colors"
                 df['C'].rename("colors")
             )
-            .show()
+
+        plot.show()
         // --8<-- [end:series]
+        Plots.show(plot, theme: "dark")
     }
 }

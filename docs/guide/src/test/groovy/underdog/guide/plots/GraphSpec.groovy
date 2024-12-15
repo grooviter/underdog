@@ -1,5 +1,6 @@
 package underdog.guide.plots
 
+import underdog.Underdog
 import underdog.graphs.Graphs
 import underdog.plots.Plots
 import underdog.plots.charts.Graph
@@ -16,8 +17,11 @@ class GraphSpec extends Specification {
         }
 
         // show plot
-        Plots.plots().graph(friends).show()
+        def plot = Underdog.plots().graph(friends)
+
+        plot.show()
         // --8<-- [end:simple]
+        Plots.show(plot, theme: "dark")
     }
 
     def "directed graph"() {
@@ -27,7 +31,7 @@ class GraphSpec extends Specification {
             edge('Robert', 'Troy', relation: 'friend')
         }
 
-        Plots.plots().graph(friends).show()
+        Underdog.plots().graph(friends).show()
     }
 
     def "directed graph"() {
@@ -38,8 +42,10 @@ class GraphSpec extends Specification {
             edge('Robert', 'Troy', relation: 'friend')
         }
 
-        Plots.plots().graph(friends).show()
+        def plot = Underdog.plots().graph(friends)
+        plot.show()
         // --8<-- [end:directed]
+        Plots.show(plot, theme: "dark")
     }
 
     def "show edge labels"() {
@@ -50,8 +56,10 @@ class GraphSpec extends Specification {
             edge('Robert', 'Troy', relation: 'friend')
         }
 
-        Plots.plots().graph(friends, showEdgeLabel: true).show()
+        def plot = Plots.plots().graph(friends, showEdgeLabel: true)
+        plot.show()
         // --8<-- [end:show_labels]
+        Plots.show(plot, theme: "dark")
     }
 
     def "show graph path"() {
@@ -64,11 +72,14 @@ class GraphSpec extends Specification {
 
         def friendship = friends.shortestPath('Robert', 'Troy')
 
-        Plots.plots().graph(
+        def plot = Underdog.plots().graph(
             friends,
             paths: [friendship],
-            showEdgeLabel: true).show()
+            showEdgeLabel: true)
+
+        plot.show()
         // --8<-- [end:graph_path]
+        Plots.show(plot, theme: "dark")
     }
 
     def "using Graph domain classes"() {
@@ -95,11 +106,14 @@ class GraphSpec extends Specification {
                 value: "friend")
         ]
 
-        Plots.plots().graph(
+        def plot = Underdog.plots().graph(
             nodes,
             edges,
-            showEdgeLabel: true).show()
+            showEdgeLabel: true)
+
+        plot.show()
         // --8<-- [end:graph_domain]
+        Plots.show(plot, theme: "dark")
     }
 
     def "customizing Graph"() {
@@ -110,7 +124,7 @@ class GraphSpec extends Specification {
             edge('Robert', 'Troy', relation: 'friend')
         }
 
-        Plots.plots()
+        def plot = Underdog.plots()
             .graph(friends, showEdgeLabel: true)
             .customize {
                 title {
@@ -119,7 +133,10 @@ class GraphSpec extends Specification {
                     top("bottom")
                     left("right")
                 }
-            }.show()
+            }
+
+        plot.show()
         // --8<-- [end:customize]
+        Plots.show(plot, theme: "dark")
     }
 }

@@ -2,6 +2,7 @@ package underdog.guide.graphs
 
 import underdog.Underdog
 import spock.lang.Specification
+import underdog.plots.Plots
 
 class DistancesSpec extends Specification {
     def "shortest path"() {
@@ -18,6 +19,10 @@ class DistancesSpec extends Specification {
         }
         // --8<-- [end:shortest_path_graph]
 
+        def plot = Underdog.plots().graph(distances)
+        plot.show()
+        Plots.show(plot, theme: "dark")
+
         // --8<-- [start:shortest_path_edges]
         def kmsDriven = distances
             .shortestPathEdges("Teruel", "Madrid")
@@ -32,14 +37,17 @@ class DistancesSpec extends Specification {
         def shortestPath = distances.shortestPath("Teruel", "Madrid")
         // --8<-- [end:shortest_path]
 
-        Underdog.plots()
+        def plotDistances = Underdog.plots()
             .graph(
                 distances,
                 title: "Path from Madrid to Teruel",
                 subtitle: "Calculating shortest path from two vertices",
                 paths: [shortestPath],
                 symbolSize: 75,
-                showEdgeLabel: true).show()
+                showEdgeLabel: true)
+
+        plotDistances.show()
+        Plots.show(plotDistances, theme: "dark")
 
         then:
         // --8<-- [start:shortest_path_attributes]

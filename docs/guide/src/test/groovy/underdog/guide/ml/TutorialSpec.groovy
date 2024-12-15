@@ -2,6 +2,7 @@ package underdog.guide.ml
 
 import underdog.Underdog
 import spock.lang.Specification
+import underdog.plots.Plots
 
 class TutorialSpec extends Specification {
 
@@ -32,6 +33,7 @@ class TutorialSpec extends Specification {
 
         figure.show()
         // --8<-- [end:show_playoffs]
+        Plots.show(figure, theme: "dark")
         then:
         figure
     }
@@ -56,6 +58,7 @@ class TutorialSpec extends Specification {
 
         figure.show()
         // --8<-- [end:show_correlation]
+        Plots.show(figure, theme: "dark")
         then:
         figure
     }
@@ -123,6 +126,7 @@ class TutorialSpec extends Specification {
 
         histogram.show()
         // --8<-- [end:runs_scored_histogram]
+        Plots.show(histogram, theme: "dark")
 
         // --8<-- [start:fitted_vs_residuals]
         def modelResiduals = runsScored.residuals().toList()
@@ -137,6 +141,7 @@ class TutorialSpec extends Specification {
 
         fittedVsResiduals.show()
         // --8<-- [end:fitted_vs_residuals]
+        Plots.show(fittedVsResiduals, theme: "dark")
         then:
         true
     }

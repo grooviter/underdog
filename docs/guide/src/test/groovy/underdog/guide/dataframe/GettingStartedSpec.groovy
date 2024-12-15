@@ -6,6 +6,7 @@ import underdog.Underdog
 // --8<-- [end:getting_started_imports]
 
 import spock.lang.Specification
+import underdog.plots.Plots
 
 class GettingStartedSpec extends Specification {
     def "initial example"() {
@@ -44,6 +45,7 @@ class GettingStartedSpec extends Specification {
 
         plot.show()
         // end::show_plot[]
+        Plots.show(plot, theme: "dark")
         then:
         tornadoesInTxIn2012.size() == 115
     }

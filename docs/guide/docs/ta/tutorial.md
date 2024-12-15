@@ -4,7 +4,9 @@
     
     This getting started section mimics the [getting started](https://ta4j.github.io/ta4j-wiki/Getting-started.html) section steps from [Ta4j wiki](https://ta4j.github.io/ta4j-wiki) but using underdog-ta module. You can compare both entries to see the differences.
 
-### Modules
+### Prerequisites
+
+#### Dependencies
 
 To be able to follow the tutorial you should add the following modules to your gradle project:
 
@@ -12,6 +14,25 @@ To be able to follow the tutorial you should add the following modules to your g
 implementation 'com.github.grooviter:underdog-ta:VERSION'
 implementation 'com.github.grooviter:underdog-plots:VERSION'
 ```
+
+or in maven:
+
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-ta</artifactId>
+    <version>VERSION</version>
+</dependency>
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-plots</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Data
+
+TODO
 
 ### BarSeries vs DataFrame
 
@@ -125,7 +146,8 @@ We can see this visually. Follow-up showing only trades from 2024-04-01:
 --8<-- "src/test/groovy/underdog/guide/ta/GettingStartedSpec.groovy:show_trades"
 ```
 
-![](images/getting_started_trades.png){ width="60%" }
+![](images/getting_started_trades.png#only-light){ width="60%" }
+![](images/getting_started_trades_dark.png#only-dark){ width="60%" }
 
 We can also visualize winning vs losing positions.
 
@@ -133,7 +155,8 @@ We can also visualize winning vs losing positions.
 --8<-- "src/test/groovy/underdog/guide/ta/GettingStartedSpec.groovy:show_positions"
 ```
 
-![](images/getting_started_winners.png){ width="60%" }
+![](images/getting_started_winners.png#only-light){ width="60%" }
+![](images/getting_started_winners_dark.png#only-dark){ width="60%" }
 
 ### Analyzing our results
 
@@ -157,4 +180,5 @@ Showing these metrics in a chart:
 
 Which displays:
 
-![](images/getting_started_radar.png){ width="60%" }
+![](images/getting_started_radar.png#only-light){ width="60%" }
+![](images/getting_started_radar_dark.png#only-dark){ width="60%" }

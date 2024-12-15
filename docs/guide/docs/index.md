@@ -11,10 +11,22 @@ Underdog project covers several data analysis fields with the following subproje
 
 ### underdog-dataframe
 
-Combines tools for working with dataframes and series. You can use it adding the following dependency:
+Combines tools for working with dataframes and series. You can use it adding the dependency:
 
 ```groovy title="gradle"
 implementation "com.github.grooviter:underdog-dataframe:VERSION"
+```
+
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-dataframe</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+```groovy title="grapes"
+@Grab("com.github.grooviter:underdog-dataframe:VERSION")
 ```
 
 More information in the [DataFrame](./dataframe/index.md) section
@@ -27,6 +39,18 @@ It helps working on graph theory data structures and algorithms. You can use it 
 implementation "com.github.grooviter:underdog-graphs:VERSION"
 ```
 
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-graphs</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+```groovy title="grapes"
+@Grab("com.github.grooviter:underdog-graphs:VERSION")
+```
+
 More information in the [Graphs](./graphs/index.md) section
 
 ### underdog-ml
@@ -35,6 +59,18 @@ Contains machine learning algorithms and evaluation mechanisms. You can use it a
 
 ```groovy title="gradle"
 implementation "com.github.grooviter:underdog-ml:VERSION"
+```
+
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-ml</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+```groovy title="grapes"
+@Grab("com.github.grooviter:underdog-ml:VERSION")
 ```
 
 More information in the [ML](./ml/index.md) section
@@ -47,6 +83,18 @@ Creates different types of charts using the [Apache Echarts](https://echarts.apa
 implementation "com.github.grooviter:underdog-plots:VERSION"
 ```
 
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-plots</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+```groovy title="grapes"
+@Grab("com.github.grooviter:underdog-plots:VERSION")
+```
+
 More information in the [Plots](./plots/index.md) section
 
 ### underdog-ta
@@ -55,6 +103,18 @@ The technical analysis module is a wrapper over the [Ta4j](https://ta4j.github.i
 
 ```groovy title="gradle"
 implementation "com.github.grooviter:underdog-ta:VERSION"
+```
+
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-ta</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+```groovy title="grapes"
+@Grab("com.github.grooviter:underdog-ta:VERSION")
 ```
 
 More information in the [Technical Analysis](./ta/index.md) section

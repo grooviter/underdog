@@ -27,7 +27,7 @@ Underdog dataframe library adds additional methods to collection types so that y
 --8<-- "src/test/groovy/underdog/guide/dataframe/dataframe/CreationSpec.groovy:map_extension"
 ```
 
-You can also pass a list of maps to the `Underdog.df().from(col, name)` method:
+You can also pass a list of maps to the `Underdog.df().from(col, name)` method. The method assumes all entries are maps with the same keys:
 
 ```groovy title="collection of maps"
 --8<-- "src/test/groovy/underdog/guide/dataframe/dataframe/CreationSpec.groovy:collectionsOfMaps"

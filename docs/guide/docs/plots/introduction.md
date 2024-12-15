@@ -1,7 +1,5 @@
 ## Introduction
 
-The Underdog plots module renders different types of charts and adds integration with rest of Underdog's modules.
-
 ### Echarts DSL
 
 Underdog plots uses the [Apache Echarts](https://echarts.apache.org) under the hood, so the idea is to try to be able to render whatever is possible in Echarts. To accomplish that this project creates a Groovy DSL mimicking the Echarts Option object. You can access the DSL when customizing the chart.

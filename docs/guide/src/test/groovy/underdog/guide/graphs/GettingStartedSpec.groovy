@@ -29,7 +29,14 @@ class GettingStartedSpec extends Specification {
         def shortestPath = graph.shortestPathVertices('A', 'J')
         // --8<-- [end:getting_started_simple]
 
-        Plots.plots().graph(graph, title: 'Nodes & Edges', subtitle: 'Creating graphs with Underdog').show()
+        def plot = Underdog.plots()
+            .graph(
+                graph,
+                title: 'Nodes & Edges',
+                subtitle: 'Creating graphs with Underdog')
+
+        plot.show()
+        Plots.show(plot, theme: "dark")
 
         expect:
         shortestPath == ['A', 'B', 'C', 'E', 'I', 'J']

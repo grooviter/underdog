@@ -4,7 +4,9 @@
 
     The current tutorial follows the [Tablesaw Moneyball tutorial](https://grooviter.github.io/tablesaw/#_moneyball) but using Underdog's dataframe and ml modules.
 
-### Underdog modules
+### Prerequisites
+
+#### Dependencies
 
 The modules required to follow this tutorial are the `ml` and `plots` modules:
 
@@ -12,6 +14,25 @@ The modules required to follow this tutorial are the `ml` and `plots` modules:
 implementation 'com.github.grooviter:underdog-ml:VERSION'
 implementation 'com.github.grooviter:underdog-plots:VERSION'
 ```
+
+or if you're using Maven:
+
+```xml title="maven"
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-ml</artifactId>
+    <version>VERSION</version>
+</dependency>
+<dependency>
+    <groupId>com.github.grooviter</groupId>
+    <artifactId>underdog-plots</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+#### Data
+
+TODO
 
 ### Introduction
 
@@ -56,8 +77,11 @@ We can check the assumption visually by plotting wins per year in a way that sep
 --8<-- "src/test/groovy/underdog/guide/ml/TutorialSpec.groovy:show_playoffs"
 ```
 
+The Series `data['playoffs']` represents whether the team made it to the playoffs (1) or it didn't (0).
+
 <figure markdown="span">
-![](./images/moneyball_playoffs.png){ width="80%" }
+![](./images/moneyball_playoffs.png#only-light){ width="60%" }
+![](./images/moneyball_playoffs_dark.png#only-dark){ width="60%" }
 </figure>
 
 ### Preparing data
@@ -77,12 +101,18 @@ Now lets see if Run Difference is correlated with Wins. We use a scatter plot ag
 ```
 
 <figure markdown="span">
-![](./images/moneyball_correlation.png){ width="80%" }
+![](./images/moneyball_correlation.png#only-light){ width="60%" }
+![](./images/moneyball_correlation_dark.png#only-dark){ width="60%" }
 </figure>
 
 ### Model training
 
-Let’s create our first predictive model using linear regression, with runDifference as the sole explanatory variable. Here we use Smile’s OLS (Ordinary Least Squares) regression model.
+Let’s create our first predictive model using linear regression, with runDifference as the sole explanatory variable. 
+Here we use Ordinary Least Squares (OLS) regression model.
+
+!!! tip
+
+    To know more about Ordinary Least Squares you can check out its definition in [Wikipedia](https://en.wikipedia.org/wiki/Ordinary_least_squares)
 
 ```groovy title="Ordinary least square (OLS)"
 --8<-- "src/test/groovy/underdog/guide/ml/TutorialSpec.groovy:ols"
@@ -109,9 +139,9 @@ F-statistic: 2985.1152 on 2 and 449 DF,  p-value: 1.757e-200
 
 If you’re new to regression, here are some take-aways from the output:
 
-- The R-squared of .88 can be interpreted to mean that roughly 88% of the variance in Wins can be explained by the Run Difference variable. The rest is determined by some combination of other variables and pure chance.
-- The estimate for the Intercept is the average wins independent of Run Difference. In baseball, we have a 162 game season so we expect this value to be about 81, as it is.
-- The estimate for the RD variable of .1, suggests that an increase of 10 in Run Difference, should produce about 1 additional win over the course of the season.
+- The R-squared of .88 can be interpreted to mean that **roughly 88% of the variance in Wins can be explained by the Run Difference variable**. The rest is determined by some combination of other variables and pure chance.
+- **The estimate for the Intercept is the average wins independent of Run Difference**. In baseball, we have a 162 game season so we expect this value to be about 81, as it is.
+- The estimate for the RD variable of .1, suggests that **an increase of 10 in Run Difference, should produce about 1 additional win over the course of the season**.
 
 Of course, this model is not simply descriptive. We can use it to make predictions. In the code below, we predict how many games we will win if we score 135 more runs than our opponents.  To do this, we pass an array of doubles, one for each explanatory variable in our model, to the predict() method. In this case, there’s just one variable: run difference.
 
@@ -129,7 +159,8 @@ We’d expect almost 95 wins when we outscore opponents by 135 runs.
 
 If we want to check how the model is performing overall we can pick the testing datasets we kept aside from the model training and use them to get a measure on how well the model is predicting a new case.
 
-In this example we are using the https://en.wikipedia.org/wiki/Coefficient_of_determination[R2 square metric]. In regression, the R2 score is a statistical measure of how well the regression predictions approximate the real data points.
+In this example we are using the [R2 square metric](https://en.wikipedia.org/wiki/Coefficient_of_determination). 
+In regression, the R2 score is a statistical measure of **how well the regression predictions approximate the real data points**.
 
 We're passing to the model the testing features (xTest) and comparing the model predictions with the test labels we have (yTest):
 
@@ -178,7 +209,8 @@ Again we have a model with excellent explanatory power with an R-squared of 92. 
 ```
 
 <figure markdown="span">
-![](./images/moneyball_runs_distribution.png){ width="80%" }
+![](./images/moneyball_runs_distribution.png#only-light){ width="60%" }
+![](./images/moneyball_runs_distribution_dark.png#only-dark){ width="60%" }
 </figure>
 
 It looks great.  It’s also important to plot the predicted (or “fitted”) values against the residuals. We want to see if the model fits some values better than others, which will influence whether we can trust its predictions or not. Ideally, we want to see a cloud of random dots around zero on the y axis.
@@ -190,7 +222,8 @@ Our Scatter class can create this plot directly from the model:
 ```
 
 <figure markdown="span">
-![](./images/moneyball_fitted_vs_residuals.png){ width="80%" }
+![](./images/moneyball_fitted_vs_residuals.png#only-light){ width="60%" }
+![](./images/moneyball_fitted_vs_residuals_dark.png#only-dark){ width="60%" }
 </figure>
 
 Again, the plot looks good.
