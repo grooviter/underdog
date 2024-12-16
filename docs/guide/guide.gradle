@@ -24,7 +24,7 @@ tasks.register("setAuthentication") {
 
 gitPublish {
     branch = 'gh-pages'
-    repoUri = config.info.links.scm
+    repoUri = "https://github.com/grooviter/underdog.git"
 }
 
 gitPublishReset {
