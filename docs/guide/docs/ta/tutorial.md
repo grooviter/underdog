@@ -1,40 +1,53 @@
 ## Tutorial
 
-!!! info
-    
-    This getting started section mimics the [getting started](https://ta4j.github.io/ta4j-wiki/Getting-started.html) section steps from [Ta4j wiki](https://ta4j.github.io/ta4j-wiki) but using underdog-ta module. You can compare both entries to see the differences.
-
 ### Prerequisites
 
 #### Dependencies
 
 To be able to follow the tutorial you should add the following modules to your gradle project:
 
-```groovy title="gradle"
-implementation 'com.github.grooviter:underdog-ta:VERSION'
-implementation 'com.github.grooviter:underdog-plots:VERSION'
-```
+=== "Gradle"
+    ```groovy
+    // technical analysis
+    implementation 'com.github.grooviter:underdog-ta:VERSION'
 
-or in maven:
-
-```xml title="maven"
-<dependency>
-    <groupId>com.github.grooviter</groupId>
-    <artifactId>underdog-ta</artifactId>
-    <version>VERSION</version>
-</dependency>
-<dependency>
-    <groupId>com.github.grooviter</groupId>
-    <artifactId>underdog-plots</artifactId>
-    <version>VERSION</version>
-</dependency>
-```
+    // plots
+    implementation 'com.github.grooviter:underdog-plots:VERSION'
+    ```
+=== "Maven"
+    ```xml
+    <!-- technical analysis -->
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-ta</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    <!-- plots -->
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-plots</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
+=== "Grapes"
+    ```groovy
+    @Grapes([
+        // technical analysis
+        @Grab('com.github.grooviter:underdog-ta:VERSION'),
+        // plots
+        @Grab('com.github.grooviter:underdog-plots:VERSION')
+    ])
+    ```
 
 #### Data
 
-TODO
+You can find the data used in this tutorial [here](https://github.com/grooviter/underdog/blob/main/docs/guide/src/test/resources/data/ta/stock_quotes_10_years.csv)
 
 ### BarSeries vs DataFrame
+
+!!! info
+
+    This getting started section mimics the [getting started](https://ta4j.github.io/ta4j-wiki/Getting-started.html) section steps from [Ta4j wiki](https://ta4j.github.io/ta4j-wiki) but using underdog-ta module. You can compare both entries to see the differences.
 
 It's important to start defining some concepts.
 
@@ -65,7 +78,7 @@ Which outputs something like the following (the prices and volume are truncated 
  2014-12-05 00:00:00+00:00  |   0.50      |  0.52  |  0.52  |  0.52 |  0.52  |  165680  |
 ```
 
-In order to successfully convert the dataframe to a bar series the name of the series (columns) should match to the expected ones which are: DATE, CLOSE, HIGH, LOW, OPEN, VOLUME.
+In order to successfully convert the dataframe to a bar series the name of the series (columns) should match to the expected ones which are: **DATE, CLOSE, HIGH, LOW, OPEN, VOLUME**.
 
 ```groovy title="renaming"
 --8<-- "src/test/groovy/underdog/guide/ta/GettingStartedSpec.groovy:renaming_cols"

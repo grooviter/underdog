@@ -14,8 +14,6 @@ At the moment the support of the Echarts Option object is limited but we aim to 
 - chart title
 - chart subtitle
 
-Apart from that every plot has a `customize(Closure)` method to be able to customize the chart following Echarts documentation using a Groovy DSL.
-
 When **the method is receiving data as List** instances:
 
 - X coordinate label (by default is X)
@@ -23,14 +21,14 @@ When **the method is receiving data as List** instances:
 
 In **methods receiving Series objects** the name of the X and Y coordinate will be taken from the Series' name passed as parameter.
 
-In general we'd like to be able to use the plots library for anyone, that's why any chart should be able to receive its data from a plain java list.
+There could be extra properties added to specific charts depending on how practical these properties are when dealing which that type of charts.
 
-Apart from those mandatory properties, there could be extra properties added to specific charts depending on how practical these properties are when dealing which that type of charts.
-
-### Return Options
-
-All plotting methods return a **memento.plots.charts.Options** instance which represents the Echarts Options object.
+On top of that, every plot has a `customize(Closure)` which allows to customize the chart following Echarts documentation using a Groovy DSL.
 
 ### Customizing chart
 
 All default methods provide a limited setup of the chart via the mandatory attributes we saw previously.To access the full Groovy Echarts DSL we can always access the **Options#customize(Closure)** method rendering the chart calling the **Options#show()**.
+
+### Return Options
+
+All plotting methods return a `memento.plots.charts.Options` instance which represents the Echarts Options object.

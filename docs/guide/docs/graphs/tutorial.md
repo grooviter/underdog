@@ -6,25 +6,38 @@
 
 The modules required to follow this tutorial are the `graphs` and `plots` modules:
 
-```groovy title="gradle"
-implementation 'com.github.grooviter:underdog-graphs:VERSION'
-implementation 'com.github.grooviter:underdog-plots:VERSION'
-```
+=== "Gradle"
+    ```groovy
+    // graph data and algorithms
+    implementation 'com.github.grooviter:underdog-graphs:VERSION'
 
-or if you're using Maven:
-
-```xml title="maven"
-<dependency>
-    <groupId>com.github.grooviter</groupId>
-    <artifactId>underdog-graphs</artifactId>
-    <version>VERSION</version>
-</dependency>
-<dependency>
-    <groupId>com.github.grooviter</groupId>
-    <artifactId>underdog-plots</artifactId>
-    <version>VERSION</version>
-</dependency>
-```
+    // graph visualization
+    implementation 'com.github.grooviter:underdog-plots:VERSION'
+    ```
+=== "Maven"
+    ```xml
+    <!-- graph data and algorithms -->
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-graphs</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    <!-- graph visualization -->
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-plots</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
+=== "Grapes"
+    ```groovy
+    @Grapes([
+        // graph data and algorithms
+        @Grab('com.github.grooviter:underdog-graphs:VERSION'),
+        // graph visualization
+        @Grab('com.github.grooviter:underdog-plots:VERSION')
+    ])
+    ```
 
 ### Creating a graph
 

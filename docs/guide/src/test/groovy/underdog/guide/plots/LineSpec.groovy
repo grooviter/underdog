@@ -10,7 +10,7 @@ class LineSpec extends Specification {
     def "simple line"() {
         expect:
         // --8<-- [start:simple]
-        def line = Plots.plots()
+        def line = Underdog.plots()
             .line(
                 // You can use a **range or a list** for X axis
                 2000..2010,

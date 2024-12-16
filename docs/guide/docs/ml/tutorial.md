@@ -1,40 +1,53 @@
 ## Tutorial
 
-!!! info
-
-    The current tutorial follows the [Tablesaw Moneyball tutorial](https://grooviter.github.io/tablesaw/#_moneyball) but using Underdog's dataframe and ml modules.
-
 ### Prerequisites
 
 #### Dependencies
 
 The modules required to follow this tutorial are the `ml` and `plots` modules:
 
-```groovy title="gradle"
-implementation 'com.github.grooviter:underdog-ml:VERSION'
-implementation 'com.github.grooviter:underdog-plots:VERSION'
-```
+=== "Gradle"
+    ```groovy
+    // machine learning
+    implementation 'com.github.grooviter:underdog-ml:VERSION'
 
-or if you're using Maven:
-
-```xml title="maven"
-<dependency>
-    <groupId>com.github.grooviter</groupId>
-    <artifactId>underdog-ml</artifactId>
-    <version>VERSION</version>
-</dependency>
-<dependency>
-    <groupId>com.github.grooviter</groupId>
-    <artifactId>underdog-plots</artifactId>
-    <version>VERSION</version>
-</dependency>
-```
+    // plots
+    implementation 'com.github.grooviter:underdog-plots:VERSION'
+    ```
+=== "Maven"
+    ```xml
+    <!-- machine learning -->
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-ml</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    <!-- plots -->
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-plots</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
+=== "Grapes"
+    ```groovy
+    @Grapes([
+        // machine learning
+        @Grab('com.github.grooviter:underdog-ml:VERSION'),
+        // plots
+        @Grab('com.github.grooviter:underdog-plots:VERSION')
+    ])
+    ```
 
 #### Data
 
-TODO
+You can find the data used in this tutorial [here](https://github.com/grooviter/underdog/blob/main/docs/guide/src/test/resources/data/baseball.csv)
 
 ### Introduction
+
+!!! info
+
+    The current tutorial follows the [Tablesaw Moneyball tutorial](https://grooviter.github.io/tablesaw/#_moneyball) but using Underdog's dataframe and ml modules.
 
 In baseball, you make the playoffs by winning more games than your rivals, but you can’t control the number of games your rivals win. How should you proceed? The A’s needed to find controllable variables that affected their likelihood of making the playoffs.
 
@@ -62,6 +75,8 @@ flowchart LR
 To connect player stats to making the playoffs, they systematically decomposed their high-level goal. They started by asking how many wins they’d need to make the playoffs. They decided that 95 wins would give them a strong chance. Here’s how we might check that assumption using Underdog. First lets load the data:
 
 ```groovy title="loading data"
+--8<-- "src/test/groovy/underdog/guide/ml/TutorialSpec.groovy:import"
+
 --8<-- "src/test/groovy/underdog/guide/ml/TutorialSpec.groovy:loading_data"
 ```
 

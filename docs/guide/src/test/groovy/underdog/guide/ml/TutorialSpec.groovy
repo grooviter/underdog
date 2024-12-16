@@ -1,6 +1,8 @@
 package underdog.guide.ml
 
+// --8<-- [start:import]
 import underdog.Underdog
+// --8<-- [end:import]
 import spock.lang.Specification
 import underdog.plots.Plots
 

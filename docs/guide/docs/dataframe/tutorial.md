@@ -6,35 +6,34 @@
 
 To be able to follow the tutorial you need the `underdog-dataframe` module. If you're using Gradle in your project:
 
-```groovy title="gradle"
-implementation "com.github.grooviter:underdog-dataframe:VERSION"
-```
-
-Or Maven:
-
-```xml title="maven"
-<dependency>
-    <groupId>com.github.grooviter</groupId>
-    <artifactId>underdog-dataframe</artifactId>
-    <version>VERSION</version>
-</dependency>
-```
-
-Or if you're using a Groovy script:
-
-```groovy title="Grape"
-@Grab("com.github.grooviter:underdog-dataframe:VERSION")
-```
+=== "Gradle"
+    ```groovy
+    implementation "com.github.grooviter:underdog-dataframe:VERSION"
+    ```
+=== "Maven"
+    ```xml
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-dataframe</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
+=== "Grapes"
+    ```groovy
+    @Grab("com.github.grooviter:underdog-dataframe:VERSION")
+    ```
 
 #### Data
 
-The data we are using in the tutorial is 
+You can find the data used in this tutorial [here](https://github.com/grooviter/underdog/blob/main/docs/guide/src/test/resources/data/tornadoes_1950-2014.csv) 
 
 ### Loading data
 
 First of all we need to load the csv file with the data. Underdog infers the column types by sampling the data.
 
 ```groovy title="reading"
+--8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:import"
+
 --8<-- "src/test/groovy/underdog/guide/dataframe/TornadosSpec.groovy:read_csv"
 ```
 
