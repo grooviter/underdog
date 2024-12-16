@@ -1,0 +1,1057 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://grooviter.github.io/underdog/dataframe/tutorial/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Tutorial - Underdog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tutorial" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Underdog" class="md-header__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Underdog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tutorial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Underdog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+    
+  
+  DataFrame
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../graphs/" class="md-tabs__link">
+        
+  
+    
+  
+  Graphs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ml/" class="md-tabs__link">
+        
+  
+    
+  
+  ML
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../plots/" class="md-tabs__link">
+        
+  
+    
+  
+  Plots
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ta/" class="md-tabs__link">
+        
+  
+    
+  
+  Technical Analysis
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../development/" class="md-tabs__link">
+        
+  
+    
+  
+  Development
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Underdog" class="md-nav__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Underdog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Underdog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DataFrame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graphs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Technical Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Tutorial</h1>
+
+<h2 id="tutorial">Tutorial</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<h4 id="dependencies">Dependencies</h4>
+<p>To be able to follow the tutorial you need the <code>underdog-dataframe</code> module. If you're using Gradle in your project:</p>
+<div class="language-groovy highlight"><span class="filename">gradle</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.github.grooviter:underdog-dataframe:VERSION&quot;</span>
+</span></code></pre></div>
+<p>Or Maven:</p>
+<div class="language-xml highlight"><span class="filename">maven</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-dataframe<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></div>
+<p>Or if you're using a Groovy script:</p>
+<div class="language-groovy highlight"><span class="filename">Grape</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@Grab</span><span class="o">(</span><span class="s2">&quot;com.github.grooviter:underdog-dataframe:VERSION&quot;</span><span class="o">)</span>
+</span></code></pre></div>
+<h4 id="data">Data</h4>
+<p>The data we are using in the tutorial is </p>
+<h3 id="loading-data">Loading data</h3>
+<p>First of all we need to load the csv file with the data. Underdog infers the column types by sampling the data.</p>
+<div class="language-groovy highlight"><span class="filename">reading</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">tornadoes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="s2">&quot;src/test/resources/data/tornadoes_1950-2014.csv&quot;</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Note the file, in this case, is addressed relative to the current working directory. In this case it must point to the csv file path whether it is a relative path of an absolute path.</p>
+<h3 id="metadata">Metadata</h3>
+<p>Often, the best way to start is to print the column names for reference:</p>
+<div class="language-groovy highlight"><span class="filename">list dataframe column names</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">println</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">columns</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[Date, Time, State, State No, Scale, Injuries, Fatalities, Start Lat, Start Lon, Length, Width]
+</span></code></pre></div>
+<p>The shape() method displays the row and column counts:</p>
+<div class="language-groovy highlight"><span class="filename">.shape of the dataframe</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span><span class="o">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cols</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">shape</span><span class="o">()</span>
+</span></code></pre></div>
+<div class="language-groovy highlight"><span class="filename">shape of the dataframe</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">println</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">shape</span><span class="o">()</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>59945 rows X 11 cols
+</span></code></pre></div>
+<p>structure() shows the index, name and type of each column</p>
+<div class="language-groovy highlight"><span class="filename">tornadoes schemas</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// getting tornadoes schema</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">schema</span><span class="o">()</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">  </span>Structure<span class="w"> </span>of<span class="w"> </span>tornadoes_1950-2014.csv
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w"> </span>Index<span class="w">  </span><span class="p">|</span><span class="w">  </span>Column<span class="w"> </span>Name<span class="w">  </span><span class="p">|</span><span class="w">  </span>Column<span class="w"> </span>Type<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>-----------------------------------------
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">         </span>Date<span class="w">  </span><span class="p">|</span><span class="w">   </span>LOCAL_DATE<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">     </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">         </span>Time<span class="w">  </span><span class="p">|</span><span class="w">   </span>LOCAL_TIME<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">     </span><span class="m">2</span><span class="w">  </span><span class="p">|</span><span class="w">        </span>State<span class="w">  </span><span class="p">|</span><span class="w">       </span>STRING<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">     </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">     </span>State<span class="w"> </span>No<span class="w">  </span><span class="p">|</span><span class="w">      </span>INTEGER<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">     </span><span class="m">4</span><span class="w">  </span><span class="p">|</span><span class="w">        </span>Scale<span class="w">  </span><span class="p">|</span><span class="w">      </span>INTEGER<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">     </span><span class="m">5</span><span class="w">  </span><span class="p">|</span><span class="w">     </span>Injuries<span class="w">  </span><span class="p">|</span><span class="w">      </span>INTEGER<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">     </span><span class="m">6</span><span class="w">  </span><span class="p">|</span><span class="w">   </span>Fatalities<span class="w">  </span><span class="p">|</span><span class="w">      </span>INTEGER<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">     </span><span class="m">7</span><span class="w">  </span><span class="p">|</span><span class="w">    </span>Start<span class="w"> </span>Lat<span class="w">  </span><span class="p">|</span><span class="w">       </span>DOUBLE<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">     </span><span class="m">8</span><span class="w">  </span><span class="p">|</span><span class="w">    </span>Start<span class="w"> </span>Lon<span class="w">  </span><span class="p">|</span><span class="w">       </span>DOUBLE<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">     </span><span class="m">9</span><span class="w">  </span><span class="p">|</span><span class="w">       </span>Length<span class="w">  </span><span class="p">|</span><span class="w">       </span>DOUBLE<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">    </span><span class="m">10</span><span class="w">  </span><span class="p">|</span><span class="w">        </span>Width<span class="w">  </span><span class="p">|</span><span class="w">      </span>INTEGER<span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<p>Like many DataFrame methods, schema() returns another DataFrame. You can then produce a string representation for display. To display the DataFrame then, you can simply call.</p>
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">println</span><span class="w"> </span><span class="n">tornadoes</span>
+</span></code></pre></div>
+<p>You can also perform other DataFrame operations on the schema. For example, the code below removes all columns whose type isn’t <code>DOUBLE</code>:</p>
+<div class="language-groovy highlight"><span class="filename">using schema to change dataframe structure</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">customSchema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">schema</span><span class="o">[</span><span class="n">schema</span><span class="o">[</span><span class="s1">&#39;Column Type&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;DOUBLE&#39;</span><span class="o">]</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">  </span>Structure<span class="w"> </span>of<span class="w"> </span>tornadoes_1950-2014.csv
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w"> </span>Index<span class="w">  </span><span class="p">|</span><span class="w">  </span>Column<span class="w"> </span>Name<span class="w">  </span><span class="p">|</span><span class="w">  </span>Column<span class="w"> </span>Type<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>-----------------------------------------
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">     </span><span class="m">7</span><span class="w">  </span><span class="p">|</span><span class="w">    </span>Start<span class="w"> </span>Lat<span class="w">  </span><span class="p">|</span><span class="w">       </span>DOUBLE<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">     </span><span class="m">8</span><span class="w">  </span><span class="p">|</span><span class="w">    </span>Start<span class="w"> </span>Lon<span class="w">  </span><span class="p">|</span><span class="w">       </span>DOUBLE<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">     </span><span class="m">9</span><span class="w">  </span><span class="p">|</span><span class="w">       </span>Length<span class="w">  </span><span class="p">|</span><span class="w">       </span>DOUBLE<span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<p>Of course, that also returned another DataFrame. We’ll cover selecting rows in more detail later.</p>
+<h3 id="previewing">Previewing</h3>
+<p>The first(n) method returns a new DataFrame containing the first n rows.</p>
+<div class="language-groovy highlight"><span class="filename">getting first 3 lines</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">tornadoes</span><span class="o">.</span><span class="na">head</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="w">                                </span>tornadoes_1950-2014.csv
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">   </span>Date<span class="w">     </span><span class="p">|</span><span class="w">    </span>Time<span class="w">    </span><span class="p">|</span><span class="w">  </span>State<span class="w">  </span><span class="p">|</span><span class="w">  </span>State<span class="w"> </span>No<span class="w">  </span><span class="p">|</span><span class="w">  </span>Scale<span class="w">  </span><span class="p">|</span><span class="w">  </span>Injuries<span class="w">  </span><span class="p">|</span><span class="w">  </span>...<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>--------------------------------------------------------------------------------
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="m">1950</span>-01-03<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">11</span>:00:00<span class="w">  </span><span class="p">|</span><span class="w">     </span>MO<span class="w">  </span><span class="p">|</span><span class="w">         </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">      </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">         </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">  </span>...<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="m">1950</span>-01-03<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">11</span>:00:00<span class="w">  </span><span class="p">|</span><span class="w">     </span>MO<span class="w">  </span><span class="p">|</span><span class="w">         </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">      </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">         </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">  </span>...<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="m">1950</span>-01-03<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">11</span>:10:00<span class="w">  </span><span class="p">|</span><span class="w">     </span>IL<span class="w">  </span><span class="p">|</span><span class="w">         </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">      </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">         </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">  </span>...<span class="w"> </span><span class="p">|</span>
+</span></code></pre></div>
+<h3 id="transforming">Transforming</h3>
+<p>Mapping operations take one or more series (columns) as inputs and produce a new column as output. The method below extracts the Month name from the date column into a new column.</p>
+<div class="language-groovy highlight"><span class="filename">creating a new series to dataframe</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">monthSeries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">[</span><span class="s2">&quot;Date&quot;</span><span class="o">](</span><span class="n">LocalDate</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">it</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;MMMM&quot;</span><span class="o">)</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>Now that you have a new column, you can add it to the DataFrame:</p>
+<div class="language-groovy highlight"><span class="filename">adding month series to tornadoes dataframe</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">tornadoes</span><span class="o">[</span><span class="s1">&#39;month&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">monthSeries</span>
+</span></code></pre></div>
+<p>Of course nothing prevents you from doing everything altogether.</p>
+<p>You can remove columns from DataFrames to save memory or reduce clutter:</p>
+<div class="language-groovy highlight"><span class="filename">remove series from dataframe</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">tornadoes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">[</span><span class="s1">&#39;Date&#39;</span><span class="o">]</span>
+</span></code></pre></div>
+<h3 id="sorting">Sorting</h3>
+<p>Now lets sort the DataFrame in reverse order by the id column. The negative sign before the name indicates a descending sort.</p>
+<div class="language-groovy highlight"><span class="filename">sort asc</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">df1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">sort_values</span><span class="o">(</span><span class="nl">by:</span><span class="w"> </span><span class="s1">&#39;Fatalities&#39;</span><span class="o">)</span>
+</span></code></pre></div>
+<p>You can also sort in descending order:</p>
+<div class="language-groovy highlight"><span class="filename">sort desc</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">df2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">sort_values</span><span class="o">(</span><span class="nl">by:</span><span class="w"> </span><span class="s1">&#39;-Fatalities&#39;</span><span class="o">)</span>
+</span></code></pre></div>
+<p>and even sorting by more than one field:</p>
+<div class="language-groovy highlight"><span class="filename">sort by n-fields</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">df3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">sort_values</span><span class="o">(</span><span class="nl">by:</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;State&#39;</span><span class="o">])</span>
+</span></code></pre></div>
+<h3 id="descriptive-statistics">Descriptive statistics</h3>
+<p>Descriptive statistics are calculated using the summary() method:</p>
+<div class="language-groovy highlight"><span class="filename">printing column insights</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">columnStats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">[</span><span class="s2">&quot;Fatalities&quot;</span><span class="o">].</span><span class="na">describe</span><span class="o">()</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">println</span><span class="o">(</span><span class="n">columnStats</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Showing the following output:</p>
+<div class="language-shell highlight"><span class="filename">column describe output</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="w">         </span>Column:<span class="w"> </span>Fatalities
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w"> </span>Measure<span class="w">   </span><span class="p">|</span><span class="w">         </span>Value<span class="w">         </span><span class="p">|</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>------------------------------------
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">        </span>n<span class="w">  </span><span class="p">|</span><span class="w">                </span><span class="m">59945</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">      </span>sum<span class="w">  </span><span class="p">|</span><span class="w">                 </span><span class="m">6802</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">     </span>Mean<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.11347068145800349<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">      </span>Min<span class="w">  </span><span class="p">|</span><span class="w">                    </span><span class="m">0</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">      </span>Max<span class="w">  </span><span class="p">|</span><span class="w">                  </span><span class="m">158</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">    </span>Range<span class="w">  </span><span class="p">|</span><span class="w">                  </span><span class="m">158</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w"> </span>Variance<span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">2</span>.901978053261765<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w"> </span>Std.<span class="w"> </span>Dev<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">1</span>.7035193140266314<span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<h3 id="filtering">Filtering</h3>
+<p>The preferred way of filtering DataFrames in Underdog is to use the <strong>list notation</strong>. Look at the following example:</p>
+<div class="language-groovy highlight"><span class="filename">filtering dataframe by column expressions</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">// reading tornadoes</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="s2">&quot;src/test/resources/data/tornadoes_1950-2014.csv&quot;</span><span class="o">)</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1">// adding a new series to dataframe with the name of the month</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;month&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span><span class="s2">&quot;Date&quot;</span><span class="o">](</span><span class="n">LocalDate</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;MMMM&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1">// filtering</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="kt">def</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">    </span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;</span><span class="w">                   </span><span class="c1">// at least 1 fatalities</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">    </span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;month&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;April&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w">                 </span><span class="c1">// in the month of April</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="o">(</span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;Width&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">300</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;Length&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="o">)</span><span class="w">  </span><span class="c1">// a tornado with a</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="o">]</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="c1">// selecting only two columns</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="kt">def</span><span class="w"> </span><span class="n">stateAndDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="s1">&#39;State&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Date&#39;</span><span class="o">]</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="w"> </span>tornadoes_1950-2014.csv
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w"> </span>State<span class="w">  </span><span class="p">|</span><span class="w">     </span>Date<span class="w">     </span><span class="p">|</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>------------------------
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span>MO<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">1950</span>-01-03<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">    </span>IL<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">1950</span>-01-03<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">    </span>OH<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">1950</span>-01-03<span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<p>The last example filters the tornadoes DataFrame with predicates of type <code>dataFrame[seriesName] op (series | object)</code>. Where <strong>op</strong> can be a comparison operators such as <code>&gt;=,&lt;=,==</code> etc. Of course these expressions can be combined with <code>or</code> or <code>and</code> operators <code>|</code> and <code>&amp;</code>. </p>
+<h3 id="grouping">Grouping</h3>
+<p>Series metrics can be calculated using grouping methods like sum(), product(), mean(), max(), etc.  You can apply those methods to a DataFrame, calculating results on one column, grouped by the values in another.</p>
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">tornadoes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="s2">&quot;src/test/resources/data/tornadoes_1950-2014.csv&quot;</span><span class="o">)</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">injuriesByScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="o">.</span><span class="na">rename</span><span class="o">(</span><span class="s2">&quot;Median Injuries by Tornado Scale&quot;</span><span class="o">)</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="o">.</span><span class="na">agg</span><span class="o">(</span><span class="nl">Injuries:</span><span class="w"> </span><span class="s2">&quot;median&quot;</span><span class="o">)</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">    </span><span class="o">.</span><span class="na">by</span><span class="o">(</span><span class="s2">&quot;Scale&quot;</span><span class="o">)</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">    </span><span class="o">.</span><span class="na">sort_values</span><span class="o">(</span><span class="nl">by:</span><span class="w"> </span><span class="s2">&quot;Scale&quot;</span><span class="o">)</span>
+</span></code></pre></div>
+<p>This produces the following DataFrame, in which Group represents the Tornado Scale and Median the median injures for that group:</p>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Median<span class="w"> </span>injuries<span class="w"> </span>by<span class="w"> </span>Tornado<span class="w"> </span>Scale
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w"> </span>Scale<span class="w">  </span><span class="p">|</span><span class="w">  </span>Median<span class="w"> </span><span class="o">[</span>Injuries<span class="o">]</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>-------------------------------
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span>-9<span class="w">  </span><span class="p">|</span><span class="w">                  </span><span class="m">0</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">                  </span><span class="m">0</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">     </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">                  </span><span class="m">0</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">     </span><span class="m">2</span><span class="w">  </span><span class="p">|</span><span class="w">                  </span><span class="m">0</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">     </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">                  </span><span class="m">1</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">     </span><span class="m">4</span><span class="w">  </span><span class="p">|</span><span class="w">                 </span><span class="m">12</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">     </span><span class="m">5</span><span class="w">  </span><span class="p">|</span><span class="w">                </span><span class="m">107</span><span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<h3 id="cross-tabs">Cross Tabs</h3>
+<p>Underdog lets you easily produce two-dimensional cross-tabulations (“cross tabs”) of counts and proportions with row and column subtotals. Here’s a count example where we look at the interaction of tornado severity and US state:</p>
+<div class="language-groovy highlight"><span class="filename">crosstabs (count)</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">crossTab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tornadoes</span><span class="o">.</span><span class="na">xTabCounts</span><span class="o">(</span><span class="nl">labels:</span><span class="w"> </span><span class="s1">&#39;State&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">values:</span><span class="w"> </span><span class="s1">&#39;Scale&#39;</span><span class="o">)</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">crossTab</span><span class="o">.</span><span class="na">head</span><span class="o">()</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="w">                       </span>Crosstab<span class="w"> </span>Counts:<span class="w"> </span>State<span class="w"> </span>x<span class="w"> </span>Scale
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w"> </span><span class="o">[</span>labels<span class="o">]</span><span class="w">  </span><span class="p">|</span><span class="w">  </span>-9<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">    </span><span class="p">|</span><span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="m">3</span><span class="w">   </span><span class="p">|</span><span class="w">  </span><span class="m">4</span><span class="w">   </span><span class="p">|</span><span class="w">  </span><span class="m">5</span><span class="w">   </span><span class="p">|</span><span class="w">  </span>total<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>----------------------------------------------------------------------------
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">       </span>AL<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">624</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">770</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">425</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">142</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">38</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">12</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">2011</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">       </span>AR<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">486</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">667</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">420</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">162</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">29</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">1765</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">       </span>AZ<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">146</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">71</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">16</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">237</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">       </span>CA<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">271</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">117</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">23</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">2</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">414</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">       </span>CO<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">1322</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">563</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">112</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">22</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">2023</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">       </span>CT<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">18</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">53</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">22</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">4</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">2</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">     </span><span class="m">99</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">       </span>DC<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">     </span><span class="m">2</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">      </span><span class="m">2</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">       </span>DE<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">22</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">26</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">12</span><span class="w">  </span><span class="p">|</span><span class="w">    </span><span class="m">1</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">     </span><span class="m">61</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">       </span>FL<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">2</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">1938</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">912</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">319</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">37</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">3</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">3211</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="w">       </span>GA<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">413</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">700</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">309</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">74</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">11</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">1507</span><span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<p>Putting it all together</p>
+<p>Now that you’ve seen the pieces, we can put them together to perform a more complex data analysis. Lets say we want to know how frequently Tornadoes occur in the summer. Here’’s one way to approach that:</p>
+<p>Let’s start by getting only those tornadoes that occurred in the summer.</p>
+<div class="language-groovy highlight"><span class="filename">tornadoes in the summer</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="s2">&quot;src/test/resources/data/tornadoes_1950-2014.csv&quot;</span><span class="o">)</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="c1">// adding some series to the dataframe to make filtering easier</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;month&#39;</span><span class="o">]</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;Date&#39;</span><span class="o">](</span><span class="n">Date</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;MMMM&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;dayOfMonth&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;Date&#39;</span><span class="o">](</span><span class="n">Date</span><span class="o">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;dd&quot;</span><span class="o">).</span><span class="na">toInteger</span><span class="o">()</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="c1">// filtering</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="kt">def</span><span class="w"> </span><span class="n">summer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">    </span><span class="o">(</span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;month&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;June&#39;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;dayOfMonth&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">21</span><span class="o">)</span><span class="w"> </span><span class="o">|</span><span class="w">    </span><span class="c1">// after June the 21st or...</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">    </span><span class="o">(</span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;month&#39;</span><span class="o">]</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;July&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;August&#39;</span><span class="o">])</span><span class="w"> </span><span class="o">|</span><span class="w">                </span><span class="c1">// in July or August or...</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w">    </span><span class="o">(</span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;month&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;September&#39;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ts</span><span class="o">[</span><span class="s1">&#39;dayOfMonth&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">22</span><span class="o">)</span><span class="w"> </span><span class="c1">// before September the 22nd</span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="o">]</span>
+</span></code></pre></div>
+<p>Then to get the frequency:</p>
+<ul>
+<li>We calculate the difference in days between successive tornadoes. </li>
+<li>The lag() method creates a column where every value equals the previous value (the prior row) of the source column. </li>
+<li>Then we can simply get the difference in days between the two dates. DateColumn has a method daysUntil() that does this. It returns a NumberColumn that we’ll call “delta”.</li>
+</ul>
+<div class="language-groovy highlight"><span class="filename">lag and delta dates</span><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1">// sorting by Date and Time series</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">summer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">summer</span><span class="o">.</span><span class="na">sort_values</span><span class="o">(</span><span class="nl">by:</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;Date&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Time&#39;</span><span class="o">])</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1">// creating a series with lagged dates</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="n">summer</span><span class="o">[</span><span class="s1">&#39;Lagged&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">summer</span><span class="o">[</span><span class="s1">&#39;Date&#39;</span><span class="o">].</span><span class="na">lag</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="c1">// creating a series with delta days between lagged dates and summer dates</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="n">summer</span><span class="o">[</span><span class="s1">&#39;Delta&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">summer</span><span class="o">[</span><span class="s1">&#39;Lagged&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">summer</span><span class="o">[</span><span class="s1">&#39;Date&#39;</span><span class="o">]</span>
+</span></code></pre></div>
+<p>Now we simply calculate the mean of the delta column. Splitting on year keeps us from inadvertently including the time between the last tornado of one summer and the first tornado of the next.</p>
+<div class="language-groovy highlight"><span class="filename">create summary</span><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1">// creating year series to be able to group by it</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">summer</span><span class="o">[</span><span class="s1">&#39;year&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">summer</span><span class="o">[</span><span class="s1">&#39;Date&#39;</span><span class="o">](</span><span class="n">Date</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;YYYY&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="c1">// aggregating delta</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">summary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">summer</span><span class="o">.</span><span class="na">agg</span><span class="o">(</span><span class="nl">Delta:</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;mean&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;count&quot;</span><span class="o">]).</span><span class="na">by</span><span class="o">(</span><span class="s2">&quot;year&quot;</span><span class="o">)</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="c1">// print out summary</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="n">println</span><span class="o">(</span><span class="n">summary</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Printing summary gives us the answer by year.</p>
+<div class="language-shell highlight"><span class="filename">summary output</span><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="w">                           </span>tornadoes_1950-2014.csv<span class="w"> </span>summary
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w"> </span>Date<span class="w"> </span>year<span class="w">  </span><span class="p">|</span><span class="w">  </span>Mean<span class="w"> </span><span class="o">[</span>Date<span class="w"> </span>lag<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>-<span class="w"> </span>Date<span class="o">[</span>DAYS<span class="o">]]</span><span class="w">  </span><span class="p">|</span><span class="w">  </span>Count<span class="w"> </span><span class="o">[</span>Date<span class="w"> </span>lag<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>-<span class="w"> </span>Date<span class="o">[</span>DAYS<span class="o">]]</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>--------------------------------------------------------------------------------------
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">      </span><span class="m">1950</span><span class="w">  </span><span class="p">|</span><span class="w">               </span><span class="m">2</span>.0555555555555545<span class="w">  </span><span class="p">|</span><span class="w">                               </span><span class="m">162</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">      </span><span class="m">1951</span><span class="w">  </span><span class="p">|</span><span class="w">               </span><span class="m">1</span>.7488584474885829<span class="w">  </span><span class="p">|</span><span class="w">                               </span><span class="m">219</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">      </span><span class="m">1952</span><span class="w">  </span><span class="p">|</span><span class="w">               </span><span class="m">1</span>.8673469387755088<span class="w">  </span><span class="p">|</span><span class="w">                               </span><span class="m">196</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">      </span><span class="m">1953</span><span class="w">  </span><span class="p">|</span><span class="w">                </span><span class="m">0</span>.983870967741935<span class="w">  </span><span class="p">|</span><span class="w">                               </span><span class="m">372</span><span class="w">  </span><span class="p">|</span>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">      </span><span class="m">1954</span><span class="w">  </span><span class="p">|</span><span class="w">               </span><span class="m">0</span>.8617283950617302<span class="w">  </span><span class="p">|</span><span class="w">                               </span><span class="m">405</span><span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<p>To get a DOUBLE for the entire period, we can take the average of the annual means.</p>
+<div class="language-groovy highlight"><span class="filename">average second column</span><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">meanOfSeries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">summary</span><span class="o">.</span><span class="na">iloc</span><span class="o">[</span><span class="n">__</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">].</span><span class="na">mean</span><span class="o">()</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">Average days between tornadoes in the summer:</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>0.5931137164104612
+</span></code></pre></div>
+<h3 id="saving-your-data">Saving your data</h3>
+<p>To save a DataFrame, you can write it as a CSV file:</p>
+<div class="language-groovy highlight"><span class="filename">saving csv file</span><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">tornadoes</span><span class="o">.</span><span class="na">write</span><span class="o">().</span><span class="na">csv</span><span class="o">(</span><span class="s2">&quot;rev_tornadoes_1950-2014.csv&quot;</span><span class="o">);</span>
+</span></code></pre></div>
+<p>And that’s it for the introduction. Please see the User Guide for more information.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

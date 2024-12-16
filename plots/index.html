@@ -1,0 +1,1584 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://grooviter.github.io/underdog/plots/">
+      
+      
+        <link rel="prev" href="../ml/">
+      
+      
+        <link rel="next" href="../ta/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Plots - Underdog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plots" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Underdog" class="md-header__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Underdog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plots
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Underdog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dataframe/" class="md-tabs__link">
+        
+  
+    
+  
+  DataFrame
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../graphs/" class="md-tabs__link">
+        
+  
+    
+  
+  Graphs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ml/" class="md-tabs__link">
+        
+  
+    
+  
+  ML
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Plots
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ta/" class="md-tabs__link">
+        
+  
+    
+  
+  Technical Analysis
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../development/" class="md-tabs__link">
+        
+  
+    
+  
+  Development
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Underdog" class="md-nav__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Underdog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Underdog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataframe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DataFrame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Plots
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Plots
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#echarts-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Echarts DSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Return Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customizing chart
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Line
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      N-lines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customize
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histogram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scatter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scatter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directed-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directed graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edge labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showing-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing paths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph domain
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customize
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#color-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Color mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataframe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Radar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataframe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataframe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Technical Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="plots">Plots</h1>
+<p>Underdog's Plots module renders different types of charts and adds integration with rest of Underdog's modules.</p>
+<h2 id="introduction">Introduction</h2>
+<h3 id="echarts-dsl">Echarts DSL</h3>
+<p>Underdog plots uses the <a href="https://echarts.apache.org">Apache Echarts</a> under the hood, so the idea is to try to be able to render whatever is possible in Echarts. To accomplish that this project creates a Groovy DSL mimicking the Echarts Option object. You can access the DSL when customizing the chart.</p>
+<p>At the moment the support of the Echarts Option object is limited but we aim to improve that overtime.</p>
+<h3 id="basic-properties">Basic properties</h3>
+<p><strong>For every chart</strong> we must provide methods containing the following properties:</p>
+<ul>
+<li>data entry as list of numbers</li>
+<li>data entry as Series</li>
+<li>chart title</li>
+<li>chart subtitle</li>
+</ul>
+<p>Apart from that every plot has a <code>customize(Closure)</code> method to be able to customize the chart following Echarts documentation using a Groovy DSL.</p>
+<p>When <strong>the method is receiving data as List</strong> instances:</p>
+<ul>
+<li>X coordinate label (by default is X)</li>
+<li>Y coordinate label (by default is Y)</li>
+</ul>
+<p>In <strong>methods receiving Series objects</strong> the name of the X and Y coordinate will be taken from the Series' name passed as parameter.</p>
+<p>In general we'd like to be able to use the plots library for anyone, that's why any chart should be able to receive its data from a plain java list.</p>
+<p>Apart from those mandatory properties, there could be extra properties added to specific charts depending on how practical these properties are when dealing which that type of charts.</p>
+<h3 id="return-options">Return Options</h3>
+<p>All plotting methods return a <strong>memento.plots.charts.Options</strong> instance which represents the Echarts Options object.</p>
+<h3 id="customizing-chart">Customizing chart</h3>
+<p>All default methods provide a limited setup of the chart via the mandatory attributes we saw previously.To access the full Groovy Echarts DSL we can always access the <strong>Options#customize(Closure)</strong> method rendering the chart calling the <strong>Options#show()</strong>.</p>
+<h2 id="line">Line</h2>
+<h3 id="simple">Simple</h3>
+<p>Here is a simple line chart:</p>
+<div class="language-groovy highlight"><span class="filename">simple line</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Plots</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="o">.</span><span class="na">line</span><span class="o">(</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="c1">// You can use a **range or a list** for X axis</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="mi">2000</span><span class="o">..</span><span class="mi">2010</span><span class="o">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="c1">// You can use a **range or a list** for the Y axis</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="o">[</span><span class="mi">10</span><span class="o">,</span><span class="w"> </span><span class="mi">15</span><span class="o">,</span><span class="w"> </span><span class="mi">18</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">9</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">,</span><span class="w"> </span><span class="mi">11</span><span class="o">,</span><span class="w"> </span><span class="mi">12</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">],</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="c1">// Optional attributes</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Wins of Team A&quot;</span><span class="o">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;Between years 2000 - 2010&quot;</span><span class="o">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="nl">xLabel:</span><span class="w"> </span><span class="s2">&quot;Years&quot;</span><span class="o">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="nl">yLabel:</span><span class="w"> </span><span class="s2">&quot;Wins&quot;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">line</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/line_simple.png#only-light" width="60%" />
+<img alt="" src="images/line_simple_dark.png#only-dark" width="60%" /></p>
+<p>There are methods adapted for using Underdog's Series objects:</p>
+<div class="language-groovy highlight"><span class="filename">Series</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// load data</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="n">baseballPath</span><span class="o">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// filter &amp; aggregate &amp; sort</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">[</span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;Team&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;BOS&#39;</span><span class="o">]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="o">.</span><span class="na">agg</span><span class="o">(</span><span class="nl">W:</span><span class="w"> </span><span class="s1">&#39;sum&#39;</span><span class="o">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="o">.</span><span class="na">by</span><span class="o">(</span><span class="s1">&#39;year&#39;</span><span class="o">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="o">.</span><span class="na">sort_values</span><span class="o">(</span><span class="nl">by:</span><span class="w"> </span><span class="s1">&#39;year&#39;</span><span class="o">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1">// show</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="o">.</span><span class="na">line</span><span class="o">(</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="c1">// using `year` series for X axis</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;year&#39;</span><span class="o">],</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="c1">// renaming series to `Wins X Years` and using it for Y axis</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;Sum [W]&#39;</span><span class="o">].</span><span class="na">rename</span><span class="o">(</span><span class="s1">&#39;Wins X Years&#39;</span><span class="o">),</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Wins of &#39;BOS&#39; team over time&quot;</span><span class="o">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/line_series.png#only-light" width="60%" /></p>
+<p>In any method using Underdog's Series there is no attribute for changing the xLabel or the yLabel as it takes the Series' name. To change the label you can rename the Series' name as mentioned in the example.</p>
+<h3 id="n-lines">N-lines</h3>
+<div class="language-groovy highlight"><span class="filename">lines using collections</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Number</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="c1">// A list of lists of 2 elements [[x1, y1], [x2, y2],..., [xn, yn]]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nl">A:</span><span class="w"> </span><span class="o">[[</span><span class="mi">2000</span><span class="o">,</span><span class="w"> </span><span class="mi">13</span><span class="o">],[</span><span class="mi">2001</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">],</span><span class="w"> </span><span class="o">[</span><span class="mi">2002</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">],</span><span class="w"> </span><span class="o">[</span><span class="mi">2003</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">],</span><span class="w"> </span><span class="o">[</span><span class="mi">2004</span><span class="o">,</span><span class="mi">6</span><span class="o">]],</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nl">B:</span><span class="w"> </span><span class="o">[[</span><span class="mi">2000</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">],</span><span class="w"> </span><span class="o">[</span><span class="mi">2001</span><span class="o">,</span><span class="w"> </span><span class="mi">6</span><span class="o">],</span><span class="w"> </span><span class="o">[</span><span class="mi">2002</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">],</span><span class="w"> </span><span class="o">[</span><span class="mi">2003</span><span class="o">,</span><span class="w"> </span><span class="mi">8</span><span class="o">],</span><span class="w"> </span><span class="o">[</span><span class="mi">2004</span><span class="o">,</span><span class="w"> </span><span class="mi">9</span><span class="o">]],</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="c1">// Using [listX, listY]transpose()` == [[x1, y1], [x2, y2],..., [xn, yn]]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nl">C:</span><span class="w"> </span><span class="o">[</span><span class="mi">2000</span><span class="o">..</span><span class="mi">2004</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">..</span><span class="mi">7</span><span class="o">].</span><span class="na">transpose</span><span class="o">()</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="o">]</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="o">.</span><span class="na">lines</span><span class="o">(</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="n">data</span><span class="o">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Progress of Teams A, B, C&quot;</span><span class="o">,</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;Between years 2000 - 2010&quot;</span><span class="o">,</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="nl">xLabel:</span><span class="w"> </span><span class="s2">&quot;Years&quot;</span><span class="o">,</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="nl">yLabel:</span><span class="w"> </span><span class="s2">&quot;Wins&quot;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/line_n_lines.png#only-light" width="60%" />
+<img alt="" src="images/line_n_lines_dark.png#only-dark" width="60%" /></p>
+<h3 id="customize">Customize</h3>
+<p>As in any chart once we've created our Options object and before calling <code>show()</code> we can use the <code>Options#customize()</code> method to customize the chart using Groovy's Echart DSL.</p>
+<div class="language-groovy highlight"><span class="filename">Customize</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="o">.</span><span class="na">lines</span><span class="o">(</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="n">dataFrame</span><span class="o">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Team comparison (BOS, ATL, CIN)&quot;</span><span class="o">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;Years 2000-2004&quot;</span><span class="o">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nl">xLabel:</span><span class="w"> </span><span class="s2">&quot;Years&quot;</span><span class="o">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="nl">yLabel:</span><span class="w"> </span><span class="s2">&quot;Wins&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="o">).</span><span class="na">customize</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="c1">// Adding legend in the top right corner</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="n">legend</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">            </span><span class="n">top</span><span class="o">(</span><span class="s2">&quot;10%&quot;</span><span class="o">)</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">            </span><span class="n">right</span><span class="o">(</span><span class="s1">&#39;15%&#39;</span><span class="o">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">            </span><span class="n">show</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="o">}</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="c1">// Adding tooltip of type `axis`</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="n">tooltip</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">            </span><span class="n">trigger</span><span class="o">(</span><span class="s1">&#39;axis&#39;</span><span class="o">)</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="o">}</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p>In this occasion we are adding the chart legend and positioning it to the top-right side of the chart.</p>
+<p><img alt="" src="images/line_customize.png#only-light" width="60%" />
+<img alt="" src="images/line_customize_dark.png#only-dark" width="60%" /></p>
+<h2 id="bar">Bar</h2>
+<h3 id="simple_1">Simple</h3>
+<div class="language-groovy highlight"><span class="filename">simple bar</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="o">.</span><span class="na">bar</span><span class="o">(</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="mi">1</span><span class="o">..</span><span class="mi">12</span><span class="o">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="o">[</span><span class="mi">10</span><span class="o">,</span><span class="w"> </span><span class="mi">12</span><span class="o">,</span><span class="w"> </span><span class="mi">18</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">20</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">,</span><span class="w"> </span><span class="mi">12</span><span class="o">,</span><span class="w"> </span><span class="mi">18</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">],</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Using bars&quot;</span><span class="o">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nl">xLabel:</span><span class="w"> </span><span class="s2">&quot;Months&quot;</span><span class="o">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nl">yLabel:</span><span class="w"> </span><span class="s2">&quot;Indicator&quot;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/bar_simple.png#only-light" width="60%" />
+<img alt="" src="images/bar_simple_dark.png#only-dark" width="60%" /></p>
+<h3 id="histogram">Histogram</h3>
+<div class="language-groovy highlight"><span class="filename">simple histogram</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// generating data</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="o">()</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">1</span><span class="n">_000</span><span class="o">).</span><span class="na">collect</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">random</span><span class="o">.</span><span class="na">nextGaussian</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">50</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">// plot</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="o">.</span><span class="na">histogram</span><span class="o">(</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="n">distribution</span><span class="o">,</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Distribution&quot;</span><span class="o">,</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;mean: 0 / stddev: 50&quot;</span><span class="o">,</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="nl">bins:</span><span class="w"> </span><span class="mi">10</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/histogram_simple.png#only-light" width="60%" />
+<img alt="" src="images/histogram_simple_dark.png#only-dark" width="60%" /></p>
+<h2 id="scatter">Scatter</h2>
+<h3 id="simple_2">Simple</h3>
+<div class="language-groovy highlight"><span class="filename">simple</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// numbers from 0 to 99</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1">// You can use a &quot;range or a list&quot; for X axis</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">100</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">// 100 random numbers</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">// You can use a &quot;range or a list&quot; for the Y axis</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="kt">def</span><span class="w"> </span><span class="n">ys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="mi">0</span><span class="o">..&lt;</span><span class="mi">100</span><span class="o">).</span><span class="na">collect</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="o">().</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">// plot</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="o">.</span><span class="na">scatter</span><span class="o">(</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="n">xs</span><span class="o">,</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="n">ys</span><span class="o">,</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Random Numbers&quot;</span><span class="o">)</span><span class="w"> </span><span class="c1">// Optional attributes</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/scatter_simple.png#only-light" width="60%" />
+<img alt="" src="images/scatter_simple_dark.png#only-dark" width="60%" /></p>
+<p>Here's the same example but using Underdog's series for X and Y axes. Given the dataframe instance <code>df</code> and series <code>xs</code> and <code>ys</code>:</p>
+<div class="language-groovy highlight"><span class="filename">simple series</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Plots</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">        </span><span class="o">.</span><span class="na">scatter</span><span class="o">(</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">            </span><span class="c1">// using a series for x axis and renaming it to X</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">            </span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;xs&#39;</span><span class="o">].</span><span class="na">rename</span><span class="o">(</span><span class="s1">&#39;X&#39;</span><span class="o">),</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">            </span><span class="c1">// using another series for y axis and renaming it to Y</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">            </span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;ys&#39;</span><span class="o">].</span><span class="na">rename</span><span class="o">(</span><span class="s1">&#39;Y&#39;</span><span class="o">),</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">            </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Random Numbers&quot;</span><span class="o">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h2 id="graphs">Graphs</h2>
+<h3 id="simple_3">Simple</h3>
+<p>Here's a simple graph representation just showing 2 edges connecting 3 vertices. We only have to pass an instance
+of a graph to the <code>graph(...)</code> function:</p>
+<p><img alt="" src="images/graphs_simple.png#only-light" width="40%" />
+<img alt="" src="images/graphs_simple_dark.png#only-dark" width="40%" /></p>
+<div class="language-groovy highlight"><span class="filename">simple graph</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// create instance of Graph</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">friends</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graphs</span><span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Thelma&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Troy&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">}</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">// show plot</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">friends</span><span class="o">)</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h3 id="directed-graph">Directed graph</h3>
+<p>If the graph we're passing to the <code>plots().graph(...)</code> function is a directed graph, the direction of the edges will
+show up:</p>
+<p><img alt="" src="images/graphs_directed.png#only-light" width="40%" />
+<img alt="" src="images/graphs_directed_dark.png#only-dark" width="40%" /></p>
+<div class="language-groovy highlight"><span class="filename">directed graph</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">friends</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graphs</span><span class="o">.</span><span class="na">digraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Thelma&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Troy&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">}</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">friends</span><span class="o">)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h3 id="edge-labels">Edge labels</h3>
+<p>If we want to show the edges labels we can do so by setting the <code>showEdgeLabel</code> parameter to <code>true</code>:</p>
+<p><img alt="" src="images/graphs_edge_labels.png#only-light" width="40%" />
+<img alt="" src="images/graphs_edge_labels_dark.png#only-dark" width="40%" /></p>
+<div class="language-groovy highlight"><span class="filename">edge labels</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">friends</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graphs</span><span class="o">.</span><span class="na">digraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Thelma&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Troy&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="o">}</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Plots</span><span class="o">.</span><span class="na">plots</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">friends</span><span class="o">,</span><span class="w"> </span><span class="nl">showEdgeLabel:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h3 id="showing-paths">Showing paths</h3>
+<p>Sometimes we may want highlight a given path between vertices. We can use the parameter <code>paths</code> which receives a list
+of paths to highlight any number of paths:</p>
+<p><img alt="" src="images/graphs_paths.png#only-light" width="40%" />
+<img alt="" src="images/graphs_paths_dark.png#only-dark" width="40%" /></p>
+<div class="language-groovy highlight"><span class="filename">show paths</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">friends</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graphs</span><span class="o">.</span><span class="na">digraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Thelma&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Troy&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="o">}</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">friendship</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">friends</span><span class="o">.</span><span class="na">shortestPath</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Troy&#39;</span><span class="o">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="n">friends</span><span class="o">,</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="nl">paths:</span><span class="w"> </span><span class="o">[</span><span class="n">friendship</span><span class="o">],</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="nl">showEdgeLabel:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h3 id="graph-domain">Graph domain</h3>
+<p>To go one step further and play with vertices sizes and colors, we can use the graph chart domain classes. These classes are:</p>
+<ul>
+<li><code>underdog.plots.charts.Graph.Node</code>: represents a node graphically (size, color, label)</li>
+<li><code>underdog.plots.charts.Graph.Edge</code>: represents an edge graphically (width, color, label)</li>
+</ul>
+<p><img alt="" src="images/graphs_domain.png#only-light" width="40%" />
+<img alt="" src="images/graphs_domain_dark.png#only-dark" width="40%" /></p>
+<div class="language-groovy highlight"><span class="filename">domain classes</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Graph</span><span class="o">.</span><span class="na">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Graph</span><span class="o">.</span><span class="na">Node</span><span class="o">(</span><span class="nl">id:</span><span class="w"> </span><span class="s2">&quot;robert&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">name:</span><span class="w"> </span><span class="s2">&quot;Robert&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">symbolSize:</span><span class="w"> </span><span class="mi">75</span><span class="o">),</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Graph</span><span class="o">.</span><span class="na">Node</span><span class="o">(</span><span class="nl">id:</span><span class="w"> </span><span class="s2">&quot;thelma&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">name:</span><span class="w"> </span><span class="s2">&quot;Thelma&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">symbolSize:</span><span class="w"> </span><span class="mi">40</span><span class="o">),</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Graph</span><span class="o">.</span><span class="na">Node</span><span class="o">(</span><span class="nl">id:</span><span class="w"> </span><span class="s2">&quot;troy&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">name:</span><span class="w"> </span><span class="s2">&quot;Troy&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">symbolSize:</span><span class="w"> </span><span class="mi">40</span><span class="o">)</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="o">]</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Graph</span><span class="o">.</span><span class="na">Edge</span><span class="o">&gt;</span><span class="w"> </span><span class="n">edges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Graph</span><span class="o">.</span><span class="na">Edge</span><span class="o">(</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">        </span><span class="nl">source:</span><span class="w"> </span><span class="s2">&quot;robert&quot;</span><span class="o">,</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="nl">target:</span><span class="w"> </span><span class="s2">&quot;thelma&quot;</span><span class="o">,</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">        </span><span class="nl">color:</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="o">,</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">        </span><span class="nl">width:</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">        </span><span class="nl">value:</span><span class="w"> </span><span class="s2">&quot;bff&quot;</span><span class="o">),</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Graph</span><span class="o">.</span><span class="na">Edge</span><span class="o">(</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">        </span><span class="nl">source:</span><span class="w"> </span><span class="s2">&quot;robert&quot;</span><span class="o">,</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">        </span><span class="nl">target:</span><span class="w"> </span><span class="s2">&quot;troy&quot;</span><span class="o">,</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">        </span><span class="nl">color:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="o">,</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">        </span><span class="nl">width:</span><span class="w"> </span><span class="mi">10</span><span class="o">,</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">        </span><span class="nl">value:</span><span class="w"> </span><span class="s2">&quot;friend&quot;</span><span class="o">)</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="o">]</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w">    </span><span class="n">nodes</span><span class="o">,</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="w">    </span><span class="n">edges</span><span class="o">,</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="w">    </span><span class="nl">showEdgeLabel:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h3 id="customize_1">Customize</h3>
+<p>As any of the charts in Underdog, we can use the <code>customize(...)</code> method of any chart to customize the chart by using
+the Groovy Echarts DSL:</p>
+<div class="language-groovy highlight"><span class="filename">customization</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">friends</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Graphs</span><span class="o">.</span><span class="na">digraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Thelma&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;Robert&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Troy&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">relation:</span><span class="w"> </span><span class="s1">&#39;friend&#39;</span><span class="o">)</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="o">}</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">friends</span><span class="o">,</span><span class="w"> </span><span class="nl">showEdgeLabel:</span><span class="w"> </span><span class="kc">true</span><span class="o">)</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="o">.</span><span class="na">customize</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="s2">&quot;New title&quot;</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">            </span><span class="n">subtext</span><span class="o">(</span><span class="s2">&quot;New subtitle&quot;</span><span class="o">)</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">            </span><span class="n">top</span><span class="o">(</span><span class="s2">&quot;bottom&quot;</span><span class="o">)</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">            </span><span class="n">left</span><span class="o">(</span><span class="s2">&quot;right&quot;</span><span class="o">)</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">        </span><span class="o">}</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h2 id="pie">Pie</h2>
+<div class="admonition info">
+<p class="admonition-title">Wikipedia</p>
+<p>According to <a href="https://en.wikipedia.org/wiki/Pie_chart">Wikipedia</a> a pie chart (or a circle chart) is a circular statistical graphic which is divided into slices to illustrate numerical proportion.</p>
+</div>
+<p>In a pie chart, the arc length of each slice (and consequently its central angle and area) is proportional to the quantity it represents.</p>
+<h3 id="simple_4">Simple</h3>
+<p>To create a minimal representation of a Pie we must provide at least a collection of the <strong>labels</strong> of each partition, and
+another collection with the <strong>values</strong> of each partition:</p>
+<div class="language-groovy highlight"><span class="filename">building pie</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="o">.</span><span class="na">pie</span><span class="o">(</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">        </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">),</span><span class="w"> </span><span class="c1">// slice labels</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span><span class="o">[</span><span class="mi">9</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="mi">4</span><span class="o">]</span><span class="w">   </span><span class="c1">// slice values</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/pie_simple.png#only-light" width="50%" />
+<img alt="" src="images/pie_simple_dark.png#only-dark" width="50%" /></p>
+<h3 id="color-mapping">Color mapping</h3>
+<p>In some situations the color of each partition is really meaningful. For example, it would be strange to represent a 
+group of race teams and represent the team Ferrari (which historically is red) with other color than red. In order
+to map the colors to each partition we can provide a map of entries of type <code>partitionLabel: color</code> 
+to the parameter <code>colorMap</code>:</p>
+<div class="language-groovy highlight"><span class="filename">color mapping</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// Colors matching the labels</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">COLORS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="s2">&quot;Red Bull&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;#101864&quot;</span><span class="o">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="s2">&quot;Ferrari&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;#b03641&quot;</span><span class="o">,</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="s2">&quot;Mclaren&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;#d26f30&quot;</span><span class="o">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="s2">&quot;Mercedes&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;#505c62&quot;</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="o">]</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="o">.</span><span class="na">pie</span><span class="o">(</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="c1">// Labels</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">        </span><span class="o">[</span><span class="s2">&quot;Red Bull&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Ferrari&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Mclaren&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Mercedes&quot;</span><span class="o">],</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">        </span><span class="c1">// Values</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">        </span><span class="o">[</span><span class="mi">9</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="mi">4</span><span class="o">],</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">        </span><span class="c1">// Passing color mappings</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">        </span><span class="nl">colorMap:</span><span class="w"> </span><span class="n">COLORS</span><span class="o">,</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Top 4 Teams F1(tm) 2024 season&quot;</span><span class="o">,</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;Total number of driver victories per team&quot;</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/pie_color_mapping.png#only-light" width="50%" />
+<img alt="" src="images/pie_color_mapping_dark.png#only-dark" width="50%" /></p>
+<h3 id="dataframe">Dataframe</h3>
+<p>In order to use an Underdog's dataframe we have to make sure that the name of the series should match 
+the names: <code>names</code>, <code>values</code>, <code>colors</code>. </p>
+<div class="language-groovy highlight"><span class="filename">dataframe</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// source map</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="nl">names:</span><span class="w"> </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">),</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="nl">values:</span><span class="w"> </span><span class="o">(</span><span class="mi">10</span><span class="o">..</span><span class="mi">40</span><span class="o">).</span><span class="na">by</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="nl">colors:</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;red&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;pink&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;lightblue&#39;</span><span class="o">]</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="o">].</span><span class="na">toDataFrame</span><span class="o">(</span><span class="s2">&quot;dataframe&quot;</span><span class="o">)</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1">// passing dataframe to pie plot and show it</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">().</span><span class="na">pie</span><span class="o">(</span><span class="n">df</span><span class="o">)</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/pie_dataframe.png#only-light" width="50%" />
+<img alt="" src="images/pie_dataframe_dark.png#only-dark" width="50%" /></p>
+<p>You can also use Underdog's Series following the same rules:</p>
+<div class="language-groovy highlight"><span class="filename">series</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1">// given a dataframe</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">        </span><span class="nl">A:</span><span class="w"> </span><span class="o">(</span><span class="s1">&#39;D&#39;</span><span class="o">..</span><span class="s1">&#39;G&#39;</span><span class="o">),</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">        </span><span class="nl">B:</span><span class="w"> </span><span class="o">(</span><span class="mi">110</span><span class="o">..</span><span class="mi">140</span><span class="o">).</span><span class="na">by</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">        </span><span class="nl">C:</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;orange&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;gray&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;lightgray&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="o">]</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="o">].</span><span class="na">toDataFrame</span><span class="o">(</span><span class="s2">&quot;dataframe&quot;</span><span class="o">)</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="c1">// we can pass series</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="o">.</span><span class="na">pie</span><span class="o">(</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">        </span><span class="c1">// using series &quot;A&quot; and renaming it to &quot;names&quot;</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">        </span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;A&#39;</span><span class="o">].</span><span class="na">rename</span><span class="o">(</span><span class="s2">&quot;names&quot;</span><span class="o">),</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">        </span><span class="c1">// using series &quot;B&quot; and renaming it to &quot;values&quot;</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">        </span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;B&#39;</span><span class="o">].</span><span class="na">rename</span><span class="o">(</span><span class="s2">&quot;values&quot;</span><span class="o">),</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">        </span><span class="c1">// using series &quot;C&quot; and renaming it to &quot;colors&quot;</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">        </span><span class="n">df</span><span class="o">[</span><span class="s1">&#39;C&#39;</span><span class="o">].</span><span class="na">rename</span><span class="o">(</span><span class="s2">&quot;colors&quot;</span><span class="o">)</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/pie_series.png#only-light" width="50%" />
+<img alt="" src="images/pie_series_dark.png#only-dark" width="50%" /></p>
+<h2 id="radar">Radar</h2>
+<p>According to <a href="https://en.wikipedia.org/wiki/Radar_chart">Wikipedia</a> A radar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart of three or more quantitative variables represented on axes starting from the same point</p>
+<h3 id="simple_5">Simple</h3>
+<div class="language-groovy highlight"><span class="filename">simple</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="o">.</span><span class="na">radar</span><span class="o">(</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">        </span><span class="o">[</span><span class="s2">&quot;power&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;consumption&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;price&quot;</span><span class="o">],</span><span class="w"> </span><span class="c1">// Name of the categories</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">        </span><span class="o">[</span><span class="mi">200</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">,</span><span class="w"> </span><span class="mi">100000</span><span class="o">],</span><span class="w">                 </span><span class="c1">// Maximum values for each category</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="o">[</span><span class="mi">150</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">54</span><span class="n">_350</span><span class="o">]</span><span class="w">                   </span><span class="c1">// Actual value for each category</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/radar_simple.png#only-light" width="50%" />
+<img alt="" src="images/radar_simple_dark.png#only-dark" width="50%" /></p>
+<h2 id="extensions">Extensions</h2>
+<h3 id="dataframe_1">Dataframe</h3>
+<div class="language-groovy highlight"><span class="filename">dataframe extensions</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">()</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="c1">// Dataframe created</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nl">X:</span><span class="w"> </span><span class="mi">10</span><span class="o">..&lt;</span><span class="mi">20</span><span class="o">,</span><span class="w"> </span><span class="nl">Y:</span><span class="w"> </span><span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">9</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">19</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">,</span><span class="w"> </span><span class="mi">11</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">14</span><span class="o">,</span><span class="w"> </span><span class="mi">20</span><span class="o">],</span><span class="w"> </span><span class="s2">&quot;dataframe name&quot;</span><span class="o">)</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="c1">// Plots extensions for dataframe add plots methods such as `scatter()`</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="o">.</span><span class="na">scatter</span><span class="o">()</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<h3 id="graphs_1">Graphs</h3>
+<p>TODO</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

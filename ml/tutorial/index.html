@@ -1,0 +1,1062 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://grooviter.github.io/underdog/ml/tutorial/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Tutorial - Underdog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tutorial" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Underdog" class="md-header__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Underdog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tutorial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Underdog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../dataframe/" class="md-tabs__link">
+        
+  
+    
+  
+  DataFrame
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../graphs/" class="md-tabs__link">
+        
+  
+    
+  
+  Graphs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+    
+  
+  ML
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../plots/" class="md-tabs__link">
+        
+  
+    
+  
+  Plots
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ta/" class="md-tabs__link">
+        
+  
+    
+  
+  Technical Analysis
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../development/" class="md-tabs__link">
+        
+  
+    
+  
+  Development
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Underdog" class="md-nav__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Underdog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Underdog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataframe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DataFrame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graphs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Technical Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Tutorial</h1>
+
+<h2 id="tutorial">Tutorial</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The current tutorial follows the <a href="https://grooviter.github.io/tablesaw/#_moneyball">Tablesaw Moneyball tutorial</a> but using Underdog's dataframe and ml modules.</p>
+</div>
+<h3 id="prerequisites">Prerequisites</h3>
+<h4 id="dependencies">Dependencies</h4>
+<p>The modules required to follow this tutorial are the <code>ml</code> and <code>plots</code> modules:</p>
+<div class="language-groovy highlight"><span class="filename">gradle</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-ml:VERSION&#39;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-plots:VERSION&#39;</span>
+</span></code></pre></div>
+<p>or if you're using Maven:</p>
+<div class="language-xml highlight"><span class="filename">maven</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-ml<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-plots<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></div>
+<h4 id="data">Data</h4>
+<p>TODO</p>
+<h3 id="introduction">Introduction</h3>
+<p>In baseball, you make the playoffs by winning more games than your rivals, but you can’t control the number of games your rivals win. How should you proceed? The A’s needed to find controllable variables that affected their likelihood of making the playoffs.</p>
+<p>Specifically, they wanted to know how to spend their salary dollars to produce the most wins. Statistics like "Batting Average" are available for individual players so if you knew Batting Average had the greatest impact, you can trade for players with high batting averages, and thus improve your odds of success.</p>
+<p>To connect player stats to making the playoffs, they systematically decomposed their high-level goal. They started by asking how many wins they’d need to make the playoffs. They decided that 95 wins would give them a strong chance. Here’s how we might check that assumption using Underdog.</p>
+<p>The tutorial also tries to follow the iterative process:</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph representation
+    a[Data Analysis]--&gt;b[Algorithm selection]
+    end
+    subgraph evaluation
+    b--&gt;c[Model Training]
+    c--&gt;d[Model Testing]
+    d-- ITERATION --&gt;a
+    end
+</code></pre>
+<h3 id="analyzing-data">Analyzing data</h3>
+<p>To connect player stats to making the playoffs, they systematically decomposed their high-level goal. They started by asking how many wins they’d need to make the playoffs. They decided that 95 wins would give them a strong chance. Here’s how we might check that assumption using Underdog. First lets load the data:</p>
+<div class="language-groovy highlight"><span class="filename">loading data</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="s2">&quot;src/test/resources/data/baseball.csv&quot;</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Lets take only data before 2002:</p>
+<div class="language-groovy highlight"><span class="filename">filtering</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="n">data</span><span class="o">[</span><span class="s2">&quot;year&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2002</span><span class="o">]</span>
+</span></code></pre></div>
+<p>We can check the assumption visually by plotting wins per year in a way that separates the teams who make the playoffs from those who don’t. This code produces the chart below:</p>
+<div class="language-groovy highlight"><span class="filename">playoffs</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">figure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="o">.</span><span class="na">scatter</span><span class="o">(</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;W&#39;</span><span class="o">],</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;year&#39;</span><span class="o">],</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nl">group:</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;playoffs&#39;</span><span class="o">],</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s1">&#39;Regular seasons wins by year&#39;</span><span class="o">)</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">figure</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p>The Series <code>data['playoffs']</code> represents whether the team made it to the playoffs (1) or it didn't (0).</p>
+<figure>
+<img alt="" src="../images/moneyball_playoffs.png#only-light" width="60%" />
+<img alt="" src="../images/moneyball_playoffs_dark.png#only-dark" width="60%" />
+</figure>
+<h3 id="preparing-data">Preparing data</h3>
+<p>Unfortunately, you can’t directly control the number of games you win. We need to go deeper. At the next level, we hypothesize that the number of wins can be predicted by the number of Runs Scored during the season, combined with the number of Runs Allowed.</p>
+<p>To check this assumption we compute Run Difference (RD) as Runs Scored (RS) - Runs Allowed (RA)</p>
+<div class="language-groovy highlight"><span class="filename">difference</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">data</span><span class="o">[</span><span class="s1">&#39;RD&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;RS&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;RA&#39;</span><span class="o">]</span>
+</span></code></pre></div>
+<p>Now lets see if Run Difference is correlated with Wins. We use a scatter plot again:</p>
+<div class="language-groovy highlight"><span class="filename">correlation</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">figure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="o">.</span><span class="na">scatter</span><span class="o">(</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;RD&#39;</span><span class="o">],</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;W&#39;</span><span class="o">],</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s1">&#39;Run difference vs Wins&#39;</span><span class="o">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">figure</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<figure>
+<img alt="" src="../images/moneyball_correlation.png#only-light" width="60%" />
+<img alt="" src="../images/moneyball_correlation_dark.png#only-dark" width="60%" />
+</figure>
+<h3 id="model-training">Model training</h3>
+<p>Let’s create our first predictive model using linear regression, with runDifference as the sole explanatory variable. 
+Here we use Ordinary Least Squares (OLS) regression model.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To know more about Ordinary Least Squares you can check out its definition in <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Wikipedia</a></p>
+</div>
+<div class="language-groovy highlight"><span class="filename">Ordinary least square (OLS)</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// extracting features (X) and labels (y)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;RD&#39;</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[][]</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;W&#39;</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[]</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1">// splitting between train and test datasets to avoid over fitting</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">xTest</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTest</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">ml</span><span class="o">().</span><span class="na">utils</span><span class="o">.</span><span class="na">trainTestSplit</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="w"> </span><span class="n">y</span><span class="o">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1">// training the model</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="kt">def</span><span class="w"> </span><span class="n">winsModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">ml</span><span class="o">().</span><span class="na">regression</span><span class="o">.</span><span class="na">ols</span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">)</span>
+</span></code></pre></div>
+<p>If we print our “winsModel”, it produces the output below:</p>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Residuals:
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Min<span class="w">          </span>1Q<span class="w">      </span>Median<span class="w">          </span>3Q<span class="w">         </span>Max
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>-14.4535<span class="w">     </span>-2.5195<span class="w">      </span><span class="m">0</span>.2255<span class="w">      </span><span class="m">2</span>.9513<span class="w">     </span><span class="m">11</span>.5651
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Coefficients:
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Estimate<span class="w"> </span>Std.<span class="w"> </span>Error<span class="w">    </span>t<span class="w"> </span>value<span class="w">   </span>Pr<span class="o">(</span>&gt;<span class="p">|</span>t<span class="p">|</span><span class="o">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Intercept<span class="w">          </span><span class="m">80</span>.9257<span class="w">     </span><span class="m">0</span>.1838<span class="w">   </span><span class="m">440</span>.3014<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>X0<span class="w">                  </span><span class="m">0</span>.1038<span class="w">     </span><span class="m">0</span>.0019<span class="w">    </span><span class="m">54</span>.6362<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>---------------------------------------------------------------------
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>Significance<span class="w"> </span>codes:<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="s1">&#39;***&#39;</span><span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="m">0</span>.05<span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>Residual<span class="w"> </span>standard<span class="w"> </span>error:<span class="w"> </span><span class="m">3</span>.9032<span class="w"> </span>on<span class="w"> </span><span class="m">449</span><span class="w"> </span>degrees<span class="w"> </span>of<span class="w"> </span>freedom
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>Multiple<span class="w"> </span>R-squared:<span class="w"> </span><span class="m">0</span>.8693,<span class="w">    </span>Adjusted<span class="w"> </span>R-squared:<span class="w"> </span><span class="m">0</span>.8690
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>F-statistic:<span class="w"> </span><span class="m">2985</span>.1152<span class="w"> </span>on<span class="w"> </span><span class="m">2</span><span class="w"> </span>and<span class="w"> </span><span class="m">449</span><span class="w"> </span>DF,<span class="w">  </span>p-value:<span class="w"> </span><span class="m">1</span>.757e-200
+</span></code></pre></div>
+<p>If you’re new to regression, here are some take-aways from the output:</p>
+<ul>
+<li>The R-squared of .88 can be interpreted to mean that <strong>roughly 88% of the variance in Wins can be explained by the Run Difference variable</strong>. The rest is determined by some combination of other variables and pure chance.</li>
+<li><strong>The estimate for the Intercept is the average wins independent of Run Difference</strong>. In baseball, we have a 162 game season so we expect this value to be about 81, as it is.</li>
+<li>The estimate for the RD variable of .1, suggests that <strong>an increase of 10 in Run Difference, should produce about 1 additional win over the course of the season</strong>.</li>
+</ul>
+<p>Of course, this model is not simply descriptive. We can use it to make predictions. In the code below, we predict how many games we will win if we score 135 more runs than our opponents.  To do this, we pass an array of doubles, one for each explanatory variable in our model, to the predict() method. In this case, there’s just one variable: run difference.</p>
+<div class="language-groovy highlight"><span class="filename">using prediction</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">winsModel</span><span class="o">.</span><span class="na">predict</span><span class="o">([</span><span class="mi">135</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[])</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="m">94</span>.93591869149651
+</span></code></pre></div>
+<p>We’d expect almost 95 wins when we outscore opponents by 135 runs.</p>
+<h3 id="scoring-with-test-data">Scoring with test data</h3>
+<p>If we want to check how the model is performing overall we can pick the testing datasets we kept aside from the model training and use them to get a measure on how well the model is predicting a new case.</p>
+<p>In this example we are using the <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">R2 square metric</a>. 
+In regression, the R2 score is a statistical measure of <strong>how well the regression predictions approximate the real data points</strong>.</p>
+<p>We're passing to the model the testing features (xTest) and comparing the model predictions with the test labels we have (yTest):</p>
+<div class="language-groovy highlight"><span class="filename">r2score</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// generating predictions for the test features</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">predictions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">winsModel</span><span class="o">.</span><span class="na">predict</span><span class="o">(</span><span class="n">xTest</span><span class="o">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1">// comparing predictions with the actual truth for those features</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">r2score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">ml</span><span class="o">().</span><span class="na">metrics</span><span class="o">.</span><span class="na">r2Score</span><span class="o">(</span><span class="n">yTest</span><span class="o">,</span><span class="w"> </span><span class="n">predictions</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Getting a result of:</p>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="m">0</span>.8895307770897616
+</span></code></pre></div>
+<h3 id="modeling-runs-scored">Modeling Runs Scored</h3>
+<p>It’s time to go deeper again and see how we can model Runs Scored and Runs Allowed. The approach the A’s took was to model Runs Scored using team On-base percent (OBP) and team Slugging Average (SLG). In Underdog, we write:</p>
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;OBP&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;SLG&#39;</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[][]</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;RS&#39;</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[]</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="kt">def</span><span class="w"> </span><span class="n">ml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">ml</span><span class="o">()</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">xTest</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTest</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">trainTestSplit</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="w"> </span><span class="n">y</span><span class="o">)</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">runsScored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="o">.</span><span class="na">regression</span><span class="o">.</span><span class="na">ols</span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Once again the first parameter takes a Underdog column containing the values we want to predict (Runs scored). The next two parameters take the explanatory variables OBP and SLG.</p>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Residuals:
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Min<span class="w">          </span>1Q<span class="w">      </span>Median<span class="w">          </span>3Q<span class="w">         </span>Max
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>-67.7289<span class="w">    </span>-18.0586<span class="w">     </span>-1.5988<span class="w">     </span><span class="m">16</span>.8863<span class="w">     </span><span class="m">68</span>.9436
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>Coefficients:
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>Estimate<span class="w"> </span>Std.<span class="w"> </span>Error<span class="w">    </span>t<span class="w"> </span>value<span class="w">   </span>Pr<span class="o">(</span>&gt;<span class="p">|</span>t<span class="p">|</span><span class="o">)</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Intercept<span class="w">        </span>-846.1069<span class="w">    </span><span class="m">29</span>.6301<span class="w">   </span>-28.5556<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>X0<span class="w">               </span><span class="m">2937</span>.5751<span class="w">   </span><span class="m">141</span>.7312<span class="w">    </span><span class="m">20</span>.7264<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>X1<span class="w">               </span><span class="m">1524</span>.8355<span class="w">    </span><span class="m">65</span>.4379<span class="w">    </span><span class="m">23</span>.3020<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>---------------------------------------------------------------------
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>Significance<span class="w"> </span>codes:<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="s1">&#39;***&#39;</span><span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="m">0</span>.05<span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>Residual<span class="w"> </span>standard<span class="w"> </span>error:<span class="w"> </span><span class="m">25</span>.4627<span class="w"> </span>on<span class="w"> </span><span class="m">448</span><span class="w"> </span>degrees<span class="w"> </span>of<span class="w"> </span>freedom
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>Multiple<span class="w"> </span>R-squared:<span class="w"> </span><span class="m">0</span>.9204,<span class="w">    </span>Adjusted<span class="w"> </span>R-squared:<span class="w"> </span><span class="m">0</span>.9201
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>F-statistic:<span class="w"> </span><span class="m">2590</span>.2693<span class="w"> </span>on<span class="w"> </span><span class="m">3</span><span class="w"> </span>and<span class="w"> </span><span class="m">448</span><span class="w"> </span>DF,<span class="w">  </span>p-value:<span class="w"> </span><span class="m">6</span>.276e-247
+</span></code></pre></div>
+<p>Again we have a model with excellent explanatory power with an R-squared of 92. Now we’ll check the model visually to see if it violates any assumptions. Our residuals should be normally distributed. We can use a histogram to verify:</p>
+<div class="language-groovy highlight"><span class="filename">histogram</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">histogram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="o">.</span><span class="na">histogram</span><span class="o">(</span><span class="n">residuals</span><span class="o">.</span><span class="na">toList</span><span class="o">(),</span><span class="w"> </span><span class="nl">title:</span><span class="w"> </span><span class="s1">&#39;Runs Scored from OBP and SLG&#39;</span><span class="o">)</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">histogram</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<figure>
+<img alt="" src="../images/moneyball_runs_distribution.png#only-light" width="60%" />
+<img alt="" src="../images/moneyball_runs_distribution_dark.png#only-dark" width="60%" />
+</figure>
+<p>It looks great.  It’s also important to plot the predicted (or “fitted”) values against the residuals. We want to see if the model fits some values better than others, which will influence whether we can trust its predictions or not. Ideally, we want to see a cloud of random dots around zero on the y axis.</p>
+<p>Our Scatter class can create this plot directly from the model:</p>
+<div class="language-groovy highlight"><span class="filename">fitted vs residuals</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">modelResiduals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runsScored</span><span class="o">.</span><span class="na">residuals</span><span class="o">().</span><span class="na">toList</span><span class="o">()</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">modelFitted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runsScored</span><span class="o">.</span><span class="na">fittedValues</span><span class="o">().</span><span class="na">toList</span><span class="o">()</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="kt">def</span><span class="w"> </span><span class="n">fittedVsResiduals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="o">.</span><span class="na">scatter</span><span class="o">(</span><span class="n">modelFitted</span><span class="o">,</span><span class="w"> </span><span class="n">modelResiduals</span><span class="o">,</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Runs Scored from OBP and SLG&quot;</span><span class="o">,</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">        </span><span class="nl">xLabel:</span><span class="w"> </span><span class="s2">&quot;Fitted&quot;</span><span class="o">,</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">        </span><span class="nl">yLabel:</span><span class="w"> </span><span class="s2">&quot;Residuals&quot;</span><span class="o">)</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="n">fittedVsResiduals</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<figure>
+<img alt="" src="../images/moneyball_fitted_vs_residuals.png#only-light" width="60%" />
+<img alt="" src="../images/moneyball_fitted_vs_residuals_dark.png#only-dark" width="60%" />
+</figure>
+<p>Again, the plot looks good.</p>
+<p>Let’s review.  We’ve created a model of baseball that predicts entry into the playoffs based on batting stats, with the influence of the variables as:</p>
+<pre class="mermaid"><code>graph LR
+  A[SLG &amp; OBP] --&gt; B[Runs Scored];
+  B --&gt; C[Run Difference];
+  C --&gt; D[Regular Season Wins];</code></pre>
+<h3 id="modeling-runs-allowed">Modeling Runs Allowed</h3>
+<p>Of course, we haven’t modeled the Runs Allowed side of Run Difference. We could use pitching and field stats to do this, but the A’s cleverly used the same two variables (SLG and OBP), but now looked at how their opponent’s performed against the A’s. We could do the same as these data are encoded in the dataset as OOBP and OSLG.</p>
+<div class="language-groovy highlight"><span class="filename">SLG & OBP</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;OOBP&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;OSLG&#39;</span><span class="o">].</span><span class="na">dropna</span><span class="o">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[][]</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;RA&#39;</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[]</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="kt">def</span><span class="w"> </span><span class="n">ml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">ml</span><span class="o">()</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">xTest</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTest</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">trainTestSplit</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="w"> </span><span class="n">y</span><span class="o">)</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">runsAllowed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="o">.</span><span class="na">regression</span><span class="o">.</span><span class="na">ols</span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">)</span>
+</span></code></pre></div>
+<div class="language-groovy highlight"><span class="filename">print</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">println</span><span class="o">(</span><span class="n">runsAllowed</span><span class="o">)</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Residuals:
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Min<span class="w">          </span>1Q<span class="w">      </span>Median<span class="w">          </span>3Q<span class="w">         </span>Max
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>-82.1479<span class="w">     </span>-8.9954<span class="w">      </span><span class="m">0</span>.7291<span class="w">     </span><span class="m">15</span>.7773<span class="w">     </span><span class="m">46</span>.4004
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Coefficients:
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Estimate<span class="w"> </span>Std.<span class="w"> </span>Error<span class="w">    </span>t<span class="w"> </span>value<span class="w">   </span>Pr<span class="o">(</span>&gt;<span class="p">|</span>t<span class="p">|</span><span class="o">)</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Intercept<span class="w">        </span>-822.7172<span class="w">    </span><span class="m">97</span>.7824<span class="w">    </span>-8.4138<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>X0<span class="w">               </span><span class="m">2844</span>.9158<span class="w">   </span><span class="m">524</span>.5965<span class="w">     </span><span class="m">5</span>.4231<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>X1<span class="w">               </span><span class="m">1532</span>.0857<span class="w">   </span><span class="m">286</span>.8341<span class="w">     </span><span class="m">5</span>.3414<span class="w">     </span><span class="m">0</span>.0000<span class="w"> </span>***
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>---------------------------------------------------------------------
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>Significance<span class="w"> </span>codes:<span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="s1">&#39;***&#39;</span><span class="w"> </span><span class="m">0</span>.001<span class="w"> </span><span class="s1">&#39;**&#39;</span><span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="m">0</span>.05<span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="m">0</span>.1<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>Residual<span class="w"> </span>standard<span class="w"> </span>error:<span class="w"> </span><span class="m">27</span>.7020<span class="w"> </span>on<span class="w"> </span><span class="m">42</span><span class="w"> </span>degrees<span class="w"> </span>of<span class="w"> </span>freedom
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>Multiple<span class="w"> </span>R-squared:<span class="w"> </span><span class="m">0</span>.8985,<span class="w">    </span>Adjusted<span class="w"> </span>R-squared:<span class="w"> </span><span class="m">0</span>.8936
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>F-statistic:<span class="w"> </span><span class="m">185</span>.8286<span class="w"> </span>on<span class="w"> </span><span class="m">3</span><span class="w"> </span>and<span class="w"> </span><span class="m">42</span><span class="w"> </span>DF,<span class="w">  </span>p-value:<span class="w"> </span><span class="m">1</span>.377e-21
+</span></code></pre></div>
+<p>This model also looks good, but you’d want to look at the plots again, and do other checking as well. Checking the predictive variables for collinearity is always good.</p>
+<p>Finally, we can tie this all together and see how well wins is predicted when we consider both offensive and defensive stats.</p>
+<div class="language-groovy highlight"><span class="filename">regression</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s2">&quot;OOBP&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;OBP&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;OSLG&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;SLG&quot;</span><span class="o">].</span><span class="na">dropna</span><span class="o">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[][]</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;W&#39;</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[]</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="kt">def</span><span class="w"> </span><span class="n">ml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">ml</span><span class="o">()</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">xTest</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTest</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="o">.</span><span class="na">utils</span><span class="o">.</span><span class="na">trainTestSplit</span><span class="o">(</span><span class="n">X</span><span class="o">,</span><span class="w"> </span><span class="n">y</span><span class="o">)</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">winsFinal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="o">.</span><span class="na">regression</span><span class="o">.</span><span class="na">ols</span><span class="o">(</span><span class="n">xTrain</span><span class="o">,</span><span class="w"> </span><span class="n">yTrain</span><span class="o">)</span>
+</span></code></pre></div>
+<h3 id="the-as-in-2001">The A's in 2001</h3>
+<p>For fun, I decided to see what the model predicts for the 2001 A’s. First, I got the independent variables for the A’s in that year.</p>
+<div class="language-groovy highlight"><span class="filename">A's in 2001</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">asIn2001</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="o">[</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;team&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;OAK&#39;</span><span class="w"> </span><span class="o">&amp;</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="n">data</span><span class="o">[</span><span class="s1">&#39;year&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2001</span><span class="o">].</span><span class="na">loc</span><span class="o">[</span><span class="n">__</span><span class="o">,</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;year&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;OOBP&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;OBP&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;OSLG&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;SLG&quot;</span><span class="o">]]</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="w">                 </span>baseball.csv
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Year<span class="w">  </span><span class="p">|</span><span class="w">  </span>OOBP<span class="w">   </span><span class="p">|</span><span class="w">   </span>OBP<span class="w">   </span><span class="p">|</span><span class="w">  </span>OSLG<span class="w">  </span><span class="p">|</span><span class="w">   </span>SLG<span class="w">   </span><span class="p">|</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>-----------------------------------------------
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="m">2001</span><span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.308<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.345<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.38<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.439<span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<p>Now we get the prediction:</p>
+<div class="language-groovy highlight"><span class="filename">A's in 2001</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">double</span><span class="o">[][]</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">asIn2001</span><span class="o">.</span><span class="na">loc</span><span class="o">[</span><span class="n">__</span><span class="o">,</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;OOBP&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;OBP&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;OSLG&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;SLG&quot;</span><span class="o">]]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">double</span><span class="o">[][]</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="kt">double</span><span class="o">[]</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">winsFinal</span><span class="o">.</span><span class="na">predict</span><span class="o">(</span><span class="n">values</span><span class="o">);</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="m">102</span>.22837899017894
+</span></code></pre></div>
+<p>The model predicted that the 2001 A’s would win 102 games given their slugging and On-Base stats. They won 103.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

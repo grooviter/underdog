@@ -1,0 +1,1204 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://grooviter.github.io/underdog/ta/">
+      
+      
+        <link rel="prev" href="../plots/">
+      
+      
+        <link rel="next" href="../development/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Technical Analysis - Underdog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#technical-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Underdog" class="md-header__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Underdog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Technical Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Underdog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dataframe/" class="md-tabs__link">
+        
+  
+    
+  
+  DataFrame
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../graphs/" class="md-tabs__link">
+        
+  
+    
+  
+  Graphs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ml/" class="md-tabs__link">
+        
+  
+    
+  
+  ML
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../plots/" class="md-tabs__link">
+        
+  
+    
+  
+  Plots
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Technical Analysis
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../development/" class="md-tabs__link">
+        
+  
+    
+  
+  Development
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Underdog" class="md-nav__button md-logo" aria-label="Underdog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Underdog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/grooviter/underdog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Underdog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataframe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DataFrame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Technical Analysis
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Technical Analysis
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutorial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tutorial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#barseries-vs-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      BarSeries vs DataFrame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataframe-to-barseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataFrame to BarSeries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indicators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-trading-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a trading strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backtesting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backtesting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analyzing-our-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyzing our results
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="technical-analysis">Technical Analysis</h1>
+<p>Underdog's TA module provides a series of tools for financial technical analysis.</p>
+<h2 id="tutorial">Tutorial</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This getting started section mimics the <a href="https://ta4j.github.io/ta4j-wiki/Getting-started.html">getting started</a> section steps from <a href="https://ta4j.github.io/ta4j-wiki">Ta4j wiki</a> but using underdog-ta module. You can compare both entries to see the differences.</p>
+</div>
+<h3 id="prerequisites">Prerequisites</h3>
+<h4 id="dependencies">Dependencies</h4>
+<p>To be able to follow the tutorial you should add the following modules to your gradle project:</p>
+<div class="language-groovy highlight"><span class="filename">gradle</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-ta:VERSION&#39;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-plots:VERSION&#39;</span>
+</span></code></pre></div>
+<p>or in maven:</p>
+<div class="language-xml highlight"><span class="filename">maven</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-ta<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-plots<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></div>
+<h4 id="data">Data</h4>
+<p>TODO</p>
+<h3 id="barseries-vs-dataframe">BarSeries vs DataFrame</h3>
+<p>It's important to start defining some concepts.</p>
+<ul>
+<li>
+<p><strong>BarSeries</strong>: Ta4j's BarSeries is like a dataframe containing series (columns) such as open price, lower price, close price, and volume data.</p>
+</li>
+<li>
+<p><strong>DataFrame</strong>: Underdog's dataframe which is composed of different Series (columns), Each Series or column is like an array of objects.</p>
+</li>
+</ul>
+<p>As this module integrates Ta4j with Underdog there will be methods which converts from BarSeries to DataFrame and vice versa.</p>
+<h3 id="loading-data">Loading data</h3>
+<p>In this example we are using Underdog to load stock quotes from a csv file and create a DataFrame:</p>
+<div class="language-groovy highlight"><span class="filename">stock quotes from csv</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// The file path where the csv file can be found</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;src/test/resources/data/ta/stock_quotes_10_years.csv&quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">// The format of the dates included in the file</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">dateFormat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;yyyy-MM-dd HH:mm:ss+00:00&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="kt">def</span><span class="w"> </span><span class="n">quotes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="n">filePath</span><span class="o">,</span><span class="w"> </span><span class="nl">dateFormat:</span><span class="w"> </span><span class="n">dateFormat</span><span class="o">)</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If dates are not treated as dates the csv reader will consider them as strings. That will cause you problems when converting an Underdog's DataFrame to Ta4j's BarSeries.</p>
+</div>
+<p>Which outputs something like the following (the prices and volume are truncated here to make it look good).</p>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">                                </span>stock_quotes_10_years.csv
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">           </span>Date<span class="w">             </span><span class="p">|</span><span class="w">  </span>Adj<span class="w"> </span>Close<span class="w">  </span><span class="p">|</span><span class="w">  </span>Close<span class="w"> </span><span class="p">|</span><span class="w">  </span>High<span class="w">  </span><span class="p">|</span><span class="w">  </span>Low<span class="w">  </span><span class="p">|</span><span class="w">  </span>Open<span class="w">  </span><span class="p">|</span><span class="w">   </span>Volume<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>-----------------------------------------------------------------------------------------
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w"> </span><span class="m">2014</span>-12-05<span class="w"> </span><span class="m">00</span>:00:00+00:00<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="m">0</span>.50<span class="w">      </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">165680</span><span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<p>In order to successfully convert the dataframe to a bar series the name of the series (columns) should match to the expected ones which are: DATE, CLOSE, HIGH, LOW, OPEN, VOLUME.</p>
+<div class="language-groovy highlight"><span class="filename">renaming</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">quotes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotes</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="o">.</span><span class="na">drop</span><span class="o">(</span><span class="s2">&quot;Adj Close&quot;</span><span class="o">)</span><span class="w"> </span><span class="c1">// Removing the &quot;Adj Close&quot; series</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="o">.</span><span class="na">renameSeries</span><span class="o">(</span><span class="nl">fn:</span><span class="w"> </span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span><span class="w"> </span><span class="c1">// Renaming all remaining columns to upper case to match</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">                          </span>stock_quotes_10_years.csv
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">           </span>DATE<span class="w">             </span><span class="p">|</span><span class="w">  </span>CLOSE<span class="w"> </span><span class="p">|</span><span class="w">  </span>HIGH<span class="w">  </span><span class="p">|</span><span class="w">  </span>LOW<span class="w">  </span><span class="p">|</span><span class="w">  </span>OPEN<span class="w">  </span><span class="p">|</span><span class="w">  </span>VOLUME<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>---------------------------------------------------------------------------
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w"> </span><span class="m">2014</span>-12-05<span class="w"> </span><span class="m">00</span>:00:00+00:00<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">0</span>.52<span class="w">  </span><span class="p">|</span><span class="w">  </span><span class="m">165680</span><span class="w">  </span><span class="p">|</span>
+</span></code></pre></div>
+<h3 id="dataframe-to-barseries">DataFrame to BarSeries</h3>
+<p>Because we need to convert the dataframe to a BarSeries in order to create technical analysis rules:</p>
+<div class="language-groovy highlight"><span class="filename">to bar series</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">quotesBarSeries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotes</span><span class="o">.</span><span class="na">toBarSeries</span><span class="o">()</span>
+</span></code></pre></div>
+<p>Now we can operate with the bar series.</p>
+<h3 id="indicators">Indicators</h3>
+<p>Now we can start creating some indicators and metrics. This time we are getting metrics based on the closing price indicator:</p>
+<div class="language-groovy highlight"><span class="filename">indicators</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Using the close price indicator as root indicator...</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">closePrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotesBarSeries</span><span class="o">.</span><span class="na">closePriceIndicator</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">// Getting the simple moving average (SMA) of the close price over the last 5 bars</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">SMAIndicator</span><span class="w"> </span><span class="n">shortSma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">closePrice</span><span class="o">.</span><span class="na">sma</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">// Here is the 5-bars-SMA value at the 42nd index</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">println</span><span class="o">(</span><span class="s2">&quot;5-bars-SMA value at the 42nd index: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">shortSma</span><span class="o">.</span><span class="na">getValue</span><span class="o">(</span><span class="mi">42</span><span class="o">).</span><span class="na">doubleValue</span><span class="o">())</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1">// Getting a longer SMA (e.g. over the 30 last bars)</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">SMAIndicator</span><span class="w"> </span><span class="n">longSma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">closePrice</span><span class="o">.</span><span class="na">sma</span><span class="o">(</span><span class="mi">30</span><span class="o">)</span>
+</span></code></pre></div>
+<div class="language-groovy highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="mi">5</span><span class="o">-</span><span class="n">bars</span><span class="o">-</span><span class="n">SMA</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="mi">42</span><span class="n">nd</span><span class="w"> </span><span class="nl">index:</span><span class="w"> </span><span class="mf">0.503899997472763</span>
+</span></code></pre></div>
+<h3 id="building-a-trading-strategy">Building a trading strategy</h3>
+<p>Now that we've got a couple of indicators ready lets build a strategy. Strategies are made of two trading rules: one for entry (buying), the other for exit (selling).</p>
+<div class="language-groovy highlight"><span class="filename">strategy base</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Buying rules</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">// We want to buy:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">//  - if the 5-bars SMA crosses over 30-bars SMA</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">//  - or if the price goes below a defined price (e.g $800.00)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">Rule</span><span class="w"> </span><span class="n">buyingRule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shortSma</span><span class="o">.</span><span class="na">xUp</span><span class="o">(</span><span class="n">longSma</span><span class="o">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="n">closePrice</span><span class="o">.</span><span class="na">xDown</span><span class="o">(</span><span class="mi">120</span><span class="o">))</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">// Selling rules</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1">// We want to sell:</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1">//  - if the 5-bars SMA crosses under 30-bars SMA</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1">//  - or if the price loses more than 3%</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="c1">//  - or if the price earns more than 2%</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="n">Rule</span><span class="w"> </span><span class="n">sellingRule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shortSma</span><span class="o">.</span><span class="na">xDown</span><span class="o">(</span><span class="n">longSma</span><span class="o">)</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="n">closePrice</span><span class="o">.</span><span class="na">stopLoss</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="n">closePrice</span><span class="o">.</span><span class="na">stopGain</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="c1">// Create the strategy</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="n">Strategy</span><span class="w"> </span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BaseStrategy</span><span class="o">(</span><span class="n">buyingRule</span><span class="o">,</span><span class="w"> </span><span class="n">sellingRule</span><span class="o">)</span>
+</span></code></pre></div>
+<p>We can use Groovy's syntax to refactor the rules a little bit:</p>
+<div class="language-groovy highlight"><span class="filename">strategy using operators</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">buyingRule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shortSma</span><span class="o">.</span><span class="na">xUp</span><span class="o">(</span><span class="n">longSma</span><span class="o">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">closePrice</span><span class="o">.</span><span class="na">xDown</span><span class="o">(</span><span class="mi">120</span><span class="o">)</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">sellingRule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shortSma</span><span class="o">.</span><span class="na">xDown</span><span class="o">(</span><span class="n">longSma</span><span class="o">)</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">closePrice</span><span class="o">.</span><span class="na">stopLoss</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">closePrice</span><span class="o">.</span><span class="na">stopGain</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</span></code></pre></div>
+<p>In Groovy <strong>|</strong> and <strong>&amp;</strong> represent calls to methods <strong>or</strong> and <strong>and</strong> of any object (any object having those methods implemented). So if your object has these methods, you can substitute your method call by the operators.</p>
+<h3 id="backtesting">Backtesting</h3>
+<p>What is backtesting ? According to Investopedia:</p>
+<p>"Backtesting is the general method for seeing how well a strategy or model would have done after the fact. It assesses the viability of a trading strategy by discovering how it would play out using historical data. If backtesting works, traders and analysts may have the confidence to employ it going forward"
+-- Investopedia, https://www.investopedia.com/terms/b/backtesting.asp</p>
+<p>The backtest step is pretty simple:</p>
+<div class="language-groovy highlight"><span class="filename">backtesting</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// Running our juicy trading strategy...</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">BarSeriesManager</span><span class="w"> </span><span class="n">seriesManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BarSeriesManager</span><span class="o">(</span><span class="n">quotesBarSeries</span><span class="o">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">TradingRecord</span><span class="w"> </span><span class="n">tradingRecord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seriesManager</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">strategy</span><span class="o">)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Number of positions (trades) for our strategy: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tradingRecord</span><span class="o">.</span><span class="na">getPositionCount</span><span class="o">())</span>
+</span></code></pre></div>
+<div class="language-groovy highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nf">positions</span><span class="w"> </span><span class="o">(</span><span class="n">trades</span><span class="o">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">our</span><span class="w"> </span><span class="nl">strategy:</span><span class="w"> </span><span class="mi">57</span>
+</span></code></pre></div>
+<p>For many scenarios we can run a base strategy backtesting by just executing the <strong>run</strong> method in the BarSeries object and pass directly the entry (buying) rule and the exit (selling) rule:</p>
+<div class="language-groovy highlight"><span class="filename">backtesting</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">tradingRecord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotesBarSeries</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">buyingRule</span><span class="o">,</span><span class="w"> </span><span class="n">sellingRule</span><span class="o">)</span>
+</span></code></pre></div>
+<p>We can see this visually. Follow-up showing only trades from 2024-04-01:</p>
+<div class="language-groovy highlight"><span class="filename">plotting trades</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// getting only stocks from 2024-04-01</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">quotes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotes</span><span class="o">[</span><span class="n">quotes</span><span class="o">[</span><span class="s1">&#39;DATE&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">LocalDate</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s1">&#39;2024-04-01&#39;</span><span class="o">)]</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1">// getting Underdog&#39;s series for x and y coordinates</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotes</span><span class="o">[</span><span class="s1">&#39;DATE&#39;</span><span class="o">](</span><span class="n">LocalDate</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">it</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;dd/MM/yyyy&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="kt">def</span><span class="w"> </span><span class="n">ys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotes</span><span class="o">[</span><span class="s1">&#39;CLOSE&#39;</span><span class="o">]</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1">// building a line plot</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="kt">def</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="o">.</span><span class="na">line</span><span class="o">(</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">        </span><span class="n">xs</span><span class="o">.</span><span class="na">rename</span><span class="o">(</span><span class="s2">&quot;Dates&quot;</span><span class="o">),</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">        </span><span class="n">ys</span><span class="o">.</span><span class="na">rename</span><span class="o">(</span><span class="s2">&quot;Closing Price&quot;</span><span class="o">),</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Trades from 2024-01-01&quot;</span><span class="o">,</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;Using Underdog&#39;s TA and Ta4j&quot;</span><span class="o">)</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1">// showing trades over stock quotes</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="n">tradingRecord</span><span class="o">.</span><span class="na">trades</span><span class="o">.</span><span class="na">each</span><span class="w"> </span><span class="o">{</span><span class="n">trade</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quotesBarSeries</span><span class="o">.</span><span class="na">getBar</span><span class="o">(</span><span class="n">trade</span><span class="o">.</span><span class="na">index</span><span class="o">).</span><span class="na">endTime</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s1">&#39;dd/MM/yyyy&#39;</span><span class="o">)</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trade</span><span class="o">.</span><span class="na">value</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">()</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trade</span><span class="o">.</span><span class="na">type</span><span class="o">.</span><span class="na">name</span><span class="o">()[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="c1">// first letter of type name (&#39;B&#39; for buy, &#39;S&#39; for sell)</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">    </span><span class="n">plot</span><span class="o">.</span><span class="na">addAnnotation</span><span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="w"> </span><span class="n">y</span><span class="o">,</span><span class="w"> </span><span class="nl">text:</span><span class="w"> </span><span class="n">t</span><span class="o">,</span><span class="w"> </span><span class="nl">color:</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#dd7474&#39;</span><span class="o">)</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="o">}</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="c1">// showing the plot</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="n">plot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/getting_started_trades.png#only-light" width="60%" />
+<img alt="" src="images/getting_started_trades_dark.png#only-dark" width="60%" /></p>
+<p>We can also visualize winning vs losing positions.</p>
+<div class="language-groovy highlight"><span class="filename">winning vs losing</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// creating a function to map every position to a map containing date and profit</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">positionToDataFrameEntry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">Position</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">        </span><span class="nl">date:</span><span class="w"> </span><span class="n">quotesBarSeries</span><span class="o">.</span><span class="na">getBar</span><span class="o">(</span><span class="n">pos</span><span class="o">.</span><span class="na">exit</span><span class="o">.</span><span class="na">index</span><span class="o">).</span><span class="na">endTime</span><span class="o">.</span><span class="na">toLocalDate</span><span class="o">(),</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="nl">profit:</span><span class="w"> </span><span class="n">pos</span><span class="o">.</span><span class="na">grossProfit</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">()</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="o">]</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="o">}</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1">// getting gross profit and date of every position</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="kt">def</span><span class="w"> </span><span class="n">wins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tradingRecord</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">    </span><span class="o">.</span><span class="na">positions</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">positionToDataFrameEntry</span><span class="o">)</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">    </span><span class="o">.</span><span class="na">toDataFrame</span><span class="o">(</span><span class="s2">&quot;trade values&quot;</span><span class="o">)</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="c1">// mark every position as winners/losers</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="n">wins</span><span class="o">[</span><span class="s1">&#39;winner&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wins</span><span class="o">[</span><span class="s1">&#39;profit&#39;</span><span class="o">](</span><span class="n">Double</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;winners&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;losers&quot;</span><span class="w"> </span><span class="o">}</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="c1">// grouping by winners/losers and get the count</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="kt">def</span><span class="w"> </span><span class="n">byMonth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wins</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">    </span><span class="o">.</span><span class="na">agg</span><span class="o">(</span><span class="nl">profit:</span><span class="w"> </span><span class="s1">&#39;count&#39;</span><span class="o">)</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">    </span><span class="o">.</span><span class="na">by</span><span class="o">(</span><span class="s1">&#39;winner&#39;</span><span class="o">)</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">    </span><span class="o">.</span><span class="na">renameSeries</span><span class="o">(</span><span class="nl">mapper:</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;count [profit]&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">winner:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="o">])</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="c1">// getting the min/max date for the subtitle of the plot</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="kt">def</span><span class="w"> </span><span class="n">minDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wins</span><span class="o">[</span><span class="s1">&#39;date&#39;</span><span class="o">].</span><span class="na">min</span><span class="o">(</span><span class="n">LocalDate</span><span class="o">).</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;dd/MM/yyyy&quot;</span><span class="o">)</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="kt">def</span><span class="w"> </span><span class="n">maxDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wins</span><span class="o">[</span><span class="s1">&#39;date&#39;</span><span class="o">].</span><span class="na">max</span><span class="o">(</span><span class="n">LocalDate</span><span class="o">).</span><span class="na">format</span><span class="o">(</span><span class="s2">&quot;dd/MM/yyyy&quot;</span><span class="o">)</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="c1">// building the plot</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="kt">def</span><span class="w"> </span><span class="n">piePlot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="w">    </span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="w">    </span><span class="o">.</span><span class="na">pie</span><span class="o">(</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="w">        </span><span class="n">byMonth</span><span class="o">[</span><span class="s1">&#39;name&#39;</span><span class="o">].</span><span class="na">toList</span><span class="o">(),</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a><span class="w">        </span><span class="n">byMonth</span><span class="o">[</span><span class="s1">&#39;value&#39;</span><span class="o">].</span><span class="na">toList</span><span class="o">(),</span>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Winners vs Losers positions&quot;</span><span class="o">,</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;From ${minDate} to ${maxDate}&quot;</span>
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a>
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a><span class="c1">// showing the plot</span>
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a><span class="n">piePlot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p><img alt="" src="images/getting_started_winners.png#only-light" width="60%" />
+<img alt="" src="images/getting_started_winners_dark.png#only-dark" width="60%" /></p>
+<h3 id="analyzing-our-results">Analyzing our results</h3>
+<p>Here is how we can analyze the results of our backtest:</p>
+<div class="language-groovy highlight"><span class="filename">analysis</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// Getting the winning positions ratio</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">AnalysisCriterion</span><span class="w"> </span><span class="n">winningPositionsRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PositionsRatioCriterion</span><span class="o">(</span><span class="n">AnalysisCriterion</span><span class="o">.</span><span class="na">PositionFilter</span><span class="o">.</span><span class="na">PROFIT</span><span class="o">)</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">winningPositionRatioValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">winningPositionsRatio</span><span class="o">.</span><span class="na">calculate</span><span class="o">(</span><span class="n">quotesBarSeries</span><span class="o">,</span><span class="w"> </span><span class="n">tradingRecord</span><span class="o">).</span><span class="na">doubleValue</span><span class="o">()</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Winning positions ratio: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">winningPositionRatioValue</span><span class="o">)</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1">// Getting a risk-reward ratio</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">AnalysisCriterion</span><span class="w"> </span><span class="n">romad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReturnOverMaxDrawdownCriterion</span><span class="o">()</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="kt">double</span><span class="w"> </span><span class="n">nomadValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">romad</span><span class="o">.</span><span class="na">calculate</span><span class="o">(</span><span class="n">quotesBarSeries</span><span class="o">,</span><span class="w"> </span><span class="n">tradingRecord</span><span class="o">).</span><span class="na">doubleValue</span><span class="o">()</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Return over Max Drawdown: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nomadValue</span><span class="o">)</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="c1">// Total return of our strategy vs total return of a buy-and-hold strategy</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="n">AnalysisCriterion</span><span class="w"> </span><span class="n">vsBuyAndHold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VersusEnterAndHoldCriterion</span><span class="o">(</span><span class="k">new</span><span class="w"> </span><span class="n">ReturnCriterion</span><span class="o">())</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="kt">double</span><span class="w"> </span><span class="n">vsBuyAndHoldValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vsBuyAndHold</span><span class="o">.</span><span class="na">calculate</span><span class="o">(</span><span class="n">quotesBarSeries</span><span class="o">,</span><span class="w"> </span><span class="n">tradingRecord</span><span class="o">).</span><span class="na">doubleValue</span><span class="o">()</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="n">println</span><span class="o">(</span><span class="s2">&quot;Our return vs buy-and-hold return: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vsBuyAndHoldValue</span><span class="o">)</span>
+</span></code></pre></div>
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Winning<span class="w"> </span>positions<span class="w"> </span>ratio:<span class="w"> </span><span class="m">0</span>.54385964912280701754385964912281
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Return<span class="w"> </span>over<span class="w"> </span>Max<span class="w"> </span>Drawdown:<span class="w"> </span><span class="m">3</span>.4519153297405649777237484258582
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Our<span class="w"> </span><span class="k">return</span><span class="w"> </span>vs<span class="w"> </span>buy-and-hold<span class="w"> </span><span class="k">return</span>:<span class="w"> </span><span class="m">0</span>.0040904249296843023287166775087440
+</span></code></pre></div>
+<p>Showing these metrics in a chart:</p>
+<div class="language-groovy highlight"><span class="filename">radar</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">winningRatioPlot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="o">.</span><span class="na">radar</span><span class="o">(</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">        </span><span class="c1">// names of metrics</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">        </span><span class="o">[</span><span class="s1">&#39;winning ratio&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;return over drawdown&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;return vs buy-and-hold&#39;</span><span class="o">],</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">        </span><span class="c1">// maximum possible value of each metric</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">100</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">],</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">        </span><span class="c1">// values from metrics</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">        </span><span class="o">[</span><span class="n">winningPositionRatioValue</span><span class="o">,</span><span class="w"> </span><span class="n">nomadValue</span><span class="o">,</span><span class="w"> </span><span class="n">vsBuyAndHoldValue</span><span class="o">],</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">        </span><span class="nl">title:</span><span class="w"> </span><span class="s2">&quot;Metrics comparison&quot;</span><span class="o">,</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">        </span><span class="nl">subtitle:</span><span class="w"> </span><span class="s2">&quot;Winning Ratio / Risk Reward Ratio / Return vs Buy-And-Hold&quot;</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="n">winningRatioPlot</span><span class="o">.</span><span class="na">show</span><span class="o">()</span>
+</span></code></pre></div>
+<p>Which displays:</p>
+<p><img alt="" src="images/getting_started_radar.png#only-light" width="60%" />
+<img alt="" src="images/getting_started_radar_dark.png#only-dark" width="60%" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
