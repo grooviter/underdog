@@ -1,4 +1,4 @@
-name: main
+name: release
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
       - name: installing poetry
         run: python -m pip install --upgrade pip && pip install poetry
       - name: building docs
-        run: cd docs/guide/docs && poetry install && poetry shell && mkdocs build
+        run: cd docs/guide/docs && poetry install && poetry run mkdocs build
       - uses: actions/setup-java@v4
         with:
           distribution: 'corretto'

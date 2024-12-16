@@ -1,4 +1,4 @@
-name: development
+name: pull-requests
 
 on: [pull_request]
 
