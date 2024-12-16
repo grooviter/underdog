@@ -27,8 +27,8 @@ gitPublish {
     repoUri = config.info.links.scm
 }
 
-gitPublishReset{
-    repoUri = config.info.links.scm
+gitPublishReset {
+    repoUri = "https://github.com/grooviter/underdog.git"
 }
 
 gitPublishPush {
