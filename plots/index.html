@@ -561,18 +561,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#return-options" class="md-nav__link">
+  <a href="#customizing-chart" class="md-nav__link">
     <span class="md-ellipsis">
-      Return Options
+      Customizing chart
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#customizing-chart" class="md-nav__link">
+  <a href="#return-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Customizing chart
+      Return Options
     </span>
   </a>
   
@@ -913,6 +913,8 @@
       
         
       
+        
+      
     
     
       
@@ -967,10 +969,6 @@
       
         
       
-        
-      
-        
-      
     
     
       
@@ -1013,29 +1011,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/archive/2025/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2025
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-  
-  
-    <li class="md-nav__item">
       <a href="../blog/archive/2024/" class="md-nav__link">
         
   
@@ -1050,6 +1025,58 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -1059,11 +1086,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/archive/2023/" class="md-nav__link">
+      <a href="../blog/category/ml/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    2023
+    ml
   </span>
   
 
@@ -1120,23 +1147,22 @@
 <li>chart title</li>
 <li>chart subtitle</li>
 </ul>
-<p>Apart from that every plot has a <code>customize(Closure)</code> method to be able to customize the chart following Echarts documentation using a Groovy DSL.</p>
 <p>When <strong>the method is receiving data as List</strong> instances:</p>
 <ul>
 <li>X coordinate label (by default is X)</li>
 <li>Y coordinate label (by default is Y)</li>
 </ul>
 <p>In <strong>methods receiving Series objects</strong> the name of the X and Y coordinate will be taken from the Series' name passed as parameter.</p>
-<p>In general we'd like to be able to use the plots library for anyone, that's why any chart should be able to receive its data from a plain java list.</p>
-<p>Apart from those mandatory properties, there could be extra properties added to specific charts depending on how practical these properties are when dealing which that type of charts.</p>
-<h3 id="return-options">Return Options</h3>
-<p>All plotting methods return a <strong>memento.plots.charts.Options</strong> instance which represents the Echarts Options object.</p>
+<p>There could be extra properties added to specific charts depending on how practical these properties are when dealing which that type of charts.</p>
+<p>On top of that, every plot has a <code>customize(Closure)</code> which allows to customize the chart following Echarts documentation using a Groovy DSL.</p>
 <h3 id="customizing-chart">Customizing chart</h3>
 <p>All default methods provide a limited setup of the chart via the mandatory attributes we saw previously.To access the full Groovy Echarts DSL we can always access the <strong>Options#customize(Closure)</strong> method rendering the chart calling the <strong>Options#show()</strong>.</p>
+<h3 id="return-options">Return Options</h3>
+<p>All plotting methods return a <code>memento.plots.charts.Options</code> instance which represents the Echarts Options object.</p>
 <h2 id="line">Line</h2>
 <h3 id="simple">Simple</h3>
 <p>Here is a simple line chart:</p>
-<div class="language-groovy highlight"><span class="filename">simple line</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Plots</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
+<div class="language-groovy highlight"><span class="filename">simple line</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">plots</span><span class="o">()</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="o">.</span><span class="na">line</span><span class="o">(</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="c1">// You can use a **range or a list** for X axis</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="mi">2000</span><span class="o">..</span><span class="mi">2010</span><span class="o">,</span>
@@ -1539,6 +1565,8 @@ the names: <code>names</code>, <code>values</code>, <code>colors</code>. </p>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1574,7 +1602,7 @@ the names: <code>names</code>, <code>values</code>, <code>colors</code>. </p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>

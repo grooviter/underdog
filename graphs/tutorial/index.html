@@ -549,6 +549,8 @@
       
         
       
+        
+      
     
     
       
@@ -603,10 +605,6 @@
       
         
       
-        
-      
-        
-      
     
     
       
@@ -649,29 +647,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2025/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2025
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-  
-  
-    <li class="md-nav__item">
       <a href="../../blog/archive/2024/" class="md-nav__link">
         
   
@@ -686,6 +661,58 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -695,11 +722,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2023/" class="md-nav__link">
+      <a href="../../blog/category/ml/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    2023
+    ml
   </span>
   
 
@@ -748,28 +775,49 @@
 <h3 id="prerequisites">Prerequisites</h3>
 <h4 id="dependencies">Dependencies</h4>
 <p>The modules required to follow this tutorial are the <code>graphs</code> and <code>plots</code> modules:</p>
-<div class="language-groovy highlight"><span class="filename">gradle</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-graphs:VERSION&#39;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-plots:VERSION&#39;</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Gradle</label><label for="__tabbed_1_2">Maven</label><label for="__tabbed_1_3">Grapes</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// graph data and algorithms</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-graphs:VERSION&#39;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// graph visualization</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">implementation</span><span class="w"> </span><span class="s1">&#39;com.github.grooviter:underdog-plots:VERSION&#39;</span>
 </span></code></pre></div>
-<p>or if you're using Maven:</p>
-<div class="language-xml highlight"><span class="filename">maven</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;dependency&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-graphs<span class="nt">&lt;/artifactId&gt;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">&lt;/dependency&gt;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">&lt;dependency&gt;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-plots<span class="nt">&lt;/artifactId&gt;</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nt">&lt;/dependency&gt;</span>
+</div>
+<div class="tabbed-block">
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cm">&lt;!-- graph data and algorithms --&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-graphs<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">&lt;/dependency&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="cm">&lt;!-- graph visualization --&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-plots<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nt">&lt;/dependency&gt;</span>
 </span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@Grapes</span><span class="o">([</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="c1">// graph data and algorithms</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nd">@Grab</span><span class="o">(</span><span class="s1">&#39;com.github.grooviter:underdog-graphs:VERSION&#39;</span><span class="o">),</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="c1">// graph visualization</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nd">@Grab</span><span class="o">(</span><span class="s1">&#39;com.github.grooviter:underdog-plots:VERSION&#39;</span><span class="o">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="o">])</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="creating-a-graph">Creating a graph</h3>
 <p>Creating an empty graph without vertices and edges:</p>
-<div class="language-groovy highlight"><span class="filename">create a graph</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">underdog.Underdog</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="c1">// vertices and edges here</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">create a graph</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">underdog.Underdog</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="c1">// vertices and edges here</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>The <code>graph(Class)</code> informs what is the type of the vertices this graph is going to have. This time vertices in this
 graph will be of type <code>String</code> but vertices could be potentially of any type.</p>
@@ -778,97 +826,97 @@ graph will be of type <code>String</code> but vertices could be potentially of a
 <p><img alt="adding vertices" src="../images/tutorial_adding_vertices.png#only-light" width="40%" />
 <img alt="adding vertices" src="../images/tutorial_adding_vertices_dark.png#only-dark" width="40%" /></p>
 <p>There are a couple of ways of adding more vertices to a graph. One is when creating the graph:</p>
-<div class="language-groovy highlight"><span class="filename">adding vertices at creation time</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s2">&quot;B&quot;</span><span class="o">)</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">adding vertices at creation time</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s2">&quot;B&quot;</span><span class="o">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>You can also add more vertices after the graph has been created:</p>
-<div class="language-groovy highlight"><span class="filename">adding vertices after creation</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{}</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s2">&quot;B&quot;</span><span class="o">)</span>
+<div class="language-groovy highlight"><span class="filename">adding vertices after creation</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{}</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">graph</span><span class="o">.</span><span class="na">addVertex</span><span class="o">(</span><span class="s2">&quot;B&quot;</span><span class="o">)</span>
 </span></code></pre></div>
 <p>You can add simple type vertices, but you can also add more complex objects. Imagine we can add the relationships between employees in a given company. First lets define the <code>Employee</code> class:</p>
-<div class="language-groovy highlight"><span class="filename">Employee</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cm">/*</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="cm"> * @Canonical implements equals and hashcode among other things.</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="cm"> * These methods will help the graph to id each node in the graph.</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="cm">*/</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nd">@groovy.transform.Canonical</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kd">static</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Employee</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="o">,</span><span class="w"> </span><span class="n">department</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">Employee</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cm">/*</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="cm"> * @Canonical implements equals and hashcode among other things.</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="cm"> * These methods will help the graph to id each node in the graph.</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="cm">*/</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nd">@groovy.transform.Canonical</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kd">static</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Employee</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="o">,</span><span class="w"> </span><span class="n">department</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>Now we can create a Graph and add relationships between employees:</p>
-<div class="language-groovy highlight"><span class="filename">Adding employees</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">john</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="o">(</span><span class="s2">&quot;John&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Engineering&quot;</span><span class="o">)</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">peter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="o">(</span><span class="s2">&quot;Peter&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Engineering&quot;</span><span class="o">)</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">lisa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="o">(</span><span class="s2">&quot;Lisa&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Engineering&quot;</span><span class="o">)</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">Employee</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="n">john</span><span class="o">)</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="n">peter</span><span class="o">)</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="n">lisa</span><span class="o">)</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">Adding employees</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">john</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="o">(</span><span class="s2">&quot;John&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Engineering&quot;</span><span class="o">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">peter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="o">(</span><span class="s2">&quot;Peter&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Engineering&quot;</span><span class="o">)</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">lisa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="o">(</span><span class="s2">&quot;Lisa&quot;</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Engineering&quot;</span><span class="o">)</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">Employee</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="n">john</span><span class="o">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="n">peter</span><span class="o">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="n">lisa</span><span class="o">)</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="o">}</span>
 </span></code></pre></div>
 <h3 id="edges">Edges</h3>
 <p>Graphs normally are not very useful without setting edges between nodes. Lets add an edge between two nodes:</p>
 <p><img alt="adding edges" src="../images/tutorial_adding_edges.png#only-light" width="40%" />
 <img alt="adding edges" src="../images/tutorial_adding_edges_dark.png#only-dark" width="40%" /></p>
 <p>We can add vertices at creation time:</p>
-<div class="language-groovy highlight"><span class="filename">Adding edges at creation time</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="c1">// adding vertices first</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">)</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="c1">// then adding edges between vertices</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">Adding edges at creation time</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="c1">// adding vertices first</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">vertex</span><span class="o">(</span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="c1">// then adding edges between vertices</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>You can omit adding vertices before adding edges if all vertices are going to be included in <code>edge(...)</code> method calls. The following example produces the same graph as the previous one:</p>
-<div class="language-groovy highlight"><span class="filename">avoid using vertex(...)</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">avoid using vertex(...)</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>It's also possible to add edges after the graph has been created:</p>
-<div class="language-groovy highlight"><span class="filename">Adding edges after creation time</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="c1">// adding vertices &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">}</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1">// adding edge between &#39;A&#39; and &#39;B&#39;</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">graph</span><span class="o">.</span><span class="na">addEdge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
+<div class="language-groovy highlight"><span class="filename">Adding edges after creation time</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="c1">// adding vertices &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="o">}</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1">// adding edge between &#39;A&#39; and &#39;B&#39;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">graph</span><span class="o">.</span><span class="na">addEdge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
 </span></code></pre></div>
 <p>You can also <strong>add several edges at once</strong> using <code>edges(...)</code></p>
 <p><img alt="adding edges" src="../images/tutorial_adding_edges_II.png#only-light" width="40%" />
 <img alt="adding edges" src="../images/tutorial_adding_edges_II_dark.png#only-dark" width="40%" /></p>
-<div class="language-groovy highlight"><span class="filename">adding several edges</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="c1">// adding vertices first</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="c1">// then adding several edges</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">,</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="s1">&#39;B&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="o">,</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="s1">&#39;C&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;D&#39;</span>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="o">)</span>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">adding several edges</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="c1">// adding vertices first</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="c1">// then adding several edges</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">        </span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">,</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">        </span><span class="s1">&#39;B&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="o">,</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">        </span><span class="s1">&#39;C&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;D&#39;</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>We can at any point ask about <strong>how many vertices and edges there are</strong> in the graph:</p>
-<div class="language-groovy highlight"><span class="filename">shape</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;B&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="o">)</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;C&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="o">)</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="o">}</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1">// getting vertices and edges count</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">nVertices</span><span class="o">,</span><span class="w"> </span><span class="n">nEdges</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">shape</span><span class="o">()</span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1">// or just println shape</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">println</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">shape</span><span class="o">())</span>
+<div class="language-groovy highlight"><span class="filename">shape</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">..</span><span class="s1">&#39;D&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;A&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;B&#39;</span><span class="o">)</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;B&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="o">)</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="n">edge</span><span class="o">(</span><span class="s1">&#39;C&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;D&#39;</span><span class="o">)</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="o">}</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1">// getting vertices and edges count</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">nVertices</span><span class="o">,</span><span class="w"> </span><span class="n">nEdges</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">shape</span><span class="o">()</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="c1">// or just println shape</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="n">println</span><span class="o">(</span><span class="n">graph</span><span class="o">.</span><span class="na">shape</span><span class="o">())</span>
 </span></code></pre></div>
 <p>which prints:</p>
-<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="m">4</span><span class="w"> </span>vertices<span class="w"> </span>X<span class="w"> </span><span class="m">3</span><span class="w"> </span>edges
+<div class="language-shell highlight"><span class="filename">output</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="m">4</span><span class="w"> </span>vertices<span class="w"> </span>X<span class="w"> </span><span class="m">3</span><span class="w"> </span>edges
 </span></code></pre></div>
 <h3 id="elements-of-a-graph">Elements of a graph</h3>
 <ul>
@@ -878,73 +926,73 @@ graph will be of type <code>String</code> but vertices could be potentially of a
 <li>degree</li>
 </ul>
 <p>Lets create a graph first and then ask for its elements:</p>
-<div class="language-groovy highlight"><span class="filename">graph</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">Integer</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">        </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">        </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">        </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="o">)</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">graph</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">Integer</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">        </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">        </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>The lets ask for its vertices, edges, neighbors.</p>
-<div class="language-groovy highlight"><span class="filename">graph elements</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">//  getting graph vertices</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">graph</span><span class="o">.</span><span class="na">vertices</span><span class="o">.</span><span class="na">containsAll</span><span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="o">)</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1">// getting graph edges</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">graph</span><span class="o">.</span><span class="na">edges</span><span class="o">.</span><span class="na">size</span><span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1">// getting neighbors of a specific vertex</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">graph</span><span class="o">.</span><span class="na">neighborsOf</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">[</span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">]</span>
+<div class="language-groovy highlight"><span class="filename">graph elements</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">//  getting graph vertices</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">graph</span><span class="o">.</span><span class="na">vertices</span><span class="o">.</span><span class="na">containsAll</span><span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="o">)</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1">// getting graph edges</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">graph</span><span class="o">.</span><span class="na">edges</span><span class="o">.</span><span class="na">size</span><span class="o">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1">// getting neighbors of a specific vertex</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">graph</span><span class="o">.</span><span class="na">neighborsOf</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">[</span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">]</span>
 </span></code></pre></div>
 <h3 id="removing-elements">Removing elements</h3>
 <p>Here there are some example on how to remove vertices and edges from a given graph. When using
 the operator minus (<code>-</code>) the result return the graph minus the element removed whereas the <code>removeXXX(,,,)</code> functions only return a boolean value: true if the element was successfully removed, or false
 if it couldn't be removed from graph.</p>
-<div class="language-groovy highlight"><span class="filename">removing elements</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">Integer</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">14</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">        </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">,</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="mi">7</span><span class="o">,</span><span class="w"> </span><span class="mi">9</span><span class="o">,</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="mi">9</span><span class="o">,</span><span class="w"> </span><span class="mi">11</span><span class="o">,</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">        </span><span class="mi">11</span><span class="o">,</span><span class="w"> </span><span class="mi">12</span><span class="o">,</span>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">        </span><span class="mi">12</span><span class="o">,</span><span class="w"> </span><span class="mi">14</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="o">)</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="o">}</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="c1">// removing vertices using - operator</span>
-</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">6</span><span class="o">,</span><span class="w"> </span><span class="mi">8</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">]</span>
-</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
-</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>
-</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="c1">// removing vertices using function</span>
-</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="n">graph3</span><span class="o">.</span><span class="na">removeVertex</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
-</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="n">graph3</span><span class="o">.</span><span class="na">removeAllVertices</span><span class="o">([</span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">])</span>
-</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>
-</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="c1">// removing edge using - operator</span>
-</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">graph3</span><span class="o">.</span><span class="na">edgesOf</span><span class="o">(</span><span class="mi">9</span><span class="o">).</span><span class="na">first</span><span class="o">()</span>
-</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>
-</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="c1">// removing edges</span>
-</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="n">graph4</span><span class="o">.</span><span class="na">removeEdge</span><span class="o">(</span><span class="n">graph4</span><span class="o">.</span><span class="na">edgesOf</span><span class="o">(</span><span class="mi">11</span><span class="o">).</span><span class="na">first</span><span class="o">())</span>
-</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="c1">// graph4.removeAllEdges(graph4.edgesOf(12)) &lt;--- this fails: ConcurrentModificationException</span>
-</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="n">graph4</span><span class="o">.</span><span class="na">removeAllEdges</span><span class="o">(</span><span class="n">graph4</span><span class="o">.</span><span class="na">edgesOf</span><span class="o">(</span><span class="mi">12</span><span class="o">).</span><span class="na">toList</span><span class="o">())</span><span class="w"> </span><span class="c1">// &lt;--- this works</span>
+<div class="language-groovy highlight"><span class="filename">removing elements</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">Integer</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">14</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">        </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">        </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">,</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">        </span><span class="mi">7</span><span class="o">,</span><span class="w"> </span><span class="mi">9</span><span class="o">,</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">        </span><span class="mi">9</span><span class="o">,</span><span class="w"> </span><span class="mi">11</span><span class="o">,</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">        </span><span class="mi">11</span><span class="o">,</span><span class="w"> </span><span class="mi">12</span><span class="o">,</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">        </span><span class="mi">12</span><span class="o">,</span><span class="w"> </span><span class="mi">14</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="o">}</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="c1">// removing vertices using - operator</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">[</span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">6</span><span class="o">,</span><span class="w"> </span><span class="mi">8</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">]</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="c1">// removing vertices using function</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="n">graph3</span><span class="o">.</span><span class="na">removeVertex</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="n">graph3</span><span class="o">.</span><span class="na">removeAllVertices</span><span class="o">([</span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">])</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="c1">// removing edge using - operator</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">graph3</span><span class="o">.</span><span class="na">edgesOf</span><span class="o">(</span><span class="mi">9</span><span class="o">).</span><span class="na">first</span><span class="o">()</span>
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="c1">// removing edges</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="n">graph4</span><span class="o">.</span><span class="na">removeEdge</span><span class="o">(</span><span class="n">graph4</span><span class="o">.</span><span class="na">edgesOf</span><span class="o">(</span><span class="mi">11</span><span class="o">).</span><span class="na">first</span><span class="o">())</span>
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="c1">// graph4.removeAllEdges(graph4.edgesOf(12)) &lt;--- this fails: ConcurrentModificationException</span>
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="n">graph4</span><span class="o">.</span><span class="na">removeAllEdges</span><span class="o">(</span><span class="n">graph4</span><span class="o">.</span><span class="na">edgesOf</span><span class="o">(</span><span class="mi">12</span><span class="o">).</span><span class="na">toList</span><span class="o">())</span><span class="w"> </span><span class="c1">// &lt;--- this works</span>
 </span></code></pre></div>
 <h3 id="graph-types">Graph types</h3>
 <p>You can create different types of graphs. There are a couple of methods you can use:</p>
-<div class="language-groovy highlight"><span class="filename">graph types</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// graphs</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">()</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1">// undirected weighted</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1">// directed weighted</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">digraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
-</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
-</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="c1">// directed weighted pseudo graph</span>
-</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">multidigraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
-</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
-</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="c1">// weighted pseudo graph</span>
-</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">multigraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
+<div class="language-groovy highlight"><span class="filename">graph types</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1">// graphs</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kt">def</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">()</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1">// undirected weighted</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1">// directed weighted</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">digraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="c1">// directed weighted pseudo graph</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">multidigraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="c1">// weighted pseudo graph</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="o">.</span><span class="na">multigraph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -955,34 +1003,34 @@ directly using JGraphT api.</p>
 <p>You can use almost anything as a vertex. The only mandatory condition is that <strong>the graph must be able to distinguish between vertices</strong>. For that your vertex should implement both equals and hashcode methods. In Groovy you can use the <code>@Canonical</code> annotation to get that.</p>
 <h3 id="analyzing-graphs">Analyzing graphs</h3>
 <p>The structure of the graph can be analyzed by using various functions.</p>
-<div class="language-groovy highlight"><span class="filename">graph</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="o">..</span><span class="s1">&#39;f&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">        </span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="o">,</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">        </span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="o">,</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">        </span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;d&#39;</span><span class="o">,</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">        </span><span class="s1">&#39;b&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="o">,</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="o">)</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">graph</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">graphs</span><span class="o">().</span><span class="na">graph</span><span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="o">..</span><span class="s1">&#39;f&#39;</span><span class="o">).</span><span class="na">each</span><span class="o">(</span><span class="nl">delegate:</span><span class="o">:</span><span class="n">vertex</span><span class="o">)</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="n">edges</span><span class="o">(</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">        </span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="o">,</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="o">,</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">        </span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;d&#39;</span><span class="o">,</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">        </span><span class="s1">&#39;b&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="o">,</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="o">)</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="o">}</span>
 </span></code></pre></div>
 <p>What is the shape of the graph ?</p>
-<div class="language-groovy highlight"><span class="filename">shape</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">nVertices</span><span class="o">,</span><span class="w"> </span><span class="n">nEdges</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">shape</span><span class="o">()</span>
+<div class="language-groovy highlight"><span class="filename">shape</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">def</span><span class="w"> </span><span class="o">(</span><span class="n">nVertices</span><span class="o">,</span><span class="w"> </span><span class="n">nEdges</span><span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">shape</span><span class="o">()</span>
 </span></code></pre></div>
 <p>What is the clustering of the graph ?</p>
-<div class="language-groovy highlight"><span class="filename">clustering of the graph</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graphClustering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">clusteringGlobal</span><span class="o">()</span>
+<div class="language-groovy highlight"><span class="filename">clustering of the graph</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graphClustering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">clusteringGlobal</span><span class="o">()</span>
 </span></code></pre></div>
 <p>What is the clustering avg ?</p>
-<div class="language-groovy highlight"><span class="filename">clustering average</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graphAvg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">clusteringAvg</span><span class="o">()</span>
+<div class="language-groovy highlight"><span class="filename">clustering average</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">graphAvg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">clusteringAvg</span><span class="o">()</span>
 </span></code></pre></div>
 <p>And what about the clustering of a given vertex ?</p>
-<div class="language-groovy highlight"><span class="filename">clustering of a vertex</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">vertexClustering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">clusteringOf</span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="o">)</span>
+<div class="language-groovy highlight"><span class="filename">clustering of a vertex</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">vertexClustering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">clusteringOf</span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="o">)</span>
 </span></code></pre></div>
 <p>What is the vertex with max degree ?</p>
-<div class="language-groovy highlight"><span class="filename">max degree</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">String</span><span class="w"> </span><span class="n">maxDegreeVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">maxDegree</span><span class="o">()</span>
+<div class="language-groovy highlight"><span class="filename">max degree</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">String</span><span class="w"> </span><span class="n">maxDegreeVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">maxDegree</span><span class="o">()</span>
 </span></code></pre></div>
 <p>Lets say we want to sort vertices by degree in descending order:</p>
-<div class="language-groovy highlight"><span class="filename">sort vertices by degree (desc)</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">sortedVertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">vertices</span><span class="o">.</span><span class="na">sort</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">-</span><span class="n">graph</span><span class="o">.</span><span class="na">degreeOf</span><span class="o">(</span><span class="n">it</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
+<div class="language-groovy highlight"><span class="filename">sort vertices by degree (desc)</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">sortedVertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="o">.</span><span class="na">vertices</span><span class="o">.</span><span class="na">sort</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">-</span><span class="n">graph</span><span class="o">.</span><span class="na">degreeOf</span><span class="o">(</span><span class="n">it</span><span class="o">)</span><span class="w"> </span><span class="o">}</span>
 </span></code></pre></div>
 
 
@@ -1001,6 +1049,8 @@ directly using JGraphT api.</p>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1036,7 +1086,7 @@ directly using JGraphT api.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

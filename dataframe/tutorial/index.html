@@ -549,6 +549,8 @@
       
         
       
+        
+      
     
     
       
@@ -603,10 +605,6 @@
       
         
       
-        
-      
-        
-      
     
     
       
@@ -649,29 +647,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2025/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2025
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-  
-  
-    <li class="md-nav__item">
       <a href="../../blog/archive/2024/" class="md-nav__link">
         
   
@@ -686,6 +661,58 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -695,11 +722,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../blog/archive/2023/" class="md-nav__link">
+      <a href="../../blog/category/ml/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    2023
+    ml
   </span>
   
 
@@ -748,23 +775,33 @@
 <h3 id="prerequisites">Prerequisites</h3>
 <h4 id="dependencies">Dependencies</h4>
 <p>To be able to follow the tutorial you need the <code>underdog-dataframe</code> module. If you're using Gradle in your project:</p>
-<div class="language-groovy highlight"><span class="filename">gradle</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.github.grooviter:underdog-dataframe:VERSION&quot;</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Gradle</label><label for="__tabbed_1_2">Maven</label><label for="__tabbed_1_3">Grapes</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;com.github.grooviter:underdog-dataframe:VERSION&quot;</span>
 </span></code></pre></div>
-<p>Or Maven:</p>
-<div class="language-xml highlight"><span class="filename">maven</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;dependency&gt;</span>
+</div>
+<div class="tabbed-block">
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;dependency&gt;</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.github.grooviter<span class="nt">&lt;/groupId&gt;</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>underdog-dataframe<span class="nt">&lt;/artifactId&gt;</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>VERSION<span class="nt">&lt;/version&gt;</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">&lt;/dependency&gt;</span>
 </span></code></pre></div>
-<p>Or if you're using a Groovy script:</p>
-<div class="language-groovy highlight"><span class="filename">Grape</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@Grab</span><span class="o">(</span><span class="s2">&quot;com.github.grooviter:underdog-dataframe:VERSION&quot;</span><span class="o">)</span>
+</div>
+<div class="tabbed-block">
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@Grab</span><span class="o">(</span><span class="s2">&quot;com.github.grooviter:underdog-dataframe:VERSION&quot;</span><span class="o">)</span>
 </span></code></pre></div>
+</div>
+</div>
+</div>
 <h4 id="data">Data</h4>
-<p>The data we are using in the tutorial is </p>
+<p>You can find the data used in this tutorial <a href="https://github.com/grooviter/underdog/blob/main/docs/guide/src/test/resources/data/tornadoes_1950-2014.csv">here</a> </p>
 <h3 id="loading-data">Loading data</h3>
 <p>First of all we need to load the csv file with the data. Underdog infers the column types by sampling the data.</p>
-<div class="language-groovy highlight"><span class="filename">reading</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">def</span><span class="w"> </span><span class="n">tornadoes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="s2">&quot;src/test/resources/data/tornadoes_1950-2014.csv&quot;</span><span class="o">)</span>
+<div class="language-groovy highlight"><span class="filename">reading</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">underdog.Underdog</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kt">def</span><span class="w"> </span><span class="n">tornadoes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Underdog</span><span class="o">.</span><span class="na">df</span><span class="o">().</span><span class="na">read_csv</span><span class="o">(</span><span class="s2">&quot;src/test/resources/data/tornadoes_1950-2014.csv&quot;</span><span class="o">)</span>
 </span></code></pre></div>
 <p>Note the file, in this case, is addressed relative to the current working directory. In this case it must point to the csv file path whether it is a relative path of an absolute path.</p>
 <h3 id="metadata">Metadata</h3>
@@ -1012,6 +1049,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1047,7 +1086,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.integrate", "navigation.top", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
