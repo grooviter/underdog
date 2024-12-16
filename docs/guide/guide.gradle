@@ -22,6 +22,10 @@ tasks.register("setAuthentication") {
     }
 }
 
+gitPublish {
+    branch = 'gh-pages'
+}
+
 gitPublishPush {
     dependsOn 'setAuthentication'
 }
