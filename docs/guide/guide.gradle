@@ -18,6 +18,8 @@ dependencies {
 
 tasks.register("setAuthentication") {
     doLast {
+        System.setProperty("GIT_USERNAME", findProperty('PUBLISH_GH_TOKEN').toString())
+        System.setProperty("GRGIT_USER", findProperty('PUBLISH_GH_TOKEN').toString())
         System.setProperty("org.ajoberstar.grgit.auth.username", findProperty('PUBLISH_GH_TOKEN').toString())
     }
 }
