@@ -23,20 +23,20 @@ tasks.register("setAuthentication") {
 }
 
 gitPublish {
+    repoUri = 'https://github.com/grooviter/underdog.git'
     branch = 'gh-pages'
-    repoUri = "https://github.com/grooviter/underdog.git"
+    commitMessage = config.docs.guide.publish.message
+    contents {
+        from "build/gitPublish"
+    }
 }
 
 gitPublishReset {
-    dependsOn 'setAuthentication'
-    branch = 'gh-pages'
-    repoUri = "https://github.com/grooviter/underdog.git"
+    repoUri = 'https://github.com/grooviter/underdog.git'
 }
 
 gitPublishPush {
     dependsOn 'setAuthentication'
-    branch = 'gh-pages'
-    repoUri = "https://github.com/grooviter/underdog.git"
 }
 
 test {
