@@ -28,6 +28,7 @@ gitPublish {
 }
 
 gitPublishReset {
+    dependsOn 'setAuthentication'
     repoUri = "https://github.com/grooviter/underdog.git"
 }
 
