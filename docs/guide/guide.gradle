@@ -23,9 +23,10 @@ tasks.register("setAuthentication") {
 }
 
 gitPublish {
+    branch  = 'gh-pages'
     repoUri = 'https://github.com/grooviter/underdog.git'
-    branch = 'gh-pages'
     repoDir = file("build/gitPublish")
+
     contents {
         from file("build/docs")
     }

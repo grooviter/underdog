@@ -23,11 +23,15 @@ class Render {
     String render(Options options, Meta meta = defaultMeta) {
         String html = compileTemplate(TEMPLATE_PATH, options, meta)
         String path = meta.path ?: temporalFilePath
-        if (desktopSupported) {
+        if (desktopSupported && !isCIEnvironment()) {
             writeHtml(html, path)
             desktop.browse(new File(path).toURI())
         }
         return html
+    }
+
+    private static boolean isCIEnvironment() {
+        return System.getenv("CI") == 'true'
     }
 
     private static Meta getDefaultMeta() {

@@ -15,20 +15,22 @@
  */
 plugins {
     id 'org.kordamp.gradle.java-project' version "$kordamp"
-    id 'com.bmuschko.docker-remote-api'
 }
 
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+ext {
+    mavenUsername   = findProperty("PUBLISH_REPO_USERNAME")
+    mavenPassword   = findProperty("PUBLISH_REPO_PASSWORD")
+    shouldRelease   = !"$version".endsWith('SNAPSHOT')
+}
 
 config {
-    release = (rootProject.findProperty('release') ?: false).toBoolean()
-
+    release = shouldRelease
 
     info {                                                                
         name          = 'Underdog'
         vendor        = 'Grooviter'
-        description   = 'Groovy Data Libraries'
-        inceptionYear = '2023'
+        description   = 'Groovy Analysis Libraries'
+        inceptionYear = '2024'
 
         links {
             website      = 'https://github.com/grooviter/underdog'
@@ -43,9 +45,90 @@ config {
                 roles = ['developer']
             }
         }
+
+        repositories {
+            repository {
+                name = 'releases'
+                url  = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username = mavenUsername
+                    password = mavenPassword
+                }
+            }
+            repository {
+                name = 'snapshots'
+                url  = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+                credentials {
+                    username = mavenUsername
+                    password = mavenPassword
+                }
+            }
+        }
     }
 
-    licensing {                                                           
+    artifacts {
+        minpom {
+            enabled
+        }
+    }
+
+    publishing {
+        releasesRepository  = 'releases'
+        snapshotsRepository = 'snapshots'
+        signing {
+            enabled    = shouldRelease
+            keyId      = findProperty("PUBLISH_SIGN_KEY_ID")
+            password   = findProperty("PUBLISH_SIGN_SECRET")
+            secretKey  = findProperty("PUBLISH_SIGN_KEY")
+        }
+        pom {
+            overwriteInceptionYear = "2024"
+        }
+    }
+
+    quality {
+        codenarc {
+            enabled                = false
+            toolVersion            = '2.0.0'
+            ignoreFailures         = true
+            maxPriority1Violations = 0
+            maxPriority2Violations = Integer.MAX_VALUE
+            maxPriority3Violations = Integer.MAX_VALUE
+            aggregate { }
+        }
+    }
+    coverage {
+        jacoco {
+            enabled = true
+        }
+    }
+
+    docs {
+        guide {
+            publish {
+                enabled = false
+            }
+        }
+        groovydoc {
+            enabled = true
+            replaceJavadoc = true
+            excludes = ['*.yml', '*.xml']
+            options {
+                docTitle = "Underdog"
+                windowTitle = "Underdog: Groovy Analysis Libraries"
+                link 'https://docs.oracle.com/javase/11/docs/api/', 'java'
+                link 'http://docs.groovy-lang.org/latest/html/api/', 'groovy', 'org.codehaus.groovy'
+            }
+            aggregate {
+                enabled          = true
+                replaceJavadoc   = true
+                excludedProjects.addAll([project('guide')])
+            }
+        }
+    }
+
+    licensing {
+        enabled = false
         licenses {
             license {
                 id = 'Apache-2.0'
@@ -55,49 +138,48 @@ config {
     }
 }
 
+//allprojects {
+//    apply plugin: 'java'
+//    repositories {
+//        mavenCentral()
+//        maven { url 'https://jitpack.io' }
+//        maven { url  = "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+//    }
+//    config {
+//        docs {
+//            javadoc {
+//                enabled = false
+//            }
+//        }
+//    }
+//}
+
 allprojects {
-    apply plugin: 'java'
     repositories {
         mavenCentral()
-        maven { url 'https://jitpack.io' }
-        maven { url  = "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
     }
-    config {
-        docs {
 
-            javadoc {
-                enabled = false
-            }
+    tasks.withType(PublishToMavenRepository).configureEach {
+        enabled = it.project.projectDir.parentFile.name != 'samples'
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        sourceCompatibility = findProperty('sourceCompatibility')
+        targetCompatibility = findProperty('targetCompatibility')
+        options.encoding    = 'UTF-8'
+    }
+
+    configurations.configureEach {
+        resolutionStrategy {
+            force "org.codehaus.groovy:groovy:$groovy"
+            force "org.codehaus.groovy:groovy-xml:$groovy"
         }
     }
 }
-
-subprojects {
-    java {
-        sourceCompatibility = "1.8"
-        targetCompatibility = "1.8"
-    }
-}
-
-tasks.register("distributionCopyPython", Copy) {
-    group("distribution")
-    description("Copies Conda and Jupyter installation code to build dir")
-    from fileTree('dist')
-    into file("$buildDir/dist/")
-}
-
-tasks.register("distributionCopyJars", Copy) {
-    group("distribution")
-    description("Copies Groovy kernel jar libs to build dir")
-    dependsOn(':matter-base:build', ':matter-groovy:build')
-    from fileTree("$rootDir/modules/matter-groovy/build/dist/kernel")
-    into file("$buildDir/dist/groovy/beakerx_groovy/kernel")
-}
-
-tasks.register("distributionDocker", DockerBuildImage) {
-    group("distribution")
-    description("Creates a jupyter image with Groovy kernel installed in it")
-    dependsOn('distributionCopyPython', 'distributionCopyJars')
-    inputDir = file("$buildDir/dist")
-    images.add("${project.properties.group}/matter:$version")
-}
+//
+//subprojects {
+//    java {
+//        sourceCompatibility = "1.8"
+//        targetCompatibility = "1.8"
+//    }
+//}

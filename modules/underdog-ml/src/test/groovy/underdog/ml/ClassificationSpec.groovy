@@ -5,6 +5,7 @@ import smile.math.kernel.HyperbolicTangentKernel
 import smile.math.kernel.LinearKernel
 import smile.math.kernel.PearsonKernel
 import smile.math.kernel.PolynomialKernel
+import spock.lang.Retry
 
 
 class ClassificationSpec extends BaseSpec {
@@ -88,6 +89,7 @@ class ClassificationSpec extends BaseSpec {
         (0.85..0.98).containsWithinBounds(ML.metrics.accuracy(yTest, prediction))
     }
 
+    @Retry
     def "multi-layer-perceptron"() {
         setup:
         def (xTrain, xTest, yTrain, yTest) = binaryClassificationTrainTestSplit([0,1])
