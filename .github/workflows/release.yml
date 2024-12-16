@@ -31,9 +31,4 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
       - name: release
-        run: |
-          ./gradlew \
-            --stacktrace \
-            -x aggregateCodenarc \
-            -x aggregateGroovydoc \
-            build
+        run: ./gradlew --stacktrace -x aggregateGroovydoc build
