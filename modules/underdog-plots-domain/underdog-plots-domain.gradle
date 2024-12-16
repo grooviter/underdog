@@ -5,7 +5,7 @@ plugins {
 
 dependencies {
     api project(":underdog-dataframe")
-    api(project(":underdog-plots-ast"))
+    api project(":underdog-plots-ast")
 
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
