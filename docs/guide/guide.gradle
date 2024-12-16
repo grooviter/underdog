@@ -24,6 +24,7 @@ tasks.register("setAuthentication") {
 
 gitPublish {
     branch = 'gh-pages'
+    repoUri = config.info.links.scm
 }
 
 gitPublishPush {
