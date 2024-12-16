@@ -5,6 +5,7 @@
 build
 out
 testoutput
+site
 
 # ides
 .idea
