@@ -1,5 +1,0 @@
-== Technical Analysis (TA)
-
-The technical analysis module is a wrapper over the link:https://ta4j.github.io/ta4j-wiki/[ta4j] java library. It adds some extension modules to the existent classes so that it makes easier to play with technical indicators and rules and **integrate with Underdog's dataframes and series**.
-
-include::tutorial.adoc[]

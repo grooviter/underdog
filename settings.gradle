@@ -16,7 +16,7 @@ buildscript {
 apply plugin: 'org.kordamp.gradle.settings'
 
 projects {
-    directories = ['docs', 'modules', 'kk']
+    directories = ['docs', 'modules']
 }
 
 rootProject.name = 'underdog'

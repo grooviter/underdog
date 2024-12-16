@@ -1,8 +1,0 @@
-[#_dataframe]
-== Dataframe
-
-include::tutorial.adoc[]
-
-include::series/index.adoc[]
-
-include::dataframe/index.adoc[]
