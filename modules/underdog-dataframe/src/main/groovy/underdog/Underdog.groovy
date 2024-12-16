@@ -1,5 +1,0 @@
-package underdog
-
-class Underdog {
-
-}

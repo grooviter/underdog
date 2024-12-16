@@ -1,4 +1,0 @@
-moduleName=underdog-graphs-extensions
-moduleVersion=0.1.0
-extensionClasses=underdog.graphs.OperatorsExtensions,underdog.graphs.TraversalExtensions,underdog.graphs.BipartiteExtensions,underdog.graphs.ImportExtensions,underdog.graphs.IntrospectionExtensions,underdog.graphs.ScoringExtensions,underdog.graphs.DistanceExtensions
-staticExtensionClasses=underdog.graphs.extensions.UnderdogExtensions
