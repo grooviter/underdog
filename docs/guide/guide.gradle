@@ -27,6 +27,10 @@ gitPublish {
     repoUri = config.info.links.scm
 }
 
+gitPublishReset{
+    repoUri = config.info.links.scm
+}
+
 gitPublishPush {
     dependsOn 'setAuthentication'
 }
