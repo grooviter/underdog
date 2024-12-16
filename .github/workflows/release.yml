@@ -24,7 +24,7 @@ jobs:
       - name: installing poetry
         run: python -m pip install --upgrade pip && pip install poetry
       - name: building docs
-        working-directory: docs/guide/docs
+        working-directory: docs/guide
         run: poetry install && poetry run mkdocs build
       - uses: actions/setup-java@v4
         with:
