@@ -22,14 +22,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: installing poetry
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
+        run: python -m pip install --upgrade pip && pip install poetry
       - name: building docs
-        run: |
-          cd docs/guide/docs && \
-          poetry install --with dev && \
-          poetry shell && mkdocs build
+        run: cd docs/guide/docs && poetry install && poetry shell && mkdocs build
       - uses: actions/setup-java@v4
         with:
           distribution: 'corretto'
