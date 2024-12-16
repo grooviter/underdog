@@ -1,7 +1,7 @@
 site_name: Underdog
 site_url: https://grooviter.github.io/underdog
 repo_url: https://github.com/grooviter/underdog
-site_dir: build/gitPublish
+site_dir: build/docs
 
 nav:
   - Underdog: index.md
