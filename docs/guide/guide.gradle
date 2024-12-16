@@ -29,11 +29,14 @@ gitPublish {
 
 gitPublishReset {
     dependsOn 'setAuthentication'
+    branch = 'gh-pages'
     repoUri = "https://github.com/grooviter/underdog.git"
 }
 
 gitPublishPush {
     dependsOn 'setAuthentication'
+    branch = 'gh-pages'
+    repoUri = "https://github.com/grooviter/underdog.git"
 }
 
 test {
