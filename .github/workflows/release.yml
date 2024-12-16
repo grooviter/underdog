@@ -31,4 +31,6 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
       - name: release
-        run: ./gradlew --stacktrace -x licenseGradle -x licenseTest -x licenseMain
+        run: |
+          ./gradlew --stacktrace -x licenseGradle -x licenseTest -x licenseMain \
+            gitPublishPush

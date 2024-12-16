@@ -1,6 +1,7 @@
 site_name: Underdog
-site_url: https://github.com/
-repo_url: https://github.com/squidfunk/mkdocs-material
+site_url: https://grooviter.github.io/underdog
+repo_url: https://github.com/grooviter/underdog
+site_dir: build/gitPublish
 
 nav:
   - Underdog: index.md
