@@ -207,6 +207,11 @@ class TSSeries implements Series {
     }
 
     @Override
+    Series fillna(Object o) {
+        return new TSSeries(column.setMissingTo(o))
+    }
+
+    @Override
     Series lag(int index) {
         return new TSSeries(this.column.lag(index))
     }

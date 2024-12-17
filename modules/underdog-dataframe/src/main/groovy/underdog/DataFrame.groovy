@@ -12,6 +12,24 @@ import java.util.function.Function
  * @since 0.1.0
  */
 interface DataFrame extends Columnar {
+
+    /**
+     * Make a copy of this object’s indices and data.
+     *
+     * @return a new instance of {@link DataFrame}
+     * @since 0.1.0
+     */
+    DataFrame copy()
+
+    /**
+     * Fill NA/NaN values using the specified value passed as parameter
+     *
+     * @param value the value to replace the NA/Nan values with
+     * @return the dataframe with replaced values
+     * @since 0.1.0
+     */
+    DataFrame fillna(Object value)
+
     /**
      * The transpose of the DataFrame.
      *

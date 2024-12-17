@@ -480,4 +480,38 @@ class DataFrameSpec extends BaseSpec {
         columns == ['id', 'weight']
         weights == [11, 22, 303, 604, 1005] as int[]
     }
+
+    def "[DataFrame/fillna]: fixed value all numeric series"() {
+        setup:
+        def df = [
+            A: [1, 2, null, 3, 4],
+            B: [1.0, 2.0, 3.0, null, 4.0],
+            C: ((1..4).collect { new BigDecimal(it) } + [null])
+        ].toDataFrame("coercing")
+
+        when:
+        df = df.fillna(-1)
+
+        then:
+        df['A'].toList() == [1, 2, -1, 3, 4]
+        df['B'].toList() == [1.0, 2.0, 3.0, -1, 4.0]
+        df['C'].toList() == [1.0, 2.0, 3.0, 4.0, -1.0]
+    }
+
+    def "[DataFrame/fillna]: fixed value all mixed series"() {
+        setup:
+        def df = [
+                A: ('a'..'c') + [null],
+                B: [1.0, 2.0, null, 4.0],
+                C: (1..3) + [null]
+        ].toDataFrame("coercing")
+
+        when:
+        df = df.fillna(-1)
+
+        then:
+        df['A'].toList() == ['a', 'b', 'c', '-1']
+        df['B'].toList() == [1.0, 2.0, -1, 4.0]
+        df['C'].toList() == [1, 2, 3, -1.0]
+    }
 }

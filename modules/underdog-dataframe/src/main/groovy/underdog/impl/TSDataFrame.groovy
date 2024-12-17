@@ -77,6 +77,26 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    DataFrame copy() {
+        return new TSDataFrame(table.copy())
+    }
+
+    @Override
+    DataFrame fillna(Object o) {
+        Table copied = table.copy()
+        copied.columns().each {
+            if (it.type() == ColumnType.DOUBLE && o.toString().isNumber() && o.toString().isLong()) {
+                it.setMissingTo(o.toString().toDouble())
+            } else if (it.type() == ColumnType.STRING) {
+                it.setMissingTo(o.toString())
+            } else {
+                it.setMissingTo(o)
+            }
+        }
+        return new TSDataFrame(copied)
+    }
+
+    @Override
     DataFrame getT() {
         return new TSDataFrame(this.table.transpose())
     }
@@ -487,7 +507,7 @@ class TSDataFrame implements DataFrame {
     @NamedVariant
     Series min(TypeAxis axisType) {
         return null
-min    }
+    }
 
     @Override
     DataFrame minus(Series series) {

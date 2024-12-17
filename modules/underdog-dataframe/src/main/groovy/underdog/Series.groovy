@@ -85,6 +85,15 @@ interface Series extends Columnar, Iterable {
     Series dropna()
 
     /**
+     * Fill NA/NaN values using the specified value
+     *
+     * @param value the value to replace the NA/Nan values with
+     * @return the series instance with replaced values
+     * @since 0.1.0
+     */
+    Series fillna(Object value)
+
+    /**
      * @param index
      * @return
      * @since 0.1.0
