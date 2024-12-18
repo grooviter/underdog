@@ -16,4 +16,5 @@ class Series {
     Number yAxisIndex
     Number xAxisIndex
     Label label
+    Number symbolSize
 }

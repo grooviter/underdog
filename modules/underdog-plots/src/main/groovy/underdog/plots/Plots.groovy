@@ -10,6 +10,7 @@ import underdog.plots.charts.Line
 import underdog.plots.charts.Pie
 import underdog.plots.charts.Radar
 import underdog.plots.charts.Scatter
+import underdog.plots.charts.ScatterMatrix
 
 class Plots {
     @Delegate Line line = new Line()
@@ -19,6 +20,7 @@ class Plots {
     @Delegate Bar barDelegate = new Bar()
     @Delegate Pie pieDelegate = new Pie()
     @Delegate Radar radarDelegate = new Radar()
+    @Delegate ScatterMatrix scatterMatrixDelegate = new ScatterMatrix()
 
     @NamedVariant
     Options plot(

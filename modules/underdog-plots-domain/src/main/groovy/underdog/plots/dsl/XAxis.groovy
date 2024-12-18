@@ -4,6 +4,7 @@ import underdog.plots.ast.Node
 
 @Node
 class XAxis {
+    boolean show
     String name
     String type
     String nameLocation
@@ -12,12 +13,13 @@ class XAxis {
     Number splitNumber
     List boundaryGap
     SplitLine splitLine
-    AxisLabel axisLabel
-    AxisLine axisLine
     NameTextStyle nameTextStyle
     Integer offset
     List data
     Number min
     Number max
     Boolean scale
+    AxisTick axisTick
+    AxisLabel axisLabel
+    AxisLine axisLine
 }

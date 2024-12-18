@@ -4,6 +4,7 @@ import underdog.plots.ast.Node
 
 @Node
 class YAxis {
+    boolean show
     String type
     String name
     String nameLocation
@@ -17,4 +18,6 @@ class YAxis {
     Number max
     String position
     Boolean scale
+    AxisTick axisTick
+    AxisLabel axisLabel
 }

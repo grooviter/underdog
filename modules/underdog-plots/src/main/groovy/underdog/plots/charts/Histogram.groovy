@@ -65,6 +65,29 @@ class Histogram extends Chart {
         @NamedParam(required = false, value='subtitle') String chartSubtitle = '',
         @NamedParam(required = false) int bins = 20,
         @NamedParam(required = false) boolean showLabels = false) {
+        return createGridOptions(chartTitle, chartSubtitle) +
+            createXAxisOptions(xLabel) +
+            createYAxisOptions(yLabel) +
+            create {
+            xAxis {
+                type 'value'
+            }
+            yAxis {
+                type 'value'
+            }
+            series(BarSeries) {
+                name 'Direct'
+                barWidth '100%'
+                data(createHistogramDataFrom(xs, bins))
+                label {
+                    show(showLabels)
+                    position("inside")
+                }
+            }
+        }
+    }
+
+    static List<List<Number>> createHistogramDataFrom(List<Number> xs, Integer bins = 20) {
         def min = Math.floor(xs.min().toDouble()).toInteger()
         def max = Math.ceil(xs.max().toDouble()).toInteger()
         def binSize = Math.ceil((max - min) / bins).toInteger()
@@ -81,27 +104,6 @@ class Histogram extends Chart {
             return currentBinFreq
         }
 
-        def dataset = [x, y].transpose()
-
-        return createGridOptions(chartTitle, chartSubtitle) +
-            createXAxisOptions(xLabel) +
-            createYAxisOptions(yLabel) +
-            create {
-            xAxis {
-                type 'value'
-            }
-            yAxis {
-                type 'value'
-            }
-            series(BarSeries) {
-                name 'Direct'
-                barWidth '100%'
-                data(dataset)
-                label {
-                    show(showLabels)
-                    position("inside")
-                }
-            }
-        }
+        return [x, y].transpose()
     }
 }
