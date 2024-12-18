@@ -2,158 +2,158 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://grooviter.github.io/underdog/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/blog/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/blog/2024/12/20/classifying-food/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/tutorial/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/dataframe/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/dataframe/creation/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/dataframe/filtering/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/dataframe/import_export/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/dataframe/import_export_csv/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/dataframe/mapping/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/dataframe/sorting/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/series/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/series/creation/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/series/intro/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/dataframe/series/statistics/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/development/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/graphs/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/graphs/distances/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/graphs/introspection/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/graphs/operators/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/graphs/traversal/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/graphs/tutorial/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/ml/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/ml/extensions/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/ml/tutorial/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/bar/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/extensions/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/graphs/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/introduction/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/line/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/pie/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/radar/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/plots/scatter/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/ta/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/ta/tutorial/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/blog/archive/2024/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
     <url>
          <loc>https://grooviter.github.io/underdog/blog/category/ml/</loc>
-         <lastmod>2024-12-16</lastmod>
+         <lastmod>2024-12-18</lastmod>
     </url>
 </urlset>
