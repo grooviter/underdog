@@ -88,9 +88,9 @@ class Histogram extends Chart {
     }
 
     static List<List<Number>> createHistogramDataFrom(List<Number> xs, Integer bins = 20) {
-        def min = Math.floor(xs.min().toDouble()).toInteger()
-        def max = Math.ceil(xs.max().toDouble()).toInteger()
-        def binSize = Math.ceil((max - min) / bins).toInteger()
+        def min = xs.min().toDouble()
+        def max = xs.max().toDouble()
+        def binSize = (max - min) / bins
 
         def x = (0..bins).inject([min]) { agg, next ->
             agg << (agg[-1] + binSize)

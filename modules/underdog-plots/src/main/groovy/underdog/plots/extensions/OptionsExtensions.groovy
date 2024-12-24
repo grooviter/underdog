@@ -92,4 +92,37 @@ class OptionsExtensions {
         @DelegatesTo(value=Options, strategy = Closure.DELEGATE_FIRST) Closure dsl) {
         return options + Options.create(dsl)
     }
+
+    static List toData(Options options, Number[][] x, Number[] y, boolean sortByX = true) {
+        def data = [
+            x.collect().flatten(),  // xs
+            y.collect()             // ys
+        ].transpose()
+
+        if (sortByX) {
+            return data.sort { it.find() } // [[xs1,ys1]...[xsn,ysn]]
+        }
+
+        return data
+    }
+
+    static List toData(Options options, double[][] x, double[] y, boolean sortByX = true) {
+        return toData(options, x as Double[][], y as Double[], sortByX)
+    }
+
+    static List toData(Options options, double[][] x, int[] y, boolean sortByX = true) {
+        return toData(options, x as Double[][], y as Integer[], sortByX)
+    }
+
+    static List toData(Options options, List<Number> x, double[] y, boolean sortByX = true){
+        return toData(options, x as Number[][], y as Number[], sortByX)
+    }
+
+    static double[][] sortX(Options options, double[][] x) {
+        return x.collect().flatten().sort() as double[][]
+    }
+
+    static double[] sortX(Options options, double[] x) {
+        return x.collect().sort() as double[]
+    }
 }

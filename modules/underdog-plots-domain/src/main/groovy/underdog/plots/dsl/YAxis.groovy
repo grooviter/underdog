@@ -8,10 +8,12 @@ class YAxis {
     String type
     String name
     String nameLocation
+    Boolean inverse
     Number nameGap
     Number gridIndex
     Number splitNumber
     List boundaryGap
+    List data
     SplitLine splitLine
     NameTextStyle nameTextStyle
     Number min

@@ -46,8 +46,8 @@ class ClassifyingFoodSpec extends Specification {
         def label = df['TRAFFICLIGHT VALUE'] as int[]
 
         def (X_train, X_test, y_train, y_test) = Underdog.ml()
-                .utils
-                .trainTestSplit(feats, label, random_state: 0)
+            .utils
+            .trainTestSplit(feats, label, random_state: 0)
         // --8<-- [end:train_test_split]
 
         and:
@@ -65,10 +65,20 @@ class ClassifyingFoodSpec extends Specification {
         and:
         // --8<-- [start:knn_predictions]
         def ml = Underdog.ml()
+
+        // creates and trains the model
         def knn = ml.classification.knn(X_train, y_train, k: 5)
+
+        // creating predictions with the test feature set
         def predictions = knn.predict(X_test)
-        def score = ml.metrics.r2Score(y_test, predictions)
+
+        // getting the accuracy of the model when tested against the test set
+        def score = ml.metrics.accuracy(y_test, predictions)
         // --8<-- [end:knn_predictions]
+
+        // --8<-- [start:accuracy_check]
+        assert score > 0.80
+        // --8<-- [end:accuracy_check]
 
         and:
         // --8<-- [start:food_samples_predictions]

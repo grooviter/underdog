@@ -10,6 +10,7 @@ import underdog.plots.dsl.Radar
 import underdog.plots.dsl.Series
 import underdog.plots.dsl.Title
 import underdog.plots.dsl.Tooltip
+import underdog.plots.dsl.VisualMap
 import underdog.plots.dsl.XAxis
 import underdog.plots.dsl.YAxis
 
@@ -18,6 +19,7 @@ class Options {
     Title title
     Tooltip tooltip
     AxisPointer axisPointer
+    VisualMap visualMap
 
     @RepeatableField Legend legend
     @RepeatableField Grid grid

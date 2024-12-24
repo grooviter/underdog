@@ -82,6 +82,33 @@ class TSDataFrame implements DataFrame {
     }
 
     @Override
+    double[][] corrMatrix() {
+        def finalData = []
+        this.columns.eachWithIndex { String left, int i ->
+            def next = []
+            this.columns.eachWithIndex { String right, int j ->
+                next << this[left].corr(this[right])
+            }
+            finalData << next
+        } as double[][]
+
+        return finalData
+    }
+
+    double[][] corrMatrix(Integer round) {
+        List<List<Double>> finalData = []
+        this.columns.eachWithIndex { String left, int i ->
+            List<Double> next = []
+            this.columns.eachWithIndex { String right, int j ->
+                next << this[left].corr(this[right]).doubleValue().round(2)
+            }
+            finalData << next
+        }
+
+        return finalData as double[][]
+    }
+
+    @Override
     DataFrame fillna(Object o) {
         Table copied = table.copy()
         copied.columns().each {

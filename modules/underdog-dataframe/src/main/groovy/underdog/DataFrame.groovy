@@ -21,6 +21,10 @@ interface DataFrame extends Columnar {
      */
     DataFrame copy()
 
+    double[][] corrMatrix()
+
+    double[][] corrMatrix(Integer round)
+
     /**
      * Fill NA/NaN values using the specified value passed as parameter
      *

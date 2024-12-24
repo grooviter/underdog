@@ -4,6 +4,7 @@ categories:
   - ml
 tags:
   - ml
+  - classification
 ---
 
 # Classifying food
@@ -97,7 +98,7 @@ Each entry has a series of possible features and it’s labeled with a color val
                   3  |    4.2  |    4.2  |      17  |         0  |              0  |    0  |   0.004  |      0  |  0.01  |
 ```
 
-However the goal is to choose the minimum set of features that maximizes the classification. Too many could classify well but it would become too hard to use, too few would not classify well enough. I need to find the balance between the two. Once I’ve found the balance I can use both, features and labels to create a training and test datasets. For that I use the train_test_split function from scikit-learn library.
+However the goal is to choose the minimum set of features that maximizes the classification. Too many could classify well but it would become too hard to use, too few would not classify well enough. I need to find the balance between the two. Once I’ve found the balance I can use both, features and labels to create a training and test datasets. For that I use the **trainTestSplit** function.
 
 ```groovy title="minimum set of features and creating training and test datasets"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/ClassifyingFoodSpec.groovy:train_test_split"
@@ -110,8 +111,8 @@ Drawing a scatter matrix sometimes could help you to spot features that are part
 ```
 
 <figure markdown="span">
-![scatter matrix](images/classifying_food_scatter_matrix.png#only-light)
-![scatter matrix](images/classifying_food_scatter_matrix_dark.png#only-dark)
+![scatter matrix](images/classifying_food/scatter_matrix.png#only-light)
+![scatter matrix](images/classifying_food/scatter_matrix_dark.png#only-dark)
 </figure>
 
 ### Algorithm selection
@@ -121,20 +122,23 @@ In order to choose the algorithm, I needed to identify first the type of problem
 - First, I’ve got a labeled dataset, so it looked like I could use the labeled data to train a supervised learning model. 
 - Second, I was looking for different types of discrete target values (values for green, orange, red), therefore it seemed to be a classification problem.
 
-Once I confirmed it was a classification problem I chose the only classification algorithm I know so far, the k-nearest neighbors algorithm.
+Once I confirmed it was a classification problem I picked the [k-nearest neighbors](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) algorithm.
 
 ## Evaluation Phase
 
 Then we use both, dataset and algorithm, to train a software model to make predictions. Afterwards the model performance is evaluated with testing datasets. Training and testing are part of the evaluation phase.
 
 ### Model creation & training
+The k-nearest neighbors algorithm tries to establish to which type the element belongs by checking the closest neighborg elements around. You can customize the K parameter which sets how many neighbors does the algorithm have to check before emmiting its veredict.
 
-The k-nearest neighbors algorithm is implemented in scikit-learn via the KNeighborsClassifier class. The algorithm tries to establish to which type the element belongs by checking the closest neighborg elements around. You can customize the K parameter which sets how many neighbors does the algorithm have to check before emmiting its veredict.
-
-Here I’m initializing the algorithm with k=5. Then I’m training the model using the fit function and finally I’m checking how well the model is going to perform by passing the testing dataset (X_test, y_test) to the score function. After some tunes here and there I was able to get a 90% of accuracy by using 6 features.
+Here I’m initializing the algorithm with k=5. Then I’m training the model using the fit function and finally I’m checking how well the model is going to perform by passing the testing dataset (X_test, y_test) to the score function. I was able to get more than 80% of accuracy by using 6 features.
 
 ```groovy title="model training and getting accuracy score with the testing dataset"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/ClassifyingFoodSpec.groovy:knn_predictions"
+```
+
+```groovy title="accuracy check"
+--8<-- "src/test/groovy/underdog/blog/y2024/m12/ClassifyingFoodSpec.groovy:accuracy_check"
 ```
 
 ### Model testing

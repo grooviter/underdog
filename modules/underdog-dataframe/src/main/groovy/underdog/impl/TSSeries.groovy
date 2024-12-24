@@ -1,5 +1,6 @@
 package underdog.impl
 
+import groovy.util.logging.Slf4j
 import underdog.DataFrame
 import underdog.Series
 import groovy.transform.NamedParam
@@ -26,6 +27,7 @@ import static underdog.Series.TypeCorrelation.KENDALL
 import static underdog.Series.TypeCorrelation.PEARSON
 import static underdog.Series.TypeCorrelation.SPEARMAN
 
+@Slf4j
 class TSSeries implements Series {
     private final Column column
 
@@ -122,10 +124,11 @@ class TSSeries implements Series {
         @NamedParam(required = true) Series other,
         @NamedParam(required = false) TypeCorrelation method = PEARSON,
         @NamedParam(required = false) Integer observations = 0) {
+        log.debug("correlation between ${this.name} - ${other.name}")
 
         def (alignedX, alignedY) = [this as Double[], other as Double[]]
             .transpose()
-            .<List<Double>>findAll(Object::every)
+            .<List<Double>>findAll { items -> items.every { it != null} }
             .inject([[], []]) { agg,  next ->
                 agg[0] << next[0]
                 agg[1] << next[1]

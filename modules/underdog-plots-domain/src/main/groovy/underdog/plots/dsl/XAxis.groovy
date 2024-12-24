@@ -8,8 +8,10 @@ class XAxis {
     String name
     String type
     String nameLocation
+    String position
     Number nameGap
     Number gridIndex
+    Boolean inverse
     Number splitNumber
     List boundaryGap
     SplitLine splitLine
