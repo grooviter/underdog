@@ -187,4 +187,37 @@ class SeriesSpec extends BaseSpec {
         and:
         seriesByTwo.dropna().size() == 4
     }
+
+    def "[Series/categorize]: categorize booleans"() {
+        setup:
+        def seriesFromList = [true, false, true, true].toSeries()
+
+        when:
+        def encoded = seriesFromList.encode()
+
+        then:
+        encoded.toList() == [1, 0, 1, 1]
+    }
+
+    def "[Series/encode]: categorize booleans w/ mappings"() {
+        setup:
+        def seriesFromList = [true, false, true, true].toSeries()
+
+        when:
+        def encoded = seriesFromList.encode((true): 100, (false): 50)
+
+        then:
+        encoded.toList() == [100, 50, 100, 100]
+    }
+
+    def "[Series/encode]: categorize strings w/ mappings"() {
+        setup:
+        def seriesFromList = ["john", "jackson", "cooper"].toSeries()
+
+        when:
+        def encoded = seriesFromList.encode(john: 1, jackson: 30, cooper: 100)
+
+        then:
+        encoded.toList() == [1, 30, 100]
+    }
 }

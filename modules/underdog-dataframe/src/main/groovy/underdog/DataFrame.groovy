@@ -1,5 +1,6 @@
 package underdog
 
+import underdog.Series.TypeCorrelation
 import underdog.impl.ast.ASTDriven
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
@@ -23,7 +24,12 @@ interface DataFrame extends Columnar {
 
     double[][] corrMatrix()
 
-    double[][] corrMatrix(Integer round)
+    @NamedVariant
+    double[][] corrMatrix(@NamedParam(required = false) Integer round, @NamedParam(required = false) TypeCorrelation method)
+
+    DataFrame dropConstantSeries()
+
+    DataFrame encodeBooleanSeries()
 
     /**
      * Fill NA/NaN values using the specified value passed as parameter

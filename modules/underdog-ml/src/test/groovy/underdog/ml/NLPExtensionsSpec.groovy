@@ -16,7 +16,7 @@ class NLPExtensionsSpec extends Specification {
             }.toDF("corpus")
 
         and: "convert type to numeric"
-        df['type_id'] = df['type'].categorize()
+        df['type_id'] = df['type'].encode()
 
         and: "getting features and targets"
         def X = df['sentence'].toStringArray().vectorized()

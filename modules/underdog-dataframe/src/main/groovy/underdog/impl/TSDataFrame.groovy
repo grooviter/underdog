@@ -1,5 +1,6 @@
 package underdog.impl
 
+import tech.tablesaw.api.BooleanColumn
 import tech.tablesaw.api.NumericColumn
 import underdog.Columnar
 import underdog.DataFrame
@@ -7,6 +8,7 @@ import underdog.DataFrameAggregation
 import underdog.DataFrameIloc
 import underdog.DataFrameLoc
 import underdog.Series
+import underdog.Series.TypeCorrelation
 import underdog.Shape
 import underdog.TypeApplyByRow
 import underdog.TypeApplyResult
@@ -76,31 +78,30 @@ class TSDataFrame implements DataFrame {
         return new TSDataFrame(Table.create(dataFrameName, columns))
     }
 
+    DataFrame encodeBooleanSeries(boolean withProbability = false) {
+        this.table
+            .columns()
+            .findAll { it.type() == ColumnType.BOOLEAN }
+            .each {
+                this[it.name()] = new TSSeries(it).encode((true): 1, (false): 0)
+            }
+        return this
+    }
+
     @Override
     DataFrame copy() {
         return new TSDataFrame(table.copy())
     }
 
-    @Override
-    double[][] corrMatrix() {
-        def finalData = []
-        this.columns.eachWithIndex { String left, int i ->
-            def next = []
-            this.columns.eachWithIndex { String right, int j ->
-                next << this[left].corr(this[right])
-            }
-            finalData << next
-        } as double[][]
-
-        return finalData
-    }
-
-    double[][] corrMatrix(Integer round) {
+    @NamedVariant
+    double[][] corrMatrix(
+        @NamedParam(required = false) Integer round = 2,
+        @NamedParam(required = false) TypeCorrelation method = TypeCorrelation.PEARSON) {
         List<List<Double>> finalData = []
         this.columns.eachWithIndex { String left, int i ->
             List<Double> next = []
             this.columns.eachWithIndex { String right, int j ->
-                next << this[left].corr(this[right]).doubleValue().round(2)
+                next << this[left].corr(this[right], method, 0).doubleValue().round(round)
             }
             finalData << next
         }
@@ -732,5 +733,30 @@ class TSDataFrame implements DataFrame {
         }
 
         return new TSDataFrame(this.table)
+    }
+
+    @Override
+    DataFrame dropConstantSeries() {
+        def colNames = this.table
+            .columns()
+            .findAll {
+                if (it instanceof NumericColumn) {
+                    if (!it.variance()) {
+                        return true
+                    }
+                }
+
+                if (it instanceof BooleanColumn) {
+                    if (!(it.proportionFalse() && it.proportionTrue())) {
+                        return true
+                    }
+                }
+
+                return false
+            }
+            .collect { it.name() }
+
+        this.table.removeColumns(colNames as String[])
+        return this
     }
 }

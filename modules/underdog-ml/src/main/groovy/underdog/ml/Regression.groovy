@@ -76,7 +76,7 @@ class Regression {
      *
      * @param X the features
      * @param y the labels
-     * @param method the fitting method ("svd" or "qr") (default "svd")
+     * @param method the fitting method ("svd" or "qr") (default "qr")
      * @param stderr if true, compute the standard errors of the estimate of parameters (default true)
      * @param recursive if true, the return model supports recursive least squares (default true)
      * @return {@link LinearModel}

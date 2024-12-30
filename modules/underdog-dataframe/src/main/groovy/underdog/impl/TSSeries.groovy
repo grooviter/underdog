@@ -97,8 +97,8 @@ class TSSeries implements Series {
         return new TSSeries(this.column.mapInto(converter, newCol))
     }
 
-    @Override
-    Series categorize() {
+
+    Series encode(Map mappings = [:]) {
         IntColumn categoryCol = IntColumn.create(this.column.name())
 
         column.each { categoryCol.appendMissing() }
@@ -108,11 +108,11 @@ class TSSeries implements Series {
                 .unique()
                 .indexed()
                 .collectEntries { k, v -> [(v): k] }
-            column.mapInto((String next) -> index[next], categoryCol)
+            column.mapInto((String next) -> mappings.get(next, index[next]), categoryCol)
         }
 
         if (column instanceof BooleanColumn) {
-            column.mapInto((Boolean next) -> next ? 1 : 0, categoryCol)
+            column.mapInto((Boolean next) -> next ? mappings.get(next, 1) : mappings.get(next, 0), categoryCol)
         }
 
         return new TSSeries(categoryCol)
@@ -125,6 +125,10 @@ class TSSeries implements Series {
         @NamedParam(required = false) TypeCorrelation method = PEARSON,
         @NamedParam(required = false) Integer observations = 0) {
         log.debug("correlation between ${this.name} - ${other.name}")
+
+        if ([this, other].any(TSSeries::isCategorical)) {
+            return Float.NaN
+        }
 
         def (alignedX, alignedY) = [this as Double[], other as Double[]]
             .transpose()
@@ -144,6 +148,10 @@ class TSSeries implements Series {
             case SPEARMAN -> new SpearmansCorrelation().correlation(x, y)
             default -> new PearsonsCorrelation().correlation(x, y)
         }
+    }
+
+    private static boolean isCategorical(Series series) {
+        return series.toList().any { it && !it.toString().isNumber() }
     }
 
     @Override

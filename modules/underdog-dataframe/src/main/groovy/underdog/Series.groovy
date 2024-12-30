@@ -47,9 +47,13 @@ interface Series extends Columnar, Iterable {
     <P, O> Series call(Class<P> clazz, Class<O> output, Function<P, O> converter)
 
     /**
+     * @param mappings
+     * @return
      * @since 0.1.0
      */
-    Series categorize()
+    Series encode(Map mappings)
+
+    Series encode()
 
     /**
      * Compute correlation with other Series, excluding missing values.

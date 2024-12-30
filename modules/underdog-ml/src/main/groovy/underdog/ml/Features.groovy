@@ -4,6 +4,7 @@ import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import smile.data.transform.InvertibleColumnTransform
 import smile.feature.extraction.ProbabilisticPCA
+import smile.feature.transform.MaxAbsScaler
 import smile.feature.transform.Scaler
 import smile.feature.transform.Standardizer
 import smile.nlp.dictionary.EnglishStopWords
@@ -38,7 +39,7 @@ class Features {
      * @since 0.1.0
      */
     InvertibleColumnTransform minMaxScaler(double[][] X) {
-        return Scaler.fit(Utils.createDataFrameFrom(X))
+        return MaxAbsScaler.fit(Utils.createDataFrameFrom(X))
     }
 
     /**
@@ -74,5 +75,26 @@ class Features {
     @NamedVariant
     ProbabilisticPCA pca(double[][] X, @NamedParam(required = false) int nComponents = 2) {
         return ProbabilisticPCA.fit(X, nComponents)
+    }
+
+    /**
+     * Generates all monomials up to degree. This gives us the so called Vandermonde matrix with n_samples rows and
+     * degree + 1 columns. Intuitively, this matrix can be interpreted as a matrix of pseudo features
+     * (the points raised to some power). The matrix is akin to (but different from) the matrix induced by a
+     * polynomial kernel.
+     *
+     * @param X
+     * @param degree
+     * @since 0.1.0
+     */
+    @NamedVariant
+    double[][] polynomialFeatures(double[][] X, @NamedParam(required = false) int degree = 2) {
+        def xs = X.collect().collectNested { double[] ns ->
+            (1..degree).collect { Integer currentDegree ->
+                ns.collect { Double n -> n**currentDegree }
+            }.sum()
+        }
+
+        return xs as double[][]
     }
 }

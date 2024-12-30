@@ -81,7 +81,7 @@ class CollectionsExtensions {
     static Series toSeries(Iterable<?> iterable, String seriesName = "") {
         Column column = CollectionTypeDetector.typeFromList(iterable).create(seriesName)
         iterable.each {
-            if (it) {
+            if (it != null) {
                 column.append(it)
             } else {
                 column.appendMissing()
