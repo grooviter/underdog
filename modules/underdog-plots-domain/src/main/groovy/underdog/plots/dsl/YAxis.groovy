@@ -15,7 +15,9 @@ class YAxis {
     List boundaryGap
     List data
     SplitLine splitLine
+    SplitArea splitArea
     NameTextStyle nameTextStyle
+    NameTruncate nameTruncate
     Number min
     Number max
     String position

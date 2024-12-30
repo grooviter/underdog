@@ -19,7 +19,6 @@ class Options {
     Title title
     Tooltip tooltip
     AxisPointer axisPointer
-    VisualMap visualMap
 
     @RepeatableField Legend legend
     @RepeatableField Grid grid
@@ -31,6 +30,10 @@ class Options {
     @RepeatableField
     @AllowInheritance(Series)
     Series series
+
+    @RepeatableField
+    @AllowInheritance(VisualMap)
+    VisualMap visualMap
 
     static Options create(@DelegatesTo(value=Options, strategy = Closure.DELEGATE_FIRST) Closure dsl) {
         return new Options().tap(dsl)

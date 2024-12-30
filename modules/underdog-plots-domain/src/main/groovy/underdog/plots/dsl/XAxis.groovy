@@ -15,7 +15,9 @@ class XAxis {
     Number splitNumber
     List boundaryGap
     SplitLine splitLine
+    SplitArea splitArea
     NameTextStyle nameTextStyle
+    NameTruncate nameTruncate
     Integer offset
     List data
     Number min
