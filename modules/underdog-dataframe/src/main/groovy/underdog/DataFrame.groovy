@@ -28,6 +28,7 @@ interface DataFrame extends Columnar {
     double[][] corrMatrix(@NamedParam(required = false) Integer round, @NamedParam(required = false) TypeCorrelation method)
 
     DataFrame dropConstantSeries()
+    DataFrame dropNonNumericalColumns()
 
     DataFrame encodeBooleanSeries()
 

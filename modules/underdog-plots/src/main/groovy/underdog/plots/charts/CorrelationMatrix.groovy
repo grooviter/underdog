@@ -1,6 +1,7 @@
 package underdog.plots.charts
 
 import groovy.transform.InheritConstructors
+import underdog.DataFrame
 import underdog.plots.Options
 import underdog.plots.dsl.series.HeatmapSeries
 import underdog.plots.dsl.visualmap.PiecewiseVisualMap
@@ -16,6 +17,11 @@ class CorrelationMatrix extends Chart {
     private static final String NAN_STRING = 'NaN'
     private static final Integer LABEL_TRUNCATE_AT_WIDTH = 10
     private static final String LABEL_TRUNCATE_AT_WIDTH_ELLIPSIS = "..."
+
+    @SuppressWarnings('GrMethodMayBeStatic')
+    Options correlationMatrix(DataFrame dataFrame) {
+        return this.correlationMatrix(dataFrame.columns, dataFrame.corrMatrix())
+    }
 
     /**
      * @param xs

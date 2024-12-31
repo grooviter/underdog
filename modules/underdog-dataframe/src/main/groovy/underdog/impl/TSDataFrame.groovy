@@ -759,4 +759,11 @@ class TSDataFrame implements DataFrame {
         this.table.removeColumns(colNames as String[])
         return this
     }
+
+    @Override
+    DataFrame dropNonNumericalColumns() {
+        List<String> numericCols = this.table.numericColumns()*.name()
+        String[] colsToDrop = this.table.columnNames() - numericCols
+        return new TSDataFrame(this.table.removeColumns(colsToDrop))
+    }
 }

@@ -13,7 +13,7 @@ class PlotsSpec extends Specification {
         def xs = [2, 3, 2]
         def ys = [1, 2, 3]
         then:
-        plt.plots().plot(xs, ys, title: "title", smooth: true).show()
+        plt.plots().line(xs, ys, title: "title", smooth: true).show()
     }
 
     void 'dsl merge works'() {
@@ -22,7 +22,7 @@ class PlotsSpec extends Specification {
         def ys = [1, 2, 3]
 
         then:
-        plt.plots().plot(xs, ys).customize {
+        plt.plots().line(xs, ys).customize {
             title {
                 text "this is my title"
             }
@@ -39,7 +39,7 @@ class PlotsSpec extends Specification {
         ]
 
         then:
-        plt.plots().plot(data, title: "tech tickers").show()
+        plt.plots().lines(data, title: "tech tickers").show()
     }
 
     @TupleConstructor
