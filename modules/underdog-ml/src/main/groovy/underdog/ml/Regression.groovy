@@ -7,6 +7,7 @@ import smile.math.kernel.MercerKernel
 import smile.regression.LASSO
 import smile.regression.LinearModel
 import smile.regression.OLS
+import smile.regression.RandomForest
 import smile.regression.RidgeRegression
 import smile.regression.SVM
 
@@ -105,11 +106,11 @@ class Regression {
      * calibration/training data (default 1.0)
      * @param C the soft margin penalty parameter (default 1.0)
      * @param tolerance the tolerance of convergence test (default 1E-3)
-     * @return
+     * @return the model in an instance of {@link smile.regression.Regression}
      * @since 0.1.0
      */
     @NamedVariant
-    smile.regression.Regression svc(
+    smile.regression.Regression svm(
             double[][] X,
             double[] y,
             @NamedParam(required = false) MercerKernel<double[]> kernel = MercerKernel.of("linear"),
@@ -118,5 +119,41 @@ class Regression {
             @NamedParam(required = false) double tolerance = 1E-3
     ){
         return (smile.regression.Regression) SVM.<double[]>fit(X, y, kernel, eps, C, tolerance)
+    }
+
+    /**
+     * Random forest for regression. Random forest is an ensemble method that consists of many regression trees and
+     * outputs the average of individual trees. The method combines bagging idea and the random selection of features.
+     *
+     *
+     * @param nTrees - the number of trees.
+     * @param mtry - the number of input variables to be used to determine the decision at a node of the tree. p/3 generally give good performance, where p is the number of variables.
+     * @param maxDepth - the maximum depth of the tree.
+     * @param maxNodes - the maximum number of leaf nodes in the tree.
+     * @param nodeSize - the number of instances in a node below which the tree will not split, nodeSize = 5 generally gives good results.
+     * @param subSample - the sampling rate for training tree. 1.0 means sampling with replacement. < 1.0 means sampling without replacement.
+     * @return the model in an instance of {@link RandomForest}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    RandomForest randomForest(
+        double[][] X,
+        double[] y,
+        @NamedParam(required = false) int nTrees = 500,
+        @NamedParam(required = false) int mtry = 0,
+        @NamedParam(required = false) int maxDepth = 20,
+        @NamedParam(required = false) int maxNodes = (X.length / 5).intValue(),
+        @NamedParam(required = false) int nodeSize = 5,
+        @NamedParam(required = false) double subSample = 1.0
+    ) {
+        return RandomForest.fit(
+            FORMULA_Y,
+            Utils.createDataFrameFrom(X, y),
+            nTrees,
+            mtry,
+            maxDepth,
+            maxNodes,
+            nodeSize,
+            subSample)
     }
 }

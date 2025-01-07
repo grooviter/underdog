@@ -5,7 +5,6 @@ import groovy.transform.NamedVariant
 import smile.data.transform.InvertibleColumnTransform
 import smile.feature.extraction.ProbabilisticPCA
 import smile.feature.transform.MaxAbsScaler
-import smile.feature.transform.Scaler
 import smile.feature.transform.Standardizer
 import smile.nlp.dictionary.EnglishStopWords
 import smile.nlp.dictionary.StopWords
@@ -14,12 +13,16 @@ import smile.nlp.stemmer.Stemmer
 import smile.nlp.tokenizer.SimpleTokenizer
 import smile.nlp.tokenizer.Tokenizer
 
+import static smile.math.MathEx.factorial
+
 /**
  * Class responsible for feature extraction and normalization utils
  *
  * @since 0.1.0
  */
 class Features {
+
+    private static final Integer POLYNOMIAL_DEFAULT_DEGREE = 2
 
     /**
      * Standardizes numeric feature to 0 mean and unit variance. Standardization makes an assumption that the
@@ -78,23 +81,77 @@ class Features {
     }
 
     /**
-     * Generates all monomials up to degree. This gives us the so called Vandermonde matrix with n_samples rows and
+     * Generates all monomials up to degree 2. This gives us the so called Vandermonde matrix with n_samples rows and
      * degree + 1 columns. Intuitively, this matrix can be interpreted as a matrix of pseudo features
      * (the points raised to some power). The matrix is akin to (but different from) the matrix induced by a
      * polynomial kernel.
      *
-     * @param X
-     * @param degree
+     * @param X source features
+     * @return all monomials up to degree 2
      * @since 0.1.0
      */
-    @NamedVariant
-    double[][] polynomialFeatures(double[][] X, @NamedParam(required = false) int degree = 2) {
-        def xs = X.collect().collectNested { double[] ns ->
-            (1..degree).collect { Integer currentDegree ->
-                ns.collect { Double n -> n**currentDegree }
-            }.sum()
-        }
+    <N extends Number,L extends List<N>, LL extends List<L>> double[][] polynomialFeatures(double[][] X) {
+        return this.polynomialFeatures(X.collect() as LL)
+    }
 
-        return xs as double[][]
+    /**
+     * Generates all monomials up to degree 2. This gives us the so called Vandermonde matrix with n_samples rows and
+     * degree + 1 columns. Intuitively, this matrix can be interpreted as a matrix of pseudo features
+     * (the points raised to some power). The matrix is akin to (but different from) the matrix induced by a
+     * polynomial kernel.
+     *
+     * @param X source features
+     * @return all monomials up to degree 2
+     * @since 0.1.0
+     */
+    <N extends Number,L extends List<N>, LL extends List<L>> double[][] polynomialFeatures(int[][] X) {
+        return this.polynomialFeatures(X.collect() as LL)
+    }
+
+    /**
+     * Generates all monomials up to degree 2. This gives us the so called Vandermonde matrix with n_samples rows and
+     * degree + 1 columns. Intuitively, this matrix can be interpreted as a matrix of pseudo features
+     * (the points raised to some power). The matrix is akin to (but different from) the matrix induced by a
+     * polynomial kernel.
+     *
+     * @param X source features
+     * @return all monomials up to degree 2
+     * @since 0.1.0
+     * @link https://stackoverflow.com/questions/51906274/cannot-understand-with-sklearns-polynomialfeatures
+     * @link https://stackoverflow.com/questions/64820999/what-is-the-formula-behind-scikit-learn-polynomialfeatures
+     * @link https://scikit-learn.org/1.5/modules/preprocessing.html#polynomial-features
+     * @link https://github.com/scikit-learn/scikit-learn/blob/6e9039160/sklearn/preprocessing/_polynomial.py
+     */
+    <N extends Number,L extends List<N>, LL extends List<L>> double[][] polynomialFeatures(LL X) {
+        def generatedFeatures =  X.collect { row ->
+            L combinations = ([row] * POLYNOMIAL_DEFAULT_DEGREE)
+                .combinations()
+                .sort()
+                .<L>findAll { ns -> ns.head() <= ns.last() }
+                .collect { ns -> ns.head() * ns.last() } as L
+            return [1, *row, *combinations] as L
+        }
+        checkPolynomialLength(X.find().size(), POLYNOMIAL_DEFAULT_DEGREE, generatedFeatures[0].size())
+        return generatedFeatures as double[][]
+    }
+
+    /**
+     *
+     * Checks the expected length of the polynomial. Throws a {@link RuntimeException} in case
+     * expected length is not met. This implementation follows indications at
+     * https://stackoverflow.com/a/51906400 with the formula:
+     *
+     * N(n,d) = C(n+d, d)
+     *
+     * Where n is the number of features, d is the degree of the polynomial, C is the
+     * binomial coefficient (combination).
+     *
+     * @param n number of features
+     * @param d degree of the polynomial
+     * @param actualLength size to be compared with expected polynomial length
+     */
+    private static void checkPolynomialLength(int n, int d, int actualLength) {
+        def C = (factorial(n + d) / (factorial(n) * factorial(2))).round()
+        assert C == actualLength, "Polynomial doesn't have the expected length"
     }
 }
