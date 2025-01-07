@@ -2,6 +2,8 @@ package underdog.blog.y2024.m12
 
 import underdog.DataFrame
 
+import java.time.LocalDate
+
 // --8<-- [start:import_json]
 import static groovy.json.JsonOutput.toJson
 import static groovy.json.JsonOutput.prettyPrint
@@ -16,18 +18,13 @@ import underdog.plots.Plots
 import underdog.plots.dsl.series.LineSeries
 import underdog.plots.dsl.series.ScatterSeries
 
-// https://www.kaggle.com/datasets/ironwolf437/laptop-price-dataset/data
 class LinearRegressionNotesSpec extends Specification {
 
-    static final String FILE_PATH = "src/test/resources/data/blog/2024/12/laptop_price.csv"
+    static final String FILE_PATH = "src/test/resources/data/blog/2024/12/day.csv"
 
     def "correlation"() {
         when:
-        def df = Underdog.df()
-            .read_csv(FILE_PATH, maxCharsPerColumn: 5000)
-            .dropConstantSeries()
-            .dropNonNumericalColumns()
-            .dropna()
+        def df = loadData()
 
         // --8<-- [start:correlation_matrix]
         def plot = Underdog
@@ -36,6 +33,7 @@ class LinearRegressionNotesSpec extends Specification {
 
         plot.show()
         // --8<-- [end:correlation_matrix]
+        Plots.show(plot, theme: 'dark')
 
         then:
         plot
@@ -44,17 +42,13 @@ class LinearRegressionNotesSpec extends Specification {
     private static DataFrame loadData() {
         // --8<-- [start:load_data]
         def data = Underdog.df()
-            .read_csv(FILE_PATH)
-            .dropConstantSeries()
-            .dropNonNumericalColumns()
-            .dropna()
-            .renameSeries(mapper: [
-                'RAM (GB)': 'ram',
-                'Price (Euro)': 'price',
-                'CPU_Frequency (GHz)': 'cpu',
-                'Weight (kg)': 'weight'
-            ])
+            .read_csv(FILE_PATH, dateFormat: 'yyyy-MM-dd')
+            .dropna()  // removing missing values
+            .sort_values(by: ['dteday'])
+            .drop('instant', 'yr', 'casual', 'cnt', 'dteday') // removing some columns
         // --8<-- [end:load_data]
+        println(data.columns)
+        println(data.head(5))
         return data
     }
 
@@ -65,11 +59,10 @@ class LinearRegressionNotesSpec extends Specification {
         // --8<-- [start:pair_plot]
         def plot = Underdog
             .plots()
-            .scatterMatrix(df['ram', 'price'])
+            .scatterMatrix(df['temp', 'registered'])
 
         plot.show()
         // --8<-- [end:pair_plot]
-
         Plots.show(plot, theme: 'dark')
 
         then:
@@ -83,8 +76,8 @@ class LinearRegressionNotesSpec extends Specification {
         when:
         // --8<-- [start:linear_regression]
         // extracting features and labels
-        def X = df.loc[__, ['ram']] as double[][]
-        def y = df['price'] as double[]
+        def X = df['temp'] as double[][]
+        def y = df['registered'] as double[]
 
         def ml = Underdog.ml()
 
@@ -114,8 +107,8 @@ class LinearRegressionNotesSpec extends Specification {
             series(ScatterSeries){
                 data(
                     toData(
-                        xTrain, // x1, x2,...xn
-                        yTrain  // y1, y2,...yn
+                        xTest, // x1, x2,...xn
+                        yTest  // y1, y2,...yn
                     ) // [[x1,y1], [x2,y2],...[xn, yn]]
                 )
             }
@@ -123,8 +116,8 @@ class LinearRegressionNotesSpec extends Specification {
             series(LineSeries) {
                 data(
                     toData(
-                        sortX(xTest),
-                        model.predict(sortX(xTest))
+                        xTest,
+                        model.predict(xTest)
                     )
                 )
             }
@@ -134,26 +127,33 @@ class LinearRegressionNotesSpec extends Specification {
         // --8<-- [end:linear_regression_plot]
         Plots.show(plt, theme: 'dark')
         then:
-        (0.95..0.99).containsWithinBounds(scoreTrain)
-        (0.95..0.99).containsWithinBounds(scoreTest)
+        (0.40..0.50).containsWithinBounds(scoreTrain)
+        (-1.25..-1.20).containsWithinBounds(scoreTest)
     }
 
     def "linear regression: OLS polynomial features"() {
         setup:
-        def day = loadData()
+        def df = loadData()
 
         when:
         // extracting features and labels
-        def X = day.loc[__, ['ram']] as double[][]
-        def y = day['price'] as double[]
+        def X = df['temp'] as double[][]
+        def y = df['registered'] as double[]
+
         def ml = Underdog.ml()
 
         // --8<-- [start:linear_regression_polynomial]
         // transforming X adding new generated features
-        def xPoly = ml.features.polynomialFeatures(X, degree: 3)
+        def xPoly = ml.features.polynomialFeatures(X)
+        def xNormalized = ml.features.minMaxScaler(xPoly).apply(xPoly)
 
         // train test split (more data for training)
-        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(xPoly, y)
+        def (
+            xTrain,
+            xTest,
+            yTrain,
+            yTest
+        ) = ml.utils.trainTestSplit(xNormalized, y)
 
         // creating and training model
         def model = ml.regression.ols(xTrain, yTrain)
@@ -166,32 +166,35 @@ class LinearRegressionNotesSpec extends Specification {
         // --8<-- [end:linear_regression_polynomial]
 
         // --8<-- [start:linear_regression_polynomial_plot]
-        // color for each degree
-        def colors = [0: 'orange', 1: 'green', 2: 'red']
-
-        // getting every degree X values
-        def xPointsByDegree = (0..<3).collect { degree ->
-            xTrain.collect { feature -> feature[degree] }
-        }
-
         // building chart
         def plt = Options.create {
+            legend {
+                top("5%")
+                show(true)
+            }
             xAxis { show(true) }
             yAxis { show(true) }
             // SCATTER PLOT
             series(ScatterSeries){
-                // using only degree 0 to be able to compare with
-                // previous NON polynomial chart
-                data(toData(xPointsByDegree[0], yTrain))
+                data(toData(X, y))
             }
             // REGRESSION LINES
-            xPointsByDegree.eachWithIndex { degreeX, index ->
+            def names = ['1', 'temp', 'temp^2'].indexed()
+            def colors = ['gray', 'green', 'brown'].indexed()
+
+            (0..<xTest.shape().cols).each {feature ->
                 series(LineSeries) {
-                    data(toData(degreeX, model.predict(xTrain)))
-                    itemStyle {
-                        color(colors[index])
-                    }
+                    smooth(true)
+                    name(names[feature])
+                    itemStyle { color(colors[feature]) }
+                    data(
+                        toData(
+                            xTest.collect { it[feature] },
+                            model.predict(xTest)
+                        )
+                    )
                 }
+
             }
         }
 
@@ -201,172 +204,23 @@ class LinearRegressionNotesSpec extends Specification {
         Plots.show(plt, theme: 'dark')
 
         then:
-        (0.35..0.40).containsWithinBounds(scoreTrain)
-        (0.20..0.25).containsWithinBounds(scoreTest)
-    }
-
-    def "linear regression: OLS PCA"() {
-        setup:
-        def day = loadData()
-
-        when:
-        // extracting features and labels
-        def X = day as double[][]
-        def y = day['price'] as double[]
-
-        def pca = PCA.fit(X).getProjection(3)
-        def xScaled = pca.apply(X)
-
-        def ml = Underdog.ml()
-
-        // train test split (more data for training)
-        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(xScaled, y)
-
-        // creating and training model
-        def model = ml.regression.ols(xTrain, yTrain)
-
-        // predicting and getting r2_score for training and test sets
-        def scoreTrain = model.score(xTrain, yTrain)
-        def scoreTest = model.score(xTest, yTest)
-
-        print("train: ${scoreTrain.round(2)}, test: ${scoreTest.round(2)}")
-
-        then:
-        (0.25..0.27).containsWithinBounds(scoreTrain)
-        (0.12..0.13).containsWithinBounds(scoreTest)
-    }
-
-    def "regularization & normalization: Ridge"() {
-        setup:
-        def day = loadData()
-
-        when:
-        def X = day.loc[__, ['ram']] as double[][]
-        def y = day['price'] as double[]
-        def ml = Underdog.ml()
-
-        // train test split (more data for training)
-        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
-
-        // --8<-- [start:ridge_regression]
-        // creating and training model (RIDGE)
-        def model = ml.regression.ridge(xTrain, yTrain, alpha: 20)
-
-        // predicting and getting r2_score for training and test sets
-        def scoreTrain = model.score(xTrain, yTrain)
-        def scoreTest = model.score(xTest, yTest)
-
-        print("train: ${scoreTrain.round(2)}, test: ${scoreTest.round(2)}")
-        // --8<-- [end:ridge_regression]
-
-        then:
-        (0.30..0.40).containsWithinBounds(scoreTrain)
-        (0.1..0.2).containsWithinBounds(scoreTest)
-    }
-
-    def "regularization & normalization: Ridge (MinMaxScaler)"() {
-        setup:
-        def day = loadData()
-
-        when:
-        def X = day.loc[__, ['ram']] as double[][]
-        def y = day['price'] as double[]
-        def ml = Underdog.ml()
-
-        // train test split (more data for training)
-        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
-
-        // --8<-- [start:ridge_regression_min_max]
-        // scaling xTrain and xTest
-        def scaler = ml.features.minMaxScaler(xTrain)
-
-        def xTrainScaled = scaler.apply(xTrain)
-        def xTestScaled = scaler.apply(xTest)
-
-        // creating and training model (RIDGE w/ minMax scaler)
-        def model = ml.regression.ridge(xTrainScaled, yTrain, alpha: 20)
-
-        // predicting and getting r2_score for training and test sets
-        def scoreTrain = model.score(xTrainScaled, yTrain)
-        def scoreTest = model.score(xTestScaled, yTest)
-
-        print("train: ${scoreTrain.round(2)}, test: ${scoreTest.round(2)}")
-        // --8<-- [end:ridge_regression_min_max]
-
-        then:
-        true
-    }
-
-    def "regularization & normalization: Lasso"() {
-        setup:
-        def day = loadData()
-
-        when:
-        def X = day.loc[__, ['ram']] as double[][]
-        def y = day['price'] as double[]
-        def ml = Underdog.ml()
-
-        // train test split
-        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
-
-        // --8<-- [start:lasso_regression]
-        def model = ml.regression.lasso(xTrain, yTrain, alpha: 20)
-
-        // predicting and getting r2_score for training and test sets
-        def scoreTrain = model.score(xTrain, yTrain)
-        def scoreTest = model.score(xTest, yTest)
-
-        print("train: ${scoreTrain.round(2)}, test: ${scoreTest.round(2)}")
-        // --8<-- [end:lasso_regression]
-
-        then:
-        true
-    }
-
-    def "regularization & normalization: Lasso (MinMaxScaler)"() {
-        setup:
-        def day = loadData()
-
-        when:
-        def X = day.loc[__, ['ram']] as double[][]
-        def y = day['price'] as double[]
-        def ml = Underdog.ml()
-
-        // train test split
-        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
-
-        // --8<-- [start:lasso_regression_min_max]
-        // scaling xTrain and xTest
-        def scaler = ml.features.minMaxScaler(X)
-
-        def xTrainScaled = scaler.apply(xTrain)
-        def xTestScaled = scaler.apply(xTest)
-
-        // creating and training model (LASSO w/ minMax scaler)
-        def model = ml.regression.lasso(xTrainScaled, yTrain, alpha: 20)
-
-        def scoreTrain = model.score(xTrainScaled, yTrain)
-        def scoreTest = model.score(xTestScaled, yTest)
-
-        print("train: ${scoreTrain.round(2)}, test: ${scoreTest.round(2)}")
-        // --8<-- [end:lasso_regression_min_max]
-        then:
-        true
+        (0.50..0.55).containsWithinBounds(scoreTrain)
+        (-1.0..-0.95).containsWithinBounds(scoreTest)
     }
 
     def "feature extraction: Lasso"() {
         setup:
-        def laptops = loadData()
+        def df = loadData()
 
         when:
         // --8<-- [start:lasso_feature_extraction]
-        def features = laptops.columns - "price"
+        def features = df.columns - "registered"
 
-        def X = laptops[features] as double[][]
-        def y = laptops['price'] as double[]
+        def X = df[features] as double[][]
+        def y = df['registered'] as double[]
 
         // creating lasso model
-        def model = Underdog.ml().regression.lasso(X, y, alpha: 20)
+        def model = Underdog.ml().regression.lasso(X, y)
 
         // extracting coefficients for every feature
         def featCoefficients = [features, model.coefficients()].transpose().collectEntries()
@@ -376,22 +230,22 @@ class LinearRegressionNotesSpec extends Specification {
 
         // --8<-- [start:best_features]
         def bestFeatures = featCoefficients
-            .findAll { it.value > 0 }  // all with coefficient > 0
-            .sort { -it.value }        // sort desc by coefficient
-            *.key as List<String>      // getting feature names
+                .findAll { it.value > 0 }  // all with coefficient > 0
+                .sort { -it.value }        // sort desc by coefficient
+                *.key as List<String>      // getting feature names
 
         println(bestFeatures)
         // --8<-- [end:best_features]
         then:
-        bestFeatures == ['cpu', 'ram', 'weight']
+        bestFeatures == ['atemp', 'temp', 'workingday', 'season', 'weekday']
     }
 
     def "linear regression: best features"() {
-        def day = loadData()
+        def df = loadData()
 
         when:
-        def X = day['cpu', 'ram', 'weight'] as double[][]
-        def y = day['price'] as double[]
+        def X = df['atemp', 'temp', 'workingday', 'season', 'weekday'] as double[][]
+        def y = df['registered'] as double[]
 
         def ml = Underdog.ml()
 
@@ -400,9 +254,178 @@ class LinearRegressionNotesSpec extends Specification {
 
         and:
         def model = ml.regression.ols(xTrain, yTrain)
-        def scoreTest = model.score(xTest, yTest)
+        def scoreTest = model.score(xTest, yTest).round(2)
 
         then:
-        (0.10..0.20).containsWithinBounds(scoreTest)
+        (-0.20..-0.15).containsWithinBounds(scoreTest)
+    }
+
+    def "regularization & normalization: Ridge"() {
+        setup:
+        def df = loadData()
+
+        when:
+        // --8<-- [start:ridge_regression]
+        def X = df['atemp', 'temp', 'workingday', 'season', 'weekday'] as double[][]
+        def y = df['registered'] as double[]
+        def ml = Underdog.ml()
+
+        // train test split (more data for training)
+        def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
+
+        // creating and training model (RIDGE)
+        def model = ml.regression.ridge(xTrain, yTrain, alpha: 20)
+
+        // predicting and getting r2_score for training and test sets
+        def scoreTrain = model.score(xTrain, yTrain).round(2)
+        def scoreTest = model.score(xTest, yTest).round(2)
+
+        print("train: ${scoreTrain}, test: ${scoreTest}")
+        // --8<-- [end:ridge_regression]
+
+        then:
+        (0.60..0.70).containsWithinBounds(scoreTrain)
+        (-1.05..-1.00).containsWithinBounds(scoreTest)
+    }
+
+    def "regularization & normalization: Ridge (MinMaxScaler)"() {
+        setup:
+        def df = loadData()
+
+        when:
+        def X = df['atemp', 'temp', 'workingday', 'season', 'weekday'] as double[][]
+        def y = df['registered'] as double[]
+        def ml = Underdog.ml()
+
+        // --8<-- [start:ridge_regression_min_max]
+        // normalizing all features
+        def xScaled = ml.features.minMaxScaler(X).apply(X)
+
+        def (
+            xTrain,
+            xTest,
+            yTrain,
+            yTest
+        ) = ml.utils.trainTestSplit(xScaled, y)
+
+        // creating and training model (RIDGE w/ minMax scaler)
+        def model = ml.regression.ridge(xTrain, yTrain, alpha: 20)
+
+        // predicting and getting r2_score for training and test sets
+        def scoreTrain = model.score(xTrain, yTrain).round(2)
+        def scoreTest = model.score(xTest, yTest).round(2)
+
+        print("train: ${scoreTrain}, test: ${scoreTest}")
+        // --8<-- [end:ridge_regression_min_max]
+
+        then:
+        (0.60..0.70).containsWithinBounds(scoreTrain)
+        (-1.05..-1.00).containsWithinBounds(scoreTest)
+    }
+
+    def "regularization & normalization: Lasso"() {
+        setup:
+        def df = loadData()
+
+        when:
+        def X = df['atemp', 'temp', 'workingday', 'season', 'weekday'] as double[][]
+        def y = df['registered'] as double[]
+        def ml = Underdog.ml()
+
+        // train test split
+        def (
+            xTrain,
+            xTest,
+            yTrain,
+            yTest
+        ) = ml.utils.trainTestSplit(X, y)
+
+        // --8<-- [start:lasso_regression]
+        def model = ml.regression.lasso(xTrain, yTrain, alpha: 20)
+
+        // predicting and getting r2_score for training and test sets
+        def scoreTrain = model.score(xTrain, yTrain).round(2)
+        def scoreTest = model.score(xTest, yTest).round(2)
+
+        print("train: ${scoreTrain}, test: ${scoreTest}")
+        // --8<-- [end:lasso_regression]
+
+        then:
+        (0.60..0.70).containsWithinBounds(scoreTrain)
+        (-1.05..-1.00).containsWithinBounds(scoreTest)
+    }
+
+    def "regularization & normalization: Lasso (MinMaxScaler)"() {
+        setup:
+        def df = loadData()
+
+        when:
+        def X = df['temp'] as double[][]
+        def y = df['registered'] as double[]
+        def ml = Underdog.ml()
+
+        // --8<-- [start:lasso_regression_min_max]
+        // train test split
+        def xScaled = ml.features.minMaxScaler(X).apply(X)
+
+        def (
+                xTrain,
+                xTest,
+                yTrain,
+                yTest
+        ) = ml.utils.trainTestSplit(xScaled, y)
+
+        // creating and training model (LASSO w/ minMax scaler)
+        def model = ml.regression.lasso(xTrain, yTrain, alpha: 20)
+
+        def scoreTrain = model.score(xTrain, yTrain).round(2)
+        def scoreTest = model.score(xTest, yTest).round(2)
+
+        print("train: ${scoreTrain}, test: ${scoreTest}")
+        // --8<-- [end:lasso_regression_min_max]
+        then:
+        (0.45..0.50).containsWithinBounds(scoreTrain)
+        (-1.23..-1.20).containsWithinBounds(scoreTest)
+    }
+
+    def "linear regression: OLS PCA"() {
+        setup:
+        def df = loadData()
+
+        when:
+        // extracting features and labels
+        def X = df['atemp', 'temp', 'workingday', 'season', 'weekday'] as double[][]
+        def y = df['registered'] as double[]
+
+        def ml = Underdog.ml()
+
+        // --8<-- [start:pca]
+        // normalizing before compression
+        def xStandard = ml.features.standardizeScaler(X).apply(X)
+
+        // reducing from 5 features to 3
+        def pcaScaled = PCA.fit(xStandard).getProjection(3).apply(xStandard)
+
+        // train test split (more data for training)
+        def (
+                xTrain,
+                xTest,
+                yTrain,
+                yTest
+        ) = ml.utils.trainTestSplit(pcaScaled, y)
+
+        // creating and training model
+        def model = ml.regression.ols(xTrain, yTrain)
+
+        // predicting and getting r2_score for training and test sets
+        def scoreTrain = model.score(xTrain, yTrain).round(2)
+        def scoreTest = model.score(xTest, yTest).round(2)
+
+        print("train: ${scoreTrain}, test: ${scoreTest}")
+        // --8<-- [end:pca]
+
+        then:
+        (0.60..0.70).containsWithinBounds(scoreTrain)
+        (-1.05..-1.03).containsWithinBounds(scoreTest)
     }
 }

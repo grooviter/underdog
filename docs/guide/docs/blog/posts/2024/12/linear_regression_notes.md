@@ -24,6 +24,40 @@ For every x value a new point will be drawn and eventually altogether will form 
 
 There are differences between the types of linear regression techniques depending on the presence of regularization (Ridge and Lasso), or the lack of it (Simple Linear Regression). There’s also important the use of polynomial transformation and normalization.
 
+## Prerequisites
+
+For this entry you should need the following dependencies:
+
+=== "Gradle"
+    ```groovy
+    implementation "com.github.grooviter:underdog-ml:VERSION"
+    implementation "com.github.grooviter:underdog-plots:VERSION"
+    ```
+=== "Maven"
+    ```xml
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-ml</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-plots</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
+=== "Grapes"
+    ```groovy
+    @Grapes([
+    @Grab("com.github.grooviter:underdog-ml:VERSION"),
+    @Grab("com.github.grooviter:underdog-plots:VERSION")
+    ])
+    ```
+
+!!! note
+
+    ml and plots modules already have underdog-dataframe dependency as transitive dependency so you don't have to explicitly declare it.
+
 ## Simple linear regression
 
 The most popular linear regression uses the least squares technique. It tries to find a slope (w) and constant value (b) that minimizes the mean squared error of the model. It doesn’t have parameters to control model complexity, everything it needs is estimated from training data.
@@ -33,7 +67,8 @@ The most popular linear regression uses the least squares technique. It tries to
     The [dataset](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset) used for this entry is a Bike sharing 
     dataset from the [UCI Dataset repository](https://archive.ics.uci.edu/) for machine learning. 
 
-First of all I'm loading the [Bike sharing](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset) daily dataset
+First of all I'm loading the [Bike sharing](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset) daily dataset. We are removing non-numerical series and rows with
+missing values:
 
 ```groovy title="loading data"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:import"
@@ -41,15 +76,28 @@ First of all I'm loading the [Bike sharing](https://archive.ics.uci.edu/dataset/
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:load_data"
 ```
 
+Which outputs:
+
+```shell
+                                            day.csv
+ season  |  mnth  |  holiday  |  weekday  |  workingday  |  weathersit  |    temp    |   atemp    |    hum     |  windspeed  |  registered  |
+---------------------------------------------------------------------------------------------------------------------------------------------
+      1  |     1  |        0  |        6  |           0  |           2  |  0.344167  |  0.363625  |  0.805833  |   0.160446  |         654  |
+      1  |     1  |        0  |        0  |           0  |           2  |  0.363478  |  0.353739  |  0.696087  |   0.248539  |         670  |
+      1  |     1  |        0  |        1  |           1  |           1  |  0.196364  |  0.189405  |  0.437273  |   0.248309  |        1229  |
+      1  |     1  |        0  |        2  |           1  |           1  |       0.2  |  0.212122  |  0.590435  |   0.160296  |        1454  |
+      1  |     1  |        0  |        3  |           1  |           1  |  0.226957  |   0.22927  |  0.436957  |     0.1869  |        1518  |
+```
+
 First, I’d like to see how features could be related to each other using a correlation heatmap:
 
-```python title="correlation matrix"
+```groovy title="correlation matrix"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:correlation_matrix"
 ```
 
 <figure markdown="span">
-![](images/linear_regression_notes/correlation_matrix.png#only-light){ width="80%" }
-![](images/linear_regression_notes/correlation_matrix_dark.png#only-dark){ width="80%" }
+![](images/linear_regression_notes/correlation_matrix.png#only-light){ width="75%" }
+![](images/linear_regression_notes/correlation_matrix_dark.png#only-dark){ width="75%" }
 </figure>
 
 There are a lot of features, but I’m focusing on just choosing one, **temp** which is the normalized temperature in Celsius 
@@ -61,8 +109,8 @@ the day of the rental. I’d like to see how it looks like visually the relation
 ```
 
 <figure markdown="span">
-![](images/linear_regression_notes/pair_plot.png#only-light){ width="80%" }
-![](images/linear_regression_notes/pair_plot_dark.png#only-dark){ width="80%" }
+![](images/linear_regression_notes/pair_plot.png#only-light){ width="75%" }
+![](images/linear_regression_notes/pair_plot_dark.png#only-dark){ width="75%" }
 </figure>
 
 What I’m looking for at this point in the scatter plot, is tendencies. In this case it seems that points tend to go in diagonal from the bottom left to the upper right part of the graph. So far, the more tendency I see the better it seems to work. Now lets create a linear regression:
@@ -72,7 +120,7 @@ What I’m looking for at this point in the scatter plot, is tendencies. In this
 ```
 
 ```shell title="output"
-train: 0.26, test: 0.11
+train: 0.49, test: -1.22
 ```
 
 If we draw the regression line we’ve got:
@@ -86,7 +134,7 @@ If we draw the regression line we’ve got:
 ![](images/linear_regression_notes/plot_dark.png#only-dark){ width="60%" }
 </figure>
 
-As you can see a straight line won’t be able to do good predictions. A way of helping the linear transformation to adapt 
+A straight line won’t be able to do good predictions. A way of helping the linear transformation to adapt 
 better to the shape of the model is to use a polynomial transformation.
 
 ## Polynomial transformation
@@ -102,11 +150,11 @@ to the linear regression fit.
 ```
 
 ```shell title="output"
-train: 0.39, test: 0.22
+train: 0.52, test: -0.96
 ```
 
 Because the polynomial transformation is creating more features, they cover a wider spectrum of the data, therefore more 
-likely to do better predictions, at least in the training dataset. If we draw now the result:
+likely to do improve accuracy, at least in the training dataset. If we draw now the result:
 
 ```groovy title="linear regression polynomial plot"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:linear_regression_polynomial_plot"
@@ -123,15 +171,63 @@ the polynomial transformation:
 - Polynomial transformation with a high degree value could overfit the model
 - It’s better to combine it with a regularized regression method like Ridge.
 
-### References
+However so far it's clear that with just one feature we don't go anywhere as the models we've got so far barely work for training set and are useless for test sets. In regularization and normalization we will be using more features to try to create a viable model.
+
+**References**
 
 - [Polynomial interpolation](https://scikit-learn.org/1.5/auto_examples/linear_model/plot_polynomial_interpolation.html#sphx-glr-auto-examples-linear-model-plot-polynomial-interpolation-py)
 - [PolynomialFeatures in scikit-learn](https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.PolynomialFeatures.html#sklearn.preprocessing.PolynomialFeatures)
 - [Understanding Polynomial Features (Medium)](https://medium.com/@jonesntongana345/understanding-interaction-and-polynomial-features-in-pyspark-a-simple-guide-ef11f2e80eab)
 
+## Feature selection
+
+So far I’ve been working with just one feature temp to predict a possible outcome. I chose this feature by using the
+correlation table as a guide. When looking for just one variable to work with, it could be enough, but when looking for
+many possible features it could be cumbersome. Lasso regression seems a better method for telling me which features
+do perform and which don’t. How ? Well according to how the L1 regulation method works, keeping it short, those features
+that are not so important, Lasso makes its coefficient equal to 0, therefore, those features having a coefficient
+greater than 0 are worth using them to train the model (the higher the better). Lets use this knowledge to know which
+features could be useful to train the model.
+
+
+```groovy title="using all possible features to see which one fits best in case we only want to use one"
+--8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:import"
+
+--8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:import_json"
+
+--8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:lasso_feature_extraction"
+```
+Which shows the following map:
+
+```shell title="features along with their coefficients"
+{
+    "season": 424.11017152754937,
+    "mnth": -14.868338993584615,
+    "holiday": -211.17143310755654,
+    "weekday": 36.06114879750305,
+    "workingday": 941.7383145447468,
+    "weathersit": -397.9241830877648,
+    "temp": 1136.7307642112696,
+    "atemp": 2730.771127273043,
+    "hum": -1670.0999227731259,
+    "windspeed": -2200.526972819417
+}
+```
+Now as the theory stated, we can discard those features with 0 value, and maybe those which are negatively correlated.
+For this example, where I’m only interested in one feature to validate whether I chose the most significant feature or
+not. In this case I’m getting the feature with the highest possitive coefficient:
+
+```groovy
+--8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:best_features"
+```
+
+```shell title="output"
+['atemp', 'temp', 'workingday', 'season', 'weekday']
+```
+
 ## Regularization and normalization
 
-### Regularization
+**Regularization**
 
 Regularization is a technique used to reduce the model complexity and thus it helps dealing with overfitting:
 
@@ -148,7 +244,7 @@ Regularization penalizes certain values by using a loss function with a cost. Th
     Regularization really shines when there is a high dimensionality, meaning there’re multiple features. So in these 
     examples it won’t make a huge impact with the scores.
 
-### Normalization
+**Normalization**
 
 Data normalization is the process of rescaling one or more features to a common scale. It’s normally used when features used to create the model have different scales. There are a few advantages of using normalization is such scenario:
 
@@ -178,7 +274,7 @@ Now I’m using Ridge class with the same dataset:
 Giving me the following scores:
 
 ```shell title="output"
-train: 0.26, test: 0.11
+train: 0.68, test: -1.04
 ```
 
 Although it seems worst than the polynomial example, the takeaway idea here is that the Ridge regression along with a 
@@ -187,12 +283,12 @@ high value of alpha is going to reduce the complexity of the model and make the 
 Ridge regression score can be improved by applying normalization to the source dataset. Is important for some ML methods 
 that all features are on the same scale. In this case we’re apply a MinMax normalization.
 
-```python title="Ridge with scaled set"
+```groovy title="Ridge with scaled set"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:ridge_regression_min_max"
 ```
 
 ```shell title="output"
-train: 0.26, test: 0.11
+train: 0.68, test: -1.04
 ```
 
 
@@ -207,86 +303,55 @@ We can use the scaled X to train the Ridge regression. However there’re some b
 - It works as a kind of feature selection
 - It also has an alpha parameter to control regularization
 
-```python title="using lasso regression"
+```groovy title="using lasso regression"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:lasso_regression"
 ```
 
 ```shell title="output"
-train: 0.2842911095363777, test: 0.2813866438355652
+train: 0.68, test: -1.03
 ```
 
 And finally using MinMaxScaler to try to improve regression scoring:
 
-```python title="lasso with scaled features"
+```groovy title="lasso with scaled features"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:lasso_regression_min_max"
 ```
 
 ```shell title="output"
-train: 0.2865231606947747, test: 0.285332265748411
+train: 0.49, test: -1.22
 ```
 
-## Results summary
+Unfortunately this got it worst.
 
-Finally I’ve written a summary table.
+!!! tip "Ridge vs Lasso"
 
-| TYPE   | METHOD              | POLYNOMIAL | NORMALIZATION | REGULARIZATION | TRAIN SCORE | TEST_SCORE |
-|--------|---------------------|------------|---------------|----------------|-------------|------------|
-| Linear | linearRegression    | No         | No            | No             | 0.2         | 0.2        |
-| Linear | linearRegression    | Yes        | No            | No             | 0.2         | 0.2        |
-| Ridge  | linearRegression    | Yes        | No            | No             | 0.2         | 0.2        |
-| Ridge  | linearRegression    | No         | Yes           | Yes            | 0.2         | 0.2        |
-| Lasso  | linearRegression    | No         | No            | Yes            | 0.2         | 0.2        |
-| Lasso  | linearRegression    | No         | Yes           | Yes            | 0.2         | 0.2        |
+    In this case we’ve used both algorithms with the same dataset, but there’re situations where one or the other fit best:
 
-## Feature selection (Lasso)
+    - Ridge: Many small/medium sized effects
+    - Lasso: Few medium/large sized effects
 
-So far I’ve been working with just one feature temp to predict a possible outcome. I chose this feature by using the 
-correlation table as a guide. When looking for just one variable to work with, it could be enough, but when looking for 
-many possible features it could be cumbersome. The Lasso regression seems a better method for telling me which features 
-do perform and which don’t. How ? Well according to how the L1 regulation method works, keeping it short, those features 
-that are not so important, Lasso makes its coefficient equal to 0, therefore, those features having a coefficient 
-greater than 0 are worth using them to train the model (the higher the better). Lets use this knowledge to know which 
-features could be useful to train the model.
+## PCA
 
-```python title="using all possible features to see which one fits best in case we only want to use one"
---8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:import"
+Principal component analysis (PCA) is an orthogonal linear transformation that transforms a number of possibly correlated variables into a smaller number of uncorrelated variables called principal components. Long story short tries to do the same model with less features involved doing a type of data compression.
 
---8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:import_json"
-
---8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:lasso_feature_extraction"
-```
-Which shows the following map:
-
-```shell title="features along with their coefficients"
-{
-    "season": 148.203100031951,
-    "mnth": -51.5955943027072,
-    "holiday": -133.05061286830426,
-    "weekday": 29.090724044926613,
-    "workingday": 801.273893612997,
-    "weathersit": -359.44201023763367,
-    "temp": -5220.004446707639,
-    "atemp": 10331.516802106882,
-    "hum": -1420.219253743334,
-    "windspeed": -1418.2069786643817
-}
-```
-
-Now as the theory stated, we can discard those features with 0 value, and maybe those which are negatively correlated. 
-For this example, where I’m only interested in one feature to validate whether I chose the most significant feature or 
-not. In this case I’m getting the feature with the highest possitive coefficient:
-
-```python
---8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:best_features"
+```groovy title="pca"
+--8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:pca"
 ```
 
 ```shell title="output"
-['atemp', 'workingday', 'season', 'weekday']
+train: 0.65, test: -1.04
 ```
 
-## Ridge vs Lasso
+## Summary
 
-In this case we’ve used both algorithms with the same dataset, but there’re situations where one or the other fit best:
+Finally I’ve written a summary table.
 
-- Ridge: Many small/medium sized effects
-- Lasso: Few medium/large sized effects
+| TYPE         | POLYNOMIAL                             | NORMALIZATION                        | REGULARIZATION                        | TRAIN SCORE | TEST_SCORE  |
+|--------------|----------------------------------------|--------------------------------------|---------------------------------------|-------------|-------------|
+| OLS          | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-xmark:   | :fontawesome-regular-circle-xmark:    | 0.49        | -1.22       |
+| OLS          | :fontawesome-regular-circle-check:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-xmark:    | 0.52        | -0.96       |
+| Ridge        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-xmark:   | :fontawesome-regular-circle-check:    | 0.68        | -1.04       |
+| Ridge        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-check:    | 0.68        | -1.04       |
+| Lasso        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-xmark:   | :fontawesome-regular-circle-check:    | 0.68        | -1.03       |
+| Lasso        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-check:    | 0.49        | -1.22       |
+| OLS (PCA)    | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-check:    | 0.65        | -1.04       |

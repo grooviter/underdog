@@ -4,6 +4,7 @@ import tech.tablesaw.api.ColumnType
 import tech.tablesaw.columns.Column
 import underdog.DataFrame
 import underdog.Series
+import underdog.Shape
 import underdog.impl.CollectionTypeDetector
 import underdog.impl.TSDataFrame
 import underdog.impl.TSSeries
@@ -95,14 +96,14 @@ class CollectionsExtensions {
      * time it returns the length of the array (length) and the length of the first array (width).
      *
      * @param data the array the get the shape from
-     * @return a list of type [length, width] of the array
+     * @return an instance of type {@link Shape}
      * @since 0.1.0
      */
-    static List<Integer> shape(double[][] data) {
+    static Shape shape(double[][] data) {
         if (!data) {
-            return [0, 0]
+            return Shape.empty()
         }
         def firstNestedArray = (data.find() ?: []) as double[]
-        return [data.length, firstNestedArray.length]
+        return new Shape(data.length, firstNestedArray.length)
     }
 }
