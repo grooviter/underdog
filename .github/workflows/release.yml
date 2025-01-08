@@ -28,7 +28,7 @@ jobs:
 
       - name: building docs
         working-directory: docs/guide
-        run: poetry install && poetry run mkdocs build
+        run: poetry install --no-root && poetry run mkdocs build
 
       - uses: actions/setup-java@v4
         with:
