@@ -91,7 +91,7 @@ class Metrics {
      * @since 0.1.0
      */
     double r2Score(double[] truth, double[] prediction) {
-        return new R2().score(truth, prediction)
+        return R2.of(truth, prediction)
     }
 
     /**
@@ -104,7 +104,7 @@ class Metrics {
      * @since 0.1.0
      */
     double r2Score(int[] truth, int[] prediction) {
-        return new R2().score(truth as double[], prediction as double[])
+        return R2.of(truth as double[], prediction as double[])
     }
 
     /**

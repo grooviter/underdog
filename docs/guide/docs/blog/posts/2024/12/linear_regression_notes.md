@@ -9,11 +9,13 @@ tags:
 
 # Linear regression notes
 
-Classification is a great method to predict discrete values from a given dataset, but sometimes you need to predict a continuous value, e.g: height, weight, prices…​ And that’s when linear regression techniques come handy.
+Classification is a great method to predict discrete values from a given dataset, but sometimes you need to **predict a continuous value**, e.g: height, weight, prices... And that’s when linear regression techniques come handy.
 
 <!-- more -->
 
-The definition that I read in the Wikipedia didn’t help me at all. Instead when I related it with a line, it started to make sense to me. If we’ve got a linear function, that is, a function describing a line, where ŵ is the slope of the line and b is called the intercept which is a constant value:
+## What is linear regression ?
+
+The definition that I read in the Wikipedia didn’t help me at all. Instead when I related it with a line, it started to make sense to me. If we’ve got a linear function, that is, a function describing a line, where **ŵ** is the **slope of the line** and **b** is called **the intercept** which is a constant value:
 
 <figure markdown="span">
 ![](images/linear_regression_notes/plot.png#only-light){ width="60%" }
@@ -22,7 +24,7 @@ The definition that I read in the Wikipedia didn’t help me at all. Instead whe
 
 For every x value a new point will be drawn and eventually altogether will form a line. So, if you think about it visually, given a set of input values, a simple linear regression algorithm will try to come up with a line trying to pass as close as possible to the majority of the input dataset points. So if you try to predict an output value from the input values, the machine learning process will pick up a value from that line.
 
-There are differences between the types of linear regression techniques depending on the presence of regularization (Ridge and Lasso), or the lack of it (Simple Linear Regression). There’s also important the use of polynomial transformation and normalization.
+There are differences between the types of linear regression techniques depending on the **presence of regularization** (Ridge and Lasso), or the lack of it (Simple Linear Regression). It's also worth mentioning the use of **normalization**, **feature generation** (polynomial transformation) and **feature compression** (PCA).
 
 ## Prerequisites
 
@@ -89,7 +91,7 @@ Which outputs:
       1  |     1  |        0  |        3  |           1  |           1  |  0.226957  |   0.22927  |  0.436957  |     0.1869  |        1518  |
 ```
 
-First, I’d like to see how features could be related to each other using a correlation heatmap:
+First, I’d like to see how features could be related to each other using a **correlation matrix**:
 
 ```groovy title="correlation matrix"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:correlation_matrix"
@@ -109,18 +111,18 @@ the day of the rental. I’d like to see how it looks like visually the relation
 ```
 
 <figure markdown="span">
-![](images/linear_regression_notes/pair_plot.png#only-light){ width="75%" }
-![](images/linear_regression_notes/pair_plot_dark.png#only-dark){ width="75%" }
+![](images/linear_regression_notes/pair_plot.png#only-light){ width="60%" }
+![](images/linear_regression_notes/pair_plot_dark.png#only-dark){ width="60%" }
 </figure>
 
-What I’m looking for at this point in the scatter plot, is tendencies. In this case it seems that points tend to go in diagonal from the bottom left to the upper right part of the graph. So far, the more tendency I see the better it seems to work. Now lets create a linear regression:
+What I’m looking for at this point in the scatter plot, is tendencies. In this case it seems that points tend to go in diagonal from the bottom left to the upper right part of the graph. So far, the more tendency I see the better it seems to work. Now I'm creating a linear regression model using the [Ordinary least square](https://en.wikipedia.org/wiki/Ordinary_least_squares) algorithm (OLS):
 
 ```groovy title="linear regression"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:linear_regression"
 ```
 
 ```shell title="output"
-train: 0.49, test: -1.22
+train: 0.307325, test: 0.223381
 ```
 
 If we draw the regression line we’ve got:
@@ -140,17 +142,20 @@ better to the shape of the model is to use a polynomial transformation.
 ## Polynomial transformation
 
 When the problem doesn't fit easily a straight line or there are many features, it could become complicated to find a 
-good relationship between them, specially with a simple line. The polynomial transformation helps finding those 
+good relationship between them, specially with a simple line. The **polynomial transformation** helps finding those 
 relationships. Applying a polynomial transformation to our problem can help the linear regression to adapt better to the 
-shape of the data. This is the same linear regression example, but this time applying the PolynomialFeatures class prior 
-to the linear regression fit.
+shape of the data. This is the same linear regression example, but this time applying the **polynomialFeatures** function prior 
+to the linear regression fit. 
+
+Notice that before applying all new features to the algorithm we are normalizing all of them with 
+the **minMaxScaler** transformation.
 
 ```groovy title="applying polynomial transformation"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:linear_regression_polynomial"
 ```
 
 ```shell title="output"
-train: 0.52, test: -0.96
+train: 0.355879, test: 0.296751
 ```
 
 Because the polynomial transformation is creating more features, they cover a wider spectrum of the data, therefore more 
@@ -161,8 +166,8 @@ likely to do improve accuracy, at least in the training dataset. If we draw now 
 ```
 
 <figure markdown="span">
-![](images/linear_regression_notes/plot_polynomial.png#only-light){ width="80%" }
-![](images/linear_regression_notes/plot_polynomial_dark.png#only-dark){ width="80%" }
+![](images/linear_regression_notes/plot_polynomial.png#only-light){ width="60%" }
+![](images/linear_regression_notes/plot_polynomial_dark.png#only-dark){ width=60%" }
 </figure>
 
 Which covers much more than the previous example. However there are a couple of things to keep in mind when applying 
@@ -183,14 +188,16 @@ However so far it's clear that with just one feature we don't go anywhere as the
 
 So far I’ve been working with just one feature temp to predict a possible outcome. I chose this feature by using the
 correlation table as a guide. When looking for just one variable to work with, it could be enough, but when looking for
-many possible features it could be cumbersome. Lasso regression seems a better method for telling me which features
-do perform and which don’t. How ? Well according to how the L1 regulation method works, keeping it short, those features
-that are not so important, Lasso makes its coefficient equal to 0, therefore, those features having a coefficient
-greater than 0 are worth using them to train the model (the higher the better). Lets use this knowledge to know which
+many possible features it could be cumbersome. 
+
+**Lasso regression** could be one method for telling me **which features
+do perform and which don’t**. How ? Well according to how the L1 regulation method works, keeping it short, those features
+that are not so important, Lasso makes its coefficient equal to 0, therefore, **those features having a coefficient
+greater than 0 are worth using them to train the model (the higher the better)**. Lets use this knowledge to know which
 features could be useful to train the model.
 
 
-```groovy title="using all possible features to see which one fits best in case we only want to use one"
+```groovy title="Lasso to get feature coefficients"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:import"
 
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:import_json"
@@ -229,15 +236,15 @@ not. In this case I’m getting the feature with the highest possitive coefficie
 
 **Regularization**
 
-Regularization is a technique used to reduce the model complexity and thus it helps dealing with overfitting:
+**Regularization** is a technique used **to reduce the model complexity** and thus it helps dealing with over-fitting:
 
-- It reduces the model size by shrinking the number of parameters the model has to learn 
-- It adds weight to the values so that it tries to favor smaller values
+- It **reduces the model size** by shrinking the number of parameters the model has to learn 
+- It **adds weight to the values** so that it tries to favor smaller values
 
-Regularization penalizes certain values by using a loss function with a cost. This cost could be of type:
+**Regularization** penalizes certain values by using a loss function with a cost. This cost could be of type:
 
-- L1: The cost is proportional to the absolute value of the weight coefficients (Lasso)
-- L2: The cost is proportional to the square of the value of the weight coefficients (Ridge)
+- **L1**: The cost is **proportional to the absolute value** of the weight coefficients (Lasso)
+- **L2**: The cost is **proportional to the square of the value** of the weight coefficients (Ridge)
 
 !!! Tip
 
@@ -246,24 +253,40 @@ Regularization penalizes certain values by using a loss function with a cost. Th
 
 **Normalization**
 
-Data normalization is the process of rescaling one or more features to a common scale. It’s normally used when features used to create the model have different scales. There are a few advantages of using normalization is such scenario:
+Data normalization is the **process of rescaling one or more features to a common scale**. It’s normally used when features used to create the model have different scales. There are a few advantages of using normalization is such scenario:
 
 - It could improve the numerical stability of your model 
 - It could speed up the training process
 
-Normalization is specially important when applying certain regression techniques, as regression is sensitive to model feature adjustements.
+Normalization is specially important when applying certain regression techniques, as regression is sensitive to 
+model feature adjustments.
 
 !!! Tip
 
     Because in this article I’m only using ONE feature, normalization is not going to make much difference but, when 
-    using multiple features, and each of them in different scales, then we should use normalization. 
+    using multiple features, and each of them in different scales, then we should use normalization.
+
+## Regularization Baseline
+
+Lets do the simple linear regression again with the best features obtained from lasso regression coefficients to set
+the baseline for the regularization & normalization examples:
+
+```groovy title="Baseline"
+--8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:baseline"
+```
+
+Obtaining the scores:
+
+```shell title="baseline scores"
+train: 0.460528, test: 0.311946
+```
 
 ## Ridge
 
-- Follows the leat-squares criterion but it uses regularization as a penalty for large variations in w parameters. 
-- Regularization prevents overfitting by restricting the model, it normally reduces its complexity 
-- Regularization is controlled by the alpha parameter 
-- The high the value of alpha the simpler the model, that is, the model is less likely to overfit
+- Follows the least-squares criterion but it **uses regularization as a penalty** for large variations in **w** parameters. 
+- Regularization **prevents over-fitting** by restricting the model, it normally reduces its complexity 
+- Regularization is controlled by the **alpha parameter** 
+- The **higher the value of alpha the simpler the model**, that is, the model is less likely to over-fit
 
 Now I’m using Ridge class with the same dataset:
 
@@ -274,28 +297,30 @@ Now I’m using Ridge class with the same dataset:
 Giving me the following scores:
 
 ```shell title="output"
-train: 0.68, test: -1.04
+train: 0.459691, test: 0.321293
 ```
 
-Although it seems worst than the polynomial example, the takeaway idea here is that the Ridge regression along with a 
-high value of alpha is going to reduce the complexity of the model and make the generalization more stable.
+It looks better than the simple OLS example, the takeaway idea here is that the Ridge regression along with a 
+high value of alpha is going to reduce the complexity of the model and **make the generalization better** (or at
+least more stable).
 
-Ridge regression score can be improved by applying normalization to the source dataset. Is important for some ML methods 
-that all features are on the same scale. In this case we’re apply a MinMax normalization.
+Ridge regression score can be **improved by applying normalization** to the source dataset. Is important for some ML methods 
+that all features are on the same scale. In this case we’re applying a MinMax normalization. However there’re some 
+basic tips to be aware of:
+
+- **Fit the scaler with the training set** and then apply the same scaler to transform the training and test feature sets
+- **Don’t use the test dataset to fit the scaler**. That could lead to data leakage.
 
 ```groovy title="Ridge with scaled set"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:ridge_regression_min_max"
 ```
 
 ```shell title="output"
-train: 0.68, test: -1.04
+train: 0.459691, test: 0.321293
 ```
 
-
-We can use the scaled X to train the Ridge regression. However there’re some basic tips to be aware of:
-
-- Fit the scaler with the training set and then apply the same scaler to transform the training and test feature sets 
-- Don’t use the test dataset to fit the scaler. That could lead to data leakage.
+Well it didn't change a bit. I'm not sure whether is because the model is not that complex or the features don't change
+much and the regularization + normalization doesn't add much either.
 
 ## Lasso
 
@@ -308,20 +333,20 @@ We can use the scaled X to train the Ridge regression. However there’re some b
 ```
 
 ```shell title="output"
-train: 0.68, test: -1.03
+train: 0.460528, test: 0.31195
 ```
 
-And finally using MinMaxScaler to try to improve regression scoring:
+And finally using min-max scaler to try to improve regression scoring:
 
 ```groovy title="lasso with scaled features"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:lasso_regression_min_max"
 ```
 
 ```shell title="output"
-train: 0.49, test: -1.22
+train: 0.460528, test: 0.311954>
 ```
 
-Unfortunately this got it worst.
+Unfortunately this didn't improve the result either.
 
 !!! tip "Ridge vs Lasso"
 
@@ -332,26 +357,15 @@ Unfortunately this got it worst.
 
 ## PCA
 
-Principal component analysis (PCA) is an orthogonal linear transformation that transforms a number of possibly correlated variables into a smaller number of uncorrelated variables called principal components. Long story short tries to do the same model with less features involved doing a type of data compression.
+Principal component analysis (PCA) is an orthogonal linear transformation that transforms a number of possibly correlated variables into a smaller number of uncorrelated variables called principal components. Long story short tries to do the same model with less features involved **doing a type of data compression**. In this example we are trying to obtain similar results with one feature less using PCA:
 
 ```groovy title="pca"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:pca"
 ```
 
+Which shows pretty the same results but reducing the data needed to train the data, which, may not be relevant in this example but it
+could be a huge amount of data for some models.
+
 ```shell title="output"
-train: 0.65, test: -1.04
+train: 0.460506, test: 0.311325
 ```
-
-## Summary
-
-Finally I’ve written a summary table.
-
-| TYPE         | POLYNOMIAL                             | NORMALIZATION                        | REGULARIZATION                        | TRAIN SCORE | TEST_SCORE  |
-|--------------|----------------------------------------|--------------------------------------|---------------------------------------|-------------|-------------|
-| OLS          | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-xmark:   | :fontawesome-regular-circle-xmark:    | 0.49        | -1.22       |
-| OLS          | :fontawesome-regular-circle-check:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-xmark:    | 0.52        | -0.96       |
-| Ridge        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-xmark:   | :fontawesome-regular-circle-check:    | 0.68        | -1.04       |
-| Ridge        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-check:    | 0.68        | -1.04       |
-| Lasso        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-xmark:   | :fontawesome-regular-circle-check:    | 0.68        | -1.03       |
-| Lasso        | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-check:    | 0.49        | -1.22       |
-| OLS (PCA)    | :fontawesome-regular-circle-xmark:     | :fontawesome-regular-circle-check:   | :fontawesome-regular-circle-check:    | 0.65        | -1.04       |

@@ -10,7 +10,12 @@ class UtilsSpec extends Specification {
         def X = data.loc[__, ['CARBS', 'FAT']] as double[][]
         def y = data['TRAFFICLIGHT VALUE'] as double[]
 
-        def (xTrain, xTest, yTrain, yTest) = Underdog.ml().utils.trainTestSplit(X, y)
+        def (
+            xTrain,
+            xTest,
+            yTrain,
+            yTest
+        ) = Underdog.ml().utils.trainTestSplit(X, y, shuffle: false)
 
         expect:
         X == (xTrain.collect() + xTest.collect()) as double[][]

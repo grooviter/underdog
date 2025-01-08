@@ -2,7 +2,7 @@ package underdog.ml
 
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
-import smile.data.transform.InvertibleColumnTransform
+import smile.data.transform.Transform
 import smile.feature.extraction.ProbabilisticPCA
 import smile.feature.transform.MaxAbsScaler
 import smile.feature.transform.Standardizer
@@ -29,20 +29,36 @@ class Features {
      * data follows a Gaussian distribution and are also not robust when outliers present
      *
      * @param X the array to standardize
-     * @return an instance of {@link InvertibleColumnTransform}
+     * @return an instance of {@link Transform}
      * @since 0.1.0
      */
-    InvertibleColumnTransform standardizeScaler(double[][] X) {
+    Transform standardizeScaler(double[][] X) {
         return Standardizer.fit(Utils.createDataFrameFrom(X))
     }
 
     /**
-     * @param X
-     * @return
+     * Scales each feature by its maximum absolute value
+     *
+     * @param X data
+     * @return an instance of {@link Transform}
      * @since 0.1.0
      */
-    InvertibleColumnTransform minMaxScaler(double[][] X) {
+    Transform  minMaxScaler(double[][] X) {
         return MaxAbsScaler.fit(Utils.createDataFrameFrom(X))
+    }
+
+    /**
+     * Principal component analysis. PCA is an orthogonal linear transformation that transforms a number of possibly
+     * correlated variables into a smaller number of uncorrelated variables called principal components.
+     *
+     * @param X data to reduce the dimensionality from
+     * @param nComponents the number of components to reduce the dimensionality of X
+     * @return an instance of {@link Transform}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    Transform pca(double[][] X, @NamedParam(required = false) int nComponents = 2) {
+        return ProbabilisticPCA.fit(X, nComponents)
     }
 
     /**
@@ -64,20 +80,6 @@ class Features {
             int maxFeatures = 10
     ) {
         return new CountVectorizer(tokenizer, stemmer, stopWords, maxFeatures)
-    }
-
-    /**
-     * Principal component analysis. PCA is an orthogonal linear transformation that transforms a number of possibly
-     * correlated variables into a smaller number of uncorrelated variables called principal components.
-     *
-     * @param X data to reduce the dimensionality from
-     * @param nComponents the number of components to reduce the dimensionality of X
-     * @return a {@link ProbabilisticPCA}
-     * @since 0.1.0
-     */
-    @NamedVariant
-    ProbabilisticPCA pca(double[][] X, @NamedParam(required = false) int nComponents = 2) {
-        return ProbabilisticPCA.fit(X, nComponents)
     }
 
     /**
