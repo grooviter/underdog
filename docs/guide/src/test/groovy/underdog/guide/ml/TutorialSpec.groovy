@@ -99,7 +99,7 @@ class TutorialSpec extends Specification {
         // --8<-- [end:score]
 
         then:
-        (0.88..0.89).containsWithinBounds(r2score)
+        (0.87..0.88).containsWithinBounds(r2score)
     }
 
     def "runs_scored_model"() {

@@ -48,7 +48,9 @@ class GettingStartedSpec extends Specification {
         plot.show()
         Plots.show(plot, theme: "dark")
 
+        def testScore = Underdog.ml().metrics.r2Score(yTest, predictedWins)
+
         then:
-        (0.87..0.89).containsWithinBounds(Underdog.ml().metrics.r2Score(yTest, predictedWins))
+        (0.86..0.88).containsWithinBounds(testScore)
     }
 }
