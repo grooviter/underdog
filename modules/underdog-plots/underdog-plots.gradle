@@ -10,8 +10,8 @@ repositories {
 dependencies {
     api project(":underdog-dataframe")
     api project(":underdog-graphs")
-//    api project(":underdog-plots-domain")
-    api "com.github.grooviter:underdog-plots-domain:0.1.0"
+    api project(":underdog-plots-domain")
+//    api "com.github.grooviter:underdog-plots-domain:0.1.0"
 
     api "org.apache.groovy:groovy:$groovy"
     api "org.apache.groovy:groovy-datetime:$groovy"
