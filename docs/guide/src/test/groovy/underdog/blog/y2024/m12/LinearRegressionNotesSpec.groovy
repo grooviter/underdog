@@ -160,16 +160,13 @@ class LinearRegressionNotesSpec extends Specification {
         // transforming X adding new generated features
         def xPoly = ml.features.polynomialFeatures(X)
 
-        // normalizing all features
-        def xNormalized = ml.features.minMaxScaler(xPoly).apply(xPoly)
-
         // train test split (more data for training)
         def (
             xTrain,
             xTest,
             yTrain,
             yTest
-        ) = ml.utils.trainTestSplit(xNormalized, y)
+        ) = ml.utils.trainTestSplit(xPoly, y)
 
         // creating and training model
         def model = ml.regression.ols(xTrain, yTrain)
@@ -243,13 +240,13 @@ class LinearRegressionNotesSpec extends Specification {
         def y = df['registered'] as double[]
         def ml = Underdog.ml()
 
-        // train test split (more data for training)
+        // train test split
         def (xTrain, xTest, yTrain, yTest) = ml.utils.trainTestSplit(X, y)
 
-        // creating and training model (RIDGE)
+        // creating and training model
         def model = ml.regression.ols(xTrain, yTrain)
 
-        // predicting and getting r2_score for training and test sets
+        // getting scores
         def scoreTrain = model.score(xTrain, yTrain).round(6)
         def scoreTest = model.score(xTest, yTest).round(6)
 

@@ -145,10 +145,7 @@ When the problem doesn't fit easily a straight line or there are many features, 
 good relationship between them, specially with a simple line. The **polynomial transformation** helps finding those 
 relationships. Applying a polynomial transformation to our problem can help the linear regression to adapt better to the 
 shape of the data. This is the same linear regression example, but this time applying the **polynomialFeatures** function prior 
-to the linear regression fit. 
-
-Notice that before applying all new features to the algorithm we are normalizing all of them with 
-the **minMaxScaler** transformation.
+to the linear regression fit.
 
 ```groovy title="applying polynomial transformation"
 --8<-- "src/test/groovy/underdog/blog/y2024/m12/LinearRegressionNotesSpec.groovy:linear_regression_polynomial"
@@ -234,14 +231,12 @@ not. In this case I’m getting the feature with the highest possitive coefficie
 
 ## Regularization and normalization
 
-**Regularization**
-
 **Regularization** is a technique used **to reduce the model complexity** and thus it helps dealing with over-fitting:
 
 - It **reduces the model size** by shrinking the number of parameters the model has to learn 
 - It **adds weight to the values** so that it tries to favor smaller values
 
-**Regularization** penalizes certain values by using a loss function with a cost. This cost could be of type:
+Regularization penalizes certain values by using a loss function with a cost. This cost could be of type:
 
 - **L1**: The cost is **proportional to the absolute value** of the weight coefficients (Lasso)
 - **L2**: The cost is **proportional to the square of the value** of the weight coefficients (Ridge)
@@ -251,9 +246,7 @@ not. In this case I’m getting the feature with the highest possitive coefficie
     Regularization really shines when there is a high dimensionality, meaning there’re multiple features. So in these 
     examples it won’t make a huge impact with the scores.
 
-**Normalization**
-
-Data normalization is the **process of rescaling one or more features to a common scale**. It’s normally used when features used to create the model have different scales. There are a few advantages of using normalization is such scenario:
+**Data normalization** is the **process of rescaling one or more features to a common scale**. It’s normally used when features used to create the model have different scales. There are a few advantages of using normalization is such scenario:
 
 - It could improve the numerical stability of your model 
 - It could speed up the training process
@@ -263,7 +256,7 @@ model feature adjustments.
 
 !!! Tip
 
-    Because in this article I’m only using ONE feature, normalization is not going to make much difference but, when 
+    When using only using ONE feature, normalization doesn't make much difference but, when 
     using multiple features, and each of them in different scales, then we should use normalization.
 
 ## Regularization Baseline
