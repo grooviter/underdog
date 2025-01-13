@@ -1,0 +1,23 @@
+plugins {
+    id 'groovy'
+    id 'java-library'
+}
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    api project(":underdog-dataframe")
+
+    implementation "org.apache.groovy:groovy-macro:$groovy"
+    implementation "org.eclipse.jetty:jetty-server:12.0.16"
+    testImplementation project(":underdog-dataframe")
+    testImplementation "org.spockframework:spock-core:$spock"
+    testImplementation(project(":underdog-plots"))
+
+}
+
+test {
+    useJUnitPlatform()
+}
