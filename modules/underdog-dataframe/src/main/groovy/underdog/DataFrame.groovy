@@ -490,6 +490,14 @@ interface DataFrame extends Columnar {
      */
     <U> List<U> toList()
 
+    String toJSON()
+
+    @NamedVariant
+    String toJSON(
+        @NamedParam(required = false) Boolean pretty,
+        @NamedParam(required = false) Boolean asSeriesMap
+    )
+
     /**
      * @param labels
      * @param values

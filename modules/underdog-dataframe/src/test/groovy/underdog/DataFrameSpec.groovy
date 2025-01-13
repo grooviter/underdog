@@ -1,5 +1,7 @@
 package underdog
 
+import groovy.json.JsonSlurper
+
 class DataFrameSpec extends BaseSpec {
     def "[DataFrame/Indexing]: all rows | many columns -> df['col1','coln']"() {
         when:
@@ -513,5 +515,43 @@ class DataFrameSpec extends BaseSpec {
         df['A'].toList() == ['a', 'b', 'c', '-1']
         df['B'].toList() == [1.0, 2.0, -1, 4.0]
         df['C'].toList() == [1, 2, 3, -1.0]
+    }
+
+    def "[DataFrame/toJSON]: simple json output"() {
+        setup:
+        def df = [
+            names: ['John', 'Axel'],
+            ages: [18,34]
+        ].toDF("people")
+
+        when:
+        String json = df.toJSON()
+
+        and:
+        List parsed = new JsonSlurper().parseText(json) as List
+
+        then:
+        parsed.size() == 2
+        parsed.collect { it.names } == ['John', 'Axel']
+        parsed.collect { it.ages } == [18, 34]
+    }
+
+    def "[DataFrame/toJSON]: cols as rows"() {
+        setup:
+        def df = [
+            names: ['John', 'Axel'],
+            ages: [18,34]
+        ].toDF("people")
+
+        when:
+        String json = df.toJSON(asSeriesMap: true)
+
+        and:
+        Map parsed = new JsonSlurper().parseText(json) as Map
+
+        then:
+        parsed.size() == 2
+        parsed.names == ['John', 'Axel']
+        parsed.ages == [18, 34]
     }
 }

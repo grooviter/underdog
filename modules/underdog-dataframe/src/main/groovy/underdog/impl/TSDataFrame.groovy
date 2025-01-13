@@ -1,5 +1,6 @@
 package underdog.impl
 
+import groovy.json.JsonOutput
 import tech.tablesaw.api.BooleanColumn
 import tech.tablesaw.api.NumericColumn
 import underdog.Columnar
@@ -701,6 +702,38 @@ class TSDataFrame implements DataFrame {
                 table.column(colName).get(row.rowNumber)
             }
         } as List<U>
+    }
+
+    @Override
+    @NamedVariant
+    String toJSON(
+        @NamedParam(required = false) Boolean pretty = false,
+        @NamedParam(required = false) Boolean asSeriesMap = false) {
+        Object rows = null
+
+        if (asSeriesMap){
+            rows = colsAsJSON()
+        } else {
+            rows = rowsAsJSON()
+        }
+
+        if (pretty){
+            return JsonOutput.prettyPrint(JsonOutput.toJson(rows))
+        }
+
+        return JsonOutput.toJson(rows)
+    }
+
+    private Object colsAsJSON() {
+        return this.columns.collectEntries {
+            [(it): this[it] as Object[]]
+        }
+    }
+
+    private Object rowsAsJSON() {
+        return this.table.<Row, Map>collect { Row row ->
+            row.columnNames().collectEntries {[(it): row.getObject(it)] }
+        }
     }
 
     @Override
