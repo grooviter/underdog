@@ -23,12 +23,12 @@ class HtmlApplication {
     /**
      * @since 0.1.0
      */
-    Map<String,String> field = [:].<String, String>withDefault(HtmlApplication::generateRandomName)
+    Map<String,String> field = [:].<String, String>withDefault(Utils::generateRandomName)
 
     /**
      * @since 0.1.0
      */
-    Map<String, String> function = [:].<String, String>withDefault(HtmlApplication::generateRandomName)
+    Map<String, String> function = [:].<String, String>withDefault(Utils::generateRandomName)
 
     /**
      * @param path
@@ -39,8 +39,9 @@ class HtmlApplication {
     @NamedVariant
     void page(
         String path,
-        @NamedParam(required = false) String name = generateRandomName(),
-        @DelegatesTo(HtmlPage) Closure closure) {
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @DelegatesTo(HtmlPage) Closure closure
+    ) {
         this.htmlPageList.add(new HtmlPage(path: path, name: name).tap { with(closure) })
     }
 
@@ -54,8 +55,7 @@ class HtmlApplication {
     @NamedVariant
     Controller post(
         String path,
-        @NamedParam(required = false)
-        String name = generateRandomName(),
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
         @DelegatesTo(ControllerUtils)
         @ClosureParams(
             value=SimpleType,
@@ -65,9 +65,5 @@ class HtmlApplication {
     ) {
         def upgradedClosure = closure.tap { it.setDelegate(new ControllerUtils()) }
         return new Controller(path: path, name: name, method: 'POST', function: upgradedClosure).tap(this.controllerList::add)
-    }
-
-    private static String generateRandomName(String _unused = "") {
-        return new Date().toString().md5()
     }
 }

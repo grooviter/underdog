@@ -6,6 +6,8 @@ import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.jetty.server.handler.ContextHandler
 import org.eclipse.jetty.server.handler.ContextHandlerCollection
+import org.eclipse.jetty.server.handler.ResourceHandler
+import org.eclipse.jetty.util.resource.ResourceFactory
 import underdog.spectacle.Application
 import underdog.spectacle.dsl.Controller
 import underdog.spectacle.dsl.HtmlApplication
@@ -20,7 +22,9 @@ class JettyApplication implements Application {
         List<RESTHandler> restHandlerList = htmlApplication.controllerList.<Controller, RESTHandler>collect {
             new POSTHandler(it) // TODO: resolve handler type by method type
         }
-        List<PageHandler> pageHandlerList = htmlApplication.htmlPageList.<HtmlPage, PageHandler>collect(PageHandler::new)
+        List<PageHandler> pageHandlerList = htmlApplication.htmlPageList.<HtmlPage, PageHandler>collect {
+            new PageHandler(it)
+        }
 
         Server server = new Server(5000)
         Connector connector = new ServerConnector(server)
@@ -33,10 +37,17 @@ class JettyApplication implements Application {
             contextHandlerCollection.addHandler(new ContextHandler(it, "/api"))
         }
 
-        // STATIC RESOURCES
+        // PAGES
         pageHandlerList.each {
-            contextHandlerCollection.addHandler(it)
+            contextHandlerCollection.addHandler(new ContextHandler(it, "/"))
         }
+
+        // STATIC RESOURCES
+        ResourceHandler resourceHandler = new ResourceHandler()
+        resourceHandler.setBaseResource(ResourceFactory.of(resourceHandler).newResource(this.class.getResource('/css')))
+        resourceHandler.setDirAllowed(true)
+        resourceHandler.setAcceptRanges(true)
+        contextHandlerCollection.addHandler(new ContextHandler(resourceHandler, '/css'))
 
         server.setHandler(contextHandlerCollection)
 

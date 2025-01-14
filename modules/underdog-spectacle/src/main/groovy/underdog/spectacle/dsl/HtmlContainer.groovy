@@ -22,7 +22,7 @@ abstract class HtmlContainer extends HtmlElement {
     @NamedVariant
     Button button(
         @NamedParam String text,
-        @NamedParam(required = false) String name = "",
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) boolean editable = true,
         @DelegatesTo(Button) Closure closure
     ){
@@ -34,7 +34,7 @@ abstract class HtmlContainer extends HtmlElement {
     @NamedVariant
     Button button(
         @NamedParam String text,
-        @NamedParam(required = false) String name = "",
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) boolean editable = true
     ){
         return new Button(name: name, text: text, editable: editable).tap(this.children::add)
@@ -42,26 +42,29 @@ abstract class HtmlContainer extends HtmlElement {
 
     @NamedVariant
     InputNumber number(
-        @NamedParam(required = false) String name = "",
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = name,
         @NamedParam(required = false) boolean editable = true
     ) {
-        return new InputNumber(name: name, editable: editable).tap(this.children::add)
+        return new InputNumber(label: label, name: name, editable: editable).tap(this.children::add)
     }
 
     @NamedVariant
     InputText text(
-        @NamedParam(required = false) String name = "",
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = name,
         @NamedParam(required = false) boolean editable = true
     ) {
-        return new InputText(name: name, editable: editable).tap { this.children.add(it) }
+        return new InputText(name: name, label: label, editable: editable).tap { this.children.add(it) }
     }
 
     @NamedVariant
     TextArea textArea(
-        @NamedParam(required = false) String name = "",
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = name,
         @NamedParam(required = false) boolean editable = true
     ) {
-        return new TextArea(name: name, editable: editable).tap(this.children::add)
+        return new TextArea(name: name, label: label, editable: editable).tap(this.children::add)
     }
 
     Markdown markdown(String markdown) {

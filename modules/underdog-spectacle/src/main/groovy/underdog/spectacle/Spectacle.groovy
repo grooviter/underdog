@@ -19,21 +19,27 @@ class Spectacle {
             }
             page('/chart') {
                 row {
-                    def from = number()
-                    def to = number()
-                    button(text: 'submit') {
-                        onClick(chartData.name, [from.name, to.name], [field.output])
-                    }
+                    markdown """\
+                        | # Spectacle
+                        | This is a simple example of Spectacle
+                    """
                 }
                 row {
-                    textArea(name: field.output)
+                    number(name: field.from, label: 'from')
+                    number(name: field.to, label: 'to')
+                }
+                row {
+                    textArea(name: field.output, label: 'comments')
+                    button(text: 'submit') {
+                        onClick(chartData.name, [field.from, field.to], [field.output])
+                    }
                 }
             }
             page('/about'){
                 row {
-                    markdown """
-                    # About                    
-                    This is something **important** about the project
+                    markdown """\
+                        | # About
+                        | This is something **important** about the project
                     """
                 }
             }

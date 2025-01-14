@@ -1,0 +1,10 @@
+
+label {
+    display: block
+}
+
+input[type='number'],
+input[type='text'] {
+  border-line: 1px;
+  padding: .5em .5em;
+}

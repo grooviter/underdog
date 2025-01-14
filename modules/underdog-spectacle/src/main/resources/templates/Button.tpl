@@ -1,0 +1,1 @@
+button(name: element.name, disabled: !element.editable) { yield element.text }
