@@ -19,6 +19,7 @@ class Options {
     Title title
     Tooltip tooltip
     AxisPointer axisPointer
+    String backgroundColor
 
     @RepeatableField Legend legend
     @RepeatableField Grid grid

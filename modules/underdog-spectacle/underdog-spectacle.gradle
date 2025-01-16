@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     api project(":underdog-dataframe")
+    api project(":underdog-plots")
 
     implementation "org.apache.groovy:groovy-macro:$groovy"
     implementation "org.eclipse.jetty:jetty-server:12.0.16"

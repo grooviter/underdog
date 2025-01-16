@@ -16,10 +16,10 @@ class HtmlApplicationSpec extends Specification {
         }
 
         expect:
-        htmlApp.htmlPageList.size() == 1
+        htmlApp.pageList.size() == 1
 
         and:
-        with(htmlApp.htmlPageList[0]) {
+        with(htmlApp.pageList[0]) {
             it.children.size() == 3
             it.children[0].name == 'username'
             it.children[1].name == 'password'

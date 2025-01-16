@@ -11,10 +11,21 @@ import org.eclipse.jetty.util.Callback
 import underdog.spectacle.dsl.HtmlPage
 import underdog.spectacle.templates.TemplateEngine
 
+/**
+ * Renders instances of {@link HtmlPage}
+ *
+ * @since 0.1.0
+ */
 class PageHandler extends ElseNext {
     HtmlPage page
     TemplateEngine templateEngine = new TemplateEngine()
 
+    /**
+     * Creates a new {@link PageHandler} with the page to render
+     *
+     * @param htmlPage page to render
+     * @since 0.1.0
+     */
     PageHandler(HtmlPage htmlPage) {
         this.page = htmlPage
         this.includeMethod(HttpMethod.GET.toString())
