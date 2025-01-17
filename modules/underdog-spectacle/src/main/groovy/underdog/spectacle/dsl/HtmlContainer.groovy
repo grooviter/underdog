@@ -11,6 +11,7 @@ import underdog.spectacle.dsl.components.HtmlForm
 import underdog.spectacle.dsl.components.HtmlInputNumber
 import underdog.spectacle.dsl.components.HtmlInputText
 import underdog.spectacle.dsl.components.HtmlMarkdown
+import underdog.spectacle.dsl.components.HtmlNumberCard
 import underdog.spectacle.dsl.components.HtmlRow
 import underdog.spectacle.dsl.components.HtmlTextArea
 
@@ -208,6 +209,26 @@ abstract class HtmlContainer extends HtmlElement {
             Closure<Options> supplier
     ) {
         return new HtmlChart(name: name, supplier: supplier, value: defaultValue)
+            .tap { this.children.add(it) }
+            .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Represents a card showing a number with a title defining what that number means
+     *
+     * @param name the name of the component
+     * @param title the title describing what the number means
+     * @param defaultValue the default value when the component is rendered
+     * @return an instance of {@link HtmlNumberCard}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlNumberCard numberCard(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String title = "N/A",
+        @NamedParam(required = false) Number defaultValue = 0
+    ) {
+        return new HtmlNumberCard(name: name, title: title, value: defaultValue)
             .tap { this.children.add(it) }
             .tap { this.application.addElement(it) }
     }

@@ -52,7 +52,8 @@ class BackendHandler extends ElseNext {
     @Override
     protected boolean onConditionsMet(Request request, Response response, Callback callback) throws Exception {
         def function = this.event.function
-        def targetValue = function(request, response)
+        def context = new JettyContext(request, response, this.application.configuration)
+        def targetValue = function(context)
         def target = this.event
             .outputList
             .<String, HtmlElementWithValue>collect(this.application::findHtmlElementWithValueByName)

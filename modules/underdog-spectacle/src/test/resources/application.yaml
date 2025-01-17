@@ -1,0 +1,5 @@
+spectacle:
+  training:
+    rate: 0.75
+
+  title.poc: "Title of POC"

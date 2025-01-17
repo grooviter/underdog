@@ -1,6 +1,7 @@
 package underdog.spectacle
 
 import underdog.spectacle.dsl.HtmlApplication
+import underdog.spectacle.dsl.Utils
 import underdog.spectacle.jetty.JettyApplication
 
 /**
@@ -18,6 +19,7 @@ class Spectacle {
      * @since 0.1.0
      */
     static Application application(@DelegatesTo(HtmlApplication) Closure dsl) {
-        return new JettyApplication(new HtmlApplication().tap { with(dsl) })
+        HtmlApplication htmlApplication = new HtmlApplication(Utils.loadConfiguration())
+        return new JettyApplication(htmlApplication.tap { with(dsl) })
     }
 }

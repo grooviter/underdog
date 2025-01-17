@@ -1,5 +1,9 @@
 package underdog.spectacle.dsl
 
+import groovy.yaml.YamlSlurper
+
+import java.nio.file.Paths
+
 /**
  * Util functions
  *
@@ -36,5 +40,22 @@ class Utils {
      */
     static String generateRandomSuffix() {
         return new Random().nextLong(100_000).toString().md5()
+    }
+
+    /**
+     * Loads application configuration. The convention is an application.yaml file in the root
+     * classpath dir
+     *
+     * @return an instance of a {@link Map}
+     * @since 0.1.0
+     */
+    static Map<String,?> loadConfiguration() {
+        URL applicationFile = Utils.class.classLoader.getResource("application.yaml")
+
+        if (applicationFile) {
+            return new YamlSlurper().parse(Paths.get(applicationFile.toURI())) as Map<String,?>
+        }
+
+        return [:]
     }
 }

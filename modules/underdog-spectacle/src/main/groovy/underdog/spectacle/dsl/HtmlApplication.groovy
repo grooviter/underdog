@@ -2,13 +2,17 @@ package underdog.spectacle.dsl
 
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import groovy.transform.TupleConstructor
 
 /**
  * Represents a Spectacle application
  *
  * @since 0.1.0
  */
+@TupleConstructor(includes = ['configuration'])
 class HtmlApplication {
+    Map<String,?> configuration
+
     /**
      * List of {@link HtmlPage} accessible in this application
      *
