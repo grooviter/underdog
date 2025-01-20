@@ -42,8 +42,15 @@ class DevWatcher {
      * @return a new instance of {@link DevWatcher}
      * @since 0.1.0
      */
-    @Builder(builderClassName = 'WatcherBuilder', builderMethodName = 'watcherBuilder', buildMethodName = 'build')
-    static DevWatcher build(File dir, Closure onWatch, Closure onChange){
+    @Builder(
+        builderClassName = 'WatcherBuilder',
+        builderMethodName = 'watcherBuilder',
+        buildMethodName = 'build')
+    static DevWatcher build(
+        File dir,
+        Closure onWatch,
+        Closure onChange
+    ){
         return new DevWatcher(filePath: dir, onWatchFunction: onWatch, onChangeFunction: onChange)
     }
 

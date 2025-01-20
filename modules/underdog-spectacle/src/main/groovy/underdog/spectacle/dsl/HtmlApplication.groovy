@@ -50,6 +50,16 @@ class HtmlApplication {
     boolean development
 
     /**
+     * Default page. When adding a new html page you can mark it as default.
+     *
+     * - If only one html page has been added then it becomes the default
+     * - If no default page has been marked as default then the first added becomes the default
+     *
+     * @since 0.1.0
+     */
+    HtmlPage defaultPage
+
+    /**
      * Creates a new {@link HtmlPage}
      *
      * @param path url path where the page will be accessible
@@ -63,6 +73,7 @@ class HtmlApplication {
         String path,
         @NamedParam(required = false) String theme = 'system',
         @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) Boolean markAsDefault = false,
         @DelegatesTo(HtmlPage) Closure closure
     ) {
         HtmlPage page = new HtmlPage(
@@ -71,6 +82,11 @@ class HtmlApplication {
             name: name,
             theme: theme
         ).tap { with(closure) }
+
+        if (markAsDefault || this.pageList.isEmpty()) {
+            this.defaultPage = page
+        }
+
         this.pageList.add(page)
     }
 
@@ -127,5 +143,9 @@ class HtmlApplication {
         return this.elementList
             .<HtmlElementWithValue>findAll { it instanceof HtmlElementWithValue }
             .<HtmlElementWithValue>find { it.name == name }
+    }
+
+    String getDefaultPath() {
+        return this.defaultPage.path
     }
 }

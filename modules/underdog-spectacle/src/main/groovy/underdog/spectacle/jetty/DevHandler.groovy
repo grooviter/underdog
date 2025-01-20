@@ -11,6 +11,7 @@ import org.eclipse.jetty.websocket.server.ServerUpgradeResponse
 import underdog.spectacle.dsl.Utils
 
 import java.time.Duration
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * This websocket handler is used by clients to know when to reload the page
@@ -30,6 +31,15 @@ class DevHandler extends AbstractAutoDemanding {
      */
     private static String version = Utils.generateRandomName()
 
+    /**
+     * Number of websocket clients connected. Can be used for example to decide whether
+     * to automatically open a new browser or not if you already had the application
+     * opened
+     *
+     * @since 0.1.0
+     */
+    static AtomicInteger clientsConnected = new AtomicInteger(0)
+
     ServerUpgradeRequest request
     ServerUpgradeResponse response
     Callback callback
@@ -38,6 +48,7 @@ class DevHandler extends AbstractAutoDemanding {
 
     @Override
     void onWebSocketOpen(Session session) {
+        clientsConnected.incrementAndGet()
         this.session = session
         this.session.setIdleTimeout(Duration.ofSeconds(30))
         this.session.sendText(createOnPingMessage(version), null)
@@ -51,6 +62,11 @@ class DevHandler extends AbstractAutoDemanding {
             this.session.sendText(createOnPingMessage(version), null)
             log.debug("websocket pong sent")
         }
+    }
+
+    @Override
+    void onWebSocketClose(int statusCode, String reason) {
+        clientsConnected.decrementAndGet()
     }
 
     private static String createOnPingMessage(String version) {
