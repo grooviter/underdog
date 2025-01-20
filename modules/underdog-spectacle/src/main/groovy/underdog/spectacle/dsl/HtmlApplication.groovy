@@ -43,9 +43,17 @@ class HtmlApplication {
     Map<String,String> field = [:].<String, String>withDefault(Utils::generateRandomName)
 
     /**
+     * Whether the current application is in development mode or not
+     *
+     * @since 0.1.0
+     */
+    boolean development
+
+    /**
      * Creates a new {@link HtmlPage}
      *
      * @param path url path where the page will be accessible
+     * @param theme pages html theme ('system' by default)
      * @param name logical name
      * @param closure DSL for the content of that page
      * @since 0.1.0
@@ -53,13 +61,15 @@ class HtmlApplication {
     @NamedVariant
     void page(
         String path,
+        @NamedParam(required = false) String theme = 'system',
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @DelegatesTo(HtmlPage) Closure closure
     ) {
         HtmlPage page = new HtmlPage(
             application: this,
             path: path,
-            name: name
+            name: name,
+            theme: theme
         ).tap { with(closure) }
         this.pageList.add(page)
     }

@@ -12,6 +12,7 @@ import underdog.spectacle.dsl.components.HtmlInputNumber
 import underdog.spectacle.dsl.components.HtmlInputText
 import underdog.spectacle.dsl.components.HtmlMarkdown
 import underdog.spectacle.dsl.components.HtmlNumberCard
+import underdog.spectacle.dsl.components.HtmlRange
 import underdog.spectacle.dsl.components.HtmlRow
 import underdog.spectacle.dsl.components.HtmlTextArea
 
@@ -132,6 +133,26 @@ abstract class HtmlContainer extends HtmlElement {
         )
         .tap { this.children.add(it) }
         .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Renders an HTML range input
+     *
+     * @param name html name of the component
+     * @param label html label of the range component
+     * @param value default value
+     * @return an instance of {@link HtmlRange}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlRange range(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = "",
+        @NamedParam(required = false) Number value = 50
+    ) {
+        return new HtmlRange(value, label)
+            .tap { this.children.add(it) }
+            .tap { this.application.addElement(it) }
     }
 
     /**

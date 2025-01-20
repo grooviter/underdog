@@ -30,4 +30,14 @@ abstract class HtmlElement {
     List<HtmlEvent> listEvents() {
         return this.application.listEventsByComponentName(this.name)
     }
+
+    /**
+     * Used at any level to check whether the application is in dev mode
+     *
+     * @return true if the application is in development mode false otherwise
+     * @since 0.1.0
+     */
+    boolean isDevelopment() {
+        return this.application.isDevelopment()
+    }
 }

@@ -19,4 +19,12 @@ class HtmlPage extends HtmlContainer {
      * @since 0.1.0
      */
     String title
+
+
+    /**
+     * CSS theme: light, dark, or system (default)
+     *
+     * @since 0.1.0
+     */
+    String theme
 }

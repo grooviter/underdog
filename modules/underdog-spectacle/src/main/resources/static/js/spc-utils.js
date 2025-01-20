@@ -1,3 +1,13 @@
+class SPCLogger {
+    constructor(id) {
+        this.id = id
+    }
+
+    debug(message) {
+        console.log(`${new Date().toISOString()} - ${this.id} - DEBUG - ${message}`)
+    }
+}
+
 
 function loadScript(
     src,
