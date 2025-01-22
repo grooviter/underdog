@@ -1,3 +1,3 @@
-button(class: 'btn btn-link', type: 'reset') {
+button(class: element.classNames('btn btn-link'), type: 'reset') {
     yield element.text
 }
