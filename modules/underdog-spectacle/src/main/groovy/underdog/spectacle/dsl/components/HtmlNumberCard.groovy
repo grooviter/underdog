@@ -4,4 +4,5 @@ import underdog.spectacle.dsl.HtmlElementWithValue
 
 class HtmlNumberCard extends HtmlElementWithValue<Number> {
     String title
+    String symbol
 }

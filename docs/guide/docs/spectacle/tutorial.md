@@ -1,8 +1,23 @@
 ## Tutorial
 
-### Prerequisites
+### Introduction
 
-#### Dependencies
+As a proof of concept I want to show how the amount of training data impacts on the scoring of the model against the testing data.
+
+In ML when using a model, first thing we do is to train the model with some training data. That training data should
+be different from the testing data to avoid the model to learn all possible cases and therefore over-fitting the model.
+
+As a naive approach **I'd like to create a simple UI where I can chose how much training data is used to train the model**
+before training the model and get the accuracy score of the model against the remaining test data.
+
+Basically this experiment needs:
+
+- Some **basic information** about the experiment
+- A **number input field** to choose between 25 and 75 the percentage of training data
+- A **card showing the score** of the model against the remaining data
+- **A button** to trigger the experiment
+
+### Dependencies
 
 The module required to follow this tutorial is the `spectacle` module:
 
@@ -24,27 +39,9 @@ The module required to follow this tutorial is the `spectacle` module:
     @Grab('com.github.grooviter:underdog-spectacle:VERSION')
     ```
 
-#### Data
+### Data
 
 I'm using the dataset mentioned in [this Kaggle entry](https://www.kaggle.com/discussions/accomplishments/486978)
-
-### Introduction
-
-This proof of concept wants to show how the amount of training data impacts on the scoring of the model against the
-testing data.
-
-In ML when using a model, first thing we do is to train the model with some training data. That training data should 
-be different from the testing data to avoid the model to learn all possible cases and therefore over-fitting the model. 
-
-As a naive approach **I'd like to create a simple UI where I can chose how much training data is used to train the model** 
-before training the model and get the accuracy score of the model against the remaining test data.
-
-Basically this experiment needs:
-
-- Some **basic information** about the experiment
-- A **number input field** to choose between 25 and 75 the percentage of training data
-- A **card showing the score** of the model against the remaining data 
-- **A button** to trigger the experiment
 
 ### Basic information
 

@@ -507,6 +507,7 @@ abstract class HtmlContainer extends HtmlElement {
      *
      * @param name the name of the component
      * @param title the title describing what the number means
+     * @param symbol for example % or $
      * @param defaultValue the default value when the component is rendered
      * @return an instance of {@link HtmlNumberCard}
      * @since 0.1.0
@@ -515,12 +516,14 @@ abstract class HtmlContainer extends HtmlElement {
     HtmlNumberCard numberCard(
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) String title = "N/A",
+        @NamedParam(required = false) String symbol = "",
         @NamedParam(required = false) String className = "",
         @NamedParam(required = false) Number defaultValue = 0
     ) {
         return new HtmlNumberCard(
             name: name,
             title: title,
+            symbol: symbol,
             className: className,
             value: defaultValue
         )

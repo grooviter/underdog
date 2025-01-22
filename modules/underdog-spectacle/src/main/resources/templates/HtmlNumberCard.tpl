@@ -21,7 +21,11 @@ if (element.hasParentClass("card-body") || element.isParentType('HtmlCardBody'))
             }
             div(class: 'd-flex align-items-baseline'){
                 div(class: 'h1 mb-0 me-2') {
-                    yield element.value
+                    if (element.value != null){
+                        yield("${element.value} ${element.symbol}")
+                    } else {
+                        yield("- ${element.symbol}")
+                    }
                 }
             }
         }

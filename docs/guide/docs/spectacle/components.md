@@ -32,6 +32,10 @@ button(className: "+btn-warning")
 Notice the **+** symbol at the beginning. This means that the classes provided by the className attribute will be
 appended to those already set by default by the component.
 
+### Events
+
+TODO
+
 ### HtmlDiv
 
 ```groovy title="div"
@@ -102,6 +106,12 @@ Represents a Bootstrap card. A card has normally three parts:
 - card body
 - card footer
 
+```groovy title="HtmlCard"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:card"
+```
+
+![](./images/components/HtmlCard.png){ width="40%" }
+
 ### HtmlChart
 
 Renders an Underdog's plot. It receives as input value any `underdog.plots.Options` instance. You can provide the plot as the **defaultValue** or using the closure as a factory.
@@ -136,6 +146,12 @@ Represents a markDown text block. Very useful when documenting certain part of t
 
 Represents a Bootstrap card showing just a number
 
+```groovy title="HtmlNumberCard"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:numberCard"
+```
+
+![](./images/components/HtmlNumberCard.png){ width="25%" }
+
 ### HtmlOptionGroup
 
 Represents an HTML option group input field
@@ -149,6 +165,8 @@ Represents an HTML slider input field
 ```groovy title="HtmlRange"
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:range"
 ```
+
+![](./images/components/HtmlRange.png){ width="60%" }
 
 ### HtmlResetLink
 
