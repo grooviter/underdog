@@ -4,6 +4,8 @@ import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import groovy.transform.TupleConstructor
 
+import java.util.function.Function
+
 /**
  * Represents a Spectacle application
  *
@@ -65,11 +67,13 @@ class HtmlApplication {
      * @param path url path where the page will be accessible
      * @param theme pages html theme ('system' by default)
      * @param name logical name
+     * @param markAsDefault
      * @param closure DSL for the content of that page
+     * @return an isntance of {@link HtmlPage}
      * @since 0.1.0
      */
     @NamedVariant
-    void page(
+    HtmlPage page(
         String path,
         @NamedParam(required = false) String theme = 'system',
         @NamedParam(required = false) String title = '',
@@ -83,13 +87,32 @@ class HtmlApplication {
             path: path,
             name: name,
             theme: theme
-        ).tap { with(closure) }
+        )
 
-        if (markAsDefault || this.pageList.isEmpty()) {
+        page.tap { with(closure) }
+
+        if (markAsDefault) {
             this.defaultPage = page
         }
 
         this.pageList.add(page)
+
+        return page
+    }
+
+    HtmlPage getDefaultPage() {
+        return this.@defaultPage ?: this.pageList.find()
+    }
+
+    /**
+     * Creates a new {@link HtmlPage}
+     *
+     * @param page an instance of {@link HtmlPage}
+     * @return an instance of {@link HtmlPage}
+     * @since 0.1.0
+     */
+    HtmlPage page(Function<HtmlApplication,HtmlPage> page) {
+        return page.apply(this).tap { this.pageList.add(it) }
     }
 
     /**

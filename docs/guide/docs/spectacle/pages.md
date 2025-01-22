@@ -26,23 +26,25 @@ application {
 }
 ```
 
+
 ### Externalizing
 
 At some point many pages can be very verbose, and it could become handy to externalize page creation to methods:
 
-```groovy
+```groovy title="Refactor method"
+--8<-- "src/test/groovy/underdog/guide/spectacle/PageSpec.groovy:page_refactor_method"
+```
 
-static HtmlPage createPocPage() {
-    return new HtmlPage(path: '/poc').with {
-        spec {
-            ...
-        }
-    }
-}
+Or even using a class:
 
-application {
-    page(createPocPage())
-}
+```groovy title="Refactor class"
+--8<-- "src/test/groovy/underdog/guide/spectacle/PageSpec.groovy:page_refactor_class"
+```
+
+And them bind the pages to the application
+
+```groovy title="Page binding"
+--8<-- "src/test/groovy/underdog/guide/spectacle/PageSpec.groovy:page_refactor"
 ```
 
 ### Themes
