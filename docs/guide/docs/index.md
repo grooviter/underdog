@@ -123,3 +123,25 @@ The technical analysis module is a wrapper over the [Ta4j](https://ta4j.github.i
     ```
 
 More information in the [Technical Analysis](./ta/index.md) section
+
+### :material-presentation:{ .lg .middle } underdog-spectacle
+
+Underdog's Spectacle module can be used to prototype ideas around data analysis or ML creating appealing demos with 
+a few lines of code.
+
+=== "Gradle"
+    ```groovy
+    implementation "com.github.grooviter:underdog-spectacle:VERSION"
+    ```
+=== "Maven"
+    ```xml
+    <dependency>
+        <groupId>com.github.grooviter</groupId>
+        <artifactId>underdog-spectacle</artifactId>
+        <version>VERSION</version>
+    </dependency>
+    ```
+=== "Grapes"
+    ```groovy
+    @Grab("com.github.grooviter:underdog-spectacle:VERSION")
+    ```

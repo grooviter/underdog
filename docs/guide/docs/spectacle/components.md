@@ -12,9 +12,25 @@ In general all components inherit from **HtmlElement** therefore have the follow
 - **className**: HTML class attribute. Can be used to customize the appearance of the element
 - **parent**: give access to the immediate parent container
 
-### Bootstrap
+### Bootstrap and CSS
 
-All components and containers are based on [Bootstrap](https://getbootstrap.com) and more specifically in the  [Tabler](https://github.com/tabler/tabler) project. Checkout an eye on these project's guidelines whenever you'd like to customize existent or new custom components.
+All components and containers are based on [Bootstrap](https://getbootstrap.com) and more specifically in the  [Tabler](https://github.com/tabler/tabler) project. Check out these project's guidelines whenever you'd like to customize existent or new custom components.
+
+All components have the property **className** which can be used to customize how the component is shown. The
+**className** property also follows special rules, for example:
+
+```groovy title="replace"
+button(className: "btn btn-warning")
+```
+
+This will replace any styles applied previously to the button component. However this:
+
+```groovy title="append"
+button(className: "+btn-warning")
+```
+
+Notice the **+** symbol at the beginning. This means that the classes provided by the className attribute will be
+appended to those already set by default by the component.
 
 ### HtmlDiv
 
@@ -52,17 +68,29 @@ form {
 
 Represents a HTML button
 
-![](./images/components/HtmlButton.png){ width="15%" }
+```groovy title="HtmlButton"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:button"
+```
+
+![](./images/components/HtmlButton.png){ width="10%" }
 
 ### HtmlInputText
 
 Represents a HTML input of type text
+
+```groovy title="HtmlInputText"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:text"
+```
 
 ![](./images/components/HtmlInputText.png){ width="80%" }
 
 ### HtmlInputNumber
 
 Represents a HTML input of type number
+
+```groovy title="HtmlInputNumber"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:number"
+```
 
 ![](./images/components/HtmlInputNumber.png){ width="80%" }
 
@@ -76,7 +104,11 @@ Represents a Bootstrap card. A card has normally three parts:
 
 ### HtmlChart
 
-Renders an Underdog's plot. It receives as input value any `underdog.plots.Options` instance.
+Renders an Underdog's plot. It receives as input value any `underdog.plots.Options` instance. You can provide the plot as the **defaultValue** or using the closure as a factory.
+
+```groovy title="HtmlChart"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:chart"
+```
 
 ![](./images/components/HtmlChart.png){ width="50%" }
 
@@ -84,11 +116,21 @@ Renders an Underdog's plot. It receives as input value any `underdog.plots.Optio
 
 Represents an Underdog's dataframe
 
+```groovy title="HtmlDataFrame"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:dataframe"
+```
+
 ![](./images/components/HtmlDataFrame.png){ width="80%" }
 
 ### HtmlMarkdown
 
-Represents a markDown text
+Represents a markDown text block. Very useful when documenting certain part of the demos.
+
+```groovy title="HtmlMarkdown"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:markdown"
+```
+
+![](./images/components/HtmlMarkdown.png){ width="60%" }
 
 ### HtmlNumberCard
 
@@ -104,16 +146,36 @@ Represents an HTML option group input field
 
 Represents an HTML slider input field
 
+```groovy title="HtmlRange"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:range"
+```
+
 ### HtmlResetLink
 
 Inside a form, represents a reset button, with the appearance of a link
 
+```groovy title="HtmlResetLink"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:resetLink"
+```
+
+![](./images/components/HtmlResetLink.png){ width="10%" }
+
 ### HtmlSelect
 
-Represents an HTML select input field
+Represents an HTML select input field. It can contain as many **option(Object, Object)** options as you like.
+
+```groovy title="HtmlSelect"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:select"
+```
 
 ![](./images/components/HtmlSelect.png){ width="80%" }
 
 ### HtmlTextArea
 
 Represents an HTML text area field
+
+```groovy title="HtmlTextArea"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:textArea"
+```
+
+![](./images/components/HtmlTextArea.png){ width="50%" }
