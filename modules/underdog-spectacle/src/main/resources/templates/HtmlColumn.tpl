@@ -1,3 +1,3 @@
-div(class: 'col') {
+div(class: element.classNames('col')) {
     yieldUnescaped childrenContent
 }

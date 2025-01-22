@@ -2,7 +2,7 @@ def event = element.onClick
 
 if (event) {
     button(
-        'class': 'btn btn-outline-primary',
+        'class': element.classNames('btn btn-outline-primary'),
         'name': element.name,
         'hx-post': event.path,
         'hx-trigger': "click",
@@ -13,8 +13,8 @@ if (event) {
     }
 } else {
     button(
-        class: 'btn btn-outline-primary',
-        name: element.name
+        'class': element.classNames('btn btn-outline-primary mt-1'),
+        'name': element.name
     ) {
         yield element.text
     }

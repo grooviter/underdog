@@ -10,6 +10,7 @@ nav:
   - ML: ml/index.md
   - Plots: plots/index.md
   - Technical Analysis: ta/index.md
+  - Spectacle: spectacle/index.md
   - Development: development/index.md
   - Blog:
     - blog/index.md

@@ -1,6 +1,7 @@
 plugins {
     id('groovy')
     id('org.ajoberstar.git-publish')
+    id("application")
 }
 
 repositories {
@@ -8,11 +9,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation project(":underdog-dataframe")
-    testImplementation project(":underdog-graphs")
-    testImplementation project(":underdog-ml")
-    testImplementation project(":underdog-plots")
-    testImplementation project(":underdog-ta")
+    implementation "org.apache.groovy:groovy:$groovy"
+    implementation project(":underdog-dataframe")
+    implementation project(":underdog-graphs")
+    implementation project(":underdog-ml")
+    implementation project(":underdog-plots")
+    implementation project(":underdog-ta")
+    implementation project(":underdog-spectacle")
+    implementation 'ch.qos.logback:logback-classic:1.5.16'
     testImplementation "org.spockframework:spock-core:$spock"
 }
 
@@ -38,4 +42,8 @@ gitPublishPush {
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass = 'underdog.spectacle.SpectacleApplication'
 }

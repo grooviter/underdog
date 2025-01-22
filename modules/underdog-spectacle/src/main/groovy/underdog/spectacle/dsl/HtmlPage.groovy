@@ -6,6 +6,7 @@ package underdog.spectacle.dsl
  * @since 0.1.0
  */
 class HtmlPage extends HtmlContainer {
+
     /**
      * The URL path where the page will be accessible
      *

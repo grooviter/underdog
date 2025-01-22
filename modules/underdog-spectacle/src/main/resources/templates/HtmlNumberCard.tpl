@@ -1,8 +1,29 @@
-div(id: element.name, class: 'card') {
-    div(class: 'card-body') {
-        h5(class: 'card-title') { yield element.title }
-        p(class: 'card-text') {
-            yield element.value
+if (element.hasParentClass("card-body") || element.isParentType('HtmlCardBody')) {
+    div(id: element.name, class: element.class) {
+        div(class: 'd-flex align-items-center') {
+            div(class: 'subheader') {
+                yield element.title
+            }
+        }
+        div(class: 'd-flex align-items-baseline') {
+            div(class: 'h1 mb-0 me-2') {
+                yield element.value
+            }
+        }
+    }
+} else {
+    div(id: element.name, class: element.classNames('card')) {
+        div(class: 'card-body') {
+            div(class: 'd-flex align-items-center'){
+                div(class: 'subheader'){
+                    yield element.title
+                }
+            }
+            div(class: 'd-flex align-items-baseline'){
+                div(class: 'h1 mb-0 me-2') {
+                    yield element.value
+                }
+            }
         }
     }
 }

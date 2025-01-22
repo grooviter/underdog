@@ -10,6 +10,6 @@ class HtmlChart extends HtmlElementWithValue {
         if (this.value) {
             return this.supplier.call(this.value).toJson()
         }
-        return ""
+        return this.supplier.call().toJson()
     }
 }

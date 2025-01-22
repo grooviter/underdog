@@ -72,12 +72,14 @@ class HtmlApplication {
     void page(
         String path,
         @NamedParam(required = false) String theme = 'system',
+        @NamedParam(required = false) String title = '',
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) Boolean markAsDefault = false,
         @DelegatesTo(HtmlPage) Closure closure
     ) {
         HtmlPage page = new HtmlPage(
             application: this,
+            title: title,
             path: path,
             name: name,
             theme: theme
