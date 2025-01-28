@@ -12,4 +12,6 @@ class HtmlElementWithValue<T> extends HtmlElement {
      * @since 0.1.0
      */
     T value
+
+    Boolean required
 }

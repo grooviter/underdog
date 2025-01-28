@@ -16,7 +16,8 @@ nav:
     - blog/index.md
 
 theme:
-  name: material  
+  name: material
+
   palette: 
     # Palette toggle for light mode
     - scheme: default

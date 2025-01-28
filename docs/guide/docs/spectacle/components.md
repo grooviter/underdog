@@ -76,6 +76,8 @@ Represents a HTML button
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:button"
 ```
 
+Image
+
 ![](./images/components/HtmlButton.png){ width="10%" }
 
 ### HtmlInputText
@@ -86,6 +88,8 @@ Represents a HTML input of type text
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:text"
 ```
 
+Image
+
 ![](./images/components/HtmlInputText.png){ width="80%" }
 
 ### HtmlInputNumber
@@ -95,6 +99,8 @@ Represents a HTML input of type number
 ```groovy title="HtmlInputNumber"
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:number"
 ```
+
+Image
 
 ![](./images/components/HtmlInputNumber.png){ width="80%" }
 
@@ -110,6 +116,8 @@ Represents a Bootstrap card. A card has normally three parts:
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:card"
 ```
 
+Image
+
 ![](./images/components/HtmlCard.png){ width="40%" }
 
 ### HtmlChart
@@ -119,6 +127,8 @@ Renders an Underdog's plot. It receives as input value any `underdog.plots.Optio
 ```groovy title="HtmlChart"
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:chart"
 ```
+
+Image
 
 ![](./images/components/HtmlChart.png){ width="50%" }
 
@@ -130,6 +140,8 @@ Represents an Underdog's dataframe
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:dataframe"
 ```
 
+Image
+
 ![](./images/components/HtmlDataFrame.png){ width="80%" }
 
 ### HtmlMarkdown
@@ -139,6 +151,8 @@ Represents a markDown text block. Very useful when documenting certain part of t
 ```groovy title="HtmlMarkdown"
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:markdown"
 ```
+
+Image
 
 ![](./images/components/HtmlMarkdown.png){ width="60%" }
 
@@ -150,13 +164,33 @@ Represents a Bootstrap card showing just a number
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:numberCard"
 ```
 
+Image
+
 ![](./images/components/HtmlNumberCard.png){ width="25%" }
 
 ### HtmlOptionGroup
 
 Represents an HTML option group input field
 
+```groovy title="HtmlOptionGroup"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:optionGroup"
+```
+
+Image
+
 ![](./images/components/HtmlOptionGroup.png){ width="40%" }
+
+### HtmlCheckboxGroup
+
+Represents an HTML checkbox group input field
+
+```groovy title="HtmlCheckboxGroup"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:checkboxGroup"
+```
+
+Image
+
+![](./images/components/HtmlCheckboxGroup.png){ width="30%" }
 
 ### HtmlRange
 
@@ -165,6 +199,8 @@ Represents an HTML slider input field
 ```groovy title="HtmlRange"
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:range"
 ```
+
+Image
 
 ![](./images/components/HtmlRange.png){ width="60%" }
 
@@ -176,6 +212,8 @@ Inside a form, represents a reset button, with the appearance of a link
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:resetLink"
 ```
 
+Image
+
 ![](./images/components/HtmlResetLink.png){ width="10%" }
 
 ### HtmlSelect
@@ -185,6 +223,8 @@ Represents an HTML select input field. It can contain as many **option(Object, O
 ```groovy title="HtmlSelect"
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:select"
 ```
+
+Image
 
 ![](./images/components/HtmlSelect.png){ width="80%" }
 
@@ -196,4 +236,55 @@ Represents an HTML text area field
 --8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:textArea"
 ```
 
+Image
+
 ![](./images/components/HtmlTextArea.png){ width="50%" }
+
+### HtmlDatePicker
+
+Renders a date input field
+
+
+```groovy title="HtmlDatePicker"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:datePicker"
+```
+
+Image
+
+![](./images/components/HtmlDatePicker.png){ width="25%" }
+
+### HtmlTimePicker
+
+Renders a time input field
+
+```groovy title="HtmlTimePicker"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:timePicker"
+```
+
+Image
+
+![](./images/components/HtmlTimePicker.png){ width="25%" }
+
+### HtmlSwitchGroup
+
+Renders a checkbox group with the appearance of switches:
+
+```groovy title="HtmlSwitchGroup"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:checkboxSwitchesGroup"
+```
+
+Image
+
+![](./images/components/HtmlSwitchGroup.png){ width="30%" }
+
+### HtmlAccordion
+
+Renders an accordion component. Useful for grouping components:
+
+```groovy title="HtmlAccordion"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:accordion"
+```
+
+Image
+
+![](./images/components/HtmlAccordion.png){ width="30%" }

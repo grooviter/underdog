@@ -4,6 +4,11 @@ div(class: 'mb-3') {
             yield element.label
         }
     }
+    if (element.info) {
+        small(class: 'form-hint') {
+            yield element.info
+        }
+    }
     textArea(
         id: element.name,
         name: element.name,

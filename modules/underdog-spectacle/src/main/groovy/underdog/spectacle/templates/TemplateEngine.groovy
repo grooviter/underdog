@@ -54,7 +54,7 @@ class TemplateEngine {
         Parser parser = Parser.builder().build()
         Node document = parser.parse(markdown.value.stripMargin().stripIndent())
         HtmlRenderer renderer = HtmlRenderer.builder().build()
-        return renderer.render(document)
+        return executeTemplate(markdown.class.simpleName, [element: markdown, markdown: renderer.render(document)])
     }
 
     /**

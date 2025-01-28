@@ -62,15 +62,21 @@ application {
 or 
 
 ```groovy
-static HtmlPage createPocPageDark() {
-    return new HtmlPage(path: '/poc', theme: 'dark').with {
-        spec {
-            // ...
+class Pages {
+    static HtmlPage createPocPageDark(HtmlApplication app) {
+        return new HtmlPage(
+            path: '/poc', 
+            theme: 'dark', 
+            application: app
+        ).with {
+            spec {
+                // ...
+            }
         }
     }
 }
 
 application {
-    page(createPocPageDark())
+    page(Pages::createPocPageDark)
 }
 ```

@@ -1,0 +1,29 @@
+datalist {
+    display: flex;
+    font-size: 0.8em;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+datalist > option:first-child {
+    margin: 0;
+}
+
+datalist > option {
+    margin-left: 1em;
+    padding-left: 1em;
+}
+
+input.htmx-request {
+    color: var(--tblr-muted) !important;
+    pointer-events: none;
+    user-select: none;
+}
+
+button.htmx-request{
+    color: var(--tblr-btn-disabled-color);
+    pointer-events: none;
+    background-color: var(--tblr-btn-disabled-bg);
+    border-color: var(--tblr-btn-disabled-border-color);
+    opacity: var(--tblr-btn-disabled-opacity);
+}

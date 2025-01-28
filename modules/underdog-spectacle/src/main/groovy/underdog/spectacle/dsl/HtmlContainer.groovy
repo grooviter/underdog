@@ -4,11 +4,14 @@ import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import underdog.DataFrame
 import underdog.plots.Options
+import underdog.spectacle.dsl.components.HtmlAccordion
 import underdog.spectacle.dsl.components.HtmlCard
 import underdog.spectacle.dsl.components.HtmlChart
 import underdog.spectacle.dsl.components.HtmlButton
+import underdog.spectacle.dsl.components.HtmlCheckboxGroup
 import underdog.spectacle.dsl.components.HtmlColumn
 import underdog.spectacle.dsl.components.HtmlDataFrame
+import underdog.spectacle.dsl.components.HtmlDatePicker
 import underdog.spectacle.dsl.components.HtmlDiv
 import underdog.spectacle.dsl.components.HtmlForm
 import underdog.spectacle.dsl.components.HtmlInputNumber
@@ -21,7 +24,13 @@ import underdog.spectacle.dsl.components.HtmlResetLink
 import underdog.spectacle.dsl.components.HtmlRow
 import underdog.spectacle.dsl.components.HtmlSelect
 import underdog.spectacle.dsl.components.HtmlSpec
+import underdog.spectacle.dsl.components.HtmlSwitchGroup
+
 import underdog.spectacle.dsl.components.HtmlTextArea
+import underdog.spectacle.dsl.components.HtmlTimePicker
+
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 /**
  * Represents any container containing {@link HtmlElement} children or more {@link HtmlContainer} instances
@@ -126,12 +135,33 @@ abstract class HtmlContainer extends HtmlElement {
     @NamedVariant
     HtmlColumn col(
         @NamedParam(required = false) String className = "",
-        @DelegatesTo(HtmlContainer
-    ) Closure closure
+        @DelegatesTo(HtmlContainer) Closure closure
     ) {
         return new HtmlColumn(
             application: this.application,
             className: className,
+            parent: this
+        )
+        .tap { with(closure) }
+        .tap { this.addChild(it) }
+    }
+
+    /**
+     * Renders an accordion html element. Useful for grouping nested elements
+     *
+     * @param name name of the html component
+     * @param closure nested elements
+     * @return an instance of {@link HtmlAccordion}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlAccordion accordion(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @DelegatesTo(HtmlAccordion) Closure closure
+    ) {
+        return new HtmlAccordion(
+            application: this.application,
+            name: name,
             parent: this
         )
         .tap { with(closure) }
@@ -162,14 +192,25 @@ abstract class HtmlContainer extends HtmlElement {
     /**
      * Adds a new html form container
      *
+     * @param indicatorSelector CSS selector to use for busy type elements when executing a request
      * @param closure DSL of the content of this container
      * @return an instance of {@link HtmlForm}
      * @since 0.1.0
      */
-    HtmlForm form(@DelegatesTo(HtmlForm) Closure closure) {
-        return new HtmlForm(application: this.application, parent: this)
-            .tap { with(closure) }
-            .tap { this.addChild(it) }
+    @NamedVariant
+    HtmlForm form(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String indicatorSelector = "",
+        @DelegatesTo(HtmlForm) Closure closure
+    ) {
+        return new HtmlForm(
+            name: name,
+            application: this.application,
+            indicatorSelector: indicatorSelector,
+            parent: this
+        )
+        .tap { with(closure) }
+        .tap { this.addChild(it) }
     }
 
     /**
@@ -178,6 +219,7 @@ abstract class HtmlContainer extends HtmlElement {
      * @param text text of the button
      * @param name name of the element
      * @param className the css class names
+     * @param iconName creates a nested <i> element
      * @param editable whether the element is editable or not
      * @param closure DSL of the content of this container
      * @return an instance of {@link HtmlButton}
@@ -188,6 +230,7 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam String text,
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) String iconName = "",
         @NamedParam(required = false) boolean editable = true,
         @DelegatesTo(HtmlButton) Closure closure
     ){
@@ -195,6 +238,7 @@ abstract class HtmlContainer extends HtmlElement {
             application: this.application,
             name: name,
             className: className,
+            icon: iconName,
             text: text,
             editable: editable
         )
@@ -209,6 +253,7 @@ abstract class HtmlContainer extends HtmlElement {
      * @param text text of the button
      * @param name name of the element
      * @param className the css class names
+     * @param iconName
      * @param editable whether the element is editable or not
      * @return an instance of {@link HtmlButton}
      * @since 0.1.0
@@ -218,12 +263,14 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam String text,
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) String iconName = "",
         @NamedParam(required = false) boolean editable = true
     ){
         return new HtmlButton(
             application: this.application,
             name: name,
             className: className,
+            icon: iconName,
             text: text,
             editable: editable
         )
@@ -295,6 +342,9 @@ abstract class HtmlContainer extends HtmlElement {
      * @param label html label of the range component
      * @param className class html attribute
      * @param info info about what the element content is about
+     * @param min
+     * @param max
+     * @param step
      * @param value default value
      * @return an instance of {@link HtmlRange}
      * @since 0.1.0
@@ -305,14 +355,26 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String label = name,
         @NamedParam(required = false) String className = "",
         @NamedParam(required = false) String info = "",
-        @NamedParam(required = false) Number value = 50
+        @NamedParam(required = false) Number min = 0,
+        @NamedParam(required = false) Number max = 100,
+        @NamedParam(required = false) Number step = 25,
+        @NamedParam(required = false) Number value = 50,
+        @NamedParam(required = false) String symbol = "",
+        @NamedParam(required = false) Boolean showUpdatedValue = false,
+        @NamedParam(required = false) Boolean showMarkers = false
     ) {
         return new HtmlRange(
             value: value,
             name: name,
             className: className,
             label: label,
-            info: info
+            info: info,
+            min: min,
+            max: max,
+            step: step,
+            symbol: symbol,
+            showUpdatedValue: showUpdatedValue,
+            showMarkers: showMarkers
         )
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
@@ -334,6 +396,10 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String label = name,
         @NamedParam(required = false) String info = "",
         @NamedParam(required = false) String placeHolder = "",
+        @NamedParam(required = false) String icon="",
+        @NamedParam(required = false) String prefix = "",
+        @NamedParam(required = false) String suffix = "",
+        @NamedParam(required = false) Boolean required = false,
         @NamedParam(required = false) boolean editable = true
     ) {
         return new HtmlInputText(
@@ -341,6 +407,10 @@ abstract class HtmlContainer extends HtmlElement {
             name: name,
             info: info,
             label: label,
+            icon: icon,
+            suffix: suffix,
+            prefix: prefix,
+            required: required,
             editable: editable,
             placeHolder: placeHolder
         )
@@ -384,6 +454,7 @@ abstract class HtmlContainer extends HtmlElement {
      * @param name name of the html element
      * @param className html class attribute
      * @param label label of the input field
+     * @param info some description about the element
      * @param closure nested option elements
      * @return an instance of {@link HtmlOptionGroup}
      * @since 0.1.0
@@ -397,6 +468,66 @@ abstract class HtmlContainer extends HtmlElement {
         @DelegatesTo(HtmlOptionGroup) Closure closure
     ) {
         return new HtmlOptionGroup(
+            name: name,
+            info: info,
+            className: className,
+            label: label
+        )
+        .tap { with(closure) }
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Adds an html checkbox group element
+     *
+     * @param name name of the html element
+     * @param className html class attribute
+     * @param info some description about the element
+     * @param label label of the input field
+     * @param closure nested option elements
+     * @return an instance of {@link HtmlCheckboxGroup}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlCheckboxGroup checkboxGroup(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) String info = "",
+        @NamedParam(required = false) String label = name,
+        @DelegatesTo(HtmlCheckboxGroup) Closure closure
+    ) {
+        return new HtmlCheckboxGroup(
+            name: name,
+            info: info,
+            className: className,
+            label: label
+        )
+        .tap { with(closure) }
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Adds an html checkbox group element with the appearance of a switch panel
+     *
+     * @param name name of the html element
+     * @param className html class attribute
+     * @param info some description about the element
+     * @param label label of the input field
+     * @param closure nested option elements
+     * @return an instance of {@link HtmlSwitchGroup}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlSwitchGroup switchGroup(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) String info = "",
+        @NamedParam(required = false) String label = "",
+        @DelegatesTo(HtmlCheckboxGroup) Closure closure
+    ) {
+        return new HtmlSwitchGroup(
             name: name,
             info: info,
             className: className,
@@ -422,6 +553,7 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) String label = name,
         @NamedParam(required = false) String value = "",
+        @NamedParam(required = false) String info = "",
         @NamedParam(required = false) Integer rows = 5,
         @NamedParam(required = false) boolean editable = true
     ) {
@@ -429,6 +561,7 @@ abstract class HtmlContainer extends HtmlElement {
             application: this.application,
             name: name,
             value: value,
+            info: info,
             rows: rows,
             label: label,
             editable: editable
@@ -538,9 +671,73 @@ abstract class HtmlContainer extends HtmlElement {
      * @return an instance of {@link HtmlMarkdown}
      * @since 0.1.0
      */
-    HtmlMarkdown markdown(String markdown) {
-        return new HtmlMarkdown(value: markdown)
+    @NamedVariant
+    HtmlMarkdown markdown(
+        @NamedParam(required = false) String markdown = "",
+        @NamedParam(required = false) String name = Utils.generateRandomName()
+    ) {
+        return new HtmlMarkdown(name: name, value: markdown)
             .tap { this.addChild(it) }
             .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Renders a date input field
+     *
+     * @param name name of the html element
+     * @param label label of the element
+     * @param info information about the element
+     * @param from lower bound
+     * @param to upper bound
+     * @return an instance of {@link HtmlDatePicker}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlDatePicker datePicker(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = "",
+        @NamedParam(required = false) String info = "" ,
+        @NamedParam(required = false) LocalDate from = LocalDate.now(),
+        @NamedParam(required = false) LocalDate to = LocalDate.now().plusDays(1)
+    ) {
+        return new HtmlDatePicker(
+            name: name,
+            label: label,
+            info: info,
+            from: from,
+            to: to
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Renders a time input field
+     *
+     * @param name name of the html element
+     * @param label label of the element
+     * @param info information about the element
+     * @param from lower bound
+     * @param to upper bound
+     * @return an instance of {@link HtmlTimePicker}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlTimePicker timePicker(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = "",
+        @NamedParam(required = false) String info = "" ,
+        @NamedParam(required = false) LocalDateTime from = LocalDateTime.now(),
+        @NamedParam(required = false) LocalDateTime to = LocalDateTime.now().plusDays(1)
+    ) {
+        return new HtmlTimePicker(
+            name: name,
+            label: label,
+            info: info,
+            from: from,
+            to: to
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
     }
 }

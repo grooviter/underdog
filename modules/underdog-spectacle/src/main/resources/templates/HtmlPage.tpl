@@ -3,13 +3,8 @@ html {
         title(element.title ?: 'Spectacle')
         link(href: 'static/css/tabler.css', rel: 'stylesheet')
         link(href: 'static/css/spectacle.css', rel: 'stylesheet')
+        link(href: 'static/icons/font/bootstrap-icons.css', rel: 'stylesheet')
         script(src: 'static/js/spc-utils.js'){}
-        script(src: 'static/js/htmx.min.js'){}
-
-        if (element.isDevelopment()) {
-            script(src: 'static/js/spc-dev.js'){}
-        }
-
     }
     body(class: "theme-${element.theme}") {
         div(class: 'page') {
@@ -36,6 +31,11 @@ html {
                     }
                 }
             }
+        }
+        script(src: 'static/js/bootstrap.js'){}
+        script(src: 'static/js/htmx.min.js'){}
+        if (element.isDevelopment()) {
+            script(src: 'static/js/spc-dev.js'){}
         }
     }
 }

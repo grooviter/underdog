@@ -6,6 +6,7 @@ import underdog.spectacle.dsl.HtmlEvent
 
 class HtmlButton extends HtmlElement implements HasOnClick {
     String text
+    String icon
 
     HtmlEvent getOnClick() {
         return this.listEvents().find {it.name == 'click' }

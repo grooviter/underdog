@@ -3,6 +3,7 @@ package underdog.spectacle.dsl.components
 import underdog.spectacle.dsl.HtmlContainer
 import underdog.spectacle.dsl.HtmlElement
 import underdog.spectacle.dsl.HtmlPage
+import underdog.spectacle.dsl.Utils
 
 /**
  * Custom container which builds a specific layout. This layout tries to reduce to the minimum the verbosity
@@ -65,20 +66,31 @@ class HtmlSpec extends HtmlContainer {
     }
 
     HtmlSpec initLayout() {
+        def formName = Utils.generateRandomName()
         return this.tap {
-            form {
                 row {
                     col {
-                        card {
-                            cardBody{
-                                inputList.each(delegate::addChild)
-                            }
-                            cardFooter {
-                                div(className: 'd-flex') {
-                                    resetLink(text: 'Reset')
-                                    button(text: 'Run', className: 'btn btn-outline-primary ms-auto')
+                        form(name: formName, indicatorSelector: "#${formName} input, #${formName} button") {
+                            card {
+                                cardBody {
+                                    inputList.each(delegate::addChild)
+                                }
+                                cardFooter {
+                                    div(className: 'd-flex') {
+                                        resetLink(text: 'Reset')
+                                        button(
+                                            text: 'Run',
+                                            iconName: 'bi bi-easel',
+                                            className: 'btn btn-outline-primary ms-auto'
+                                        )
+                                    }
                                 }
                             }
+                            onSubmit(
+                                inputList.collect { it.name },
+                                outputList.collect { it.name },
+                                onSubmitClosure
+                            )
                         }
                     }
                     col {
@@ -105,12 +117,6 @@ class HtmlSpec extends HtmlContainer {
                 } else {
                     row {}
                 }
-                onSubmit(
-                        inputList.collect { it.name },
-                        outputList.collect { it.name },
-                        onSubmitClosure
-                )
-            }
         }
     }
 }

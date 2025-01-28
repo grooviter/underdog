@@ -4,6 +4,7 @@ import underdog.spectacle.dsl.HtmlContainer
 import underdog.spectacle.dsl.HtmlEvent
 
 class HtmlForm extends HtmlContainer {
+    String indicatorSelector = ""
 
     void onSubmit(List<String> inputs, List<String> outputs, Closure function) {
         def event = HtmlEvent.builder()
