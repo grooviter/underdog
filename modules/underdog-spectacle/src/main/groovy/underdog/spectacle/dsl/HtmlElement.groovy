@@ -7,6 +7,7 @@ package underdog.spectacle.dsl
  */
 abstract class HtmlElement {
     HtmlContainer parent
+    HtmlPage page
     HtmlApplication application
     String name = Utils.generateRandomName()
     String className
@@ -21,7 +22,7 @@ abstract class HtmlElement {
      * @since 0.1.0
      */
     void addEvent(HtmlEvent event) {
-        this.application.addEvent(event)
+        this.page.addEvent(event)
     }
 
     /**
@@ -31,7 +32,7 @@ abstract class HtmlElement {
      * @since 0.1.0
      */
     List<HtmlEvent> listEvents() {
-        return this.application.listEventsByComponentName(this.name)
+        return this.page.listEventsByComponentName(this.name)
     }
 
     /**

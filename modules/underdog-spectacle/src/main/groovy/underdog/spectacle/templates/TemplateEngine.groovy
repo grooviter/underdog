@@ -38,10 +38,8 @@ class TemplateEngine {
     }
 
     private static HtmlDiv getChildrenWhenStreaming(HtmlPage htmlPage) {
-        // TODO: this is wrong eventList should be by page not application
         HtmlDiv root = new HtmlDiv()
         HtmlDiv body = htmlPage
-                .application
                 .eventList
                 .findAll { it.isStreaming() }
                 .inject(root){ agg, val ->

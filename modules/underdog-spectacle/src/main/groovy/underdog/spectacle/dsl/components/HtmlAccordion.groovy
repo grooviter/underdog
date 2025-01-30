@@ -29,6 +29,6 @@ class HtmlAccordion extends HtmlContainer {
             icon: icon
         )
         .tap { with(closure) }
-        .tap { this.children.add(it) }
+        .tap { this.addChild(it) }
     }
 }

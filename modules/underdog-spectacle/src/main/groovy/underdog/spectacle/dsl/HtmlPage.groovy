@@ -24,13 +24,37 @@ class HtmlPage extends HtmlContainer {
      */
     String title
 
-
     /**
      * CSS theme: light, dark, or system (default)
      *
      * @since 0.1.0
      */
     String theme
+
+    /**
+     * @since 0.1.0
+     */
+    List<HtmlEvent> eventList = []
+
+    /**
+     * @param event
+     * @since 0.1.0
+     */
+    void addEvent(HtmlEvent event){
+        this.eventList.add(event)
+        this.application.addEvent(event)
+    }
+
+    /**
+     * List all {@link HtmlEvent} attached by a given element
+     *
+     * @param name the name of the {@link HtmlElement}
+     * @return a list of {@link HtmlEvent} attached to a given element
+     * @since 0.1.0
+     */
+    List<HtmlEvent> listEventsByComponentName(String name) {
+        return this.eventList.findAll { it.htmlFieldName == name }
+    }
 
     /**
      * Creates a basic

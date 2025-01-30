@@ -136,28 +136,6 @@ class HtmlApplication {
     }
 
     /**
-     * List all {@link HtmlEvent} attached by a given element
-     *
-     * @param name the name of the {@link HtmlElement}
-     * @return a list of {@link HtmlEvent} attached to a given element
-     * @since 0.1.0
-     */
-    List<HtmlEvent> listEventsByComponentName(String name) {
-        return this.eventList.findAll { it.htmlFieldName == name }
-    }
-
-    /**
-     * Finds the first {@link HtmlElement} identified by a specific name
-     *
-     * @param name the name of the {@link HtmlElement}
-     * @return the instance of {@link HtmlElement} or null if no element has been found
-     * @since 0.1.0
-     */
-    HtmlElement findHtmlElementByName(String name) {
-        return this.elementList.find { it.name == name }
-    }
-
-    /**
      * Finds the first {@link HtmlElementWithValue} identified by a specific name
      *
      * @param name the name of the element

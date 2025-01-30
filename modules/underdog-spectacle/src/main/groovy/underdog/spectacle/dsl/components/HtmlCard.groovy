@@ -15,24 +15,24 @@ class HtmlCard extends HtmlContainer {
             parent: this,
             title: title,
             description: description
-        ).tap { this.children.add(it) }
+        ).tap { this.addChild(it) }
     }
 
     HtmlCardHeader cardHeader(@DelegatesTo(HtmlCardHeader) Closure closure) {
         return new HtmlCardHeader(application: this.application, parent: this)
+            .tap { this.addChild(it) }
             .tap { with(closure) }
-            .tap { this.children.add(it) }
     }
 
     HtmlCardBody cardBody(@DelegatesTo(HtmlContainer) Closure closure) {
         return new HtmlCardBody(application: this.application, parent: this)
+            .tap { this.addChild(it) }
             .tap { with(closure) }
-            .tap { this.children.add(it) }
     }
 
     HtmlCardFooter cardFooter(@DelegatesTo(HtmlContainer) Closure closure) {
         return new HtmlCardFooter(application: this.application, parent: this)
+            .tap { this.addChild(it) }
             .tap { with(closure) }
-            .tap { this.children.add(it) }
     }
 }

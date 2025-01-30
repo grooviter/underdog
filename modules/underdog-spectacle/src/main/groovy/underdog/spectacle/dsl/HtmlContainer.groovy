@@ -50,7 +50,14 @@ abstract class HtmlContainer extends HtmlElement {
      */
     void addChild(HtmlElement child) {
         this.children.add(child)
+
+        child.page = this.page
         child.parent = this
+        child.application = this.application
+
+        if (this instanceof HtmlPage) {
+            child.page = this as HtmlPage
+        }
     }
 
     /**
@@ -75,10 +82,10 @@ abstract class HtmlContainer extends HtmlElement {
      * @since 0.1.0
      */
     HtmlSpec spec(@DelegatesTo(HtmlSpec) Closure closure) {
-        return new HtmlSpec(application: this.application, parent: this)
+        return new HtmlSpec()
+            .tap {this.addChild(it) }
             .tap { with(closure) }
             .tap { it.initLayout() }
-            .tap {this.addChild(it) }
     }
 
     /**
@@ -94,13 +101,9 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String className = "",
         @DelegatesTo(HtmlContainer) Closure closure
     ) {
-        return new HtmlRow(
-            application: this.application,
-            className: className,
-            parent: this
-        )
-        .tap { with(closure) }
-        .tap {this.addChild(it) }
+        return new HtmlRow(className: className)
+            .tap {this.addChild(it) }
+            .tap { with(closure) }
     }
 
     /**
@@ -116,13 +119,9 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String className = "",
         @DelegatesTo(HtmlContainer) Closure closure
     ) {
-        return new HtmlDiv(
-            application: this.application,
-            parent: this,
-            className: className
-        )
-        .tap { with(closure) }
-        .tap {this.addChild(it) }
+        return new HtmlDiv(className: className)
+            .tap {this.addChild(it) }
+            .tap { with(closure) }
     }
 
     /**
@@ -138,13 +137,9 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String className = "",
         @DelegatesTo(HtmlContainer) Closure closure
     ) {
-        return new HtmlColumn(
-            application: this.application,
-            className: className,
-            parent: this
-        )
-        .tap { with(closure) }
-        .tap { this.addChild(it) }
+        return new HtmlColumn(className: className)
+            .tap { this.addChild(it) }
+            .tap { with(closure) }
     }
 
     /**
@@ -160,13 +155,9 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @DelegatesTo(HtmlAccordion) Closure closure
     ) {
-        return new HtmlAccordion(
-            application: this.application,
-            name: name,
-            parent: this
-        )
-        .tap { with(closure) }
-        .tap { this.addChild(it) }
+        return new HtmlAccordion(name: name)
+            .tap { this.addChild(it) }
+            .tap { with(closure) }
     }
 
     /**
@@ -181,13 +172,9 @@ abstract class HtmlContainer extends HtmlElement {
     HtmlCard card(
         @NamedParam(required = false) String className = "",
         @DelegatesTo(HtmlCard) Closure closure) {
-        return new HtmlCard(
-            application: this.application,
-            parent: this,
-            className: className
-        )
-        .tap { with(closure) }
-        .tap { this.addChild(it) }
+        return new HtmlCard(className: className)
+            .tap { this.addChild(it) }
+            .tap { with(closure) }
     }
 
     /**
@@ -206,15 +193,9 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) Boolean streaming = false,
         @DelegatesTo(HtmlForm) Closure closure
     ) {
-        return new HtmlForm(
-            name: name,
-            application: this.application,
-            streaming: streaming,
-            indicatorSelector: indicatorSelector,
-            parent: this
-        )
-        .tap { with(closure) }
-        .tap { this.addChild(it) }
+        return new HtmlForm(name: name, streaming: streaming, indicatorSelector: indicatorSelector)
+            .tap { this.addChild(it) }
+            .tap { with(closure) }
     }
 
     /**
@@ -239,16 +220,15 @@ abstract class HtmlContainer extends HtmlElement {
         @DelegatesTo(HtmlButton) Closure closure
     ){
         return new HtmlButton(
-            application: this.application,
             name: name,
             className: className,
             icon: iconName,
             text: text,
             editable: editable
         )
-        .tap { with(closure) }
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
+        .tap { with(closure) }
     }
 
     /**
@@ -271,7 +251,6 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) boolean editable = true
     ){
         return new HtmlButton(
-            application: this.application,
             name: name,
             className: className,
             icon: iconName,
@@ -299,7 +278,6 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) boolean editable = true
     ){
         return new HtmlResetLink(
-            application: this.application,
             name: name,
             className: className,
             text: text,
@@ -328,7 +306,6 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) Number value = 0
     ) {
         return new HtmlInputNumber(
-            application: this.application,
             label: label,
             name: name,
             info: info,
@@ -407,7 +384,6 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) boolean editable = true
     ) {
         return new HtmlInputText(
-            application: this.application,
             name: name,
             info: info,
             label: label,
@@ -447,9 +423,9 @@ abstract class HtmlContainer extends HtmlElement {
             info: info,
             label: label
         )
-        .tap { with(closure) }
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
+        .tap { with(closure) }
     }
 
     /**
@@ -477,9 +453,9 @@ abstract class HtmlContainer extends HtmlElement {
             className: className,
             label: label
         )
-        .tap { with(closure) }
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
+        .tap { with(closure) }
     }
 
     /**
@@ -507,9 +483,9 @@ abstract class HtmlContainer extends HtmlElement {
             className: className,
             label: label
         )
-        .tap { with(closure) }
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
+        .tap { with(closure) }
     }
 
     /**
@@ -537,9 +513,9 @@ abstract class HtmlContainer extends HtmlElement {
             className: className,
             label: label
         )
-        .tap { with(closure) }
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
+        .tap { with(closure) }
     }
 
     /**
@@ -562,7 +538,6 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) boolean editable = true
     ) {
         return new HtmlTextArea(
-            application: this.application,
             name: name,
             value: value,
             info: info,
@@ -587,15 +562,14 @@ abstract class HtmlContainer extends HtmlElement {
      */
     @NamedVariant
     HtmlDataFrame dataframe(
-            @NamedParam(required = false) String name = Utils.generateRandomName(),
-            @NamedParam(required = false) String label = name,
-            @NamedParam(required = false) String info = "",
-            @NamedParam(required = false) String className = "",
-            @NamedParam(required = false) boolean editable = true,
-            @NamedParam(required = false) DataFrame value = null
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = name,
+        @NamedParam(required = false) String info = "",
+        @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) boolean editable = true,
+        @NamedParam(required = false) DataFrame value = null
     ) {
         return new HtmlDataFrame(
-            application: this.application,
             name: name,
             info: info,
             label: label,
