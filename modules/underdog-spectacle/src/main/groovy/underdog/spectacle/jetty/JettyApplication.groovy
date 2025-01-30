@@ -15,6 +15,7 @@ import org.eclipse.jetty.util.thread.QueuedThreadPool
 import org.eclipse.jetty.websocket.server.WebSocketUpgradeHandler
 import underdog.spectacle.Application
 import underdog.spectacle.dsl.HtmlApplication
+import underdog.spectacle.dsl.HtmlEvent
 
 import java.util.concurrent.Executors
 
@@ -83,9 +84,14 @@ class JettyApplication implements Application {
     void launch() {
         List<BackendHandler> backendHandlerList = htmlApplication
             .eventList
+            .findAll(HtmlEvent::isNotStreaming)
             .collect {
                 new BackendHandler(it, htmlApplication)
             }
+
+        List<HtmlEvent> streamingEvents = htmlApplication
+            .eventList
+            .findAll(HtmlEvent::isStreaming)
 
         List<PageHandler> pageHandlerList = htmlApplication
             .pageList
@@ -105,6 +111,17 @@ class JettyApplication implements Application {
             contextHandlerCollection.addHandler(new ContextHandler(it, "/"))
         }
 
+        // WS API
+        streamingEvents.each {
+            WebSocketUpgradeHandler handler = new WebSocketUpgradeHandlerBuilder()
+                .event(it)
+                .application(htmlApplication)
+                .server(server)
+                .build()
+
+            contextHandlerCollection.addHandler(new ContextHandler(handler, "/"))
+        }
+
         // PAGES
         pageHandlerList.each {
             contextHandlerCollection.addHandler(new ContextHandler(it, "/"))
@@ -117,7 +134,7 @@ class JettyApplication implements Application {
         resourceHandler.setAcceptRanges(true)
         contextHandlerCollection.addHandler(new ContextHandler(resourceHandler, '/static'))
 
-        // WS
+        // WS DEV MODE
         if (isDevelopment()) {
             contextHandlerCollection.addHandler(new ContextHandler(createWebSocketHandler(server), "/ws"))
         }

@@ -8,6 +8,8 @@ import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import underdog.spectacle.dsl.HtmlContainer
 import underdog.spectacle.dsl.HtmlElement
+import underdog.spectacle.dsl.HtmlPage
+import underdog.spectacle.dsl.components.HtmlDiv
 import underdog.spectacle.dsl.components.HtmlMarkdown
 
 /**
@@ -16,6 +18,41 @@ import underdog.spectacle.dsl.components.HtmlMarkdown
  * @since 0.1.0
  */
 class TemplateEngine {
+
+    String render(HtmlPage htmlPage) {
+        def container = htmlPage
+
+        if (isThereAnyStreamingEvent(htmlPage)) {
+            container.children = [getChildrenWhenStreaming(htmlPage)]
+        }
+
+        String childrenContent = container.children
+            .collect { render(it) }
+            .join("\n")
+
+        return executeTemplate(container.class.simpleName, [element: container, childrenContent: childrenContent])
+    }
+
+    private static isThereAnyStreamingEvent(HtmlPage htmlPage) {
+        return htmlPage.application.eventList.any { it.isStreaming() }
+    }
+
+    private static HtmlDiv getChildrenWhenStreaming(HtmlPage htmlPage) {
+        // TODO: this is wrong eventList should be by page not application
+        HtmlDiv root = new HtmlDiv()
+        HtmlDiv body = htmlPage
+                .application
+                .eventList
+                .findAll { it.isStreaming() }
+                .inject(root){ agg, val ->
+                    return new HtmlDiv().tap {
+                        agg.addChild(it)
+                        extraAttributes = ['ws-connect': val.path, 'hx-ext': 'ws']
+                    }
+                }
+        body.children = htmlPage.children
+        return root
+    }
 
     /**
      * Renders a {@link HtmlContainer}

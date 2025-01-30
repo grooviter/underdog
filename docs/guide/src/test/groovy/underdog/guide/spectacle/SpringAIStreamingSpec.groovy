@@ -4,13 +4,15 @@ import org.springframework.ai.chat.client.ChatClient
 import org.springframework.ai.openai.OpenAiChatModel
 import org.springframework.ai.openai.OpenAiChatOptions
 import org.springframework.ai.openai.api.OpenAiApi
+import reactor.core.publisher.Flux
 import spock.lang.IgnoreIf
 import spock.lang.Specification
 import underdog.spectacle.Spectacle
 import underdog.spectacle.dsl.Context
 
-class SpringAISpec extends Specification {
+import java.util.concurrent.atomic.AtomicReference
 
+class SpringAIStreamingSpec extends Specification {
     @IgnoreIf({ !System.getenv("OPENAI_API_KEY") })
     void "simple chat client"() {
         setup:
@@ -39,16 +41,20 @@ class SpringAISpec extends Specification {
                         [question: "Tell me a joke"]
                     ]
                     // --8<-- [start:onSubmit]
-                    onSubmit { Context context ->
+                    onSubmit(
+                        streaming: true // <-- mark as streaming
+                    ) { Context context ->
                         String openAIKey = System.getenv("OPENAI_API_KEY")
                         String model = context.configuration.openai_model
                         OpenAiChatOptions options = OpenAiChatOptions.builder().model(model).build()
-                        return ChatClient.builder(new OpenAiChatModel(new OpenAiApi(openAIKey), options))
+                        Flux<String> stream = ChatClient.builder(new OpenAiChatModel(new OpenAiApi(openAIKey), options))
                             .build()
                             .prompt()
                             .user(context.param(field.question))
-                            .call()
-                            .content() // <--- STRING
+                            .stream()
+                            .content()
+
+                        return streamFluxText(stream) // <--- STRING STREAM (Flux<String>)
                     }
                     // --8<-- [end:onSubmit]
                 }
@@ -56,5 +62,15 @@ class SpringAISpec extends Specification {
         }
         expect:
         app.launch()
+    }
+
+    Flux<String> streamFluxText(Flux<String> flux) {
+        AtomicReference<String> message = new AtomicReference<>("")
+        return flux.flatMap {m ->
+            String aggregationString = message.get() + m
+            Flux<String> aggregation = Flux.fromArray([aggregationString] as String[])
+            message.set(aggregationString)
+            aggregation
+        }
     }
 }

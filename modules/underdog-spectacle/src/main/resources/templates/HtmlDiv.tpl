@@ -1,3 +1,8 @@
-div(name: element.name, class: element.className) {
+def attributes = [
+    'name': element.name,
+    'class': element.className,
+] + element.extraAttributes
+
+div(attributes) {
     yieldUnescaped childrenContent
 }

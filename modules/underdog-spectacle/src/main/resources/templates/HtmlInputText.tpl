@@ -1,4 +1,4 @@
-div(class: 'mb-3'){
+div(id: element.name, class: 'mb-3'){
     if (element.label) {
         label(
             class: "form-label ${element.required ? 'required' : ''}",
@@ -22,7 +22,8 @@ div(class: 'mb-3'){
                 placeholder: element.placeHolder,
                 type: 'text',
                 name: element.name,
-                required: element.required
+                required: element.required,
+                value: element.value
             )
         }
     } else if (element.suffix || element.prefix) {
@@ -37,7 +38,8 @@ div(class: 'mb-3'){
                 placeholder: element.placeHolder,
                 type: 'text',
                 name: element.name,
-                required: element.required
+                required: element.required,
+                value: element.value
             )
             if (element.suffix) {
                 span(class: 'input-group-text'){
@@ -51,7 +53,8 @@ div(class: 'mb-3'){
             placeholder: element.placeHolder,
             type: 'text',
             name: element.name,
-            required: element.required
+            required: element.required,
+            value: element.value
         )
     }
 }

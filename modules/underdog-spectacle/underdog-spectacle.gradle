@@ -12,7 +12,15 @@ dependencies {
     api project(":underdog-plots")
 
     implementation "org.eclipse.jetty:jetty-server:$jetty"
+    implementation "jakarta.servlet:jakarta.servlet-api:6.0.0"
+
+    // dev mode & streaming
     implementation "org.eclipse.jetty.websocket:jetty-websocket-jetty-server:$jetty"
+
+    // streaming
+    implementation platform('io.projectreactor:reactor-bom:2024.0.2')
+    implementation 'io.projectreactor:reactor-core'
+
     implementation "org.apache.groovy:groovy-macro:$groovy"
     implementation "org.apache.groovy:groovy-yaml:$groovy"
     implementation 'org.commonmark:commonmark:0.24.0'

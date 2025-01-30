@@ -1,8 +1,9 @@
 package underdog.spectacle.dsl.components
 
+import groovy.transform.NamedParam
+import groovy.transform.NamedVariant
 import underdog.spectacle.dsl.HtmlContainer
 import underdog.spectacle.dsl.HtmlElement
-import underdog.spectacle.dsl.HtmlPage
 import underdog.spectacle.dsl.Utils
 
 /**
@@ -27,6 +28,7 @@ class HtmlSpec extends HtmlContainer {
     List<HtmlElement> outputList = []
     HtmlDataFrame exampleList
     Closure onSubmitClosure
+    Boolean onSubmitStreaming
 
     /**
      * Contains all input fields of the form
@@ -61,7 +63,12 @@ class HtmlSpec extends HtmlContainer {
         exampleList = new HtmlDataFrame(value: list.toDataFrame("examples"))
     }
 
-    void onSubmit(Closure onSubmitClosure) {
+    @NamedVariant
+    void onSubmit(
+        @NamedParam(required = false) Boolean streaming = false,
+        Closure onSubmitClosure
+    ) {
+        this.onSubmitStreaming = streaming
         this.onSubmitClosure = onSubmitClosure
     }
 
@@ -70,7 +77,11 @@ class HtmlSpec extends HtmlContainer {
         return this.tap {
                 row {
                     col {
-                        form(name: formName, indicatorSelector: "#${formName} input, #${formName} button") {
+                        form(
+                            streaming: this.onSubmitStreaming,
+                            name: formName,
+                            indicatorSelector: "#${formName} input, #${formName} button"
+                        ) {
                             card {
                                 cardBody {
                                     inputList.each(delegate::addChild)

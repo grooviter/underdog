@@ -53,3 +53,5 @@ function loadScript(
         document.body.appendChild(script);
     })
 }
+
+export { loadScript, SPCLogger };

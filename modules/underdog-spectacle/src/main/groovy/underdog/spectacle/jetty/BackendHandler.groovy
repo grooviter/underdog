@@ -52,7 +52,7 @@ class BackendHandler extends ElseNext {
     @Override
     protected boolean onConditionsMet(Request request, Response response, Callback callback) throws Exception {
         def function = this.event.function
-        def context = new JettyContext(request, response, this.application.configuration)
+        def context = new JettyHTTPContext(request, this.application.configuration)
         def targetValue = function(context)
         def target = this.event
             .outputList

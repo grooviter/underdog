@@ -39,6 +39,7 @@ import java.time.LocalDateTime
  */
 abstract class HtmlContainer extends HtmlElement {
     List<HtmlElement> children = []
+    Map<String, String> extraAttributes = [:]
 
     /**
      * Utility method to add a child element to a container and setting the parent element
@@ -193,6 +194,7 @@ abstract class HtmlContainer extends HtmlElement {
      * Adds a new html form container
      *
      * @param indicatorSelector CSS selector to use for busy type elements when executing a request
+     * @param streaming
      * @param closure DSL of the content of this container
      * @return an instance of {@link HtmlForm}
      * @since 0.1.0
@@ -201,11 +203,13 @@ abstract class HtmlContainer extends HtmlElement {
     HtmlForm form(
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) String indicatorSelector = "",
+        @NamedParam(required = false) Boolean streaming = false,
         @DelegatesTo(HtmlForm) Closure closure
     ) {
         return new HtmlForm(
             name: name,
             application: this.application,
+            streaming: streaming,
             indicatorSelector: indicatorSelector,
             parent: this
         )

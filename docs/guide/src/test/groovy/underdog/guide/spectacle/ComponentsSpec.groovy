@@ -23,7 +23,7 @@ class ComponentsSpec extends Specification {
                   | # Spectacle's Components
                   |
                   | This is a showcase of all available components in Spectacle.
-                  | More information at [Spectacle's docs](https://grooviter.github.io/spectacle)
+                  | More information at [Spectacle's docs](https://grooviter.github.io/underdog/spectacle)
                 """
                 // --8<-- [end:markdown]
                 row {
@@ -197,6 +197,7 @@ class ComponentsSpec extends Specification {
                         | 
                         | Accordion becomes handy for splitting many options
                         """
+                        // --8<-- [start:accordion]
                         accordion {
                             section('Network') {
                                 switchGroup {
@@ -216,6 +217,7 @@ class ComponentsSpec extends Specification {
                                 markdown "Some text there"
                             }
                         }
+                        // --8<-- [end:accordion]
                     }
                 }
                 // --8<-- [start:dataframe]
@@ -257,6 +259,8 @@ class ComponentsSpec extends Specification {
                             }
                         }
                     }
+                }
+                row {
                     col(className: 'col-4') {
                         // --8<-- [start:chart]
                         chart(
@@ -269,6 +273,17 @@ class ComponentsSpec extends Specification {
                             return Underdog.plots().line(1..10, 40..50)
                         }
                         // --8<-- [end:chart]
+                    }
+                    col(className: 'col-4') {
+                        chart(
+                            name: field.scatterPlot,
+                            label: 'Scatter Plot',
+                            info: "Shows an scatter plot",
+                            defaultValue: null,
+                        ) {
+                            // return underdog.plots.Options
+                            return Underdog.plots().scatter(1..10, [20, 25, 30, 23, 28, 80, 73, 43, 49, 34])
+                        }
                     }
                 }
                 // --8<-- [start:button]

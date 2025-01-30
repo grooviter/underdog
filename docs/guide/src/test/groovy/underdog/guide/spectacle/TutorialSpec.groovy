@@ -135,7 +135,7 @@ class TutorialSpec extends Specification {
                     numberCard(name: field.score, defaultValue: 0, title: 'Test Score', className: "+mb-3")
                     button(text: 'Execute Model')
 
-                    onSubmit([field.trainingRate], [field.score]){ Context context ->
+                    onSubmit([field.trainingRate], [field.score]) { Context context ->
                         // getting value from request
                         def trainRate = context.pDouble(field.trainingRate) / 100
 
@@ -159,7 +159,7 @@ class TutorialSpec extends Specification {
             }
         }
         // --8<-- [end:complete]
-        // app.launch()
+        app.launch()
         then:
         app
     }

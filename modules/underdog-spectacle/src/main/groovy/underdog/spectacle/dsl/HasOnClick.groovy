@@ -22,12 +22,14 @@ trait HasOnClick {
     void onClick(
         List<String> inputs,
         List<String> outputs,
-        Closure function) {
-
+        Boolean streaming = false,
+        Closure function
+    ) {
         def event = HtmlEvent.builder()
             .name('click')
             .htmlFieldName(this.name)
             .function(function)
+            .streaming(streaming)
             .inputList(inputs)
             .outputList(outputs)
             .build()
