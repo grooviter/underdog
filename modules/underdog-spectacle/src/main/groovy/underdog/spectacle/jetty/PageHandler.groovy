@@ -35,7 +35,7 @@ class PageHandler extends ElseNext {
     @Override
     List<Handler> getHandlers() {
         Handler next = this.getHandler();
-        return next == null ? Collections.emptyList() : Collections.singletonList(next);
+        return next == null ? Collections.<Handler>emptyList() : Collections.singletonList(next);
     }
 
     @Override

@@ -181,7 +181,7 @@ abstract class HtmlContainer extends HtmlElement {
      * Adds a new html form container
      *
      * @param indicatorSelector CSS selector to use for busy type elements when executing a request
-     * @param streaming
+     * @param streaming whether the form is going to be streaming data to output fields or not
      * @param closure DSL of the content of this container
      * @return an instance of {@link HtmlForm}
      * @since 0.1.0
@@ -237,7 +237,7 @@ abstract class HtmlContainer extends HtmlElement {
      * @param text text of the button
      * @param name name of the element
      * @param className the css class names
-     * @param iconName
+     * @param iconName icon name follows bootstrap icon syntax, for example 'bi bi-easel'
      * @param editable whether the element is editable or not
      * @return an instance of {@link HtmlButton}
      * @since 0.1.0
@@ -323,9 +323,9 @@ abstract class HtmlContainer extends HtmlElement {
      * @param label html label of the range component
      * @param className class html attribute
      * @param info info about what the element content is about
-     * @param min
-     * @param max
-     * @param step
+     * @param min lower bound
+     * @param max upper bound
+     * @param step how wide is each step between lower and upper bound
      * @param value default value
      * @return an instance of {@link HtmlRange}
      * @since 0.1.0
@@ -368,7 +368,7 @@ abstract class HtmlContainer extends HtmlElement {
      * @param label label of the element
      * @param placeHolder hint about the text field
      * @param editable whether the element is editable or not
-     * @return
+     * @return an instance of {@link HtmlInputText}
      * @since 0.1.0
      */
     @NamedVariant
@@ -553,7 +553,7 @@ abstract class HtmlContainer extends HtmlElement {
      * Adds an element which shows a dataframe
      *
      * @param name the name of the element
-     * @param info
+     * @param info information about the element
      * @param label the label of the element
      * @param editable whether the element is editable or not
      * @param value default value
@@ -585,9 +585,9 @@ abstract class HtmlContainer extends HtmlElement {
      * Element rendering an Underdog's chart
      *
      * @param name the name of the element
-     * @param label
-     * @param info
-     * @param className
+     * @param label label of the element
+     * @param info information about the element
+     * @param className class attribute of the html element
      * @param defaultValue default value to show the chart
      * @return an instance of {@link HtmlChart}
      * @since 0.1.0
