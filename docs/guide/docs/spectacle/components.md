@@ -288,3 +288,14 @@ Renders an accordion component. Useful for grouping components:
 Image
 
 ![](./images/components/HtmlAccordion.png){ width="30%" }
+
+### HtmlChat
+
+Renders a chat room:
+
+```groovy title="HtmlChat"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ChatBotSpec.groovy:chat"
+```
+Image
+
+![](./images/components/HtmlChat.png){ width="50%" }

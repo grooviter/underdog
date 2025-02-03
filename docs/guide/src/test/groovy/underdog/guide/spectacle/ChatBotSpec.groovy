@@ -42,8 +42,14 @@ class ChatBotSpec extends Specification {
                         """
                     }
                     col {
-                        chat(name: field.chat, inputLabel: "User", inputPlaceholder: "Write anything here!") {
-                            onSend { Context context ->
+                        // --8<-- [start:chat]
+                        chat(
+                            name: field.chat,                        // chat element name
+                            title: "Chat Room Title",                // chat title
+                            inputLabel: "User",                      // chat input label
+                            inputPlaceholder: "Write anything here!" // chat input placeholder
+                        ) {
+                            onSend { Context context -> // backend function
                                 def message = context.param(getChatInputName(field.chat))
                                 Thread.sleep(2_000)
                                 messages << createUserMessage(message)
@@ -51,6 +57,7 @@ class ChatBotSpec extends Specification {
                                 return messages
                             }
                         }
+                        // --8<-- [end:chat]
                     }
                 }
             }
