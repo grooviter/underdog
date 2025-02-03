@@ -13,48 +13,10 @@ div(id: element.name, class: 'mb-3'){
         }
     }
     if (element.icon) {
-        div(class: 'input-icon'){
-            span(class: 'input-icon-addon'){
-                i(class: "icon ${element.icon}"){}
-            }
-            input(
-                class: element.classNames('form-control'),
-                placeholder: element.placeHolder,
-                type: 'text',
-                name: element.name,
-                required: element.required,
-                value: element.value
-            )
-        }
+        include template: "templates/HtmlInputText/HtmlInputTextWithIcon.tpl"
     } else if (element.suffix || element.prefix) {
-        div(class: 'input-group') {
-            if (element.prefix){
-                span(class: 'input-group-text'){
-                    yield element.prefix
-                }
-            }
-            input(
-                class: element.classNames('form-control'),
-                placeholder: element.placeHolder,
-                type: 'text',
-                name: element.name,
-                required: element.required,
-                value: element.value
-            )
-            if (element.suffix) {
-                span(class: 'input-group-text'){
-                    yield element.suffix
-                }
-            }
-        }
+        include template: "templates/HtmlInputText/HtmlInputTextWithPrefixAndSuffix.tpl"
     } else {
-        input(
-            class: element.classNames('form-control'),
-            placeholder: element.placeHolder,
-            type: 'text',
-            name: element.name,
-            required: element.required,
-            value: element.value
-        )
+        include template: "templates/HtmlInputText/HtmlInputTextBase.tpl"
     }
 }

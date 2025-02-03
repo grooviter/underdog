@@ -1,3 +1,3 @@
-div(class: 'card-body') {
+div(id: element.name, class: element.classNames('card-body')) {
     yieldUnescaped childrenContent
 }

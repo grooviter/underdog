@@ -8,6 +8,7 @@ import underdog.spectacle.dsl.components.HtmlAccordion
 import underdog.spectacle.dsl.components.HtmlCard
 import underdog.spectacle.dsl.components.HtmlChart
 import underdog.spectacle.dsl.components.HtmlButton
+import underdog.spectacle.dsl.components.HtmlChat
 import underdog.spectacle.dsl.components.HtmlCheckboxGroup
 import underdog.spectacle.dsl.components.HtmlColumn
 import underdog.spectacle.dsl.components.HtmlDataFrame
@@ -86,6 +87,36 @@ abstract class HtmlContainer extends HtmlElement {
             .tap {this.addChild(it) }
             .tap { with(closure) }
             .tap { it.initLayout() }
+    }
+
+    /**
+     * Renders a chat room
+     *
+     * @param name name of the html element
+     * @param title title of the chat room
+     * @param inputLabel label of the chat input field
+     * @param inputPlaceholder placeholder of the chat input field
+     * @param closure function to execute when the input field is sent
+     * @return an instance of {@link HtmlChat}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlChat chat(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String title,
+        @NamedParam(required = false) String inputLabel,
+        @NamedParam(required = false) String inputPlaceholder,
+        @DelegatesTo(HtmlChat) Closure closure
+    ) {
+        return new HtmlChat(
+            name: name,
+            title: title,
+            inputLabel: inputLabel,
+            inputPlaceHolder: inputPlaceholder,
+        )
+        .tap {this.addChild(it) }
+        .tap { with(closure)}
+        .tap { it.initLayout() }
     }
 
     /**
@@ -229,6 +260,20 @@ abstract class HtmlContainer extends HtmlElement {
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
         .tap { with(closure) }
+    }
+
+    /**
+     * Adds the {@link HtmlElement} passed to the current {@link HtmlContainer}
+     *
+     * @param element an instance of {@link HtmlElement}
+     * @return the instance passed as argument initialized with the current container
+     * @since 0.1.0
+     */
+    <U extends HtmlElement> U element(U element){
+        return element.tap {
+            addChild(it)
+            application.addElement(it)
+        }
     }
 
     /**
@@ -396,6 +441,46 @@ abstract class HtmlContainer extends HtmlElement {
         )
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Adds a new input text element
+     *
+     * @param name the name of the element
+     * @param label label of the element
+     * @param placeHolder hint about the text field
+     * @param editable whether the element is editable or not
+     * @param onEnter action executed when typing enter
+     * @return an instance of {@link HtmlInputText}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlInputText text(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = name,
+        @NamedParam(required = false) String info = "",
+        @NamedParam(required = false) String placeHolder = "",
+        @NamedParam(required = false) String icon="",
+        @NamedParam(required = false) String prefix = "",
+        @NamedParam(required = false) String suffix = "",
+        @NamedParam(required = false) Boolean required = false,
+        @NamedParam(required = false) boolean editable = true,
+        @DelegatesTo(HtmlInputText) Closure onEnter
+    ) {
+        return new HtmlInputText(
+            name: name,
+            info: info,
+            label: label,
+            icon: icon,
+            suffix: suffix,
+            prefix: prefix,
+            required: required,
+            editable: editable,
+            placeHolder: placeHolder
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+        .tap { with(onEnter) }
     }
 
     /***

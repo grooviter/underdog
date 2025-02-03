@@ -1,4 +1,4 @@
-div(class: 'card-header') {
+div(class: element.classNames('card-header')) {
     if (element.title || element.description) {
         div {
             if (element.title) {
