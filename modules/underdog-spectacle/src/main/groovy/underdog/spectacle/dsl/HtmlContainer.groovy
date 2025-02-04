@@ -731,17 +731,26 @@ abstract class HtmlContainer extends HtmlElement {
      * Element which renders markdown text
      *
      * @param markdown markdown syntax text
+     * @param label label of the html element
+     * @param info some information about the component
      * @return an instance of {@link HtmlMarkdown}
      * @since 0.1.0
      */
     @NamedVariant
     HtmlMarkdown markdown(
         @NamedParam(required = false) String markdown = "",
+        @NamedParam(required = false) String label = "",
+        @NamedParam(required = false) String info = "",
         @NamedParam(required = false) String name = Utils.generateRandomName()
     ) {
-        return new HtmlMarkdown(name: name, value: markdown)
-            .tap { this.addChild(it) }
-            .tap { this.application.addElement(it) }
+        return new HtmlMarkdown(
+            name: name,
+            label: label,
+            info: info,
+            value: markdown
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
     }
 
     /**

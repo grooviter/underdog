@@ -8,7 +8,7 @@ div(class: 'mb-3'){
         }
     }
     if (element.info) {
-        small(class: 'form-hint') {
+        small(class: 'form-hint mb-2') {
             yield element.info
         }
     }
