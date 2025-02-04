@@ -26,7 +26,7 @@ class AIService {
             .build()
 
         OllamaChatResult result = aiAPI.chat(request)
-        result.responseModel.
+
         return result.responseModel.message.content
     }
 
