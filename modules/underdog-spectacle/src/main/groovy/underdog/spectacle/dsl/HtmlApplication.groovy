@@ -149,6 +149,6 @@ class HtmlApplication {
     }
 
     String getDefaultPath() {
-        return this.defaultPage.path
+        return this.getDefaultPage().path
     }
 }

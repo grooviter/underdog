@@ -1,3 +1,5 @@
+import { SPCLogger } from "/static/js/spc-utils.js";
+
 const TIMEOUT_DEFAULT = 2000
 
 class WSConnection {

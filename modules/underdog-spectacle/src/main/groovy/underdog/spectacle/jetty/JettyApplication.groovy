@@ -36,7 +36,7 @@ class JettyApplication implements Application {
      *
      * @since 0.1.0
      */
-    static final Integer DEV_BROWSER_OPEN_TIMEOUT = 5000
+    static final Integer DEV_BROWSER_OPEN_TIMEOUT = 10_000
 
     /**
      * Size limit of the websocket messages

@@ -1,5 +1,3 @@
-import underdog.spectacle.dsl.HtmlContainer
-
 html {
     head {
         title(element.title ?: 'Spectacle')
@@ -37,7 +35,7 @@ html {
         script(src: 'static/js/htmx.min.js'){}
         script(src: 'static/js/htmx-ws.js'){}
         if (element.isDevelopment()) {
-            script(src: 'static/js/spc-dev.js'){}
+            script(type: "module", src: 'static/js/spc-dev.js'){}
         }
     }
 }
