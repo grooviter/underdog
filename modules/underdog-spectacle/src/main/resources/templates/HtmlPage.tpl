@@ -7,6 +7,9 @@ html {
     }
     body(class: "theme-${element.theme}") {
         div(class: 'page') {
+            if (navigation) {
+                yieldUnescaped navigation
+            }
             div(class: 'page-wrapper') {
                 if (element.title) {
                     div(class: 'page-header') {

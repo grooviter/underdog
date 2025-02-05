@@ -26,11 +26,24 @@ class TemplateEngine {
             container.children = [getChildrenWhenStreaming(htmlPage)]
         }
 
+        String navigationContent = ""
+
+        if (container.htmlNavigation) {
+            navigationContent = render(container.htmlNavigation)
+        }
+
         String childrenContent = container.children
             .collect { render(it) }
             .join("\n")
 
-        return executeTemplate(container.class.simpleName, [element: container, childrenContent: childrenContent])
+        return executeTemplate(
+            container.class.simpleName,
+            [
+                element: container,
+                navigation: navigationContent,
+                childrenContent: childrenContent
+            ]
+        )
     }
 
     private static isThereAnyStreamingEvent(HtmlPage htmlPage) {

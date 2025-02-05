@@ -66,10 +66,12 @@ class HtmlApplication {
      *
      * @param path url path where the page will be accessible
      * @param theme pages html theme ('system' by default)
+     * @param title title of the html page
+     * @param icon a bootstrap icon with class name syntax, for example: `bi bi-question`
      * @param name logical name
      * @param markAsDefault
      * @param closure DSL for the content of that page
-     * @return an isntance of {@link HtmlPage}
+     * @return an instance of {@link HtmlPage}
      * @since 0.1.0
      */
     @NamedVariant
@@ -77,6 +79,7 @@ class HtmlApplication {
         String path,
         @NamedParam(required = false) String theme = 'system',
         @NamedParam(required = false) String title = '',
+        @NamedParam(required = false) String icon = '',
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) Boolean markAsDefault = false,
         @DelegatesTo(HtmlPage) Closure closure
@@ -84,6 +87,7 @@ class HtmlApplication {
         HtmlPage page = new HtmlPage(
             application: this,
             title: title,
+            icon: icon,
             path: path,
             name: name,
             theme: theme

@@ -2,6 +2,7 @@ package underdog.spectacle.dsl
 
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
+import underdog.spectacle.dsl.components.HtmlNavigation
 
 /**
  * Represents a new HTML page
@@ -25,6 +26,13 @@ class HtmlPage extends HtmlContainer {
     String title
 
     /**
+     * Accepts a bootstrap icon, for example : 'bi bi-question'
+     *
+     * @since 0.1.0
+     */
+    String icon
+
+    /**
      * CSS theme: light, dark, or system (default)
      *
      * @since 0.1.0
@@ -37,12 +45,37 @@ class HtmlPage extends HtmlContainer {
     List<HtmlEvent> eventList = []
 
     /**
+     * An {@link HtmlPage} can have a navigation panel in case we want to navigate through
+     * the pages of the application
+     *
+     * @since 0.1.0
+     */
+    HtmlNavigation htmlNavigation
+
+    /**
      * @param event
      * @since 0.1.0
      */
     void addEvent(HtmlEvent event){
         this.eventList.add(event)
         this.application.addEvent(event)
+    }
+
+    /**
+     * Renders a navigation panel in the page. The navigation panel won't be
+     * added as a children of the page like the rest of the children elements
+     * as it has to be treated differently
+     *
+     * @return an instance of {@link HtmlNavigation}
+     * @since 0.1.0
+     */
+    HtmlNavigation navigation() {
+        return new HtmlNavigation().tap {
+            page = this
+            parent = this
+            application = this.application
+            htmlNavigation = it
+        }
     }
 
     /**
