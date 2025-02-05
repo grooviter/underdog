@@ -54,7 +54,7 @@ class WSConnection {
                 this.tm = setTimeout(() => this.close(), TIMEOUT_DEFAULT * 2)
             }).catch((error) => {
                 this.stopClosingProcess()
-                init()
+                this.init()
             })
         }, TIMEOUT_DEFAULT)
     }
