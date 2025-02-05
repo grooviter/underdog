@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux
 import underdog.spectacle.dsl.HtmlApplication
 import underdog.spectacle.dsl.HtmlElementWithValue
 import underdog.spectacle.dsl.HtmlEvent
-import underdog.spectacle.templates.TemplateEngine
+import underdog.spectacle.templates.CachedTemplateEngine
 
 import java.time.Duration
 
@@ -30,7 +30,7 @@ class StreamingHandler extends AbstractAutoDemanding {
     HtmlEvent event
     Session session
     Callback callback
-    TemplateEngine templateEngine = new TemplateEngine()
+    CachedTemplateEngine templateEngine = new CachedTemplateEngine()
 
     @Override
     void onWebSocketOpen(Session session) {

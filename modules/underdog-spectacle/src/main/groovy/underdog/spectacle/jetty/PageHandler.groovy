@@ -9,7 +9,7 @@ import org.eclipse.jetty.server.Response
 import org.eclipse.jetty.server.handler.ConditionalHandler.ElseNext
 import org.eclipse.jetty.util.Callback
 import underdog.spectacle.dsl.HtmlPage
-import underdog.spectacle.templates.TemplateEngine
+import underdog.spectacle.templates.CachedTemplateEngine
 
 /**
  * Renders instances of {@link HtmlPage}
@@ -18,7 +18,7 @@ import underdog.spectacle.templates.TemplateEngine
  */
 class PageHandler extends ElseNext {
     HtmlPage page
-    TemplateEngine templateEngine = new TemplateEngine()
+    CachedTemplateEngine templateEngine = new CachedTemplateEngine()
 
     /**
      * Creates a new {@link PageHandler} with the page to render

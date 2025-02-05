@@ -10,7 +10,7 @@ import org.eclipse.jetty.util.Callback
 import underdog.spectacle.dsl.HtmlApplication
 import underdog.spectacle.dsl.HtmlElementWithValue
 import underdog.spectacle.dsl.HtmlEvent
-import underdog.spectacle.templates.TemplateEngine
+import underdog.spectacle.templates.CachedTemplateEngine
 
 import static org.eclipse.jetty.http.HttpHeader.CONTENT_TYPE
 
@@ -23,7 +23,7 @@ import static org.eclipse.jetty.http.HttpHeader.CONTENT_TYPE
 class BackendHandler extends ElseNext {
     HtmlEvent event
     HtmlApplication application
-    TemplateEngine templateEngine = new TemplateEngine()
+    CachedTemplateEngine templateEngine = new CachedTemplateEngine()
 
     /**
      * Creates a new {@link BackendHandler}
