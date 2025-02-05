@@ -11,8 +11,18 @@ import org.commonmark.renderer.html.HtmlRenderer
 import underdog.spectacle.dsl.HtmlContainer
 import underdog.spectacle.dsl.HtmlElement
 import underdog.spectacle.dsl.HtmlPage
+import underdog.spectacle.dsl.components.HtmlButton
+import underdog.spectacle.dsl.components.HtmlCard
+import underdog.spectacle.dsl.components.HtmlCardBody
+import underdog.spectacle.dsl.components.HtmlCardFooter
+import underdog.spectacle.dsl.components.HtmlCardHeader
+import underdog.spectacle.dsl.components.HtmlColumn
 import underdog.spectacle.dsl.components.HtmlDiv
+import underdog.spectacle.dsl.components.HtmlForm
 import underdog.spectacle.dsl.components.HtmlMarkdown
+import underdog.spectacle.dsl.components.HtmlNavigation
+import underdog.spectacle.dsl.components.HtmlRow
+import underdog.spectacle.dsl.components.HtmlSpec
 
 /**
  * Class responsible for rendering DSL elements to html code
@@ -69,6 +79,21 @@ class CachedTemplateEngine {
 
     private static final String GROOVY_SOURCE_ENCODING = "groovy.source.encoding"
 
+    private static final List<Class> PRE_CACHED_TEMPLATE_CLASSES = [
+            HtmlPage,
+            HtmlRow,
+            HtmlColumn,
+            HtmlSpec,
+            HtmlForm,
+            HtmlCard,
+            HtmlCardBody,
+            HtmlCardHeader,
+            HtmlCardFooter,
+            HtmlButton,
+            HtmlNavigation,
+            HtmlMarkdown
+    ]
+
     /**
      * Simple file name to template cache map.
      *
@@ -87,6 +112,14 @@ class CachedTemplateEngine {
      * @since 0.1.0
      */
     private String fileEncodingParamVal
+
+    void cacheBase() {
+        PRE_CACHED_TEMPLATE_CLASSES.each {
+            URL templateURL = this.class.classLoader.getResource("templates/${it.simpleName}.tpl")
+            getTemplate(templateURL)
+            log.debug("template ${it.simpleName} pre-cached")
+        }
+    }
 
     String render(HtmlPage htmlPage) {
         def container = htmlPage

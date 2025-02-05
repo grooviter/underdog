@@ -37,7 +37,7 @@ class JettyApplication implements Application {
      *
      * @since 0.1.0
      */
-    static final Integer DEV_BROWSER_OPEN_TIMEOUT = 10_000
+    static final Integer DEV_BROWSER_OPEN_TIMEOUT = 1_000
 
     /**
      * Size limit of the websocket messages
@@ -84,8 +84,12 @@ class JettyApplication implements Application {
     @Override
     void launch() {
         log.debug("launching application")
-        log.debug("loading backend handlers")
+
+        log.debug("preparing template cache")
         CachedTemplateEngine templateEngine = new CachedTemplateEngine()
+        templateEngine.cacheBase()
+        log.debug("loading backend handlers")
+
         List<BackendHandler> backendHandlerList = htmlApplication
             .eventList
             .findAll(HtmlEvent::isNotStreaming)
@@ -197,14 +201,23 @@ class JettyApplication implements Application {
         this.startupListener = new LifeCycle.Listener() {
             void lifeCycleStarted(LifeCycle event) {
                 Executors.newSingleThreadExecutor().execute {
-                    Thread.sleep(DEV_BROWSER_OPEN_TIMEOUT)
-                    int browserClients = DevHandler.clientsConnected.intValue()
-                    if (!browserClients) {
+                    int wsConnectedClients = 0
+                    (0..3).takeWhile {
+                        wsConnectedClients = DevHandler.clientsConnected.intValue()
+                        boolean nobodyListening = wsConnectedClients == 0
+                        if (nobodyListening){
+                            log.debug("no connected clients, retry...")
+                            Thread.sleep(DEV_BROWSER_OPEN_TIMEOUT)
+                        }
+                        return nobodyListening
+                    }
+
+                    if (!wsConnectedClients) {
                         String browserURI = "http://localhost:${connector.port}${htmlApplication.defaultPath}"
                         log.debug("opening spectacle at $browserURI")
                         desktop.browse(URI.create(browserURI))
                     } else {
-                        log.debug("skipping opening browser, clients already connected (${browserClients})")
+                        log.debug("skipping opening browser, clients already connected (${wsConnectedClients})")
                     }
                 }
             }
