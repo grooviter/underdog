@@ -82,6 +82,8 @@ class JettyApplication implements Application {
 
     @Override
     void launch() {
+        log.debug("launching application")
+        log.debug("loading backend handlers")
         List<BackendHandler> backendHandlerList = htmlApplication
             .eventList
             .findAll(HtmlEvent::isNotStreaming)
@@ -89,16 +91,19 @@ class JettyApplication implements Application {
                 new BackendHandler(it, htmlApplication)
             }
 
+        log.debug("loading streaming events")
         List<HtmlEvent> streamingEvents = htmlApplication
             .eventList
             .findAll(HtmlEvent::isStreaming)
 
+        log.debug("loading page handlers")
         List<PageHandler> pageHandlerList = htmlApplication
             .pageList
             .collect {
                 new PageHandler(it)
             }
 
+        log.debug("creating server instance")
         this.server = new Server(new QueuedThreadPool(10))
         connector = new ServerConnector(server)
         connector.setPort(5000)
@@ -106,11 +111,13 @@ class JettyApplication implements Application {
 
         ContextHandlerCollection contextHandlerCollection = new ContextHandlerCollection()
 
+        log.debug("adding backend handlers")
         // REST API
         backendHandlerList.each {
             contextHandlerCollection.addHandler(new ContextHandler(it, "/"))
         }
 
+        log.debug("adding websocket handlers")
         // WS API
         streamingEvents.each {
             WebSocketUpgradeHandler handler = new WebSocketUpgradeHandlerBuilder()
@@ -122,11 +129,13 @@ class JettyApplication implements Application {
             contextHandlerCollection.addHandler(new ContextHandler(handler, "/"))
         }
 
+        log.debug("adding page handlers")
         // PAGES
         pageHandlerList.each {
             contextHandlerCollection.addHandler(new ContextHandler(it, "/"))
         }
 
+        log.debug("adding static resources")
         // STATIC RESOURCES
         ResourceHandler resourceHandler = new ResourceHandler()
         resourceHandler.setBaseResource(ResourceFactory.of(resourceHandler).newResource(this.class.getResource('/static')))
@@ -134,18 +143,26 @@ class JettyApplication implements Application {
         resourceHandler.setAcceptRanges(true)
         contextHandlerCollection.addHandler(new ContextHandler(resourceHandler, '/static'))
 
+        log.debug("checking dev mode")
         // WS DEV MODE
         if (isDevelopment()) {
+            log.debug("adding dev handler")
             contextHandlerCollection.addHandler(new ContextHandler(createWebSocketHandler(server), "/ws"))
         }
 
+        log.debug("adding root handler")
         server.setHandler(contextHandlerCollection)
 
+        log.debug("checking startup listener")
         if (this.startupListener) {
+            log.debug("adding startup listener")
             this.server.addEventListener(this.startupListener)
         }
 
+        log.debug("starting server")
         server.start()
+
+        log.debug("joining server")
         server.join()
     }
 
