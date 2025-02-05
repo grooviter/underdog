@@ -4,6 +4,7 @@ import org.eclipse.jetty.server.Server
 import underdog.spectacle.dsl.HtmlApplication
 import underdog.spectacle.dsl.HtmlEvent
 import org.eclipse.jetty.websocket.server.WebSocketUpgradeHandler
+import underdog.spectacle.templates.CachedTemplateEngine
 
 /**
  * This class builds an instance of {@link WebSocketUpgradeHandler} containing an embedded instance of
@@ -21,6 +22,7 @@ class WebSocketUpgradeHandlerBuilder {
     HtmlEvent event
     HtmlApplication application
     Server server
+    CachedTemplateEngine templateEngine
 
     /**
      * Sets the {@link HtmlEvent}
@@ -59,6 +61,18 @@ class WebSocketUpgradeHandlerBuilder {
     }
 
     /**
+     * Sets the template engine to render html
+     *
+     * @param templateEngine the application shared template engine of type {@link CachedTemplateEngine}
+     * @return the current builder instance
+     * @since 0.1.0
+     */
+    WebSocketUpgradeHandlerBuilder templateEngine(CachedTemplateEngine templateEngine) {
+        this.templateEngine = templateEngine
+        return this
+    }
+
+    /**
      * With the attributes passed previously to the builder it builds a new instance of
      * type {@link WebSocketUpgradeHandler}. This instance will have an embedded instance
      * of type {@link StreamingHandler} which will make use of the elements of the surrounding
@@ -73,7 +87,7 @@ class WebSocketUpgradeHandlerBuilder {
             container.with {
                 maxTextMessageSize = DEV_WS_TEXT_MESSAGE_SIZE
                 addMapping(this.event.path) { req, res, cb ->
-                    return new StreamingHandler(req, res, cb, application, event)
+                    return new StreamingHandler(req, res, cb, application, event, templateEngine)
                 }
             }
         }

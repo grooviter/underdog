@@ -23,7 +23,7 @@ import static org.eclipse.jetty.http.HttpHeader.CONTENT_TYPE
 class BackendHandler extends ElseNext {
     HtmlEvent event
     HtmlApplication application
-    CachedTemplateEngine templateEngine = new CachedTemplateEngine()
+    CachedTemplateEngine templateEngine
 
     /**
      * Creates a new {@link BackendHandler}
@@ -34,11 +34,13 @@ class BackendHandler extends ElseNext {
      */
     BackendHandler(
         HtmlEvent event,
-        HtmlApplication application
+        HtmlApplication application,
+        CachedTemplateEngine templateEngine
     ) {
         super()
         this.event = event
         this.application = application
+        this.templateEngine = templateEngine
         this.includeMethod(HttpMethod.POST.toString())
         this.includePath(event.path)
     }

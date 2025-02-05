@@ -16,6 +16,7 @@ import org.eclipse.jetty.websocket.server.WebSocketUpgradeHandler
 import underdog.spectacle.Application
 import underdog.spectacle.dsl.HtmlApplication
 import underdog.spectacle.dsl.HtmlEvent
+import underdog.spectacle.templates.CachedTemplateEngine
 
 import java.util.concurrent.Executors
 
@@ -84,11 +85,12 @@ class JettyApplication implements Application {
     void launch() {
         log.debug("launching application")
         log.debug("loading backend handlers")
+        CachedTemplateEngine templateEngine = new CachedTemplateEngine()
         List<BackendHandler> backendHandlerList = htmlApplication
             .eventList
             .findAll(HtmlEvent::isNotStreaming)
             .collect {
-                new BackendHandler(it, htmlApplication)
+                new BackendHandler(it, htmlApplication, templateEngine)
             }
 
         log.debug("loading streaming events")
@@ -100,7 +102,7 @@ class JettyApplication implements Application {
         List<PageHandler> pageHandlerList = htmlApplication
             .pageList
             .collect {
-                new PageHandler(it)
+                new PageHandler(it, templateEngine)
             }
 
         log.debug("creating server instance")
@@ -124,6 +126,7 @@ class JettyApplication implements Application {
                 .event(it)
                 .application(htmlApplication)
                 .server(server)
+                .templateEngine(templateEngine)
                 .build()
 
             contextHandlerCollection.addHandler(new ContextHandler(handler, "/"))

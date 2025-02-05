@@ -22,7 +22,7 @@ import java.time.Duration
  * @since 0.1.0
  */
 @Slf4j
-@TupleConstructor(includes = ['request', 'response', 'callback', 'application', 'event'])
+@TupleConstructor(includes = ['request', 'response', 'callback', 'application', 'event', 'templateEngine'])
 class StreamingHandler extends AbstractAutoDemanding {
     ServerUpgradeRequest request
     ServerUpgradeResponse response
@@ -30,7 +30,7 @@ class StreamingHandler extends AbstractAutoDemanding {
     HtmlEvent event
     Session session
     Callback callback
-    CachedTemplateEngine templateEngine = new CachedTemplateEngine()
+    CachedTemplateEngine templateEngine
 
     @Override
     void onWebSocketOpen(Session session) {

@@ -18,7 +18,7 @@ import underdog.spectacle.templates.CachedTemplateEngine
  */
 class PageHandler extends ElseNext {
     HtmlPage page
-    CachedTemplateEngine templateEngine = new CachedTemplateEngine()
+    CachedTemplateEngine templateEngine
 
     /**
      * Creates a new {@link PageHandler} with the page to render
@@ -26,8 +26,9 @@ class PageHandler extends ElseNext {
      * @param htmlPage page to render
      * @since 0.1.0
      */
-    PageHandler(HtmlPage htmlPage) {
+    PageHandler(HtmlPage htmlPage, CachedTemplateEngine templateEngine) {
         this.page = htmlPage
+        this.templateEngine = templateEngine
         this.includeMethod(HttpMethod.GET.toString())
         this.includePath(htmlPage.path)
     }
