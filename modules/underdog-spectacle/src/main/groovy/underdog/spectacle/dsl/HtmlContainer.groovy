@@ -5,6 +5,7 @@ import groovy.transform.NamedVariant
 import underdog.DataFrame
 import underdog.plots.Options
 import underdog.spectacle.dsl.components.HtmlAccordion
+import underdog.spectacle.dsl.components.HtmlAudio
 import underdog.spectacle.dsl.components.HtmlCard
 import underdog.spectacle.dsl.components.HtmlChart
 import underdog.spectacle.dsl.components.HtmlButton
@@ -171,6 +172,33 @@ abstract class HtmlContainer extends HtmlElement {
         return new HtmlColumn(className: className)
             .tap { this.addChild(it) }
             .tap { with(closure) }
+    }
+
+    /**
+     * Renders an html audio field
+     *
+     * @param name the name of the html element
+     * @param label the label of the html element
+     * @param info some information about what the element is for
+     * @param path the path where the audio file can be accessed
+     * @return an instance of type {@link HtmlAudio}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlAudio audio(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = "",
+        @NamedParam(required = false) String info = "",
+        @NamedParam(required = false) String path = ""
+    ) {
+        return new HtmlAudio(
+            name: name,
+            info: info,
+            label: label,
+            value: path
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
     }
 
     /**
