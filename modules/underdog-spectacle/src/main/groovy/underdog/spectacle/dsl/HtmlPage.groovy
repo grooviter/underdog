@@ -96,6 +96,7 @@ class HtmlPage extends HtmlContainer {
      * should be bind to the application with some of the {@link HtmlApplication#page} methods
      *
      * @param path URL path of the page
+     * @param title page title
      * @param application {@link HtmlApplication} this page will be bound to
      * @param theme dark/light theme
      * @param dsl nested elements
@@ -105,10 +106,16 @@ class HtmlPage extends HtmlContainer {
     @NamedVariant
     static HtmlPage create(
         @NamedParam(required = true) String path,
+        @NamedParam(required = false) String title,
         @NamedParam(required = true) HtmlApplication application,
         @NamedParam(required = false) String theme = "light",
         @DelegatesTo(HtmlPage) Closure dsl
     ) {
-        return new HtmlPage(path: path, application: application, theme: theme).tap { with(dsl) }
+        return new HtmlPage(
+            path: path,
+            title: title,
+            application: application,
+            theme: theme
+        ).tap { with(dsl) }
     }
 }

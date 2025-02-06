@@ -2,7 +2,6 @@ package underdog.spectacle.dsl
 
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
-import groovy.transform.TupleConstructor
 
 import java.util.function.Function
 
@@ -11,7 +10,6 @@ import java.util.function.Function
  *
  * @since 0.1.0
  */
-@TupleConstructor(includes = ['configuration'])
 class HtmlApplication {
     Map<String,?> configuration
 
@@ -62,9 +60,26 @@ class HtmlApplication {
     HtmlPage defaultPage
 
     /**
+     * Default theme for all pages (light|dark)
+     *
+     * @since 0.1.0
+     */
+    String defaultTheme
+
+    /**
+     * Whether to show the navigation bar or not. By default if more than one page is
+     * added to the application the navigation bar it's shown
+     *
+     * @since 0.1.0
+     */
+    Boolean showNavigation = true
+
+    /**
      * Creates a new {@link HtmlPage}
      *
-     * @param path url path where the page will be accessible
+     * @param path url path where the page will        if (this.pageList.size() > 0) {
+            this.pageList.each { it.navigation() }
+        } be accessible
      * @param theme pages html theme ('system' by default)
      * @param title title of the html page
      * @param icon a bootstrap icon with class name syntax, for example: `bi bi-question`
@@ -99,7 +114,7 @@ class HtmlApplication {
             this.defaultPage = page
         }
 
-        this.pageList.add(page)
+        addPage(page)
 
         return page
     }
@@ -116,7 +131,25 @@ class HtmlApplication {
      * @since 0.1.0
      */
     HtmlPage page(Function<HtmlApplication,HtmlPage> page) {
-        return page.apply(this).tap { this.pageList.add(it) }
+        return page.apply(this).tap(this::addPage)
+    }
+
+    /**
+     * Adds a {@link HtmlPage} to the application and applies default values
+     *
+     * @param a new @{link HtmlPage}
+     * @since 0.1.0
+     */
+    void addPage(HtmlPage htmlPage) {
+        if (this.defaultTheme && !htmlPage.theme){
+            htmlPage.theme = this.defaultTheme
+        }
+
+        this.pageList.add(htmlPage)
+
+        if (this.pageList.size() > 1 && this.showNavigation) {
+            this.pageList.each { it.navigation() }
+        }
     }
 
     /**
