@@ -1,3 +1,3 @@
-option(key: element.key) {
-    yield element.value
+option(value: element.value) {
+    yield element.caption
 }

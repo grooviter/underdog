@@ -1,4 +1,4 @@
-div(class: 'mb-3'){
+div(id: element.name, class: 'mb-3'){
     if (element.label) {
         label(
             class: 'form-label',
@@ -12,7 +12,7 @@ div(class: 'mb-3'){
             yield element.info
         }
     }
-    select(class: 'form-select mt-1') {
+    select(name: element.name, class: 'form-select mt-1') {
         yieldUnescaped childrenContent
     }
 }

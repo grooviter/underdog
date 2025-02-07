@@ -1,5 +1,7 @@
 package underdog.spectacle.dsl
 
+import underdog.spectacle.http.HttpClient
+
 /**
  * Represents the execution context.
  *
@@ -71,4 +73,22 @@ abstract class Context {
      * @since 0.1.0
      */
     abstract Map<String,?> getConfiguration()
+
+    /**
+     * Gets the reference of a {@link ResourceHandler} to things such as
+     * saving a file or retrieving a file to or from that handler
+     *
+     * @param name the name identifying that handler
+     * @return an instance of {@link ResourceHandler}
+     * @since 0.1.0
+     */
+    abstract ResourceHandler resources(String name)
+
+    /**
+     * Returns an opinionated HTTP client for easy tasks
+     *
+     * @return an instance of {@link HttpClient}
+     * @since 0.1.0
+     */
+    abstract HttpClient getHttpClient()
 }

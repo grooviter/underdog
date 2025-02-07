@@ -12,5 +12,9 @@ div(id: element.name, class: 'mb-3'){
             yield element.info
         }
     }
-    audio(class: "w-100", controls: "", src: element.value){}
+    if (element.value) {
+        audio(class: "w-100", controls: "", src: element.value){}
+    } else {
+        audio(class: "w-100", controls: "", style: 'opacity: .25; pointer-events: none'){}
+    }
 }

@@ -150,6 +150,17 @@ class JettyApplication implements Application {
         resourceHandler.setAcceptRanges(true)
         contextHandlerCollection.addHandler(new ContextHandler(resourceHandler, '/static'))
 
+        // STATIC RESOURCES ADDED BY USER VIA resources(...) DSL
+        this.htmlApplication.resourceHandlerList.each {
+            log.debug("adding user static resources at ${it.path}")
+            ResourceHandler staticResourceHandler = new ResourceHandler()
+            staticResourceHandler.setBaseResource(ResourceFactory.of(staticResourceHandler).newResource("file://${it.dir}"))
+            staticResourceHandler.setDirAllowed(it.allowListing)
+            staticResourceHandler.setCacheControl("none")
+            staticResourceHandler.setAcceptRanges(true)
+            contextHandlerCollection.addHandler(new ContextHandler(staticResourceHandler, it.path))
+        }
+
         log.debug("checking dev mode")
         // WS DEV MODE
         if (isDevelopment()) {

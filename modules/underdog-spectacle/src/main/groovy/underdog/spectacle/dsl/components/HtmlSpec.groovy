@@ -80,7 +80,12 @@ class HtmlSpec extends HtmlContainer {
                         form(
                             streaming: this.onSubmitStreaming,
                             name: formName,
-                            indicatorSelector: "#${formName} input, #${formName} button"
+                            indicatorSelector: """\
+                            | #${formName} input,
+                            | #${formName} textarea,
+                            | #${formName} .form-check-label,
+                            | #${formName} button,
+                            | #spec-progress""".stripMargin().stripIndent()
                         ) {
                             card {
                                 cardBody {
@@ -105,8 +110,9 @@ class HtmlSpec extends HtmlContainer {
                         }
                     }
                     col {
-                        card(className: "+h-100") {
+                        card {
                             cardBody {
+                                progressIndeterminate(name: 'spec-progress', className: "+mb-3")
                                 outputList.each(delegate::addChild)
                             }
                         }

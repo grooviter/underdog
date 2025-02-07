@@ -1,6 +1,6 @@
 div(id: element.name, class: 'mb-3') {
     if (element.label) {
-        label(for: element.name, class: 'form-label') {
+        label(for: element.name, class: "form-label ${element.required ? 'required' : ''}") {
             yield element.label
         }
     }
@@ -12,7 +12,8 @@ div(id: element.name, class: 'mb-3') {
     textArea(
         name: element.name,
         class: 'form-control',
-        rows: element.rows
+        rows: element.rows,
+        required: element.required
     ){
         yield element.value
     }

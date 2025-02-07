@@ -16,11 +16,13 @@ import underdog.spectacle.dsl.components.HtmlDataFrame
 import underdog.spectacle.dsl.components.HtmlDatePicker
 import underdog.spectacle.dsl.components.HtmlDiv
 import underdog.spectacle.dsl.components.HtmlForm
+import underdog.spectacle.dsl.components.HtmlImage
 import underdog.spectacle.dsl.components.HtmlInputNumber
 import underdog.spectacle.dsl.components.HtmlInputText
 import underdog.spectacle.dsl.components.HtmlMarkdown
 import underdog.spectacle.dsl.components.HtmlNumberCard
 import underdog.spectacle.dsl.components.HtmlOptionGroup
+import underdog.spectacle.dsl.components.HtmlProgressIndeterminate
 import underdog.spectacle.dsl.components.HtmlRange
 import underdog.spectacle.dsl.components.HtmlResetLink
 import underdog.spectacle.dsl.components.HtmlRow
@@ -258,6 +260,36 @@ abstract class HtmlContainer extends HtmlElement {
     }
 
     /**
+     * Renders an image passing a url as its value
+     *
+     * @param name the name of the element
+     * @param label the label of the element
+     * @param info info about what the element content is about
+     * @param className class attribute of the html element
+     * @param value path or full url where the image is located
+     * @return an instance of {@link HtmlImage}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlImage image(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String label = '',
+        @NamedParam(required = false) String info = '',
+        @NamedParam(required = false) String className = '',
+        @NamedParam(required = false) String value = ''
+    ) {
+        return new HtmlImage(
+            name: name,
+            label: label,
+            className: className,
+            info: info,
+            value: value
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
      * Adds a new html button
      *
      * @param text text of the button
@@ -365,6 +397,7 @@ abstract class HtmlContainer extends HtmlElement {
      *
      * @param name the name of the element
      * @param label the label of the input element
+     * @param info info about what the element content is about
      * @param editable whether the element is editable or not
      * @param value default value of the element
      * @return an instance of {@link HtmlInputNumber}
@@ -572,6 +605,31 @@ abstract class HtmlContainer extends HtmlElement {
     }
 
     /**
+     * Renders a progress bar with an indeterminate duration. Useful for
+     * showing progress of a process with an unknown duration.
+     *
+     * @param name of the html element
+     * @param className class attribute of the element
+     * @param display whether to show or hide the element
+     * @return an instance of {@link HtmlProgressIndeterminate}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlProgressIndeterminate progressIndeterminate(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) Boolean display = false
+    ){
+        return new HtmlProgressIndeterminate(
+            name: name,
+            className: className,
+            display: display
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
      * Adds an html checkbox group element
      *
      * @param name name of the html element
@@ -648,12 +706,14 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String value = "",
         @NamedParam(required = false) String info = "",
         @NamedParam(required = false) Integer rows = 5,
+        @NamedParam(required = false) Boolean required = false,
         @NamedParam(required = false) boolean editable = true
     ) {
         return new HtmlTextArea(
             name: name,
             value: value,
             info: info,
+            required: required,
             rows: rows,
             label: label,
             editable: editable

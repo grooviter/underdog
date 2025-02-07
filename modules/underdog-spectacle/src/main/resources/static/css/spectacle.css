@@ -14,10 +14,19 @@ datalist > option {
     padding-left: 1em;
 }
 
-input.htmx-request {
+input.htmx-request, textarea.htmx-request, span.form-check-label.htmx-request {
     color: var(--tblr-muted) !important;
     pointer-events: none;
     user-select: none;
+}
+
+div:has(> .form-check > .form-check-input.htmx-request) {
+    pointer-events: none;
+    user-select: none;
+}
+
+.form-check-input.htmx-request {
+    background-color: var(--tblr-muted-darken);
 }
 
 button.htmx-request{
@@ -26,4 +35,8 @@ button.htmx-request{
     background-color: var(--tblr-btn-disabled-bg);
     border-color: var(--tblr-btn-disabled-border-color);
     opacity: var(--tblr-btn-disabled-opacity);
+}
+
+#spec-progress.htmx-request {
+    display: flex !important;
 }

@@ -55,7 +55,7 @@ class StreamingHandler extends AbstractAutoDemanding {
     @Override
     void onWebSocketText(String message) {
         def function = this.event.function
-        def context = new JettyWSContext(message, application.configuration)
+        def context = new JettyWSContext(message, application)
         Flux flux = function(context) as Flux
         flux
             .map(this::executeTemplate)

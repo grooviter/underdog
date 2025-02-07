@@ -35,6 +35,13 @@ class HtmlApplication {
     List<HtmlElement> elementList = []
 
     /**
+     * List of handlers responsible for exposing static resources such as images, audios...
+     *
+     * @since 0.1.0
+     */
+    List<ResourceHandler> resourceHandlerList = []
+
+    /**
      * Contains the ids of the elements of this application. When invoked with a non present
      * key, it will generate a new id for that key.
      *
@@ -92,7 +99,7 @@ class HtmlApplication {
     @NamedVariant
     HtmlPage page(
         String path,
-        @NamedParam(required = false) String theme = 'system',
+        @NamedParam(required = false) String theme = '',
         @NamedParam(required = false) String title = '',
         @NamedParam(required = false) String icon = '',
         @NamedParam(required = false) String name = Utils.generateRandomName(),
@@ -117,6 +124,38 @@ class HtmlApplication {
         addPage(page)
 
         return page
+    }
+
+    /**
+     * Adds a new static resources endpoint handler
+     *
+     * This handler not only exposed a set of static resources. It can also be used in event
+     * functions to save new resources in the system.
+     *
+     * @param path the url path of where resources will be exposed
+     * @param dir file system directory where the files will be located phisically
+     * @param name name of the resource handler. Useful for accessing it
+     * @param allowListing whether to allow directory listing from the endpoint or not
+     * @return an instance of type {@link ResourceHandler}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    ResourceHandler resources(
+        @NamedParam(required = true) String path,
+        @NamedParam(required = false) String dir,
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) Boolean allowListing = false
+    ) {
+        return new ResourceHandler(
+            name: name,
+            path: path,
+            dir: dir,
+            allowListing: allowListing
+        ).tap {this.resourceHandlerList.add(it) }
+    }
+
+    ResourceHandler findResourceHandlerByName(String name) {
+        return this.resourceHandlerList.find { it.name == name }
     }
 
     HtmlPage getDefaultPage() {
