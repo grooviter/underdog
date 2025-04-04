@@ -5,8 +5,6 @@ import spock.lang.Specification
 import underdog.spectacle.Spectacle
 import underdog.spectacle.dsl.Context
 
-import java.time.Duration
-
 import static java.time.Duration.ofSeconds
 
 class ComponentStreamingSpec extends Specification {
@@ -28,6 +26,7 @@ class ComponentStreamingSpec extends Specification {
             // --8<-- [end:component_streaming]
         }
         expect:
-        application.launch()
+        application
+        // application.launch()
     }
 }

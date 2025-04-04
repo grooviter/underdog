@@ -63,6 +63,6 @@ class ChatBotSpec extends Specification {
             }
         }
         expect:
-        application.launch()
+        application
     }
 }

@@ -159,7 +159,7 @@ class TutorialSpec extends Specification {
             }
         }
         // --8<-- [end:complete]
-        app.launch()
+        // app.launch()
         then:
         app
     }

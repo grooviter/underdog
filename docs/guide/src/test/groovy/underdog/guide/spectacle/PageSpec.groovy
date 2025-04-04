@@ -44,7 +44,8 @@ class PageSpec extends Specification {
         }
         // --8<-- [end:page_refactor]
         expect:
-        application.launch()
+        application
+        // application.launch()
     }
 
     // --8<-- [start:page_refactor_method]

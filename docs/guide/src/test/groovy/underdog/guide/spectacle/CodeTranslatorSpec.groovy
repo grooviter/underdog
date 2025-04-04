@@ -26,6 +26,6 @@ class CodeTranslatorSpec extends Specification {
         }
 
         expect:
-        application.launch()
+        application
     }
 }

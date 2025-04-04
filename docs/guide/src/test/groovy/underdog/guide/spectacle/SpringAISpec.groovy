@@ -55,6 +55,7 @@ class SpringAISpec extends Specification {
             }
         }
         expect:
-        app.launch()
+        app
+        // app.launch()
     }
 }

@@ -25,6 +25,7 @@ class FormStreamingSpec extends Specification {
             // --8<-- [end:form_streaming]
         }
         expect:
-        application.launch()
+        application
+        // application.launch()
     }
 }

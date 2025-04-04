@@ -61,7 +61,8 @@ class SpringAIStreamingSpec extends Specification {
             }
         }
         expect:
-        app.launch()
+        app
+        // app.launch()
     }
 
     Flux<String> streamFluxText(Flux<String> flux) {

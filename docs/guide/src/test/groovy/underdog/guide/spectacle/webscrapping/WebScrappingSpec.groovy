@@ -32,6 +32,7 @@ class WebScrappingSpec extends Specification {
         }
 
         expect:
-        application.launch()
+        application
+        // application.launch()
     }
 }

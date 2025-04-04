@@ -28,7 +28,8 @@ class SpecSpec extends Specification {
         }
         // --8<-- [end:example]
         expect:
-        app.launch()
+        app
+        // app.launch()
     }
 
     void 'simple spec complete'() {

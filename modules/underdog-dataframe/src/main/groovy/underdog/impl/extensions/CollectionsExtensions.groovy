@@ -1,6 +1,5 @@
 package underdog.impl.extensions
 
-import tech.tablesaw.api.ColumnType
 import tech.tablesaw.columns.Column
 import underdog.DataFrame
 import underdog.Series

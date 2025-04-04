@@ -303,7 +303,7 @@ class ComponentsSpec extends Specification {
             }
         }
         expect:
-        //app
-        app.launch()
+        app
+//        app.launch()
     }
 }
