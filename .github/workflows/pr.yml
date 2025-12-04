@@ -1,11 +1,11 @@
 name: pull-requests
-
 on:
+  - push
   - pull_request
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  ci:
+    runs-on: docker
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4

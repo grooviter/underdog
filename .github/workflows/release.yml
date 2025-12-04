@@ -7,15 +7,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: docker
     environment: release
     env:
       ORG_GRADLE_PROJECT_PUBLISH_SIGN_KEY_ID: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_SIGN_KEY_ID }}
       ORG_GRADLE_PROJECT_PUBLISH_SIGN_KEY: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_SIGN_KEY }}
       ORG_GRADLE_PROJECT_PUBLISH_SIGN_SECRET: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_SIGN_SECRET }}
+      ORG_GRADLE_PROJECT_PUBLISH_GH_TOKEN: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_GH_TOKEN }}
       ORG_GRADLE_PROJECT_PUBLISH_REPO_USERNAME: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_REPO_USERNAME }}
       ORG_GRADLE_PROJECT_PUBLISH_REPO_PASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_REPO_PASSWORD }}
-      ORG_GRADLE_PROJECT_PUBLISH_GH_TOKEN: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_GH_TOKEN }}
       CI: true
     steps:
       - uses: actions/checkout@v4
@@ -36,4 +36,5 @@ jobs:
           java-version: '17'
 
       - name: release
-        run: ./gradlew --stacktrace build gitPublishPush
+        run: ./gradlew --stacktrace build publish
+#        run: ./gradlew --stacktrace build gitPublishPush

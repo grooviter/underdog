@@ -49,7 +49,7 @@ config {
         repositories {
             repository {
                 name = 'releases'
-                url  = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                url  = 'https://git.lab.bit2lab.com/api/packages/underdog/maven'
                 credentials {
                     username = mavenUsername
                     password = mavenPassword
@@ -57,11 +57,12 @@ config {
             }
             repository {
                 name = 'snapshots'
-                url  = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+                url  = 'https://git.lab.bit2lab.com/api/packages/underdog/maven'
                 credentials {
                     username = mavenUsername
                     password = mavenPassword
                 }
+
             }
         }
     }
@@ -138,21 +139,21 @@ config {
     }
 }
 
-//allprojects {
-//    apply plugin: 'java'
-//    repositories {
-//        mavenCentral()
-//        maven { url 'https://jitpack.io' }
-//        maven { url  = "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
-//    }
-//    config {
-//        docs {
-//            javadoc {
-//                enabled = false
-//            }
-//        }
-//    }
-//}
+allprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url  = "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+    }
+    config {
+        docs {
+            javadoc {
+                enabled = false
+            }
+        }
+    }
+}
 
 allprojects {
     repositories {
