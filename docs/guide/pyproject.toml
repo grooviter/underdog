@@ -1,15 +1,18 @@
-[tool.poetry]
-name = "guidex"
+[project]
+name = "guide"
 version = "0.1.0"
-description = ""
-authors = ["Mario G. <mario.ggar@gmail.com>"]
+description = "A project using uv and MkDocs Material"
 readme = "README.md"
-package-mode = false
+requires-python = ">=3.12"
+dependencies = ["mkdocs-material==9.5.48"]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-mkdocs-material = "^9.5.48"
+[tool.uv]
+# Optional: pin Python version or interpreter
+python = "3.12"
+
+# Optional: enable uv's lockfile format
+default-lock = true
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
