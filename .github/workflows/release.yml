@@ -23,11 +23,9 @@ jobs:
         uses: astral-sh/setup-uv@v7
       - name: Set up Python
         run: uv python install
-      - name: installing poetry
-        run: python3 -m pip install --upgrade pip && pip install poetry
       - name: building docs
         working-directory: docs/guide
-        run: poetry install --no-root && poetry run mkdocs build
+        run: uv sync && uv run mkdocs build
 
       - uses: actions/setup-java@v4
         with:
