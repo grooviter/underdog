@@ -5,7 +5,3 @@ description = "A project using uv and MkDocs Material"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["mkdocs-material==9.5.48"]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
