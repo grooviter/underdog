@@ -6,9 +6,6 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["mkdocs-material==9.5.48"]
 
-[tool.uv]
-default-lock = true
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
