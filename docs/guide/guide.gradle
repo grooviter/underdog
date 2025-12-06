@@ -5,14 +5,32 @@ plugins {
 
 repositories {
     mavenLocal()
+    // Spring AI
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
-    testImplementation project(":underdog-dataframe")
-    testImplementation project(":underdog-graphs")
-    testImplementation project(":underdog-ml")
-    testImplementation project(":underdog-plots")
-    testImplementation project(":underdog-ta")
+    implementation "org.apache.groovy:groovy:$groovy"
+    implementation project(":underdog-dataframe")
+    implementation project(":underdog-graphs")
+    implementation project(":underdog-ml")
+    implementation project(":underdog-plots")
+    implementation project(":underdog-ta")
+    implementation project(":underdog-spectacle")
+    implementation 'ch.qos.logback:logback-classic:1.5.16'
+
+    // EXAMPLES DEPENDENCIES
+    // spring AI (SpringAISpec)
+    implementation platform("org.springframework.ai:spring-ai-bom:1.1.1")
+    implementation 'org.springframework.ai:spring-ai-client-chat'
+    implementation 'org.springframework.ai:spring-ai-openai'
+
+    // Scrapping (webscrapping.WebScrappingSpec)
+    implementation 'org.jsoup:jsoup:1.18.1'
+    implementation 'io.github.ollama4j:ollama4j:1.0.91'
+
+    // Testing
     testImplementation "org.spockframework:spock-core:$spock"
 }
 
