@@ -9,6 +9,7 @@ nav:
   - Graphs: graphs/index.md
   - ML: ml/index.md
   - Plots: plots/index.md
+  - Spectacle: spectacle/index.md
   - Technical Analysis: ta/index.md
   - Development: development/index.md
   - Blog:
@@ -47,7 +48,7 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets:
-      base_path: ../guide
+      base_path: .
       dedent_subsections: true
   - pymdownx.superfences:
       custom_fences:
