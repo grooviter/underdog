@@ -52,6 +52,8 @@ jobs:
     environment: release
     steps:
       - uses: actions/checkout@v4
+      - name: where am I
+        run: ls -la .
       - name: docs
         run: |
           docker login git.lab.bit2lab.com \
