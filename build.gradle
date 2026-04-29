@@ -58,11 +58,16 @@ config {
             repository {
                 name = 'snapshots'
                 url  = 'https://git.lab.bit2lab.com/api/packages/underdog/maven'
-                credentials {
-                    username = mavenUsername
-                    password = mavenPassword
+                credentials(HttpHeaderCredentials) {
+//                    username = mavenUsername
+//                    password = mavenPassword
+                    name = "Authorization"
+                    value = "token ${mavenPassword}"
                 }
 
+                authentication {
+                    header(HttpHeaderAuthentication)
+                }
             }
         }
     }
