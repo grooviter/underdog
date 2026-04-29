@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: docker
+    container:
+      image: git.lab.bit2lab.com/valhalla/groovy4-jdk17:latest
     environment: release
     env:
       ORG_GRADLE_PROJECT_PUBLISH_SIGN_KEY_ID: ${{ secrets.ORG_GRADLE_PROJECT_PUBLISH_SIGN_KEY_ID }}
