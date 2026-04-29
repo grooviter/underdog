@@ -53,7 +53,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: where am I
-        run: ls -la .
+        run: ls -la docs/guide
       - name: docs
         run: |
           docker login git.lab.bit2lab.com \
