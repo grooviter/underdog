@@ -26,6 +26,6 @@ class FormStreamingSpec extends Specification {
         }
         expect:
         application
-        // application.launch()
+        application.launch()
     }
 }

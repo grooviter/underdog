@@ -21,23 +21,8 @@ jobs:
       CI: true
     steps:
       - uses: actions/checkout@v4
-#      - name: Install uv
-#        uses: astral-sh/setup-uv@v7
-#      - name: Set up Python
-#        run: uv python install
-#      - name: building docs
-#        working-directory: docs/guide
-#        run: uv sync && uv run mkdocs build
-
-#      - uses: actions/setup-java@v4
-#        with:
-#          distribution: 'corretto'
-#          java-version: '17'
-
       - name: release
-        run: ./gradlew --stacktrace build
-#        run: ./gradlew --stacktrace build publish
-#        run: ./gradlew --stacktrace build gitPublishPush
+        run: ./gradlew --stacktrace build publish
   docs:
     runs-on: docker
     needs:
@@ -52,8 +37,6 @@ jobs:
     environment: release
     steps:
       - uses: actions/checkout@v4
-      - name: where am I
-        run: ls -la docs/guide
       - name: docs
         run: |
           docker login git.lab.bit2lab.com \
