@@ -57,5 +57,5 @@ jobs:
           docker login git.lab.bit2lab.com \
             --username ${{ secrets.DOCKER_USERNAME }} \
             --password ${{ secrets.DOCKER_PASSWORD }}
-          docker buildx build . -f Dockerfile -t $IMAGE_REPOSITORY/underdog-site:latest
+          docker buildx build docs/guide -f Dockerfile -t $IMAGE_REPOSITORY/underdog-site:latest docs/guide
           docker push $IMAGE_REPOSITORY/underdog-site:latest
