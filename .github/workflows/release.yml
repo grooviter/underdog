@@ -27,11 +27,12 @@ jobs:
         working-directory: docs/guide
         run: uv sync && uv run mkdocs build
 
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'corretto'
-          java-version: '17'
+#      - uses: actions/setup-java@v4
+#        with:
+#          distribution: 'corretto'
+#          java-version: '17'
 
       - name: release
-        run: ./gradlew --stacktrace build publish
+        run: ./gradlew --stacktrace build
+#        run: ./gradlew --stacktrace build publish
 #        run: ./gradlew --stacktrace build gitPublishPush
