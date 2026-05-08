@@ -17,10 +17,10 @@ div(class: "row"){
         }
     }
     if (showUpdated){
-        div(
-            id: updatedValueId,
-            class: "col d-flex align-items-center justify-content-end form-label"){
+        div(class: "col d-flex align-items-center justify-content-end form-label"){
+            span(id: updatedValueId, class: "badge") {
 
+            }
         }
         script(type: 'text/javascript'){
             yieldUnescaped """

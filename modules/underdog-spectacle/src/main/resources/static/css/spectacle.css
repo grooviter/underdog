@@ -40,3 +40,14 @@ button.htmx-request{
 #spec-progress.htmx-request {
     display: flex !important;
 }
+
+.form-range.htmx-request::-moz-range-thumb {
+    background-color: var(--tblr-muted) !important;
+    pointer-events: none;
+    user-select: none;
+}
+
+.form-range.htmx-request::-moz-range-track {
+    pointer-events: none;
+    user-select: none;
+}

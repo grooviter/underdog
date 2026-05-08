@@ -10,6 +10,9 @@ class SpectacleSpec extends Specification {
         setup:
         def application = Spectacle.application {
             def controller = { Context ctx ->
+                // TO SIMULATE WAITING FOR A BACKGROUND TASK
+                Thread.sleep(2000)
+
                 def from = ctx.pInteger(field.from)
                 def to = ctx.pInteger(field.to)
                 def df = Underdog.df()
@@ -28,9 +31,20 @@ class SpectacleSpec extends Specification {
                 }
                 row {
                     col {
-                        form {
+                        form(indicatorSelector: "#input, button, .form-range") {
                             row { number(name: field.from, label: 'From (X)', value: 1) }
-                            row { number(name: field.to, label: 'To (X)', value: 10) }
+                            row("row mb-4") {
+                                range(
+                                    name: field.to,
+                                    label: 'To (X)',
+                                    value: 10,
+                                    min: 1,
+                                    max: 10,
+                                    step: 1,
+                                    showMarkers: true,
+                                    showUpdatedValue: true
+                                )
+                            }
                             row { button(text: 'submit', editable: true) }
                             onSubmit([field.from, field.to], [field.output], controller)
                         }
