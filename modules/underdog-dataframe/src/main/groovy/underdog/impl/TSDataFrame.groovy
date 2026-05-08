@@ -799,4 +799,54 @@ class TSDataFrame implements DataFrame {
         String[] colsToDrop = this.table.columnNames() - numericCols
         return new TSDataFrame(this.table.removeColumns(colsToDrop))
     }
+
+    @Override
+    DataFrame concat(DataFrame other) {
+        Table otherTable = other.implementation as Table
+        List<String> sharedColumns = other.columns.intersect(this.columns)
+
+        // SAME COLUMNS (APPEND)
+        if (other.columns == sharedColumns) {
+            this.table.append(otherTable)
+            return this
+        }
+
+        // SHARING ANY COLUMN (MERGE)
+        if (sharedColumns.size() > 0) {
+            return this.merge(other, on: [sharedColumns], how: TypeJoin.LEFT_OUTER)
+        }
+
+        // NOT SHARING ANY COLUMNS AND DIFFERENT ROW COUNT (ADD COLUMNS && APPEND)
+        if (sharedColumns.size() == 0 && this.table.rowCount() != otherTable.rowCount()) {
+            Integer rowDifference = this.table.rowCount() - otherTable.rowCount()
+            Integer rowsToAdd = rowDifference.abs() - 1
+            List<Column<?>> columnsToAdd = otherTable.columns()
+
+            // ORIGIN HAS LESS ROWS
+            if (this.table.rowCount() < otherTable.rowCount()) {
+                this.table.columns().each {nextColumn ->
+                    (0..rowsToAdd).each {
+                        nextColumn.appendMissing()
+                    }
+                }
+            // OTHER HAS LESS ROWS
+            } else {
+                columnsToAdd = otherTable.columns()
+                    .collect { it.copy() }
+                    .collect {nextColumn ->
+                        (0..rowsToAdd).each {
+                            nextColumn.appendMissing()
+                        }
+                        nextColumn
+                    }
+            }
+
+            this.table.addColumns(columnsToAdd as Column[])
+            return this
+        }
+
+        // NOT SHARING COLUMNS BUT SAME ROW COUNT (CONCAT)
+        this.table.concat(other.implementation as Table)
+        return this
+    }
 }

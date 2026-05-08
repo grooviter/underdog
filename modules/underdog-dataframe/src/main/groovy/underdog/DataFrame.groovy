@@ -22,10 +22,10 @@ interface DataFrame extends Columnar {
      */
     DataFrame copy()
 
-    double[][] corrMatrix()
 
-    @NamedVariant
     double[][] corrMatrix(@NamedParam(required = false) Integer round, @NamedParam(required = false) TypeCorrelation method)
+
+    DataFrame concat(DataFrame other)
 
     DataFrame dropConstantSeries()
     DataFrame dropNonNumericalColumns()

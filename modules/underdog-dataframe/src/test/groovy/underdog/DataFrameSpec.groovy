@@ -483,6 +483,77 @@ class DataFrameSpec extends BaseSpec {
         weights == [11, 22, 303, 604, 1005] as int[]
     }
 
+    def "[DataFrame/concat]: concatenating two dataframes with same columns"() {
+        setup:
+        def df1 = [
+            A: [1, 2],
+            B: ["A", "B"]
+        ].toDataFrame("origin")
+
+        and:
+        def df2 = [
+            A: [3],
+            B: ["C"]
+        ].toDataFrame("other")
+
+        when:
+        df1 = df1.concat(df2)
+
+        then:
+        df1["A"].toList() == [1, 2, 3]
+        df1["B"].toList() == ["A", "B", "C"]
+    }
+
+    def "[DataFrame/concat]: concatenating two dataframes with different columns"() {
+        setup:
+        def df1 = [
+                A: [1, 2],
+                B: ["A", "B"]
+        ].toDataFrame("origin")
+
+        and:
+        def df2 = [
+                C: ["Torino", "Berlin"],
+                D: ["High", "Low"]
+        ].toDataFrame("other")
+
+        when:
+        df1 = df1.concat(df2)
+
+        then:
+        df1["A"].toList() == [1, 2]
+        df1["B"].toList() == ["A", "B"]
+        df1["C"].toList() == ["Torino", "Berlin"]
+        df1["D"].toList() == ["High", "Low"]
+    }
+
+    def "[DataFrame/concat]: concatenating two dataframes with different columns and rows (no copy)"() {
+        setup:
+        def df0 = null
+        def df1 = [
+            A: [1, 2],
+            B: ["A", "B"]
+        ].toDataFrame("origin")
+
+        and:
+        def df2 = [
+            C: ["Torino", "Berlin", "Paris"],
+            D: ["High", "Low", "Medium"]
+        ].toDataFrame("other")
+
+        when:
+        df0 = df1.concat(df2)
+
+        then:
+        df1["A"].toList() == [1, 2, null]
+        df1["B"].toList() == ["A", "B", null]
+        df1["C"].toList() == ["Torino", "Berlin", "Paris"]
+        df1["D"].toList() == ["High", "Low", "Medium"]
+
+        and: "reference is the same"
+        df0 == df1
+    }
+
     def "[DataFrame/fillna]: fixed value all numeric series"() {
         setup:
         def df = [
