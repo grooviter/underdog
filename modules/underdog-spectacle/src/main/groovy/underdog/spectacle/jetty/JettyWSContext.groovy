@@ -6,10 +6,11 @@ import underdog.spectacle.dsl.HtmlApplication
 import underdog.spectacle.dsl.ResourceHandler
 import underdog.spectacle.http.HttpClient
 
-@TupleConstructor
+@TupleConstructor(excludes = ['cancelled'])
 class JettyWSContext extends JettyContext {
     String message
     HtmlApplication application
+    boolean cancelled
 
     @Override
     String param(String fieldName, String defaultValue) {
@@ -53,5 +54,15 @@ class JettyWSContext extends JettyContext {
     @Override
     HttpClient getHttpClient() {
         return HttpClient.createClient(this.application)
+    }
+
+    /**
+     * Marks the context as cancelled. This flag will be used
+     * to stop streams handled by the websocket connection
+     *
+     * @since 0.1.0
+     */
+    void cancelContext() {
+        this.cancelled = true
     }
 }

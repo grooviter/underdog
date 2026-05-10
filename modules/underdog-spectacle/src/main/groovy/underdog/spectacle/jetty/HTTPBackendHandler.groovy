@@ -20,19 +20,19 @@ import static org.eclipse.jetty.http.HttpHeader.CONTENT_TYPE
  *
  * @since 0.1.0
  */
-class BackendHandler extends ElseNext {
+class HTTPBackendHandler extends ElseNext {
     HtmlEvent event
     HtmlApplication application
     CachedTemplateEngine templateEngine
 
     /**
-     * Creates a new {@link BackendHandler}
+     * Creates a new {@link HTTPBackendHandler}
      *
      * @param event the element associated with this event execution
      * @param application the application associated with this execution
      * @since 0.1.0
      */
-    BackendHandler(
+    HTTPBackendHandler(
         HtmlEvent event,
         HtmlApplication application,
         CachedTemplateEngine templateEngine
@@ -55,15 +55,23 @@ class BackendHandler extends ElseNext {
     protected boolean onConditionsMet(Request request, Response response, Callback callback) throws Exception {
         def function = this.event.function
         def context = new JettyHTTPContext(request, this.application)
-        def targetValue = function(context)
-        def target = this.event
+        def targetValues = [function(context)].flatten()
+
+        def targetList = this.event
             .outputList
             .<String, HtmlElementWithValue>collect(this.application::findHtmlElementWithValueByName)
-            .find()
-            .tap { it.value = targetValue }
 
         response.headers.add(CONTENT_TYPE, "text/html")
-        Content.Sink.write(response, true, templateEngine.render(target), callback)
+
+        String combined = ""
+        for (int i = 0; i < targetValues.size(); i++) {
+            def target = targetList[i]
+            def value = targetValues[i]
+            target.value = value
+            combined += templateEngine.render(target)
+        }
+
+        Content.Sink.write(response, true, combined, callback)
         return true
     }
 }

@@ -6,8 +6,17 @@ if (element.isStreaming()) {
         'class': 'pf-v6-c-form',
         'id': element.name,
         'name': element.name,
-        'ws-send': 'true'
+        'ws-send': 'true',
+        'hx-indicator': element.indicatorSelector
     ) {
+        script(type: 'module') {
+            yieldUnescaped """\
+                | import { HtmlFormStreaming } from "/static/js/spc-form.js";
+                |
+                | new HtmlFormStreaming().init();
+            """.stripMargin().stripIndent()
+        }
+
         yieldUnescaped childrenContent
     }
 } else {

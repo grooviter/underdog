@@ -37,6 +37,7 @@ html {
         script(src: 'static/js/bootstrap.js'){}
         script(src: 'static/js/htmx.min.js'){}
         script(src: 'static/js/htmx-ws.js'){}
+        script(type: "module", src: 'static/js/spc-form.js'){}
         if (element.isDevelopment()) {
             script(type: "module", src: 'static/js/spc-dev.js'){}
         }

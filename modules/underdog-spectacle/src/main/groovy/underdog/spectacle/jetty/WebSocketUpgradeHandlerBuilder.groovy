@@ -8,7 +8,7 @@ import underdog.spectacle.templates.CachedTemplateEngine
 
 /**
  * This class builds an instance of {@link WebSocketUpgradeHandler} containing an embedded instance of
- * {@link StreamingHandler}. And {@link StreamingHandler} is the functionality by a Spectacle event
+ * {@link WSBackendHandler}. And {@link WSBackendHandler} is the functionality by a Spectacle event
  * that is going to stream its results to output fields.
  *
  * In order to do that there are a few objects required, that's why all that construction is
@@ -75,7 +75,7 @@ class WebSocketUpgradeHandlerBuilder {
     /**
      * With the attributes passed previously to the builder it builds a new instance of
      * type {@link WebSocketUpgradeHandler}. This instance will have an embedded instance
-     * of type {@link StreamingHandler} which will make use of the elements of the surrounding
+     * of type {@link WSBackendHandler} which will make use of the elements of the surrounding
      * object such as request, response, callback and return the result that will be
      * sent to the output.
      *
@@ -87,7 +87,7 @@ class WebSocketUpgradeHandlerBuilder {
             container.with {
                 maxTextMessageSize = DEV_WS_TEXT_MESSAGE_SIZE
                 addMapping(this.event.path) { req, res, cb ->
-                    return new StreamingHandler(req, res, cb, application, event, templateEngine)
+                    return new WSBackendHandler(req, res, cb, application, event, templateEngine)
                 }
             }
         }

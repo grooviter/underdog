@@ -56,6 +56,19 @@ form(streaming: true){
 }
 ```
 
+Previous example only updated one target. In case of we wanted to update more targets from different flux objects:
+
+```groovy
+form(streaming: true){
+    onSubmit([], [target1, target2]) {
+        return [
+            Flux.fromArray(...), // updates target1
+            Flux.fromArray(...)  // updates target2
+        ]
+    }
+}
+```
+
 !!! Danger
 
     The Flux type (Flux&lt;TYPE&gt;) must match the expected component value. For example:
@@ -75,6 +88,26 @@ Here is an example of a page having a streaming form
 The output fields don't have to be inside the form as long as they are referenced as output fields in the form. Once
 the form is submitted (this time via clicking on the button) the function will be executed and the streaming values
 will be sent to the output field.
+
+### Cancelling stream context
+
+All `onSubmit` or `onClick` functions can declare as argument an instance of type `underdog.spectacle.dsl.Context`. That
+is the parent type for all possible context implementations.
+
+```groovy
+onSubmit([], []) { Context ctx ->
+...
+}
+```
+
+When dealing with a form dealing with
+streaming connections you can change the `Context` type for a `underdog.spectacle.jetty.JettyWSContext`
+in order to use that context later on for cancelling the connection whenever you want via the
+method `JettyWSContext#cancelContext`.
+
+```groovy
+--8<-- "src/test/groovy/underdog/guide/spectacle/streaming/CancellingStreamingSpec.groovy"
+```
 
 ### Components
 

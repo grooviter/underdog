@@ -1,5 +1,5 @@
 if (element.hasParentClass("card-body") || element.isParentType('HtmlCardBody')) {
-    div(id: element.name, class: element.class) {
+    div(id: element.name, class: element.class, 'hx-swap-oob': 'true') {
         div(class: 'd-flex align-items-center') {
             div(class: 'subheader') {
                 yield element.title
@@ -12,7 +12,7 @@ if (element.hasParentClass("card-body") || element.isParentType('HtmlCardBody'))
         }
     }
 } else {
-    div(id: element.name, class: element.classNames('card')) {
+    div(id: element.name, class: element.classNames('card'), 'hx-swap-oob': 'true') {
         div(class: 'card-body') {
             div(class: 'd-flex align-items-center'){
                 div(class: 'subheader'){

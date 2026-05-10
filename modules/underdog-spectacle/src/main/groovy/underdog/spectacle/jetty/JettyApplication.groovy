@@ -4,8 +4,6 @@ import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
 import groovy.transform.TupleConstructor
 import groovy.util.logging.Slf4j
-import org.eclipse.jetty.server.HttpConfiguration
-import org.eclipse.jetty.server.HttpConnectionFactory
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.jetty.server.handler.ContextHandler
@@ -92,11 +90,11 @@ class JettyApplication implements Application {
         templateEngine.cacheBase()
         log.debug("loading backend handlers")
 
-        List<BackendHandler> backendHandlerList = htmlApplication
+        List<HTTPBackendHandler> backendHandlerList = htmlApplication
             .eventList
             .findAll(HtmlEvent::isNotStreaming)
             .collect {
-                new BackendHandler(it, htmlApplication, templateEngine)
+                new HTTPBackendHandler(it, htmlApplication, templateEngine)
             }
 
         log.debug("loading streaming events")
