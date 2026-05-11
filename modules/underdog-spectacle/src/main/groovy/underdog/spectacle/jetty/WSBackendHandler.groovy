@@ -7,15 +7,14 @@ import org.eclipse.jetty.websocket.api.Session
 import org.eclipse.jetty.websocket.api.Session.Listener.AbstractAutoDemanding
 import org.eclipse.jetty.websocket.server.ServerUpgradeRequest
 import org.eclipse.jetty.websocket.server.ServerUpgradeResponse
-import reactor.core.Disposable
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import underdog.spectacle.dsl.HtmlApplication
 import underdog.spectacle.dsl.HtmlElementWithValue
 import underdog.spectacle.dsl.HtmlEvent
 import underdog.spectacle.templates.CachedTemplateEngine
 
 import java.time.Duration
-import java.util.concurrent.atomic.AtomicReference
 
 /**
  * Handlers of this type will handle websocket communication between client and server
@@ -32,7 +31,6 @@ class WSBackendHandler extends AbstractAutoDemanding {
     Session session
     Callback callback
     CachedTemplateEngine templateEngine
-    Disposable disposable
 
     @Override
     void onWebSocketOpen(Session session) {
@@ -41,8 +39,20 @@ class WSBackendHandler extends AbstractAutoDemanding {
         log.debug("websocket connection open")
     }
 
-    private sendText(String text) {
-        this.session.sendText(text, null)
+    private static Mono<Void> sendTextAsync(Session session, String msg) {
+        return Mono.create { sink ->
+            session.sendText(msg, new org.eclipse.jetty.websocket.api.Callback() {
+                @Override
+                void succeed() {
+                    sink.success()
+                }
+
+                @Override
+                void fail(Throwable x) {
+                    sink.error(x)
+                }
+            })
+        }
     }
 
     @Override
@@ -62,25 +72,17 @@ class WSBackendHandler extends AbstractAutoDemanding {
             }
         }
 
-        AtomicReference<Disposable> ref = new AtomicReference<>()
-        this.disposable = Flux.merge(fluxes)
-            .doOnError(log::error)
-            .subscribe { html ->
-                // Inspired in https://www.baeldung.com/spring-webflux-cancel-flux
-                if (context.isCancelled()) {
-                    ref.get().dispose()
-                    this.session.disconnect()
-                    log.debug("websocket context cancelled")
-                    return
-                }
-                sendText(html)
-            }
-        ref.set(this.disposable)
+        Flux.merge(fluxes)
+            .onBackpressureLatest()
+            .concatMap { msg -> sendTextAsync(this.session, msg) }
+            .doFinally { this.session.disconnect() }
+            .doOnError { log.error(it.message, it) }
+            .takeUntilOther(context.cancelMono())
+            .subscribe()
     }
 
     @Override
     void onWebSocketClose(int statusCode, String reason) {
         this.session.close()
-        this.disposable?.dispose()
     }
 }
