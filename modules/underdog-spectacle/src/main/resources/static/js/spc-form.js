@@ -1,8 +1,8 @@
 class HtmlFormStreaming {
     init() {
-        document.body.addEventListener("htmx:wsBeforeSend", (evt) => this.onBeforeSendingMessages())
-        document.body.addEventListener("htmx:wsClose", (evt) => this.onClosingConnection)
-        document.body.addEventListener("htmx:wsError", (evt) => this.onError)
+        document.body.addEventListener("htmx:wsBeforeSend", (evt) => { this.onBeforeSendingMessages() })
+        document.body.addEventListener("htmx:wsClose", (evt) => { this.onClosingConnection() })
+        document.body.addEventListener("htmx:wsError", (evt) => { this.onError() })
     }
 
     getIndicators() {
