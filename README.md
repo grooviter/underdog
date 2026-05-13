@@ -12,6 +12,7 @@ Underdog is a set of Groovy libraries for data analysis:
 - `underdog-plots`: module to create charts.
 - `underdog-ml`: module to explore machine learning problems.
 - `underdog-ta`: module to explore financial technical analysis.
+- `underdog-spectacle`: module to create fast HTML demos for data analysis, ML or AI.
 
 ### Documentation
 
