@@ -6,7 +6,6 @@ import underdog.spectacle.Spectacle
 import underdog.spectacle.jetty.JettyWSContext
 
 import static java.time.Duration.ofMillis
-import static java.time.Duration.ofSeconds
 
 class CancellingStreamingSpec extends Specification {
     def "showing a simple component capable of triggering streaming over another component"() {
@@ -14,7 +13,7 @@ class CancellingStreamingSpec extends Specification {
         def application = Spectacle.application {
             // declaring context
             JettyWSContext cancellableContext
-
+            // page DSL
             page("/cancellable-streaming", theme: "dark") {
                 form(
                     streaming: true,
@@ -31,6 +30,7 @@ class CancellingStreamingSpec extends Specification {
                                 onClick([], [field.counter, field.derivative]) {
                                     // using context to cancel streaming
                                     cancellableContext.cancel()
+                                    // after cancellation we'd like to reset certain values
                                     return [0, 0]
                                 }
                             }
@@ -39,16 +39,13 @@ class CancellingStreamingSpec extends Specification {
                     onSubmit([], [field.counter, field.derivative]) { JettyWSContext context ->
                         // setting cancellable context to use it later on
                         cancellableContext = context
-                        Flux<Integer> mainFlux = Flux.fromArray(0..1_000_000 as Integer[])
-                                .delayElements(ofMillis(500))
+                        // setting streaming values
+                        Flux<Integer> mainFlux = Flux.fromArray(0..10 as Integer[]).delayElements(ofMillis(500))
                         Flux<Double> derivedFlux = mainFlux
                             .map { it * 0.23 }
                             .map { it.round(2).toDouble() }
-
-                        return [
-                            mainFlux,
-                            derivedFlux
-                        ]
+                        // returning flux values to update targets
+                        return [mainFlux, derivedFlux]
                     }
                 }
             }

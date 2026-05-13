@@ -7,6 +7,7 @@ if (element.isStreaming()) {
         'id': element.name,
         'name': element.name,
         'ws-send': 'true',
+        'hx-swap': 'outerHTML',
         'hx-indicator': element.indicatorSelector
     ) {
         script(type: 'module') {
