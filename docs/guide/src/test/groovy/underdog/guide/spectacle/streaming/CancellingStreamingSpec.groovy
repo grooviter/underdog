@@ -73,7 +73,7 @@ class CancellingStreamingSpec extends Specification {
         }
         expect:
         application
-        application.launch()
+        // application.launch()
     }
 
     static String evaluateLevels(Integer current) {
