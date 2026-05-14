@@ -63,6 +63,13 @@ class HTTPBackendHandler extends ElseNext {
 
         response.headers.add(CONTENT_TYPE, "text/html")
 
+        if (targetValues?.size() != targetList?.size()) {
+            throw new RuntimeException("""\
+              | The number of values is different than the number of targets.
+              | This usually happens when an HTMLElement tries to receive a collection as a value.
+            """.stripIndent().stripMargin())
+        }
+
         String combined = ""
         for (int i = 0; i < targetValues.size(); i++) {
             def target = targetList[i]
