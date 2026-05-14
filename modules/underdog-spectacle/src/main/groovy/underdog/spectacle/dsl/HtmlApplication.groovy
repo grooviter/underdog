@@ -212,16 +212,14 @@ class HtmlApplication {
     }
 
     /**
-     * Finds the first {@link HtmlElementWithValue} identified by a specific name
+     * Finds the first {@link HtmlElement} identified by a specific name
      *
      * @param name the name of the element
-     * @return an instance of {@link HtmlElementWithValue} or null if no element is found
+     * @return an instance of {@link HtmlElement} or null if no element is found
      * @since 0.1.0
      */
-    HtmlElementWithValue findHtmlElementWithValueByName(String name) {
-        return this.elementList
-            .<HtmlElementWithValue>findAll { it instanceof HtmlElementWithValue }
-            .<HtmlElementWithValue>find { it.name == name }
+    HtmlElement findHtmlElementWithValueByName(String name) {
+        return this.elementList.find { it.name == name }
     }
 
     String getDefaultPath() {

@@ -5,7 +5,7 @@ package underdog.spectacle.dsl
  *
  * @since 0.1.0
  */
-abstract class HtmlElement {
+abstract class HtmlElement<T> implements WithValue<T> {
     HtmlContainer parent
     HtmlPage page
     HtmlApplication application

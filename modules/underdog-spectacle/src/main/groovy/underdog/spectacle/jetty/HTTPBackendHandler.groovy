@@ -8,7 +8,7 @@ import org.eclipse.jetty.server.Response
 import org.eclipse.jetty.server.handler.ConditionalHandler.ElseNext
 import org.eclipse.jetty.util.Callback
 import underdog.spectacle.dsl.HtmlApplication
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 import underdog.spectacle.dsl.HtmlEvent
 import underdog.spectacle.templates.CachedTemplateEngine
 
@@ -59,7 +59,7 @@ class HTTPBackendHandler extends ElseNext {
 
         def targetList = this.event
             .outputList
-            .<String, HtmlElementWithValue>collect(this.application::findHtmlElementWithValueByName)
+            .<String, HtmlElement>collect(this.application::findHtmlElementWithValueByName)
 
         response.headers.add(CONTENT_TYPE, "text/html")
 

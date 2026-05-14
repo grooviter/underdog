@@ -1,6 +1,6 @@
 package underdog.spectacle.dsl.components
 
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlImage extends HtmlElementWithValue<String> {
+class HtmlImage extends HtmlElement<String> {
 }

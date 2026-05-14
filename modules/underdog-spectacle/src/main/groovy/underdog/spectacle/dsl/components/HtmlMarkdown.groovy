@@ -1,8 +1,8 @@
 package underdog.spectacle.dsl.components
 
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlMarkdown extends HtmlElementWithValue<String> {
+class HtmlMarkdown extends HtmlElement<String> {
     String label
     String info
 }

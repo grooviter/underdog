@@ -1,9 +1,9 @@
 package underdog.spectacle.dsl.components
 
 import underdog.plots.Options
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlChart extends HtmlElementWithValue {
+class HtmlChart extends HtmlElement {
     Closure<Options> supplier
 
     String getChartAsString() {

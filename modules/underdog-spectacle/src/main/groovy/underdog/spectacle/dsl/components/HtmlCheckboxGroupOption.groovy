@@ -1,7 +1,7 @@
 package underdog.spectacle.dsl.components
 
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlCheckboxGroupOption extends HtmlElementWithValue<String> {
+class HtmlCheckboxGroupOption extends HtmlElement<String> {
     Boolean checked
 }

@@ -1,7 +1,7 @@
 package underdog.spectacle.dsl.components
 
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlTextArea extends HtmlElementWithValue<String> {
+class HtmlTextArea extends HtmlElement<String> {
     Integer rows
 }

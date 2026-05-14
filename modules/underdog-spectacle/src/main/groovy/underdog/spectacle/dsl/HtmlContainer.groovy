@@ -32,6 +32,7 @@ import underdog.spectacle.dsl.components.HtmlSpec
 import underdog.spectacle.dsl.components.HtmlSwitchGroup
 
 import underdog.spectacle.dsl.components.HtmlTextArea
+import underdog.spectacle.dsl.components.HtmlTimeLine
 import underdog.spectacle.dsl.components.HtmlTimePicker
 
 import java.time.LocalDate
@@ -42,7 +43,7 @@ import java.time.LocalDateTime
  *
  * @since 0.1.0
  */
-abstract class HtmlContainer extends HtmlElement {
+abstract class HtmlContainer<T> extends HtmlElement<T> {
     List<HtmlElement> children = []
     Map<String, String> extraAttributes = [:]
 
@@ -902,5 +903,33 @@ abstract class HtmlContainer extends HtmlElement {
         )
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Represents a time line
+     *
+     * @param name name of the html element
+     * @param closure closure to declare children items
+     * @return an instance of {@link HtmlTimeLine}
+     * @since 0.1.0
+     */
+    HtmlTimeLine timeLine(String name, @DelegatesTo(HtmlTimeLine) Closure closure) {
+        return new HtmlTimeLine(name: name)
+            .tap { this.addChild(it) }
+            .tap { this.application.addElement(it) }
+            .tap { with(closure) }
+    }
+
+    /**
+     * Represents a time line
+     *
+     * @param name name of the html element
+     * @return an instance of {@link HtmlTimeLine}
+     * @since 0.1.0
+     */
+    HtmlTimeLine timeLine(String name) {
+        return new HtmlTimeLine(name: name)
+            .tap { this.addChild(it) }
+            .tap { this.application.addElement(it) }
     }
 }

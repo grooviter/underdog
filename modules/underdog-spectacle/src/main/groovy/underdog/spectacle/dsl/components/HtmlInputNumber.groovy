@@ -1,7 +1,7 @@
 package underdog.spectacle.dsl.components
 
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlInputNumber extends HtmlElementWithValue<Number> {
+class HtmlInputNumber extends HtmlElement<Number> {
 
 }

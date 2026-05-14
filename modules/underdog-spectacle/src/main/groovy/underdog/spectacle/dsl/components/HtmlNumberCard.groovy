@@ -1,8 +1,8 @@
 package underdog.spectacle.dsl.components
 
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlNumberCard extends HtmlElementWithValue<Number> {
+class HtmlNumberCard extends HtmlElement<Number> {
     String title
     String symbol
 }

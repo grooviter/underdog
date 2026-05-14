@@ -10,7 +10,7 @@ import org.eclipse.jetty.websocket.server.ServerUpgradeResponse
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import underdog.spectacle.dsl.HtmlApplication
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 import underdog.spectacle.dsl.HtmlEvent
 import underdog.spectacle.templates.CachedTemplateEngine
 
@@ -63,9 +63,9 @@ class WSBackendHandler extends AbstractAutoDemanding {
         def targetValues = [function(context)].flatten() as List<Flux>
         def targetList = this.event
             .outputList
-            .<String, HtmlElementWithValue>collect(this.application::findHtmlElementWithValueByName)
+            .<String, HtmlElement>collect(this.application::findHtmlElementWithValueByName)
 
-        List<Flux<String>> fluxes = [targetValues, targetList].transpose().collect { Flux flux, HtmlElementWithValue target ->
+        List<Flux<String>> fluxes = [targetValues, targetList].transpose().collect { Flux flux, HtmlElement target ->
             flux.map { value ->
                 target.value = value
                 templateEngine.render(target)
