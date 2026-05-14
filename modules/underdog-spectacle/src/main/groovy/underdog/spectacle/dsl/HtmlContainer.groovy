@@ -331,7 +331,7 @@ abstract class HtmlContainer extends HtmlElement {
      */
     <U extends HtmlElement> U element(U element){
         return element.tap {
-            addChild(it)
+            this.addChild(it)
             application.addElement(it)
         }
     }
