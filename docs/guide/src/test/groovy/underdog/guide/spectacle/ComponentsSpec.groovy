@@ -192,6 +192,7 @@ class ComponentsSpec extends Specification {
                 }
                 row {
                     col("col-6") {
+                        // --8<-- [start:timeline]
                         timeLine("timeline") {
 
                             item(
@@ -215,6 +216,7 @@ class ComponentsSpec extends Specification {
                                 iconBackground: "bg-danger"
                             )
                         }
+                        // --8<-- [end:timeline]
                     }
                 }
                 row {
