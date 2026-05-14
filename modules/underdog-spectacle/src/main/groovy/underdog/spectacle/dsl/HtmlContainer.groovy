@@ -10,6 +10,7 @@ import underdog.spectacle.dsl.components.HtmlCard
 import underdog.spectacle.dsl.components.HtmlChart
 import underdog.spectacle.dsl.components.HtmlButton
 import underdog.spectacle.dsl.components.HtmlChat
+import underdog.spectacle.dsl.components.HtmlChat.HtmlChatHistory
 import underdog.spectacle.dsl.components.HtmlCheckboxGroup
 import underdog.spectacle.dsl.components.HtmlColumn
 import underdog.spectacle.dsl.components.HtmlDataFrame
@@ -109,6 +110,7 @@ abstract class HtmlContainer extends HtmlElement {
         @NamedParam(required = false) String title,
         @NamedParam(required = false) String inputLabel,
         @NamedParam(required = false) String inputPlaceholder,
+        @NamedParam(required = false) HtmlChatHistory history,
         @DelegatesTo(HtmlChat) Closure closure
     ) {
         return new HtmlChat(
@@ -116,6 +118,7 @@ abstract class HtmlContainer extends HtmlElement {
             title: title,
             inputLabel: inputLabel,
             inputPlaceHolder: inputPlaceholder,
+            history: history ?: new HtmlChat.SimpleChatHistory()
         )
         .tap {this.addChild(it) }
         .tap { with(closure)}
@@ -331,7 +334,7 @@ abstract class HtmlContainer extends HtmlElement {
      */
     <U extends HtmlElement> U element(U element){
         return element.tap {
-            addChild(it)
+            this.addChild(it)
             application.addElement(it)
         }
     }

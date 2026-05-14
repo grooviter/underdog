@@ -1,5 +1,8 @@
 package underdog.spectacle.dsl.components
 
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.FromString
+import underdog.spectacle.dsl.Context
 import underdog.spectacle.dsl.HtmlContainer
 
 /**
@@ -20,7 +23,8 @@ class HtmlChat extends HtmlContainer {
     }
 
     /**
-     * {@link HtmlChat} component only can receive messages as instances of {@link HtmlChatMessage}
+     * {@link HtmlChat} component only can receive messages as instances of {@link HtmlChatMessage} via the
+     * chat history
      *
      * @since 0.1.0
      */
@@ -34,6 +38,63 @@ class HtmlChat extends HtmlContainer {
 
         boolean isUser() {
             return this.type == HtmlChatMessageType.USER
+        }
+    }
+
+    /**
+     * Represents all messages sent in a given chat conversation
+     *
+     * As targets in Spectacle can only receive one value instead of receiving a list of messages the
+     * {@link HtmlChatConversation} element receives the history element
+     *
+     * @since 0.1.0
+     */
+    static interface HtmlChatHistory {
+        /**
+         * Adds a given chat message to the current chat history
+         *
+         * @param message
+         * @return the current history instance
+         * @since 0.1.0
+         */
+        HtmlChatHistory add(HtmlChatMessage message)
+
+        /**
+         * Adds a given chat message to the current chat history.
+         * Created for using Groovy's left shift (<<) operator
+         *
+         * @param message
+         * @return the current history instance
+         * @since 0.1.0
+         */
+        HtmlChatHistory leftShift(HtmlChatMessage message)
+
+        /**
+         * Returns all history messages
+         *
+         * @return the list of all {@link HtmlChatMessage} messages
+         * @since 0.1.0
+         */
+        List<HtmlChatMessage> getMessages()
+    }
+
+    /**
+     * Default memory implementation of a {@link HtmlChatHistory}
+     *
+     * @since 0.1.0
+     */
+    static class SimpleChatHistory implements HtmlChatHistory{
+        List<HtmlChatMessage> messages = []
+
+        @Override
+        HtmlChatHistory add(HtmlChatMessage message) {
+            this.messages.add(message)
+            return this
+        }
+
+        @Override
+        HtmlChatHistory leftShift(HtmlChatMessage message) {
+            return this.add(message)
         }
     }
 
@@ -70,7 +131,7 @@ class HtmlChat extends HtmlContainer {
      *
      * @since 0.1.0
      */
-    List<HtmlChatMessage> messageList = []
+    HtmlChatHistory history = new SimpleChatHistory()
 
     /**
      * Invoked with a closure. That closure functionality will be invoked by the backend
@@ -78,7 +139,12 @@ class HtmlChat extends HtmlContainer {
      * @param closure function to be executed in the backend
      * @since 0.1.0
      */
-    void onSend(Closure closure){
+    void onSend(
+        @ClosureParams(
+            value = FromString,
+            options = ["java.lang.String", "underdog.spectacle.dsl.Context"]
+        ) Closure closure
+    ){
         this.onSendClosure = closure
     }
 
@@ -91,23 +157,31 @@ class HtmlChat extends HtmlContainer {
      */
     HtmlChat initLayout() {
         return this.tap {
-            row(className: '+vh-100') {
-                card(className: '+p-0 h-75') {
-                    if (title) {
-                        cardHeader(title: this.title)
-                    }
-                    cardBody(name: cardBodyName, className: "+vh-75 overflow-auto"){
-                        element(new HtmlChatConversation(name: conversationName))
-                    }
-                    cardFooter {
-                        text(
-                            name: chatInputName,
-                            label: this.inputLabel,
-                            placeHolder: this.inputPlaceHolder,
-                        ) {
-                            onEnter([chatInputName], [conversationName], this.onSendClosure)
+            form {
+                row(className: '+vh-100') {
+                    card(className: '+p-0 h-75') {
+                        if (title) {
+                            cardHeader(title: this.title)
+                        }
+                        cardBody(name: cardBodyName, className: "+vh-75 overflow-auto"){
+                            element(new HtmlChatConversation(name: conversationName))
+                        }
+                        cardFooter {
+                            text(
+                                name: chatInputName,
+                                label: this.inputLabel,
+                                placeHolder: this.inputPlaceHolder,
+                                required: true
+                            )
                         }
                     }
+                }
+                onSubmit([chatInputName], [conversationName]) { Context context ->
+                    def message = context.param(chatInputName)
+                    history << createUserMessage(message)
+                    def system = this.onSendClosure.curry(message)(context)
+                    history << createSystemMessage(system.toString())
+                    return history
                 }
             }
         }

@@ -1,4 +1,4 @@
-def messages = element.value
+def messages = element.value?.messages ?: []
 
 div(id: element.name){
     messages.each { message ->
