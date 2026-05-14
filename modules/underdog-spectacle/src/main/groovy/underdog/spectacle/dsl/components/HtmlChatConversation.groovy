@@ -7,4 +7,4 @@ import underdog.spectacle.dsl.HtmlElementWithValue
  *
  * @since 0.1.0
  */
-class HtmlChatConversation extends HtmlElementWithValue<List<HtmlChat.HtmlChatMessage>> { }
+class HtmlChatConversation extends HtmlElementWithValue<HtmlChat.HtmlChatHistory> { }

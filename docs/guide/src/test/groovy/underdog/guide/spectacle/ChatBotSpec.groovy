@@ -3,11 +3,11 @@ package underdog.guide.spectacle
 import spock.lang.Specification
 import underdog.spectacle.Spectacle
 import underdog.spectacle.dsl.Context
+import underdog.spectacle.dsl.components.HtmlChat
 
 class ChatBotSpec extends Specification {
     def "create a chat bot"() {
         setup:
-        def messages = []
         def application = Spectacle.application {
             page("/chat") {
                 row {
@@ -23,18 +23,15 @@ class ChatBotSpec extends Specification {
                          |
                          | This example shows the behavior of Spectacle's HtmlChat component.
                          |
-                         | When getting the input in the **onSend** function we can use the util static function
-                         | `HtmlChat.getChatInputName(chatName)` to get the name of the input field and therefore
-                         | getting the input field value via the Context object.
+                         | When getting the input in the **onSend** function we receive the message introduced by
+                         | the user and the `Context` object in case we'd like to get information about 
+                         | the application or the current page.
                          | 
-                         | The **onSend** method must return a list of `HtmlChat.HtmlChatMessage` instances. Instances
-                         | of this class can be of type SYSTEM or type USER to distinguish visually whether the
-                         | message has been created by a user or by the system.
+                         | The **onSend** method must return the answer (SYSTEM) to the user entry (USER).
                          |
-                         | There are _utility static_ functions to create such messages:
-                         |
-                         | - `HtmlChat.HtmlChatMessage.createUserMessage(text)`
-                         | - `HtmlChat.HtmlChatMessage.createSystemMessage(text)`
+                         | Although the chat component has its own history by default, you can provide your
+                         | own history implementation (database, file...etc) creation your own implementation
+                         | of the `HtmlChatHistory` interface.
                          |
                          | ### Want to know more ?
                          |
@@ -44,17 +41,15 @@ class ChatBotSpec extends Specification {
                     col {
                         // --8<-- [start:chat]
                         chat(
-                            name: field.chat,                        // chat element name
-                            title: "Chat Room Title",                // chat title
-                            inputLabel: "User",                      // chat input label
-                            inputPlaceholder: "Write anything here!" // chat input placeholder
+                            name: field.chat,                         // chat element name
+                            title: "Chat Room Title",                 // chat title
+                            inputLabel: "User",                       // chat input label
+                            inputPlaceholder: "Write anything here!", // chat input placeholder
+                         // history: new HtmlChat.SimpleChatHistory() // chat history implementation (optional)
                         ) {
-                            onSend { Context context -> // backend function
-                                def message = context.param(getChatInputName(field.chat))
+                            onSend { String userMessage, Context context ->
                                 Thread.sleep(2_000)
-                                messages << createUserMessage(message)
-                                messages << createSystemMessage("$message (echo)")
-                                return messages
+                                return "$userMessage  (echo)"
                             }
                         }
                         // --8<-- [end:chat]
@@ -64,5 +59,6 @@ class ChatBotSpec extends Specification {
         }
         expect:
         application
+        // application.launch()
     }
 }
