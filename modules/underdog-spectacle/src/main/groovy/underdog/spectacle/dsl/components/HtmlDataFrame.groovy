@@ -1,8 +1,8 @@
 package underdog.spectacle.dsl.components
 
 import underdog.DataFrame
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
-class HtmlDataFrame extends HtmlElementWithValue<DataFrame> {
+class HtmlDataFrame extends HtmlElement<DataFrame> {
 
 }

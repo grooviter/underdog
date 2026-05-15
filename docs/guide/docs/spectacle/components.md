@@ -299,3 +299,15 @@ Renders a chat room:
 Image
 
 ![](./images/components/HtmlChat.png){ width="50%" }
+
+### HTMLTimeLine
+
+Renders a timeline
+
+```groovy title="HtmlTimeline"
+--8<-- "src/test/groovy/underdog/guide/spectacle/ComponentsSpec.groovy:timeline"
+```
+
+Image
+
+![](./images/components/HtmlTimeLine.png){ width="50%" }

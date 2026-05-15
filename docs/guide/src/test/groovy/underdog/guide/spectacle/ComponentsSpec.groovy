@@ -191,6 +191,35 @@ class ComponentsSpec extends Specification {
                     }
                 }
                 row {
+                    col("col-6") {
+                        // --8<-- [start:timeline]
+                        timeLine("timeline") {
+
+                            item(
+                                title: "Normal",
+                                when: "14 hrs",
+                                description: "Hourly check, everything working fine",
+                                iconText: "1",
+                                iconBackground: "bg-green"
+                            )
+                            item(
+                                title: "Warning",
+                                when: "15 hrs",
+                                description: "Hourly check, temperature above average",
+                                iconText: "2",
+                                iconBackground: "bg-warning"
+                            )
+                            item(
+                                title: "Danger",
+                                description: "Hourly check, temperature critical",
+                                icon: "bi bi-person",
+                                iconBackground: "bg-danger"
+                            )
+                        }
+                        // --8<-- [end:timeline]
+                    }
+                }
+                row {
                     col(className: "col-4"){
                         markdown """\
                         | ### Accordion
@@ -304,6 +333,6 @@ class ComponentsSpec extends Specification {
         }
         expect:
         app
-//        app.launch()
+        // app.launch()
     }
 }

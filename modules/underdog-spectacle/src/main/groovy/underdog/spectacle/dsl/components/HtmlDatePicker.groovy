@@ -1,10 +1,10 @@
 package underdog.spectacle.dsl.components
 
-import underdog.spectacle.dsl.HtmlElementWithValue
+import underdog.spectacle.dsl.HtmlElement
 
 import java.time.LocalDate
 
-class HtmlDatePicker extends HtmlElementWithValue<LocalDate> {
+class HtmlDatePicker extends HtmlElement<LocalDate> {
     LocalDate from
     LocalDate to
 }
