@@ -1,9 +1,9 @@
 html {
     head {
         title(element.title ?: 'Spectacle')
-        link(href: 'static/css/tabler.css', rel: 'stylesheet')
-        link(href: 'static/css/spectacle.css', rel: 'stylesheet')
-        link(href: 'static/icons/font/bootstrap-icons.css', rel: 'stylesheet')
+        link(href: '/static/css/tabler.css', rel: 'stylesheet')
+        link(href: '/static/css/spectacle.css', rel: 'stylesheet')
+        link(href: '/static/icons/font/bootstrap-icons.css', rel: 'stylesheet')
     }
     body(class: "theme-${element.theme}") {
         div(class: 'page') {
@@ -34,12 +34,12 @@ html {
                 }
             }
         }
-        script(src: 'static/js/bootstrap.js'){}
-        script(src: 'static/js/htmx.min.js'){}
-        script(src: 'static/js/htmx-ws.js'){}
-        script(type: "module", src: 'static/js/spc-form.js'){}
+        script(src: '/static/js/bootstrap.js'){}
+        script(src: '/static/js/htmx.min.js'){}
+        script(src: '/static/js/htmx-ws.js'){}
+        script(type: "module", src: '/static/js/spc-form.js'){}
         if (element.isDevelopment()) {
-            script(type: "module", src: 'static/js/spc-dev.js'){}
+            script(type: "module", src: '/static/js/spc-dev.js'){}
         }
     }
 }
