@@ -71,7 +71,7 @@ class HtmlApplication {
      *
      * @since 0.1.0
      */
-    String defaultTheme
+    String defaultTheme = 'light'
 
     /**
      * Whether to show the navigation bar or not. By default if more than one page is

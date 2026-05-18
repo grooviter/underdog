@@ -2,13 +2,11 @@ package underdog.spectacle.dsl.components
 
 import underdog.spectacle.dsl.HtmlElement
 
-class HtmlNumberCard extends HtmlElement<Value> {
+class HtmlProgressPanel extends HtmlElement<Value> {
     String title
-    String symbol
-    String deltaSymbol
 
     static class Value {
-        Number delta
-        Number value
+        String progressText
+        Double value
     }
 }
