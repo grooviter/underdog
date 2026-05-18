@@ -26,6 +26,13 @@ class HtmlPage extends HtmlContainer {
     String title
 
     /**
+     * Represents the HTML page pre-title. Can be used for breadcrumbs
+     *
+     * @since 0.1.0
+     */
+    String preTitle
+
+    /**
      * Accepts a bootstrap icon, for example : 'bi bi-question'
      *
      * @since 0.1.0
@@ -107,15 +114,19 @@ class HtmlPage extends HtmlContainer {
     static HtmlPage create(
         @NamedParam(required = true) String path,
         @NamedParam(required = false) String title,
+        @NamedParam(required = false) String preTitle,
         @NamedParam(required = true) HtmlApplication application,
-        @NamedParam(required = false) String theme = "light",
+        @NamedParam(required = false) String theme,
+        @NamedParam(required = false) String icon,
         @DelegatesTo(HtmlPage) Closure dsl
     ) {
         return new HtmlPage(
             path: path,
             title: title,
+            preTitle: preTitle,
             application: application,
-            theme: theme
+            theme: theme,
+            icon: icon
         ).tap { with(dsl) }
     }
 }

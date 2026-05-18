@@ -3,6 +3,11 @@ package underdog.guide.spectacle
 import spock.lang.Specification
 import underdog.DataFrame
 import underdog.Underdog
+import underdog.guide.spectacle.components.ChartPageProvider
+import underdog.guide.spectacle.components.DataFramePageProvider
+import underdog.guide.spectacle.components.FlowPageProvider
+import underdog.guide.spectacle.components.FormPageProvider
+import underdog.guide.spectacle.components.LayoutPageProvider
 import underdog.spectacle.Spectacle
 
 import java.time.LocalDate
@@ -16,8 +21,18 @@ class ComponentsSpec extends Specification {
     }
     def "inputs"() {
         setup:
-        def app = Spectacle.application {
-            page('/experiment', theme: "dark") {
+        def app = Spectacle.application(
+            theme: 'dark',
+        ) {
+            page(new FormPageProvider())
+            page(new DataFramePageProvider())
+            page(new ChartPageProvider())
+            page(new FlowPageProvider())
+            page(new LayoutPageProvider())
+            page(
+                '/components/all',
+                title: "All",
+            ) {
                 // --8<-- [start:markdown]
                 markdown """\
                   | # Spectacle's Components
@@ -27,15 +42,6 @@ class ComponentsSpec extends Specification {
                 """
                 // --8<-- [end:markdown]
                 row {
-                    col(className: 'col-4') {
-                        text(
-                            name: field.textWithIcon,
-                            label: 'Username',
-                            info: 'Text input with icon',
-                            placeHolder: 'youremail@yourcompany.com',
-                            icon: 'bi bi-person'
-                        )
-                    }
                     col(className: 'col-4') {
                         text(
                             name: field.textWithIcon,
@@ -49,10 +55,10 @@ class ComponentsSpec extends Specification {
                     col(className: 'col-4') {
                         // --8<-- [start:text]
                         text(
-                                name: field.text,                                    // string
-                                label: 'Name',                                       // string
-                                info: 'Name of the employee',                        // string
-                                placeHolder: 'Insert name, example: John, Anna,...', // string
+                            name: field.text,                                    // string
+                            label: 'Name',                                       // string
+                            info: 'Name of the employee',                        // string
+                            placeHolder: 'Insert name, example: John, Anna,...', // string
                         )
                         // --8<-- [end:text]
                     }

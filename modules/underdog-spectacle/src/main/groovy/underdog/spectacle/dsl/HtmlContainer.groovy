@@ -24,11 +24,14 @@ import underdog.spectacle.dsl.components.HtmlMarkdown
 import underdog.spectacle.dsl.components.HtmlNumberCard
 import underdog.spectacle.dsl.components.HtmlOptionGroup
 import underdog.spectacle.dsl.components.HtmlProgressIndeterminate
+import underdog.spectacle.dsl.components.HtmlProgressPanel
 import underdog.spectacle.dsl.components.HtmlRange
 import underdog.spectacle.dsl.components.HtmlResetLink
 import underdog.spectacle.dsl.components.HtmlRow
 import underdog.spectacle.dsl.components.HtmlSelect
 import underdog.spectacle.dsl.components.HtmlSpec
+import underdog.spectacle.dsl.components.HtmlSubjectSummary
+import underdog.spectacle.dsl.components.HtmlSubjectTrend
 import underdog.spectacle.dsl.components.HtmlSwitchGroup
 
 import underdog.spectacle.dsl.components.HtmlTextArea
@@ -806,6 +809,8 @@ abstract class HtmlContainer<T> extends HtmlElement<T> {
         @NamedParam(required = false) String title = "N/A",
         @NamedParam(required = false) String symbol = "",
         @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) Number defaultDelta,
+        @NamedParam(required = false) String deltaSymbol,
         @NamedParam(required = false) Number defaultValue = 0
     ) {
         return new HtmlNumberCard(
@@ -813,7 +818,100 @@ abstract class HtmlContainer<T> extends HtmlElement<T> {
             title: title,
             symbol: symbol,
             className: className,
-            value: defaultValue
+            deltaSymbol: deltaSymbol,
+            value: new HtmlNumberCard.Value(value: defaultValue, delta: defaultDelta)
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Represents a widget that can show a summary about a given subject
+     *
+     * @param name the name of the component
+     * @param primaryText first text line of the widget
+     * @param secondaryText second text line of the widget
+     * @param icon icon of the widget on the left side
+     * @param iconBackground color of the icon background
+     * @return an instance of {@link HtmlSubjectSummary}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlSubjectSummary subjectSummary(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String primaryText = '-',
+        @NamedParam(required = false) String secondaryText = '-',
+        @NamedParam(required = false) String icon = 'bi bi-question',
+        @NamedParam(required = false) String iconBackground = 'bg-primary'
+    ) {
+        return new HtmlSubjectSummary(
+            name: name,
+            value: new HtmlSubjectSummary.Value(
+                primaryText: primaryText,
+                secondaryText: secondaryText,
+                icon: icon,
+                iconBackground: iconBackground
+            )
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Represents a widget to show the progress of a given task
+     *
+     * @param name the name of the component
+     * @param title title describing what is the progress about
+     * @param defaultValue default value of the progress at startup
+     * @param defaultProgressText default value of the progress text at startup
+     * @return an instance of {@link HtmlProgressPanel}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlProgressPanel progressPanel(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String title = '-',
+        @NamedParam(required = false) Double defaultValue = 0,
+        @NamedParam(required = false) String defaultProgressText = ''
+    ) {
+        return new HtmlProgressPanel(
+            name: name,
+            title: title,
+            value: new HtmlProgressPanel.Value(progressText: defaultProgressText, value: defaultValue)
+        )
+        .tap { this.addChild(it) }
+        .tap { this.application.addElement(it) }
+    }
+
+    /**
+     * Represents a widget which shows the trend of a given task
+     *
+     * @param name the name of the component
+     * @param symbol Symbol o
+     * @param className extra css classes
+     * @param deltaSymbol symbol giving context to delta value
+     * @param defaultValue default value
+     * @param defaultDelta default delta value, normally represents a percentage
+     * @param defaultText default trend text explaining what is the subject about
+     * @return an instance of {@link HtmlSubjectTrend}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlSubjectTrend subjectTrend(
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) String symbol = "",
+        @NamedParam(required = false) String className = "",
+        @NamedParam(required = false) String deltaSymbol,
+        @NamedParam(required = false) Number defaultValue = 0,
+        @NamedParam(required = false) Number defaultDelta = 0,
+        @NamedParam(required = false) String defaultText = '-'
+    ) {
+        return new HtmlSubjectTrend(
+            name: name,
+            className: className,
+            symbol: symbol,
+            deltaSymbol: deltaSymbol,
+            value: new HtmlSubjectTrend.Value(value: defaultValue, delta: defaultDelta, text: defaultText)
         )
         .tap { this.addChild(it) }
         .tap { this.application.addElement(it) }

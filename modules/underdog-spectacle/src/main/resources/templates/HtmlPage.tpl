@@ -16,6 +16,11 @@ html {
                         div(class: 'container-xl') {
                             div(class: 'row') {
                                 div(class: 'col') {
+                                    if (element.preTitle) {
+                                        div(class: 'page-pretitle') {
+                                            yield element.preTitle
+                                        }
+                                    }
                                     h2(class: 'page-title') { yield element.title }
                                 }
                             }
