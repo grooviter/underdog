@@ -1,10 +1,10 @@
-def imageClickable = "${element.name}-clickable"
+def valueFieldId = "${element.name}-value"
 def fileFieldName = "${element.name}-file"
 def imageElementId = "${element.name}-image"
 def imageElementWrapperId = "${imageElementId}-wrapper"
 def hasElement = element.value ? true : false
 
-div(id: imageClickable, class: 'mb-3') {
+div(id: element.name, class: 'mb-3', 'hx-swap-oob': 'true') {
     if (element.label) {
         label(
             class: "form-label ${element.required ? 'required' : ''}",
@@ -48,7 +48,7 @@ div(id: imageClickable, class: 'mb-3') {
         class: "d-none"
     ) {}
     input(
-        id: "${element.name}",
+        id: "${valueFieldId}",
         name: "${element.name}",
         type: "hidden"
     ) {}
@@ -57,10 +57,10 @@ div(id: imageClickable, class: 'mb-3') {
             | import { ImageBase64Loader } from "/static/js/spc-image.js";
             |
             | new ImageBase64Loader().init(
-            |    "${imageClickable}",
+            |    "${element.name}",
             |    '${fileFieldName}',
             |    '${imageElementId}',
-            |    '${element.name}',
+            |    '${valueFieldId}',
             |    '${imageElementWrapperId}'
             |);
         """.stripMargin().stripIndent()
