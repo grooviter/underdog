@@ -117,6 +117,11 @@ class FormPageProvider implements Function<HtmlApplication, HtmlPage>{
                             showUpdatedValue: true          // boolean: shows the updated value
                         )
                         // --8<-- [end:range]
+                        image(
+                            name: app.field.image,
+                            label: "Image to upload",
+                            info: "Image you would like to send to some service"
+                        )
                     }
                     col(CSS_3_COLS_RESPONSIVE) {
                         // --8<-- [start:optionGroup]
