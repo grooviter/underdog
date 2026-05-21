@@ -117,11 +117,10 @@ class FormPageProvider implements Function<HtmlApplication, HtmlPage>{
                             showUpdatedValue: true          // boolean: shows the updated value
                         )
                         // --8<-- [end:range]
-                        image(
-                            name: app.field.image,
-                            label: "Image to upload",
-                            info: "Image you would like to send to some service"
-                        )
+                        div("d-flex justify-content-between gap-1 my-3") {
+                            image(name: app.field.image)
+                            image(name: app.field.imageMirror)
+                        }
                     }
                     col(CSS_3_COLS_RESPONSIVE) {
                         // --8<-- [start:optionGroup]
@@ -174,8 +173,8 @@ class FormPageProvider implements Function<HtmlApplication, HtmlPage>{
                         // --8<-- [end:resetLink]
                     }
                 }
-                onSubmit([],[]) { Context ctx ->
-                    println("Form sent!")
+                onSubmit([app.field.image],[app.field.imageMirror]) { Context ctx ->
+                    return "data:image/png;base64,${ctx.param(app.field.image)}"
                 }
             }
         }
