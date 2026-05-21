@@ -54,6 +54,36 @@ class JettyApplication implements Application {
     static final String DEV_WS_ENDPOINT_PATH = "/status"
 
     /**
+     * Attribute name used for setting default max content size that a form can try to upload to
+     * a context handler
+     *
+     * @since 0.1.0
+     */
+    public static final String MAX_FORM_CONTENT_SIZE = "org.eclipse.jetty.server.Request.maxFormContentSize"
+
+    /**
+     * Default maximum form content size (~= 50Mb)
+     *
+     * @since 0.1.0
+     */
+    public static final int MAX_FORM_CONTENT_SIZE_DEFAULT_VALUE = 50_000_000
+
+    /**
+     * Attribute name used for setting default max number of fields that a form can try to upload to
+     * a context handler
+     *
+     * @since 0.1.0
+     */
+    public static final String MAX_FORM_KEYS = "org.eclipse.jetty.server.Request.maxFormKeys"
+
+    /**
+     * Default maximum form fields number (20)
+     *
+     * @since 0.1.0
+     */
+    public static final int MAX_FORM_KEYS_DEFAULT_VALUE = 20
+
+    /**
      * Instance of {@link HtmlApplication} we would like to render
      *
      * @since 0.1.0
@@ -120,7 +150,18 @@ class JettyApplication implements Application {
         log.debug("adding backend handlers")
         // REST API
         backendHandlerList.each {
-            contextHandlerCollection.addHandler(new ContextHandler(it, "/"))
+            ContextHandler contextHandler = new ContextHandler(it, "/")
+            // required for uploading big files
+            contextHandler.setAttribute(
+                MAX_FORM_CONTENT_SIZE,
+                System.getenv(MAX_FORM_CONTENT_SIZE) ?: MAX_FORM_CONTENT_SIZE_DEFAULT_VALUE
+            )
+            // required for big forms
+            contextHandler.setAttribute(
+                MAX_FORM_KEYS,
+                System.getenv(MAX_FORM_KEYS) ?: MAX_FORM_KEYS_DEFAULT_VALUE
+            )
+            contextHandlerCollection.addHandler(contextHandler)
         }
 
         log.debug("adding websocket handlers")
