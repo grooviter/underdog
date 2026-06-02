@@ -11,4 +11,9 @@ class OpenAIClientImplementation implements OpenAIClient {
     ImagesResult imageGeneration(GenerationsOptions options) {
         return httpService.executePOST('/v1/images/generations', options, ImagesResult)
     }
+
+    @Override
+    ModelsResult models() {
+        return httpService.executeGET('/v1/models', ModelsResult)
+    }
 }
