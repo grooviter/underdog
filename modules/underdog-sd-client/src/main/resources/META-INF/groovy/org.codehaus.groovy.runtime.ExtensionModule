@@ -1,0 +1,3 @@
+moduleName=Module for String extensions
+moduleVersion=0.1.0
+staticExtensionClasses=underdog.sd.cli.extension.StringExtensions,underdog.sd.cli.extension.FileExtensions

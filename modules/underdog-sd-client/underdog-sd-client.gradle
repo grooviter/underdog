@@ -1,0 +1,32 @@
+plugins {
+    id 'groovy'
+    id 'java-library'
+}
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    // streaming
+    implementation platform('io.projectreactor:reactor-bom:2024.0.2')
+    implementation 'io.projectreactor:reactor-core'
+
+    implementation("org.apache.httpcomponents.client5:httpclient5:$apache_http_client")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jackson")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:$jackson")
+    implementation("com.fasterxml.jackson.core:jackson-core:$jackson")
+    runtimeOnly("com.fasterxml.jackson.module:jackson-modules-java8:$jackson")
+
+
+    implementation "org.apache.groovy:groovy-macro:$groovy"
+    implementation "org.apache.groovy:groovy-yaml:$groovy"
+    testImplementation "org.spockframework:spock-core:$spock"
+    testImplementation project(":underdog-dataframe")
+    testImplementation(project(":underdog-plots"))
+
+}
+
+test {
+    useJUnitPlatform()
+}
