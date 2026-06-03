@@ -1,10 +1,7 @@
 package underdog.sd.cli.openai
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import underdog.sd.cli.openai.generations.Background
 import underdog.sd.cli.openai.generations.Image
-import underdog.sd.cli.openai.generations.OutputFormat
-import underdog.sd.cli.openai.generations.Quality
 import underdog.sd.cli.openai.generations.Usage
 
 class ImagesResult {

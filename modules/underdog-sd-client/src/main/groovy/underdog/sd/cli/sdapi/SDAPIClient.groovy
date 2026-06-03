@@ -7,8 +7,6 @@ interface SDAPIClient {
      *
      * @param options The options to generate images
      * @return The result of the generation
-     * @throws underdog.sd.cli.http.ServerValidationException
-     * @throws underdog.sd.cli.http.BadRequestException
      * @since 0.1.0
      */
     Image2ImageResult img2img(Image2ImageOptions options)
@@ -18,8 +16,6 @@ interface SDAPIClient {
      *
      * @param options The options to generate images.
      * @return The result of the generation.
-     * @throws underdog.sd.cli.http.ServerValidationException
-     * @throws underdog.sd.cli.http.BadRequestException
      * @since 0.1.0
      */
     Txt2ImgResult txt2Img(Txt2ImageOptions options)

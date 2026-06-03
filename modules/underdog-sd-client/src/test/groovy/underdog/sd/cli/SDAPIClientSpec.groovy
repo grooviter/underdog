@@ -94,7 +94,7 @@ class SDAPIClientSpec extends SDAwareSpec {
         result.images.size() == 1
     }
 
-    def "/sdapi/v1/txt2img (init_images)"() {
+    def "/sdapi/v1/img2img (init_images)"() {
         setup:
         String prompt = """\
         | highly realistic restored color photograph of a man with a 
@@ -129,7 +129,7 @@ class SDAPIClientSpec extends SDAwareSpec {
         result.images.size() == 1
     }
 
-    def '/sdapi/v1/txt2img (init_images + mask)'(@TempDir Path outputPath) {
+    def '/sdapi/v1/img2img (init_images + mask)'(@TempDir Path outputPath) {
         setup:
         String prompt = """\
         | A roundabout surrounded by a continuos urban european park. The filled-in area should match 

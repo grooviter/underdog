@@ -24,7 +24,7 @@ class SDAwareSpec extends Specification {
 
     OpenAIClient getOpenAI() {
         return SD.openai(ApiOptions.builder()
-            .baseUrl("https://vllm.lab.bit2lab.com")
+            .baseUrl("https://sdcpp.lab.bit2lab.com")
             .apiKey("Y7Ymm9poIq4QZdFCyCnzZA==")
             .build())
     }

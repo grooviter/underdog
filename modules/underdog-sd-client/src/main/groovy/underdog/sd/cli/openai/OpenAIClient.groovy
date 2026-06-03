@@ -5,4 +5,6 @@ interface OpenAIClient {
     ImagesResult imageGeneration(GenerationsOptions options)
 
     ModelsResult models()
+
+    ImagesResult edits(EditsOptions options)
 }

@@ -13,6 +13,8 @@ import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder
 import org.apache.hc.core5.http.ClassicHttpRequest
 import org.apache.hc.core5.http.ClassicHttpResponse
+import org.apache.hc.core5.http.ContentType
+import org.apache.hc.core5.http.HttpEntity
 import org.apache.hc.core5.http.HttpHeaders
 import org.apache.hc.core5.http.HttpStatus
 import org.apache.hc.core5.http.io.entity.StringEntity
@@ -26,11 +28,12 @@ import java.nio.charset.StandardCharsets
 
 @TupleConstructor
 class HTTPService {
+    static final String EMPTY_JSON = '{}'
+    static final Timeout DEFAULT_TIMEOUT = Timeout.ofMinutes(30)
+
     HttpClient client
     SerializationService serializationService
     ApiOptions options
-
-    static final Timeout DEFAULT_TIMEOUT = Timeout.ofMinutes(30)
 
     static HTTPService defaults(ApiOptions apiOptions) {
         Timeout timeout = apiOptions.timeout
@@ -39,8 +42,8 @@ class HTTPService {
 
         PoolingHttpClientConnectionManager cm = PoolingHttpClientConnectionManagerBuilder.create()
                 .setDefaultConnectionConfig(ConnectionConfig.custom()
-                        .setSocketTimeout(timeout)
-                        .build())
+                    .setSocketTimeout(timeout)
+                    .build())
                 .build()
 
         HttpClientBuilder builder = HttpClients.custom()
@@ -65,31 +68,29 @@ class HTTPService {
 
     <T> T executePOST(String path, Options options, Class<T> clazz) {
         ClassicHttpRequest request = new HttpPost(this.resolve(path))
+        request.addHeader(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON)
 
         if (options) {
             request.setEntity(new StringEntity(this.serializationService.toJson(options), StandardCharsets.UTF_8))
         }
 
-        request.addHeader(HttpHeaders.CONTENT_TYPE, "application/json")
         return client.execute(request, response -> parseResponse(response, clazz))
     }
 
-    void checkResponseStatus(ClassicHttpResponse response) {
-        if (response.getCode() in [HttpStatus.SC_OK, HttpStatus.SC_ACCEPTED]) {
-            return
-        }
-
-        if (response.getCode() == HttpStatus.SC_UNPROCESSABLE_CONTENT) {
-            throw this.serializationService.fromJson(response.getEntity().getContent(), ServerValidationException.class)
-        }
-        String content = response.getEntity().getContent().text
-        println(content)
-        throw this.serializationService.fromJson(content, BadRequestException.class)
+    <T> T executeMultipartDataPOST(String path, HttpEntity entity, Class < T > clazz) {
+        ClassicHttpRequest request = new HttpPost(this.resolve(path))
+        request.setEntity(entity)
+        return client.execute(request, response -> parseResponse(response, clazz))
     }
 
-    <T> T parseResponse(ClassicHttpResponse response, Class<T> clazz) {
-        checkResponseStatus(response)
-        return this.serializationService.fromJson(response.getEntity().getContent(), clazz)
+    private <T> T parseResponse(ClassicHttpResponse response, Class<T> clazz) {
+        String json = response?.entity?.content?.text ?: EMPTY_JSON
+
+        if (response.code !in [HttpStatus.SC_OK, HttpStatus.SC_ACCEPTED]) {
+            throw new ServerException(response.code, json)
+        }
+
+        return this.serializationService.fromJson(json, clazz)
     }
 
     private URI resolve(String path) {

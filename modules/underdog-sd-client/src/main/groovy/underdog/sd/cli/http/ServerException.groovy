@@ -1,4 +1,9 @@
-package underdog.sd.cli.http;
+package underdog.sd.cli.http
 
-class ServerException extends RuntimeException {
+import groovy.transform.TupleConstructor
+
+@TupleConstructor
+class ServerException extends Exception {
+    int code
+    String message
 }

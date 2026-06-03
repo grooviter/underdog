@@ -1,4 +1,4 @@
-package underdog.sd.cli.openai.generations
+package underdog.sd.cli.openai
 
 enum Background {
     transparent,
