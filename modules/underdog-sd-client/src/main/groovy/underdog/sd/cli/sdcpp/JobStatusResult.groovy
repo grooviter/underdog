@@ -19,6 +19,18 @@ class JobStatusResult {
 
         @JsonProperty("images")
         List<Image> images
+
+        @JsonProperty("mime_type")
+        String mimeType
+
+        @JsonProperty("fps")
+        String fps
+
+        @JsonProperty("frame_count")
+        String frameCount
+
+        @JsonProperty("b64_json")
+        String b64Json
     }
 
     @JsonProperty("completed")

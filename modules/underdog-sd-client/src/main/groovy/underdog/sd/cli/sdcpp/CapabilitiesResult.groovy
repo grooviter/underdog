@@ -1,15 +1,15 @@
 package underdog.sd.cli.sdcpp
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import underdog.sd.cli.sdcpp.capabilities.Defaults
-import underdog.sd.cli.sdcpp.capabilities.DefaultsByMode
-import underdog.sd.cli.sdcpp.capabilities.Features
-import underdog.sd.cli.sdcpp.capabilities.FeaturesByMode
-import underdog.sd.cli.sdcpp.capabilities.Limits
-import underdog.sd.cli.sdcpp.capabilities.Lora
-import underdog.sd.cli.sdcpp.capabilities.Model
-import underdog.sd.cli.sdcpp.capabilities.OutputFormatsByMode
-import underdog.sd.cli.sdcpp.capabilities.Upscaler
+import underdog.sd.cli.sdcpp.domain.Defaults
+import underdog.sd.cli.sdcpp.domain.DefaultsByMode
+import underdog.sd.cli.sdcpp.domain.Features
+import underdog.sd.cli.sdcpp.domain.FeaturesByMode
+import underdog.sd.cli.sdcpp.domain.Limits
+import underdog.sd.cli.sdcpp.domain.Lora
+import underdog.sd.cli.sdcpp.domain.Model
+import underdog.sd.cli.sdcpp.domain.OutputFormatsByMode
+import underdog.sd.cli.sdcpp.domain.Upscaler
 
 class CapabilitiesResult {
 

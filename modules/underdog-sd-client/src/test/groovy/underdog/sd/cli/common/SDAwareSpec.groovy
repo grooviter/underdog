@@ -33,6 +33,10 @@ class SDAwareSpec extends Specification {
         return loadImageAsBase64("alfred_hitchcock_by_jack_mitchell.jpg")
     }
 
+    String getArnoldSchwarzeneggerBase64Image() {
+        return loadImageAsBase64("arnold_schwarzenegger.jpg")
+    }
+
     String getPuertaDeAlcalaBase64Image() {
         return loadImageAsBase64("puerta_de_alcala_madrid_2.jpg")
     }

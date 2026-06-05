@@ -1,7 +1,9 @@
-package underdog.sd.cli.sdcpp.capabilities
+package underdog.sd.cli.sdcpp.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import groovy.transform.builder.Builder
 
+@Builder
 class SampleParams {
     @JsonProperty("eta")
     Long eta

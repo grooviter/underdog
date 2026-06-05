@@ -1,5 +1,7 @@
 package underdog.sd.cli.http
 
+import com.fasterxml.jackson.core.JsonFactory
+import com.fasterxml.jackson.core.StreamReadConstraints
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.transform.TupleConstructor
 import org.apache.hc.client5.http.classic.HttpClient
@@ -56,7 +58,15 @@ class HTTPService {
                 .setConnectionManager(cm)
                 .build()
 
-        ObjectMapper objectMapper = new ObjectMapper()
+        StreamReadConstraints constraints = StreamReadConstraints.builder()
+                .maxStringLength(100_000_000) // set appropriately
+                .build()
+
+        JsonFactory factory = JsonFactory.builder()
+                .streamReadConstraints(constraints)
+                .build()
+
+        ObjectMapper objectMapper = new ObjectMapper(factory)
         SerializationService serializationService = new SerializationService(objectMapper)
         return new HTTPService(closeableHttpClient, serializationService, apiOptions)
     }

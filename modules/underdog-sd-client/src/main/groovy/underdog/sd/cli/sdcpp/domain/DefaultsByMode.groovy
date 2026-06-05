@@ -1,8 +1,8 @@
-package underdog.sd.cli.sdcpp.capabilities
+package underdog.sd.cli.sdcpp.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class FeaturesByMode {
+class DefaultsByMode {
     @JsonProperty("img_gen")
-    Features imgGen
+    Defaults imgGen
 }
