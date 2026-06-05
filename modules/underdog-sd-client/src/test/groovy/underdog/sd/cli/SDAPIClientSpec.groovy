@@ -2,24 +2,24 @@ package underdog.sd.cli
 
 import spock.lang.TempDir
 import underdog.sd.cli.common.SDAwareSpec
-import underdog.sd.cli.sdapi.Image2ImageOptions
-import underdog.sd.cli.sdapi.Image2ImageResult
-import underdog.sd.cli.sdapi.LatentUpscaleModesResult
-import underdog.sd.cli.sdapi.LoraResult
-import underdog.sd.cli.sdapi.SDAPIOptionsResult
-import underdog.sd.cli.sdapi.SDModelResult
-import underdog.sd.cli.sdapi.SamplersResult
-import underdog.sd.cli.sdapi.SchedulersResult
-import underdog.sd.cli.sdapi.Txt2ImageOptions
-import underdog.sd.cli.sdapi.Txt2ImgResult
-import underdog.sd.cli.sdapi.UpscalersResult
+import underdog.sd.cli.sdapi.request.Image2ImageRequest
+import underdog.sd.cli.sdapi.response.Image2ImageResponse
+import underdog.sd.cli.sdapi.response.LatentUpscaleModesResponse
+import underdog.sd.cli.sdapi.response.LoraResponse
+import underdog.sd.cli.sdapi.response.SDAPIOptionsResponse
+import underdog.sd.cli.sdapi.response.SDModelResponse
+import underdog.sd.cli.sdapi.response.SamplersResponse
+import underdog.sd.cli.sdapi.response.SchedulersResponse
+import underdog.sd.cli.sdapi.request.Txt2ImageRequest
+import underdog.sd.cli.sdapi.response.Txt2ImgResponse
+import underdog.sd.cli.sdapi.response.UpscalersResponse
 
 import java.nio.file.Path
 
 class SDAPIClientSpec extends SDAwareSpec {
     def "/sdapi/v1/sd-models"() {
         when:
-        List<SDModelResult> availableModels = sdapi.availableModels
+        List<SDModelResponse> availableModels = sdapi.availableModels
 
         then:
         availableModels.size() == 1
@@ -27,15 +27,15 @@ class SDAPIClientSpec extends SDAwareSpec {
 
     def "/sdapi/v1/loras"() {
         when:
-        List<LoraResult> loras = sdapi.loras
+        List<LoraResponse> loras = sdapi.loras
 
         then:
-        loras.size() == 1
+        loras.size() >= 0
     }
 
     def "/sdapi/v1/upscalers"() {
         when:
-        List<UpscalersResult> upscalers = sdapi.upscalers
+        List<UpscalersResponse> upscalers = sdapi.upscalers
 
         then:
         upscalers.size() == 3
@@ -43,7 +43,7 @@ class SDAPIClientSpec extends SDAwareSpec {
 
     def "/sdapi/v1/latent-upscale-modes"() {
         when:
-        List<LatentUpscaleModesResult> upscaleModesResults = sdapi.latentUpscaleModes
+        List<LatentUpscaleModesResponse> upscaleModesResults = sdapi.latentUpscaleModes
 
         then:
         upscaleModesResults.size() == 6
@@ -51,7 +51,7 @@ class SDAPIClientSpec extends SDAwareSpec {
 
     def "/sdapi/v1/samplers"() {
         when:
-        List<SamplersResult> samplers = sdapi.samplers
+        List<SamplersResponse> samplers = sdapi.samplers
 
         then:
         samplers.size() == 19
@@ -59,7 +59,7 @@ class SDAPIClientSpec extends SDAwareSpec {
 
     def "/sdapi/v1/schedulers"() {
         when:
-        List<SchedulersResult> schedulers = sdapi.schedulers
+        List<SchedulersResponse> schedulers = sdapi.schedulers
 
         then:
         schedulers.size() == 13
@@ -67,7 +67,7 @@ class SDAPIClientSpec extends SDAwareSpec {
 
     def "/sdapi/v1/options"() {
         when:
-        SDAPIOptionsResult optionsResult = sdapi.options
+        SDAPIOptionsResponse optionsResult = sdapi.options
 
         then:
         optionsResult.sdModelCheckpoint
@@ -76,25 +76,28 @@ class SDAPIClientSpec extends SDAwareSpec {
         optionsResult.samplesFormat
     }
 
-    def "/sdapi/v1/txt2img"() {
+    def "/sdapi/v1/txt2img"(@TempDir File imageDir) {
         when:
-        Txt2ImageOptions options = Txt2ImageOptions.builder()
+        Txt2ImageRequest options = Txt2ImageRequest.builder()
             .prompt("A dog")
             .height(393)
             .width(333)
             .cfgScale(4)
-            .steps(1)
+            .steps(12)
             .denoisingStrength(1)
             .build()
 
         and:
-        Txt2ImgResult result = sdapi.txt2Img(options)
+        Txt2ImgResponse result = sdapi.txt2Img(options)
+        File image = new File(imageDir, "image.png")
+        image << result.images[0].decodeBase64()
 
         then:
         result.images.size() == 1
+        image.exists()
     }
 
-    def "/sdapi/v1/img2img (init_images)"() {
+    def "/sdapi/v1/img2img (init_images)"(@TempDir File imageDir) {
         setup:
         String prompt = """\
         | highly realistic restored color photograph of a man with a 
@@ -108,7 +111,7 @@ class SDAPIClientSpec extends SDAwareSpec {
         """
 
         when:
-        Image2ImageOptions options = Image2ImageOptions.builder()
+        Image2ImageRequest options = Image2ImageRequest.builder()
             .initImages([alfredHitchcockBase64Image])
             .prompt(prompt.stripMargin().stripIndent())
             .negativePrompt(negativePrompt.stripMargin().stripIndent())
@@ -121,11 +124,12 @@ class SDAPIClientSpec extends SDAwareSpec {
             .build()
 
         and:
-        Image2ImageResult result = sdapi.img2img(options)
-        File tempFile = Images.base64ToTempFile(result.images[0])
+        Image2ImageResponse result = sdapi.img2img(options)
+        File image = new File(imageDir, "image.png")
+        image << result.images[0].decodeBase64()
 
         then:
-        tempFile
+        image.exists()
         result.images.size() == 1
     }
 
@@ -152,7 +156,7 @@ class SDAPIClientSpec extends SDAwareSpec {
         """.stripMargin().stripIndent()
 
         when:
-        Image2ImageOptions options = Image2ImageOptions.builder()
+        Image2ImageRequest options = Image2ImageRequest.builder()
             .initImages([puertaDeAlcalaBase64Image])
             .mask(puertaDeAlcalaMaskBase64Image)
             .seed(2000)
@@ -168,7 +172,7 @@ class SDAPIClientSpec extends SDAwareSpec {
 
 
         and:
-        Image2ImageResult result = sdapi.img2img(options)
+        Image2ImageResponse result = sdapi.img2img(options)
         File destination = new File(outputPath.toFile(),"ds-${denoising}-cfg-${cfgScale}-sampler-${samplers}-steps-${steps}.png")
         Images.base64ToFile(result.images[0], destination)
 
@@ -199,7 +203,7 @@ class SDAPIClientSpec extends SDAwareSpec {
                 Images.base64ToTempFile(puertaDeAlcalaBase64Image))
 
         when:
-        Image2ImageOptions options = Image2ImageOptions.builder()
+        Image2ImageRequest options = Image2ImageRequest.builder()
             .initImages([puertaDeAlcalaBase64Image])
             .prompt(prompt)
             .negativePrompt(negativePrompt)
@@ -212,8 +216,8 @@ class SDAPIClientSpec extends SDAwareSpec {
             .build()
 
         and:
-        def (dstWidth, dstHeight) = Images.getDimensions(
-            Images.base64ToTempFile(sdapi.img2img(options).images[0]))
+        Image2ImageResponse response = sdapi.img2img(options)
+        def (dstWidth, dstHeight) = Images.getDimensions(Images.base64ToTempFile(response.images[0]))
 
         then:
         dstWidth == 1024

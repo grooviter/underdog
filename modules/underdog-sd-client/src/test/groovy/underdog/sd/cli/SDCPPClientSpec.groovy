@@ -3,12 +3,13 @@ package underdog.sd.cli
 import spock.lang.Ignore
 import spock.lang.TempDir
 import underdog.sd.cli.common.SDAwareSpec
-import underdog.sd.cli.sdcpp.CapabilitiesResult
-import underdog.sd.cli.sdcpp.ImageGenerationOptions
-import underdog.sd.cli.sdcpp.JobExecutionResult
-import underdog.sd.cli.sdcpp.JobStatusResult
-import underdog.sd.cli.sdcpp.VideoGenerationOptions
-import underdog.sd.cli.sdcpp.domain.SampleParams
+import underdog.sd.cli.sdcpp.request.HiRes
+import underdog.sd.cli.sdcpp.response.CapabilitiesResponse
+import underdog.sd.cli.sdcpp.request.ImageGenerationRequest
+import underdog.sd.cli.sdcpp.response.JobExecutionResponse
+import underdog.sd.cli.sdcpp.response.JobStatusResponse
+import underdog.sd.cli.sdcpp.request.VideoGenerationRequest
+import underdog.sd.cli.sdcpp.request.SampleParams
 
 /**
  * Some tips learned from executing tests
@@ -30,7 +31,7 @@ import underdog.sd.cli.sdcpp.domain.SampleParams
 class SDCPPClientSpec extends SDAwareSpec{
     def "/sdcpp/capabilities"() {
         when:
-        CapabilitiesResult result = sdcpp.capabilities
+        CapabilitiesResponse result = sdcpp.capabilities
 
         then:
         result
@@ -46,20 +47,27 @@ class SDCPPClientSpec extends SDAwareSpec{
     }
 
     def '/sdcpp/job/$id'() {
-        when:
-        JobExecutionResult executionResult = sdcpp.imgGen(ImageGenerationOptions.builder()
+        setup:
+        ImageGenerationRequest request = ImageGenerationRequest.builder()
             .prompt("A dog")
             .cfgScale(1)
-            .denoisingStrength(0.7)
-            .samplerName("euler")
+            .hiRes(HiRes.builder()
+                    .denoisingStrength(0.7)
+                    .build())
+            .sampleParams(SampleParams.builder()
+                    .sampleMethod('euler')
+                    .sampleSteps(4)
+                    .build())
             .seed(200_002)
             .width(256)
             .height(256)
-            .steps(4)
-            .build())
+            .build()
+
+        when:
+        JobExecutionResponse executionResult = sdcpp.imgGen(request)
 
         and:
-        JobStatusResult statusResult = sdcpp.getJob(executionResult.id)
+        JobStatusResponse statusResult = sdcpp.getJob(executionResult.id)
 
         then:
         statusResult.created
@@ -74,26 +82,33 @@ class SDCPPClientSpec extends SDAwareSpec{
         false
     }
 
-    def '/sdcpp/v1/img_gen'() {
+    def '/sdcpp/v1/img_gen'(@TempDir File imageDir) {
         when:
-        JobExecutionResult executionResult = sdcpp.imgGen(ImageGenerationOptions.builder()
+        JobExecutionResponse executionResult = sdcpp.imgGen(ImageGenerationRequest.builder()
             .prompt("A dog")
-            .cfgScale(1)
-            .denoisingStrength(0.7)
-            .samplerName("euler")
+            .cfgScale(5)
+            .hiRes(HiRes.builder()
+                .denoisingStrength(0.7)
+                .build())
+            .sampleParams(SampleParams.builder()
+                .sampleMethod('euler')
+                .sampleSteps(4)
+                .build())
             .seed(200_002)
             .width(256)
             .height(256)
-            .steps(4)
             .build())
 
         and:
-        JobStatusResult statusResult = awaitUntilJobStatusResult(executionResult.id)
+        JobStatusResponse statusResult = awaitUntilJobStatusResult(executionResult.id)
+        File image = new File(imageDir, "image.png")
+        image << statusResult.result.images[0].b64JSON.decodeBase64()
 
         then:
         statusResult.id == executionResult.id
         statusResult.result.images.size() > 0
         statusResult.completed
+        image.exists()
     }
 
     def '/sdcpp/v1/vid_gen (i2v)'(@TempDir File videoDir) {
@@ -129,7 +144,7 @@ class SDCPPClientSpec extends SDAwareSpec{
         File video = new File(videoDir, filename)
 
         and:
-        JobExecutionResult executionResult = sdcpp.vidGen(VideoGenerationOptions.builder()
+        JobExecutionResponse executionResult = sdcpp.vidGen(VideoGenerationRequest.builder()
             .prompt(prompt)
             .negativePrompt(negativePrompt)
             .initImage(arnoldSchwarzeneggerBase64Image)
@@ -147,7 +162,7 @@ class SDCPPClientSpec extends SDAwareSpec{
             .build())
 
         and:
-        JobStatusResult statusResult = awaitUntilJobStatusResult(executionResult.id)
+        JobStatusResponse statusResult = awaitUntilJobStatusResult(executionResult.id)
 
         and:
         video << statusResult.result.b64Json.decodeBase64()
@@ -182,7 +197,7 @@ class SDCPPClientSpec extends SDAwareSpec{
         """.stripMargin().stripIndent()
 
         when:
-        JobExecutionResult executionResult = sdcpp.vidGen(VideoGenerationOptions.builder()
+        JobExecutionResponse executionResult = sdcpp.vidGen(VideoGenerationRequest.builder()
             .prompt(prompt)
             .negativePrompt(negativePrompt)
             .videoFrames(5 * 24)
@@ -192,7 +207,7 @@ class SDCPPClientSpec extends SDAwareSpec{
             .build())
 
         and:
-        JobStatusResult statusResult = awaitUntilJobStatusResult(executionResult.id)
+        JobStatusResponse statusResult = awaitUntilJobStatusResult(executionResult.id)
         File video = new File(videosDir, "skydiver.webm")
         video << statusResult.result.b64Json.decodeBase64()
 
@@ -241,7 +256,7 @@ class SDCPPClientSpec extends SDAwareSpec{
         File video = new File(videosDir, filename)
 
         and:
-        JobExecutionResult executionResult = sdcpp.vidGen(VideoGenerationOptions.builder()
+        JobExecutionResponse executionResult = sdcpp.vidGen(VideoGenerationRequest.builder()
             .prompt(prompt)
             .negativePrompt(negativePrompt)
             .cfgScale(cfgScale)
@@ -258,7 +273,7 @@ class SDCPPClientSpec extends SDAwareSpec{
             .build())
 
         and:
-        JobStatusResult statusResult = awaitUntilJobStatusResult(executionResult.id)
+        JobStatusResponse statusResult = awaitUntilJobStatusResult(executionResult.id)
 
         and:
         video << statusResult.result.b64Json.decodeBase64()
@@ -276,8 +291,8 @@ class SDCPPClientSpec extends SDAwareSpec{
         0.40     | 1.5      | 5.0       | 'dpm++2mv2' | 45          | false       | 1.0          | 1
     }
 
-    private JobStatusResult awaitUntilJobStatusResult(String jobID) {
-        JobStatusResult statusResult = sdcpp.getJob((jobID))
+    private JobStatusResponse awaitUntilJobStatusResult(String jobID) {
+        JobStatusResponse statusResult = sdcpp.getJob((jobID))
         while (!statusResult.completed) {
             statusResult = sdcpp.getJob(jobID)
             Thread.sleep(1_000)

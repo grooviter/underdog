@@ -1,20 +1,25 @@
 package underdog.sd.cli
 
+import spock.lang.Shared
+import spock.lang.TempDir
 import underdog.sd.cli.common.SDAwareSpec
-import underdog.sd.cli.openai.EditsOptions
-import underdog.sd.cli.openai.GenerationsOptions
-import underdog.sd.cli.openai.ImagesResult
-import underdog.sd.cli.openai.ModelsResult
+import underdog.sd.cli.openai.EditsRequest
+import underdog.sd.cli.openai.GenerationsRequest
+import underdog.sd.cli.openai.ImagesResponse
+import underdog.sd.cli.openai.ModelsResponse
 import underdog.sd.cli.openai.Moderation
 import underdog.sd.cli.openai.Quality
 import underdog.sd.cli.openai.edits.Image
 import underdog.sd.cli.openai.generations.Style
 
 class OpenAIClientSpec extends SDAwareSpec {
+    @Shared
+    @TempDir
+    File imagesDir
 
     def '/v1/models'() {
         when:
-        ModelsResult result = openAI.models()
+        ModelsResponse result = openAI.models()
 
         then:
         result.data.size() > 0
@@ -29,7 +34,7 @@ class OpenAIClientSpec extends SDAwareSpec {
         """
 
         and:
-        GenerationsOptions options = GenerationsOptions.builder()
+        GenerationsRequest options = GenerationsRequest.builder()
             .prompt(prompt)
             .size("256x256")
             .model("z-image-turbo")
@@ -39,12 +44,17 @@ class OpenAIClientSpec extends SDAwareSpec {
             .quality(Quality.hd)
             .build()
         when:
-        ImagesResult result = openAI.imageGeneration(options)
+        ImagesResponse result = openAI.imageGeneration(options)
+        File image = new File(imagesDir, "dog.png")
+        image << result.data.b64Json[0].decodeBase64()
 
         then:
         result
         result.data.size() == 1
         result.data.every { it.b64Json }
+
+        and:
+        image.exists()
     }
 
     def '/v1/images/edits'() {
@@ -56,7 +66,7 @@ class OpenAIClientSpec extends SDAwareSpec {
         """.stripIndent().stripMargin()
 
         and:
-        EditsOptions options = EditsOptions.builder()
+        EditsRequest options = EditsRequest.builder()
             .prompt(prompt)
             .size("512x512")
             .model("z-image-turbo")
@@ -64,7 +74,9 @@ class OpenAIClientSpec extends SDAwareSpec {
             .build()
 
         when:
-        ImagesResult result = openAI.edits(options)
+        ImagesResponse result = openAI.edits(options)
+        File image = new File(imagesDir, "hitchcock_edited.png")
+        image << result.data.b64Json[0].decodeBase64()
 
         then:
         result

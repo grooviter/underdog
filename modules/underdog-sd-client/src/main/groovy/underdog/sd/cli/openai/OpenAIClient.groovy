@@ -2,9 +2,9 @@ package underdog.sd.cli.openai
 
 interface OpenAIClient {
 
-    ImagesResult imageGeneration(GenerationsOptions options)
+    ImagesResponse imageGeneration(GenerationsRequest request)
 
-    ModelsResult models()
+    ModelsResponse models()
 
-    ImagesResult edits(EditsOptions options)
+    ImagesResponse edits(EditsRequest request)
 }

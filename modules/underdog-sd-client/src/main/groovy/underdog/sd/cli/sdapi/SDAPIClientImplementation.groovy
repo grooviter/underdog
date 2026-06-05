@@ -2,53 +2,64 @@ package underdog.sd.cli.sdapi
 
 import groovy.transform.TupleConstructor
 import underdog.sd.cli.http.HTTPService
+import underdog.sd.cli.sdapi.request.Image2ImageRequest
+import underdog.sd.cli.sdapi.request.Txt2ImageRequest
+import underdog.sd.cli.sdapi.response.Image2ImageResponse
+import underdog.sd.cli.sdapi.response.LatentUpscaleModesResponse
+import underdog.sd.cli.sdapi.response.LoraResponse
+import underdog.sd.cli.sdapi.response.SDAPIOptionsResponse
+import underdog.sd.cli.sdapi.response.SDModelResponse
+import underdog.sd.cli.sdapi.response.SamplersResponse
+import underdog.sd.cli.sdapi.response.SchedulersResponse
+import underdog.sd.cli.sdapi.response.Txt2ImgResponse
+import underdog.sd.cli.sdapi.response.UpscalersResponse
 
 @TupleConstructor
 class SDAPIClientImplementation implements SDAPIClient {
     HTTPService httpService
 
     @Override
-    List<SDModelResult> getAvailableModels() {
-        return httpService.executeGET('/sdapi/v1/sd-models', SDModelResult[])
+    List<SDModelResponse> getAvailableModels() {
+        return httpService.executeGET('/sdapi/v1/sd-models', SDModelResponse[])
     }
 
     @Override
-    List<LoraResult> getLoras() {
-        return httpService.executeGET('/sdapi/v1/loras', LoraResult[])
+    List<LoraResponse> getLoras() {
+        return httpService.executeGET('/sdapi/v1/loras', LoraResponse[])
     }
 
     @Override
-    List<UpscalersResult> getUpscalers() {
-        return httpService.executeGET('/sdapi/v1/upscalers', UpscalersResult[])
+    List<UpscalersResponse> getUpscalers() {
+        return httpService.executeGET('/sdapi/v1/upscalers', UpscalersResponse[])
     }
 
     @Override
-    List<LatentUpscaleModesResult> getLatentUpscaleModes() {
-        return httpService.executeGET('/sdapi/v1/latent-upscale-modes', LatentUpscaleModesResult[])
+    List<LatentUpscaleModesResponse> getLatentUpscaleModes() {
+        return httpService.executeGET('/sdapi/v1/latent-upscale-modes', LatentUpscaleModesResponse[])
     }
 
     @Override
-    List<SamplersResult> getSamplers() {
-        return httpService.executeGET('/sdapi/v1/samplers', SamplersResult[])
+    List<SamplersResponse> getSamplers() {
+        return httpService.executeGET('/sdapi/v1/samplers', SamplersResponse[])
     }
 
     @Override
-    List<SchedulersResult> getSchedulers() {
-        return httpService.executeGET('/sdapi/v1/schedulers', SchedulersResult[])
+    List<SchedulersResponse> getSchedulers() {
+        return httpService.executeGET('/sdapi/v1/schedulers', SchedulersResponse[])
     }
 
     @Override
-    SDAPIOptionsResult getOptions() {
-        return httpService.executeGET('/sdapi/v1/options', SDAPIOptionsResult)
+    SDAPIOptionsResponse getOptions() {
+        return httpService.executeGET('/sdapi/v1/options', SDAPIOptionsResponse)
     }
 
     @Override
-    Image2ImageResult img2img(Image2ImageOptions options) {
-        return httpService.executePOST('/sdapi/v1/img2img', options, Image2ImageResult)
+    Image2ImageResponse img2img(Image2ImageRequest request) {
+        return httpService.executePOST('/sdapi/v1/img2img', request, Image2ImageResponse)
     }
 
     @Override
-    Txt2ImgResult txt2Img(Txt2ImageOptions options) {
-        return httpService.executePOST('/sdapi/v1/txt2img', options, Txt2ImgResult)
+    Txt2ImgResponse txt2Img(Txt2ImageRequest request) {
+        return httpService.executePOST('/sdapi/v1/txt2img', request, Txt2ImgResponse)
     }
 }

@@ -3,7 +3,6 @@ package underdog.sd.cli.openai
 import groovy.transform.TupleConstructor
 import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder
 import org.apache.hc.core5.http.ContentType
-import org.apache.hc.core5.http.HttpEntity
 import underdog.sd.cli.Images
 import underdog.sd.cli.http.HTTPService
 
@@ -12,59 +11,59 @@ class OpenAIClientImplementation implements OpenAIClient {
     HTTPService httpService
 
     @Override
-    ImagesResult imageGeneration(GenerationsOptions options) {
-        return httpService.executePOST('/v1/images/generations', options, ImagesResult)
+    ImagesResponse imageGeneration(GenerationsRequest request) {
+        return httpService.executePOST('/v1/images/generations', request, ImagesResponse)
     }
 
     @Override
-    ModelsResult models() {
-        return httpService.executeGET('/v1/models', ModelsResult)
+    ModelsResponse models() {
+        return httpService.executeGET('/v1/models', ModelsResponse)
     }
 
     @Override
-    ImagesResult edits(EditsOptions options) {
+    ImagesResponse edits(EditsRequest request) {
         MultipartEntityBuilder builder = MultipartEntityBuilder.create()
-            .addTextBody("model", options.model)
-            .addTextBody("prompt", options.prompt)
+            .addTextBody("model", request.model)
+            .addTextBody("prompt", request.prompt)
 
-        if (options.n) {
-            builder.addTextBody("n", options.n.toString())
+        if (request.n) {
+            builder.addTextBody("n", request.n.toString())
         }
 
-        if (options.quality) {
-            builder.addTextBody("input_fidelity", options.quality.toString())
+        if (request.quality) {
+            builder.addTextBody("input_fidelity", request.quality.toString())
         }
 
-        if (options.background) {
-            builder.addTextBody("background", options.background.toString())
+        if (request.background) {
+            builder.addTextBody("background", request.background.toString())
         }
 
-        if (options.moderation){
-            builder.addTextBody("moderation", options.moderation.toString())
+        if (request.moderation){
+            builder.addTextBody("moderation", request.moderation.toString())
         }
 
-        if (options.outputFormat) {
-            builder.addTextBody("output_format", options.outputFormat.toString())
+        if (request.outputFormat) {
+            builder.addTextBody("output_format", request.outputFormat.toString())
         }
 
-        if (options.partialImages) {
-            builder.addTextBody("partial_images", options.partialImages.toString())
+        if (request.partialImages) {
+            builder.addTextBody("partial_images", request.partialImages.toString())
         }
 
-        if (options.size) {
-            builder.addTextBody("size", options.size)
+        if (request.size) {
+            builder.addTextBody("size", request.size)
         }
 
-        options.images?.each {image ->
+        request.images?.each { image ->
             File tempFile = Images.base64ToTempFile(image.imageURL)
             builder.addBinaryBody("image", tempFile, ContentType.IMAGE_PNG, tempFile.name)
         }
 
-        if (options.mask) {
-            File tempFile = Images.base64ToTempFile(options.mask.imageURL)
+        if (request.mask) {
+            File tempFile = Images.base64ToTempFile(request.mask.imageURL)
             builder.addBinaryBody("mask", tempFile, ContentType.IMAGE_PNG, tempFile.name)
         }
 
-        return httpService.executeMultipartDataPOST('/v1/images/edits', builder.build(), ImagesResult)
+        return httpService.executeMultipartDataPOST('/v1/images/edits', builder.build(), ImagesResponse)
     }
 }

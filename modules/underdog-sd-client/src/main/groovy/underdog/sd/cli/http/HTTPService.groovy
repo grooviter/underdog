@@ -24,7 +24,7 @@ import org.apache.hc.core5.http.message.BasicHeader
 import org.apache.hc.core5.net.URIBuilder
 import org.apache.hc.core5.util.Timeout
 import underdog.sd.cli.ApiOptions
-import underdog.sd.cli.Options
+import underdog.sd.cli.Request
 
 import java.nio.charset.StandardCharsets
 
@@ -76,7 +76,7 @@ class HTTPService {
                 response -> parseResponse(response, clazz))
     }
 
-    <T> T executePOST(String path, Options options, Class<T> clazz) {
+    <T> T executePOST(String path, Request options, Class<T> clazz) {
         ClassicHttpRequest request = new HttpPost(this.resolve(path))
         request.addHeader(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON)
 
