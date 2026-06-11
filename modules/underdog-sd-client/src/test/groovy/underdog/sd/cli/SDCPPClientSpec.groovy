@@ -1,6 +1,7 @@
 package underdog.sd.cli
 
 import spock.lang.Ignore
+import spock.lang.IgnoreIf
 import spock.lang.TempDir
 import underdog.sd.cli.common.SDAwareSpec
 import underdog.sd.cli.sdcpp.request.HiRes
@@ -111,6 +112,7 @@ class SDCPPClientSpec extends SDAwareSpec{
         image.exists()
     }
 
+    @IgnoreIf({ !System.getenv('SD_VIDEO_ENABLED') })
     def '/sdcpp/v1/vid_gen (i2v)'(@TempDir File videoDir) {
         setup:
         String loRA = """\
@@ -183,6 +185,7 @@ class SDCPPClientSpec extends SDAwareSpec{
         0.22     | 1        | 5.0       | 'dpm++2mv2' | 6           | true        | 0.9          | 4
     }
 
+    @IgnoreIf({ !System.getenv('SD_VIDEO_ENABLED') })
     def '/sdcpp/v1/vid_gen (t2v-wo-sample-params)'(@TempDir File videosDir) {
         setup:
         String prompt = """\
@@ -219,6 +222,7 @@ class SDCPPClientSpec extends SDAwareSpec{
         video.exists()
     }
 
+    @IgnoreIf({ !System.getenv('SD_VIDEO_ENABLED') })
     def '/sdcpp/v1/vid_gen (t2v-w-sample-params)'(@TempDir File videosDir) {
         setup:
         String loRA = """\
