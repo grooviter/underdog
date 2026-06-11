@@ -39,4 +39,8 @@ class SD {
     static OpenAIClient openai(ApiOptions apiOptions) {
         return OpenAIClientFactory.create(apiOptions)
     }
+
+    static OpenAIClient openai() {
+        return OpenAIClientFactory.create(ApiOptions.builder().build())
+    }
 }

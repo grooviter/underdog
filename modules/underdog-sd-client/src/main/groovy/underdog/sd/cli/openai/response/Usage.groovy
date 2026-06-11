@@ -1,4 +1,4 @@
-package underdog.sd.cli.openai.generations
+package underdog.sd.cli.openai.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

@@ -44,8 +44,8 @@ class HTTPService {
 
         PoolingHttpClientConnectionManager cm = PoolingHttpClientConnectionManagerBuilder.create()
                 .setDefaultConnectionConfig(ConnectionConfig.custom()
-                    .setSocketTimeout(timeout)
-                    .build())
+                .setSocketTimeout(timeout)
+                .build())
                 .build()
 
         HttpClientBuilder builder = HttpClients.custom()

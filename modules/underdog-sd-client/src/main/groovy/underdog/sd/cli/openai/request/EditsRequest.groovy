@@ -1,11 +1,13 @@
-package underdog.sd.cli.openai
+package underdog.sd.cli.openai.request
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import groovy.transform.builder.Builder
 import underdog.sd.cli.Request
-import underdog.sd.cli.openai.edits.Image
+import underdog.sd.cli.openai.Background
+import underdog.sd.cli.openai.OutputFormat
+import underdog.sd.cli.openai.Quality
 
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)

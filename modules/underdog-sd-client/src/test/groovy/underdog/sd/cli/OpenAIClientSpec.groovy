@@ -3,14 +3,14 @@ package underdog.sd.cli
 import spock.lang.Shared
 import spock.lang.TempDir
 import underdog.sd.cli.common.SDAwareSpec
-import underdog.sd.cli.openai.EditsRequest
-import underdog.sd.cli.openai.GenerationsRequest
-import underdog.sd.cli.openai.ImagesResponse
-import underdog.sd.cli.openai.ModelsResponse
-import underdog.sd.cli.openai.Moderation
+import underdog.sd.cli.openai.request.EditsRequest
+import underdog.sd.cli.openai.request.GenerationsRequest
+import underdog.sd.cli.openai.response.ImagesResponse
+import underdog.sd.cli.openai.response.ModelsResponse
+import underdog.sd.cli.openai.request.Moderation
 import underdog.sd.cli.openai.Quality
-import underdog.sd.cli.openai.edits.Image
-import underdog.sd.cli.openai.generations.Style
+import underdog.sd.cli.openai.request.Image
+import underdog.sd.cli.openai.request.Style
 
 class OpenAIClientSpec extends SDAwareSpec {
     @Shared

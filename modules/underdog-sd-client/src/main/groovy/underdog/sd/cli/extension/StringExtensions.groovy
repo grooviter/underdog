@@ -15,4 +15,8 @@ class StringExtensions {
     static String base64ToBrowserImage(String base64) {
         return Images.base64ToBrowserImage(base64)
     }
+
+    static String asPrompt(String prompt) {
+        return prompt.stripMargin().stripIndent().replaceAll('\n', '')
+    }
 }

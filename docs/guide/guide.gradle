@@ -18,6 +18,7 @@ dependencies {
     implementation project(":underdog-plots")
     implementation project(":underdog-ta")
     implementation project(":underdog-spectacle")
+    implementation project(":underdog-sd-client")
     implementation 'ch.qos.logback:logback-classic:1.5.16'
 
     // EXAMPLES DEPENDENCIES

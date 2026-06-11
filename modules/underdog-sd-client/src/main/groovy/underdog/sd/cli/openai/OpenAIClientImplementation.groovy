@@ -5,6 +5,10 @@ import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder
 import org.apache.hc.core5.http.ContentType
 import underdog.sd.cli.Images
 import underdog.sd.cli.http.HTTPService
+import underdog.sd.cli.openai.request.EditsRequest
+import underdog.sd.cli.openai.request.GenerationsRequest
+import underdog.sd.cli.openai.response.ImagesResponse
+import underdog.sd.cli.openai.response.ModelsResponse
 
 @TupleConstructor
 class OpenAIClientImplementation implements OpenAIClient {

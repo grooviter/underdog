@@ -1,10 +1,22 @@
-package underdog.sd.cli.openai
+package underdog.sd.cli.openai.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import underdog.sd.cli.openai.generations.Image
-import underdog.sd.cli.openai.generations.Usage
+import underdog.sd.cli.openai.Background
+import underdog.sd.cli.openai.OutputFormat
+import underdog.sd.cli.openai.Quality
 
 class ImagesResponse {
+    static class Image {
+        @JsonProperty("b64_json")
+        String b64Json
+
+        @JsonProperty("revised_prompt")
+        String revisedPrompt
+
+        @JsonProperty("url")
+        String url
+    }
+
     @JsonProperty("created")
     Long created
 

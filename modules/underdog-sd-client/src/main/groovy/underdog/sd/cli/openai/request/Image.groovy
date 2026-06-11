@@ -1,4 +1,4 @@
-package underdog.sd.cli.openai.edits
+package underdog.sd.cli.openai.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import groovy.transform.builder.Builder

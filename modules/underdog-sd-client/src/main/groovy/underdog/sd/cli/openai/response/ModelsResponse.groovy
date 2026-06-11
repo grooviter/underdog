@@ -1,4 +1,4 @@
-package underdog.sd.cli.openai
+package underdog.sd.cli.openai.response
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
