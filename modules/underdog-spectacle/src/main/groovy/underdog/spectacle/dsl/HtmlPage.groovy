@@ -1,14 +1,15 @@
 package underdog.spectacle.dsl
 
+import groovy.transform.EqualsAndHashCode
 import groovy.transform.NamedParam
 import groovy.transform.NamedVariant
-import underdog.spectacle.dsl.components.HtmlNavigation
 
 /**
  * Represents a new HTML page
  *
  * @since 0.1.0
  */
+@EqualsAndHashCode(includes = ['path'])
 class HtmlPage extends HtmlContainer {
 
     /**
@@ -24,6 +25,13 @@ class HtmlPage extends HtmlContainer {
      * @since 0.1.0
      */
     String title
+
+    /**
+     * Sets the name of the group this page belongs to
+     *
+     * @since 0.1.0
+     */
+    String group
 
     /**
      * Represents the HTML page pre-title. Can be used for breadcrumbs
@@ -66,23 +74,6 @@ class HtmlPage extends HtmlContainer {
     void addEvent(HtmlEvent event){
         this.eventList.add(event)
         this.application.addEvent(event)
-    }
-
-    /**
-     * Renders a navigation panel in the page. The navigation panel won't be
-     * added as a children of the page like the rest of the children elements
-     * as it has to be treated differently
-     *
-     * @return an instance of {@link HtmlNavigation}
-     * @since 0.1.0
-     */
-    HtmlNavigation navigation() {
-        return new HtmlNavigation().tap {
-            page = this
-            parent = this
-            application = this.application
-            htmlNavigation = it
-        }
     }
 
     /**

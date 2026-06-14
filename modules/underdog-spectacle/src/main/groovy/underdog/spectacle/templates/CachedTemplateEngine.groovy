@@ -20,7 +20,7 @@ import underdog.spectacle.dsl.components.HtmlColumn
 import underdog.spectacle.dsl.components.HtmlDiv
 import underdog.spectacle.dsl.components.HtmlForm
 import underdog.spectacle.dsl.components.HtmlMarkdown
-import underdog.spectacle.dsl.components.HtmlNavigation
+import underdog.spectacle.dsl.HtmlNavigation
 import underdog.spectacle.dsl.components.HtmlRow
 import underdog.spectacle.dsl.components.HtmlSpec
 
@@ -130,7 +130,8 @@ class CachedTemplateEngine {
 
         String navigationContent = ""
 
-        if (container.htmlNavigation) {
+        if (htmlPage.application.shouldShowPagination()) {
+            container.htmlNavigation.page = htmlPage
             navigationContent = render(container.htmlNavigation)
         }
 

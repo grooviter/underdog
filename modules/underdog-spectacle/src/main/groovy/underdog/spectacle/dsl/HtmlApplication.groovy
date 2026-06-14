@@ -82,6 +82,44 @@ class HtmlApplication {
     Boolean showNavigation = true
 
     /**
+     * The application can have a single navigation. This navigation is shared with all pages
+     * to keep coherence between pages
+     *
+     * @since 0.1.0
+     */
+    HtmlNavigation applicationNavigation = new HtmlNavigation(application: this)
+
+    /**
+     * Adds a new page group
+     *
+     * @param name the name of the group
+     * @param title the title shown
+     * @param icon the icon for the group menu
+     * @return an instance of {@link HtmlNavigationGroup}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlNavigationGroup group(
+        String name,
+        String title,
+        String icon
+    ) {
+        HtmlNavigationGroup group = new HtmlNavigationGroup(name: name, title: title, icon: icon, application: this)
+        this.applicationNavigation.addGroup(name, group)
+        return group
+    }
+
+    /**
+     * Whether the application should show the navigation
+     *
+     * @return true if the showNavigation flag is active or the number of pages is greater than 1
+     * @since 0.1.0
+     */
+    Boolean shouldShowPagination() {
+        return this.showNavigation || this.pageList.size() > 1
+    }
+
+    /**
      * Creates a new {@link HtmlPage}
      *
      * @param path url path where the page will        if (this.pageList.size() > 0) {
@@ -90,6 +128,7 @@ class HtmlApplication {
      * @param theme pages html theme ('system' by default)
      * @param title title of the html page
      * @param icon a bootstrap icon with class name syntax, for example: `bi bi-question`
+     * @param group name of the group this page belongs to
      * @param name logical name
      * @param markAsDefault
      * @param closure DSL for the content of that page
@@ -102,6 +141,7 @@ class HtmlApplication {
         @NamedParam(required = false) String theme = '',
         @NamedParam(required = false) String title = '',
         @NamedParam(required = false) String icon = '',
+        @NamedParam(required = false) String group = '',
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) Boolean markAsDefault = false,
         @DelegatesTo(HtmlPage) Closure closure
@@ -110,6 +150,7 @@ class HtmlApplication {
             application: this,
             title: title,
             icon: icon,
+            group: group,
             path: path,
             name: name,
             theme: theme
@@ -184,11 +225,11 @@ class HtmlApplication {
             htmlPage.theme = this.defaultTheme
         }
 
-        this.pageList.add(htmlPage)
+        htmlPage.application = this
+        htmlPage.htmlNavigation = this.applicationNavigation
 
-        if (this.pageList.size() > 1 && this.showNavigation) {
-            this.pageList.each { it.navigation() }
-        }
+        this.applicationNavigation.arrangeTopElements(htmlPage)
+        this.pageList.add(htmlPage)
     }
 
     /**
