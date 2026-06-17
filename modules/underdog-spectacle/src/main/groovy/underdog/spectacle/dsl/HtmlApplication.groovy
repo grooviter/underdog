@@ -120,54 +120,6 @@ class HtmlApplication {
     }
 
     /**
-     * Creates a new {@link HtmlPage}
-     *
-     * @param path url path where the page will        if (this.pageList.size() > 0) {
-            this.pageList.each { it.navigation() }
-        } be accessible
-     * @param theme pages html theme ('system' by default)
-     * @param title title of the html page
-     * @param icon a bootstrap icon with class name syntax, for example: `bi bi-question`
-     * @param group name of the group this page belongs to
-     * @param name logical name
-     * @param markAsDefault
-     * @param closure DSL for the content of that page
-     * @return an instance of {@link HtmlPage}
-     * @since 0.1.0
-     */
-    @NamedVariant
-    HtmlPage page(
-        String path,
-        @NamedParam(required = false) String theme = '',
-        @NamedParam(required = false) String title = '',
-        @NamedParam(required = false) String icon = '',
-        @NamedParam(required = false) HtmlNavigationGroup group,
-        @NamedParam(required = false) String name = Utils.generateRandomName(),
-        @NamedParam(required = false) Boolean markAsDefault = false,
-        @DelegatesTo(HtmlPage) Closure closure
-    ) {
-        HtmlPage page = new HtmlPage(
-            application: this,
-            title: title,
-            icon: icon,
-            group: group,
-            path: path,
-            name: name,
-            theme: theme
-        )
-
-        page.tap { with(closure) }
-
-        if (markAsDefault) {
-            this.defaultPage = page
-        }
-
-        addPage(page)
-
-        return page
-    }
-
-    /**
      * Adds a new static resources endpoint handler
      *
      * This handler not only exposed a set of static resources. It can also be used in event
@@ -226,6 +178,54 @@ class HtmlApplication {
         return page.apply(this)
             .tap {it.group = group }
             .tap { addPage(it) }
+    }
+
+    /**
+     * Creates a new {@link HtmlPage}
+     *
+     * @param path url path where the page will        if (this.pageList.size() > 0) {
+     this.pageList.each { it.navigation() }
+     } be accessible
+     * @param theme pages html theme ('system' by default)
+     * @param title title of the html page
+     * @param icon a bootstrap icon with class name syntax, for example: `bi bi-question`
+     * @param group name of the group this page belongs to
+     * @param name logical name
+     * @param markAsDefault
+     * @param closure DSL for the content of that page
+     * @return an instance of {@link HtmlPage}
+     * @since 0.1.0
+     */
+    @NamedVariant
+    HtmlPage page(
+        String path,
+        @NamedParam(required = false) String theme = '',
+        @NamedParam(required = false) String title = '',
+        @NamedParam(required = false) String icon = '',
+        @NamedParam(required = false) HtmlNavigationGroup group = null,
+        @NamedParam(required = false) String name = Utils.generateRandomName(),
+        @NamedParam(required = false) Boolean markAsDefault = false,
+        @DelegatesTo(HtmlPage) Closure closure
+    ) {
+        HtmlPage page = new HtmlPage(
+            application: this,
+            title: title,
+            icon: icon,
+            group: group,
+            path: path,
+            name: name,
+            theme: theme
+        )
+
+        page.tap { with(closure) }
+
+        if (markAsDefault) {
+            this.defaultPage = page
+        }
+
+        addPage(page)
+
+        return page
     }
 
     /**
