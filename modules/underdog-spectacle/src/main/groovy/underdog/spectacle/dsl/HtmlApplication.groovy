@@ -141,7 +141,7 @@ class HtmlApplication {
         @NamedParam(required = false) String theme = '',
         @NamedParam(required = false) String title = '',
         @NamedParam(required = false) String icon = '',
-        @NamedParam(required = false) String group = '',
+        @NamedParam(required = false) HtmlNavigationGroup group,
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) Boolean markAsDefault = false,
         @DelegatesTo(HtmlPage) Closure closure
@@ -206,12 +206,26 @@ class HtmlApplication {
     /**
      * Creates a new {@link HtmlPage}
      *
-     * @param page an instance of {@link HtmlPage}
+     * @param page an instance of {@link Function}
      * @return an instance of {@link HtmlPage}
      * @since 0.1.0
      */
     HtmlPage page(Function<HtmlApplication,HtmlPage> page) {
         return page.apply(this).tap(this::addPage)
+    }
+
+    /**
+     * Creates a new {@link HtmlPage}
+     *
+     * @param group the group the page belongs to
+     * @param page an instance of {@link Function}
+     * @return an instance of {@link HtmlPage}
+     * @since 0.1.0
+     */
+    HtmlPage page(HtmlNavigationGroup group, Function<HtmlApplication, HtmlPage> page) {
+        return page.apply(this)
+            .tap {it.group = group }
+            .tap { addPage(it) }
     }
 
     /**

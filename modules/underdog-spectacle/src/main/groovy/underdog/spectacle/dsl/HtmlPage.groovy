@@ -31,7 +31,7 @@ class HtmlPage extends HtmlContainer {
      *
      * @since 0.1.0
      */
-    String group
+    HtmlNavigationGroup group
 
     /**
      * Represents the HTML page pre-title. Can be used for breadcrumbs

@@ -30,7 +30,7 @@ class HtmlNavigation extends HtmlElement {
      */
     void arrangeTopElements(HtmlPage htmlPage) {
         if (htmlPage.group) {
-            HtmlNavigationGroup group = this.groups[htmlPage.group]
+            HtmlNavigationGroup group = this.groups[htmlPage.group.name]
             group.addPage(htmlPage)
             if (group !in topElements) {
                 this.topElements.add(group)
