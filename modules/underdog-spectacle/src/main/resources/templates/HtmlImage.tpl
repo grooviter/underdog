@@ -21,12 +21,12 @@ div(id: element.name, class: 'mb-3', 'hx-swap-oob': 'true') {
 
     div(id: "${imageElementWrapperId}", class: 'card') {
         div(
-            class: "card-body d-flex justify-content-center ${hasElement ? '' : 'd-none'}"
+            class: "card-body d-flex justify-content-center overflow-auto ${hasElement ? '' : 'd-none'}"
         ) {
             img(
                 id: imageElementId,
                 src: element.value,
-                class: element.className
+                class: element.classNames("object-fit-contain")
             ){}
         }
         div(
