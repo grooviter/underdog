@@ -7,6 +7,7 @@ import underdog.spectacle.dsl.HtmlEvent
 
 class HtmlForm extends HtmlContainer {
     String indicatorSelector = ""
+    String disabledSelector = ""
     Boolean streaming
 
     @NamedVariant

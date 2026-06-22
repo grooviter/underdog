@@ -7,19 +7,39 @@ class HtmlFormStreaming {
 
     getIndicators() {
         const elt = document.querySelector("form");
-        return document.querySelectorAll(elt.getAttribute("hx-indicator"));
+        const found = elt.getAttribute("hx-indicator");
+
+        if (!found) {
+            return [];
+        }
+
+        return document.querySelectorAll(found);
+    }
+
+    getDisabled() {
+        const form = document.querySelector("form");
+        const found = form.getAttribute("hx-disabled-elt");
+
+        if (!found) {
+            return [];
+        }
+
+        return document.querySelectorAll(found)
     }
 
     onBeforeSendingMessages() {
         this.getIndicators().forEach(elt => htmx.addClass(elt, htmx.config.requestClass));
+        this.getDisabled().forEach(elt => elt.setAttribute("disabled", ""));
     }
 
     onClosingConnection() {
         this.getIndicators().forEach(elt => htmx.removeClass(elt, htmx.config.requestClass));
+        this.getDisabled().forEach(elt => elt.removeAttribute("disabled"));
     }
 
     onError() {
         this.getIndicators().forEach(elt => htmx.removeClass(elt, htmx.config.requestClass));
+        this.getDisabled().forEach(elt => elt.removeAttribute("disabled"));
     }
 }
 

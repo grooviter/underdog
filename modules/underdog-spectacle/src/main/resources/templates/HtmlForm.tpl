@@ -8,7 +8,8 @@ if (element.isStreaming()) {
         'name': element.name,
         'ws-send': 'true',
         'hx-swap': 'outerHTML',
-        'hx-indicator': element.indicatorSelector
+        'hx-indicator': element.indicatorSelector,
+        'hx-disabled-elt': element.disabledSelector
     ) {
         script(type: 'module') {
             yieldUnescaped """\
@@ -28,7 +29,8 @@ if (element.isStreaming()) {
         'hx-post': event.path,
         'hx-target': "#${target}",
         'hx-swap': 'outerHTML',
-        'hx-indicator': element.indicatorSelector
+        'hx-indicator': element.indicatorSelector,
+        'hx-disabled-elt': element.disabledSelector
     ) {
         yieldUnescaped childrenContent
     }

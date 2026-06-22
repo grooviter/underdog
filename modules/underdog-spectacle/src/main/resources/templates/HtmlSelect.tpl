@@ -12,7 +12,10 @@ div(id: element.name, class: 'mb-3'){
             yield element.info
         }
     }
-    select(name: element.name, class: 'form-select mt-1') {
+    select(
+        name: element.name,
+        class: element.classNames('form-select mt-1')
+    ) {
         yieldUnescaped childrenContent
     }
 }

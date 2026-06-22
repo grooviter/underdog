@@ -249,6 +249,7 @@ abstract class HtmlContainer<T> extends HtmlElement<T> {
      * Adds a new html form container
      *
      * @param indicatorSelector CSS selector to use for busy type elements when executing a request
+     * @param disabledSelector CSS selector to use to disable elements when executing a request
      * @param streaming whether the form is going to be streaming data to output fields or not
      * @param closure DSL of the content of this container
      * @return an instance of {@link HtmlForm}
@@ -258,10 +259,16 @@ abstract class HtmlContainer<T> extends HtmlElement<T> {
     HtmlForm form(
         @NamedParam(required = false) String name = Utils.generateRandomName(),
         @NamedParam(required = false) String indicatorSelector = "",
+        @NamedParam(required = false) String disabledSelector = "",
         @NamedParam(required = false) Boolean streaming = false,
         @DelegatesTo(HtmlForm) Closure closure
     ) {
-        return new HtmlForm(name: name, streaming: streaming, indicatorSelector: indicatorSelector)
+        return new HtmlForm(
+            name: name,
+            streaming: streaming,
+            indicatorSelector: indicatorSelector,
+            disabledSelector: disabledSelector
+        )
             .tap { this.addChild(it) }
             .tap { with(closure) }
     }
