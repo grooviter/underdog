@@ -23,6 +23,14 @@ class SD {
     }
 
     /**
+     * @return
+     * @since 0.1.0
+     */
+    static SDCPPClient sdcpp() {
+        return SDCPPClientFactory.create(ApiOptions.builder().build())
+    }
+
+    /**
      * @param apiOptions
      * @return
      * @since 0.1.0

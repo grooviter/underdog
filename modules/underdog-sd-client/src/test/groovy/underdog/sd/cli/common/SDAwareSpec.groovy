@@ -1,7 +1,6 @@
 package underdog.sd.cli.common
 
 import spock.lang.Specification
-import underdog.sd.cli.ApiOptions
 import underdog.sd.cli.SD
 import underdog.sd.cli.openai.OpenAIClient
 import underdog.sd.cli.sdapi.SDAPIClient
@@ -11,22 +10,15 @@ import underdog.sd.cli.sdcpp.SDCPPClient
 class SDAwareSpec extends Specification {
 
     SDAPIClient getSdapi() {
-        return SD.sdapi(ApiOptions.builder()
-            .baseUrl("https://sdcpp.lab.bit2lab.com")
-            .build())
+        return SD.sdapi()
     }
 
     SDCPPClient getSdcpp() {
-        return SD.sdcpp(ApiOptions.builder()
-            .baseUrl("https://sdcpp.lab.bit2lab.com")
-            .build())
+        return SD.sdcpp()
     }
 
     OpenAIClient getOpenAI() {
-        return SD.openai(ApiOptions.builder()
-            .baseUrl("https://sdcpp.lab.bit2lab.com")
-            .apiKey("Y7Ymm9poIq4QZdFCyCnzZA==")
-            .build())
+        return SD.openai()
     }
 
     String getAlfredHitchcockBase64Image() {
